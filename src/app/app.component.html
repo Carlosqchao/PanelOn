@@ -1,1 +1,10 @@
+
 <app-header></app-header>
+
+<app-landing-carousel
+  [items]="carouselItems"
+  [autoSlide]="true"
+  [slideInterval]="5000">
+</app-landing-carousel>
+
+<router-outlet></router-outlet>
