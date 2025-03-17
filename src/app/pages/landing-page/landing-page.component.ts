@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { LandingCarouselComponent } from '../../landing-carousel/landing-carousel.component';
-import { ComicCardComponent } from '../../comic-card/comic-card.component';
+import { LandingCarouselComponent } from '../../components/landing-carousel/landing-carousel.component';
+import { ComicCardComponent } from '../../components/comic-card/comic-card.component';
 import { CommonModule } from '@angular/common';
-import { SectionTitleComponent } from '../../section-title/section-title.component';
+import { SectionTitleComponent } from '../../components/section-title/section-title.component';
 
 @Component({
   selector: 'app-landing-page',
