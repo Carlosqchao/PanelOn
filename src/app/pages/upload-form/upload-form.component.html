@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<form (ngSubmit)="onSubmit()">
+
+  <div class="aside-img">
+    <img src="https://media.mycomicshop.com/n_iv/600/1168751.jpg" alt="Comic Cover">
+  </div>
+
+  <div class="form-container">
+
+    <div class="inner-form-container">
+      <div class="file-upload">
+        <div class="circle"></div>
+        <label for="file" class="file-label">
+          <i class="fas fa-upload fa-2x"></i>
+          <input type="file" id="file" (change)="onFileSelected($event)" name="file" style="display: none">
+        </label>
+        <span class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
+      </div>
+      <div>
+      <input type="text" id="title" [(ngModel)]="title" name="title" required placeholder="Title">
+    </div>
+
+    <div>
+      <input type="text" id="author" [(ngModel)]="author" name="author" required placeholder="Author">
+    </div>
+
+    <div>
+      <input type="text" id="synopsis" [(ngModel)]="synopsis" name="synopsis" placeholder="Synopsis">
+    </div>
+
+    <div>
+      <select id="situation" [(ngModel)]="situation" name="situation" required>
+        <option value="" disabled selected>Select Situation</option>
+        <option value="In process">In process</option>
+        <option value="Finished">Finished</option>
+      </select>
+    </div>
+    <div>
+      <select id="genre" [(ngModel)]="selectedGenre" name="selectedGenre">
+        <option value="" disabled selected>Select Genre</option>
+        <option value="Action">Action</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Drama">Drama</option>
+        <option value="Comedy">Comedy</option>
+      </select>
+      <button type="button" (click)="addGenre()">Add Genre</button>
+    </div>
+    <div class="genre-list">
+      <p>Selected Genres:</p>
+      <span *ngFor="let genre of selectedGenres" class="genre-item">{{ genre }}</span>
+    </div>
+
+    <button type="submit">UPLOAD</button>
+  </div>
+  </div>
+
+</form>

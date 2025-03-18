@@ -1,0 +1,15 @@
+<app-landing-carousel
+  [items]="carouselItems"
+  [autoSlide]="true"
+  [slideInterval]="5000">
+</app-landing-carousel>
+
+<app-section-title [text]="'NEW COMICS'" [alignment]="'left'"></app-section-title>
+
+<div class="comics-container">
+  <app-comic-card
+    *ngFor="let comic of comics"
+    [imageUrl]="comic.imageUrl"
+    [title]="comic.title">
+  </app-comic-card>
+</div>
