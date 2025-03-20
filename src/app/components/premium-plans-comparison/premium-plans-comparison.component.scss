@@ -1,0 +1,11 @@
+@mixin flex-column() {
+  display: flex;
+  flex-direction: row;
+}
+
+.comparison-container {
+  @include flex-column();
+  position: absolute;
+  justify-content: center;
+  align-items: flex-start;
+}
