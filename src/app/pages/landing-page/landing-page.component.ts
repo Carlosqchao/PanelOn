@@ -3,11 +3,12 @@ import { LandingCarouselComponent } from '../../components/landing-carousel/land
 import { ComicCardComponent } from '../../components/comic-card/comic-card.component';
 import { CommonModule } from '@angular/common';
 import { SectionTitleComponent } from '../../components/section-title/section-title.component';
+import {HeaderComponent} from '../../components/header/header.component';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [LandingCarouselComponent, ComicCardComponent, SectionTitleComponent, CommonModule],
+  imports: [LandingCarouselComponent, ComicCardComponent, SectionTitleComponent, CommonModule, HeaderComponent],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })

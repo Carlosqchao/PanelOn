@@ -1,0 +1,8 @@
+.comparison-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  justify-content: center;
+  align-items: flex-start; }
+
+/*# sourceMappingURL=premium-plans-comparison.component.css.map */
