@@ -1,3 +1,7 @@
-
+app-free-plan {
+  display: flex;
+  justify-content: center;
+  background-color: red;
+}
 
 /*# sourceMappingURL=subscription-plans.component.css.map */

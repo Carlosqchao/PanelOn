@@ -1,0 +1,11 @@
+@mixin flex-row() {
+  justify-content: center;
+  flex-direction: row;
+}
+
+.free-plan-container {
+  @include flex-row();
+  width: 100%;
+}
+
+
