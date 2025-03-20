@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:PanelOn": "node dist/panel-on/server/server.mjs"
+    "serve:ssr:PanelOn": "node dist/panel-on/server/server.mjs",
+    "copy-pdfjs": "copy -R node_modules/pdfjs-dist/build/pdf.worker.mjs src/assets/",
+    "postinstall": "npm run copy-pdfjs"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +23,7 @@
     "@angular/router": "^19.2.0",
     "@angular/ssr": "^19.2.1",
     "express": "^4.18.2",
+    "pdfjs-dist": "^5.0.375",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
