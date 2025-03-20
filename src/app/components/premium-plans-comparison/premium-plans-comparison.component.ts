@@ -1,10 +1,11 @@
 import {Component} from '@angular/core';
 import {PremiumPlanMonthlyComponent} from '../premium-plan-monthly/premium-plan-monthly.component';
-import {NgOptimizedImage} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {PremiumDescriptionComponent} from '../premium-description/premium-description.component';
 
 @Component({
   selector: 'app-premium-plans-comparison',
-  imports: [PremiumPlanMonthlyComponent, NgOptimizedImage],
+  imports: [PremiumPlanMonthlyComponent, CommonModule, PremiumDescriptionComponent],
   templateUrl: './premium-plans-comparison.component.html',
   styleUrl: './premium-plans-comparison.component.scss'
 })
@@ -24,4 +25,6 @@ export class PremiumPlansComparisonComponent {
     backgroundPrice: '#E76F51',
     price: '99.99€'
   }
+
+  imagePath = "/PanelOn/src/assets/plan-versus.svg"
 }

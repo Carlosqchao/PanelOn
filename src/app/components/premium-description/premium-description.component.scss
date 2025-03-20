@@ -1,16 +1,37 @@
-$title-size: 3rem;
+$title-size: 2rem;
 $title-weight: bold;
 $subtitle-size: 1.2rem;
-$title-weight: regular;
+$subtitle-weight: bold;
 
-#premium-description-title {
-  font-size: $title-size;
-  font-weight: $title-size;
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
 }
 
-#premium-description-subtitle {
-  font-size: $subtitle-size;
-  font-weight: $subtitle-size;
+.premium-description-container {
+  @include flex-column();
+  width: 100%;
+  justify-content: center;
+
+  .premium-description-title-container {
+    font-size: $title-size;
+    font-weight: $title-size;
+    display: flex;
+    justify-content: center;
+    margin-top: 1vh;
+  }
+
+  .premium-description-subtitle-container {
+    font-size: $subtitle-size;
+    font-weight: $subtitle-weight;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 35%;
+    margin: 2vh auto;
+  }
 }
+
+
 
 

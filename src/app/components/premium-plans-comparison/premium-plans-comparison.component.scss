@@ -8,4 +8,17 @@
   position: absolute;
   justify-content: center;
   align-items: flex-start;
+  width: 100%;
+
+  .img-comparison-container {
+    position: absolute;
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+  .img-comparison {
+    width: 95%;
+  }
 }

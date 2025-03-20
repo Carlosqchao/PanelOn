@@ -3,6 +3,18 @@
   flex-direction: row;
   position: absolute;
   justify-content: center;
-  align-items: flex-start; }
+  align-items: flex-start;
+  width: 100%;
+}
+.comparison-container .img-comparison-container {
+  position: absolute;
+  top: 50%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.comparison-container .img-comparison {
+  width: 95%;
+}
 
 /*# sourceMappingURL=premium-plans-comparison.component.css.map */

@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "",
-"sources": [],
-"names": [],
-"file": "subscription-plans.component.css"
-}
+{"version":3,"sourceRoot":"","sources":["subscription-plans.component.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA","file":"subscription-plans.component.css"}
