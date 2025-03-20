@@ -1,0 +1,26 @@
+h1{
+  padding: 15vh 5vh ;
+}
+
+#pdf-container {
+  margin: 2vh 0;
+}
+canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+
+#buttons{
+  display: flex;
+  flex-direction: row;
+  place-self: center;
+
+}
+.page_button{
+  width: 10vw;
+  height: 7vh;
+  border: 1px black solid;
+  border-radius: 3vw;
+  margin: 0.2vw;
+}
