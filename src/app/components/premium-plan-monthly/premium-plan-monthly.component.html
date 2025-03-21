@@ -4,8 +4,11 @@
   </div>
   <div class="section-description-container">
     <p id="section-description"> {{ description }}</p>
-    <div class="price-container" [style.background-color]="backgroundPrice">
-      <p id="price"> {{ price }}</p>
-    </div>
+    <app-button
+      [text]="price"
+      [backgroundColor]="backgroundColorButton"
+      [backgroundHover]="backgroundColorHoverButton"
+    >
+    </app-button>
   </div>
 </div>

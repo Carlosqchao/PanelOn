@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["header-backlink.component.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;EACA;EACA","file":"header-backlink.component.css"}
+{
+"version": 3,
+"mappings": "AAAA,sBAAsB;EACpB,MAAM,EAAE,GAAG;EACX,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,OAAO,EAAE,WAAW;;AAGtB,UAAW;EACT,UAAU,EAAE,IAAI;EAChB,MAAM,EAAE,IAAI;EACZ,SAAS,EAAE,MAAM;EACjB,MAAM,EAAE,OAAO;EACf,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,IAAI",
+"sources": ["header-backlink.component.scss"],
+"names": [],
+"file": "header-backlink.component.css"
+}

@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["subscription-plans.component.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA","file":"subscription-plans.component.css"}
+{
+"version": 3,
+"mappings": "AAKA,UAAW;EAJT,eAAe,EAAE,MAAM;EACvB,cAAc,EAAE,GAAG;EAKnB,OAAO,EAAE,IAAI;EACb,UAAU,EAAE,GAAG;;AAGjB,sBAAuB;EACrB,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,MAAM",
+"sources": ["subscription-plans.component.scss"],
+"names": [],
+"file": "subscription-plans.component.css"
+}

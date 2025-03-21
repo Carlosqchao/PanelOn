@@ -4,8 +4,15 @@
 </app-premium-description>
 <app-premium-plans-comparison>
 </app-premium-plans-comparison>
-<app-free-plan
-  [title]="freePlan.title"
-  [description]="freePlan.description">
-</app-free-plan>
+<div class="free-plan">
+  <app-free-plan
+    [title]="freePlan.title"
+    [description]="freePlan.description">
+  </app-free-plan>
+  <div class="free-button-container">
+    <app-button
+      [text]="freePlan.textButton">
+    </app-button>
+  </div>
+</div>
 
