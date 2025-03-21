@@ -1,3 +1,5 @@
-<div [ngClass]="alignmentClass">
-  {{ text }}
-</div>
+<section [ngClass]="'align-' + position">
+  <div [ngClass]="alignmentClass">
+    {{ text }}
+  </div>
+</section>
