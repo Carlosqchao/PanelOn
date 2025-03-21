@@ -1,0 +1,48 @@
+<h1>Comic List</h1>
+<ul>
+  <li *ngFor="let comic of comics$ | async">
+    {{ comic.title }}
+  </li>
+</ul>
+
+<h1>User List</h1>
+<ul>
+  <li *ngFor="let user of users$ | async">
+    {{ user.fullName.name }}
+  </li>
+</ul>
+
+<h1>Character List</h1>
+<ul>
+  <li *ngFor="let character of characters$ | async">
+    {{ character.name }}
+  </li>
+</ul>
+
+<h1>News List</h1>
+<ul>
+  <li *ngFor="let newsItem of news$ | async">
+    {{ newsItem.title }}
+  </li>
+</ul>
+
+<h1>Donation List</h1>
+<ul>
+  <li *ngFor="let donation of donations$ | async">
+    {{ donation.amount }}
+  </li>
+</ul>
+
+<h1>Payment List</h1>
+<ul>
+  <li *ngFor="let payment of payments$ | async">
+    {{ payment.amount }}
+  </li>
+</ul>
+
+<h1>Genre List</h1>
+<ul>
+  <li *ngFor="let genre of genres$ | async">
+    {{ genre.name }}
+  </li>
+</ul>
