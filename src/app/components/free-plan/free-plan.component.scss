@@ -1,8 +1,8 @@
-$title-size: 1.5rem;
+$title-size: 2rem;
 $title-weight: bold;
 
-$description-size: 1.2rem;
-$title-weight: bold;
+$description-size: 1rem;
+$description-weight: bold;
 
 @mixin flex-row() {
   justify-content: center;
@@ -16,7 +16,18 @@ $title-weight: bold;
   .free-plan-description-container {
     justify-content: center;
     text-align: center;
-    width: 75%;
+    width: 80%;
+
+    #free-plan-title {
+      font-size: $title-size;
+      font-weight: $title-weight;
+    }
+
+    #free-plan-description {
+      margin-top: 1.2vh;
+      font-size: $description-size;
+      font-weight: $description-weight;
+    }
   }
 
   .free-plan-button-container {
