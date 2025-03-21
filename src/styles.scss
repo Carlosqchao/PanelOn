@@ -10,12 +10,14 @@ html, body {
   height: 100%;
   background: #FFF8EF;
   font-family: "Roboto", sans-serif;
+  font-weight: bold;
 }
 
 .center-container {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
+  margin-bottom: 10px;
   width: 95%;
   justify-content: center;
   align-items: center;
