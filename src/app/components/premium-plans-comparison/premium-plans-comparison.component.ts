@@ -14,13 +14,14 @@ export class PremiumPlansComparisonComponent {
   planMonthlyComponent = {
     title: 'Monthly Plan – Total Flexibility',
     description: 'Try the service with no commitments and pay month by month. Perfect if you want to explore everything we offer before making a long-term decision.',
-    backgroundSection: '#EEEEEE',
+    backgroundSection: '#D9D9D9',
     buttonTitle: '9.99€',
     buttonTextColor: 'black',
+    buttonTextSize: '1.8rem',
     backgroundColorButton: '#EEEEEE',
     backgroundColorHoverButton: '#B8B8B8',
-    buttonWidth: '4vw',
-    buttonHeight: '4vh',
+    buttonWidth: '10vw',
+    buttonHeight: '7vh',
   }
 
   planYearlyComponent = {
@@ -29,10 +30,11 @@ export class PremiumPlansComparisonComponent {
     backgroundSection: '#FFB7A5',
     buttonTitle: '99.99€',
     buttonTextColor: 'black',
+    buttonTextSize: '1.8rem',
     backgroundColorButton: '#E76F51',
     backgroundColorHoverButton: '#E66041',
-    buttonWidth: '4vw',
-    buttonHeight: '4vh',
+    buttonWidth: '10vw',
+    buttonHeight: '7vh',
   }
 
   imagePath = "/PanelOn/src/assets/plan-versus.svg"

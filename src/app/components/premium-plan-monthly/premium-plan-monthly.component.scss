@@ -31,6 +31,10 @@ $container-height: 45vh;
     font-weight: $font-weight-title;
     width: 100%;
     padding: 0 4vw;
+
+    #section-title {
+      top: 0;
+    }
   }
 
   .section-description-container {
@@ -39,5 +43,12 @@ $container-height: 45vh;
     font-weight: $font-weight-description;
     text-align: center;
     width: 65%;
+  }
+
+  .button-general-container {
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

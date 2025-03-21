@@ -16,6 +16,7 @@ export class PremiumPlanMonthlyComponent {
 
   @Input() buttonTitle: string = '9.99€';
   @Input() buttonTextColor: string = 'black';
+  @Input() buttonTextSize: string = '1.2rem';
   @Input() buttonWidth: string = '4vw';
   @Input() buttonHeight: string = '4vh';
   @Input() backgroundColorPrice: string = '#EEEEEE';
