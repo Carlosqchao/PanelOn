@@ -5,10 +5,12 @@
   <div class="section-description-container">
     <p id="section-description"> {{ description }}</p>
     <app-button
-      [text]="price"
-      [backgroundColor]="backgroundColorButton"
-      [backgroundHover]="backgroundColorHoverButton"
-    >
+      [text]="buttonTitle"
+      [textColor]="buttonTextColor"
+      [backgroundColor]="backgroundColorPrice"
+      [backgroundHover]="backgroundColorHoverPrice"
+      [buttonWidth]="buttonWidth"
+      [buttonHeight]="buttonHeight">
     </app-button>
   </div>
 </div>

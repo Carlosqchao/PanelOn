@@ -1,4 +1,4 @@
-$image-weight: 45vw;
+$image-width: 14vw;
 $image-height: 45vh;
 
 @mixin flex-column() {
@@ -18,10 +18,16 @@ $image-height: 45vh;
     top: 50%;
     left: 50.5%;
     transform: translate(-50%, -50%);
+    width: $image-width;
+    height: $image-height;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
   }
 
   .img-comparison {
-    width: $image-weight;
-    height: $image-height;
+    width: auto;
+    height: 100%;
+    object-fit: cover;
   }
 }

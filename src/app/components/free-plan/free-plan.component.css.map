@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AAWA,oBAAqB;EAJnB,eAAe,EAAE,MAAM;EACvB,cAAc,EAAE,GAAG;EAKnB,KAAK,EAAE,IAAI;EAEX,qDAAiC;IAC/B,eAAe,EAAE,MAAM;IACvB,UAAU,EAAE,MAAM;IAClB,KAAK,EAAE,GAAG;EAGZ,gDAA4B;IAC1B,KAAK,EAAE,GAAG",
-"sources": ["free-plan.component.scss"],
-"names": [],
-"file": "free-plan.component.css"
-}
+{"version":3,"sourceRoot":"","sources":["free-plan.component.scss"],"names":[],"mappings":"AAWA;EAJE;EACA;EAKA;;AAEA;EACE;EACA;EACA;;AAGF;EACE","file":"free-plan.component.css"}
