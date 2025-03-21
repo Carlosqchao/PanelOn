@@ -16,12 +16,21 @@
   width: 100%;
   padding: 0 4vw;
 }
+.monthly-plan-container .section-plan-title-container #section-title {
+  top: 0;
+}
 .monthly-plan-container .section-description-container {
   justify-content: center;
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
   width: 65%;
+}
+.monthly-plan-container .button-general-container {
+  margin-top: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=premium-plan-monthly.component.css.map */

@@ -1,19 +1,24 @@
 import { Component, Input } from '@angular/core';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
+  imports: [
+    NgClass
+  ],
   standalone: true
 })
 export class ButtonComponent {
   @Input() text: string = 'Click Me';
   @Input() textColor: string = '#ffffff';
+  @Input() textSize: string = '1.2rem';
   @Input() backgroundColor: string = '#E76F51';
   @Input() backgroundHover: string = '#E66041';
-  @Input() buttonWidth: string = '7vw';
-  @Input() buttonHeight: string = '7vh';
+  @Input() buttonWidth: string = 'auto';
+  @Input() buttonHeight: string = 'auto';
+  @Input() customClass: string = '';
 
   isHovering: boolean = false;
-  border: boolean = false;
 }

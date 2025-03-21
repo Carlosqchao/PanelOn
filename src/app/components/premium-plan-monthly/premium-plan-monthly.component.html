@@ -4,13 +4,17 @@
   </div>
   <div class="section-description-container">
     <p id="section-description"> {{ description }}</p>
-    <app-button
-      [text]="buttonTitle"
-      [textColor]="buttonTextColor"
-      [backgroundColor]="backgroundColorPrice"
-      [backgroundHover]="backgroundColorHoverPrice"
-      [buttonWidth]="buttonWidth"
-      [buttonHeight]="buttonHeight">
-    </app-button>
+    <div class="button-general-container">
+      <app-button
+        [customClass]="'button-plan'"
+        [text]="buttonTitle"
+        [textColor]="buttonTextColor"
+        [textSize]="buttonTextSize"
+        [backgroundColor]="backgroundColorPrice"
+        [backgroundHover]="backgroundColorHoverPrice"
+        [buttonWidth]="buttonWidth"
+        [buttonHeight]="buttonHeight">
+      </app-button>
+    </div>
   </div>
 </div>
