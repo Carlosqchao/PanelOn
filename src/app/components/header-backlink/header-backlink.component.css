@@ -2,7 +2,8 @@
   height: 5vh;
   display: flex;
   align-items: center;
-  padding: 2.5vh 2.5vw; }
+  padding: 2.5vh 2.5vw;
+}
 
 #back-link {
   background: none;
@@ -11,6 +12,7 @@
   cursor: pointer;
   color: black;
   outline: none;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 /*# sourceMappingURL=header-backlink.component.css.map */

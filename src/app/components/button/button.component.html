@@ -1,3 +1,10 @@
-<div class="button-container">
-  <button id="button-general"> {{ text }} </button>
-</div>
+<button class="button-general"
+        [style.background-color]="isHovering ? backgroundHover : backgroundColor"
+        [style.border]="border"
+        (mouseenter)="isHovering = true"
+        (mouseleave)="isHovering = false"
+        [style.color]="textColor"
+        [style.width]="buttonWidth"
+        [style.height]="buttonHeight"> {{ text }}
+</button>
+

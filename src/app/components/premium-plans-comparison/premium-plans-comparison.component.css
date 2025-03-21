@@ -4,14 +4,23 @@
   position: relative;
   justify-content: center;
   align-items: flex-start;
-  width: 100%; }
-  .comparison-container .img-comparison-container {
-    position: absolute;
-    top: 50%;
-    left: 50.5%;
-    transform: translate(-50%, -50%); }
-  .comparison-container .img-comparison {
-    width: 45vw;
-    height: 45vh; }
+  width: 100%;
+}
+.comparison-container .img-comparison-container {
+  position: absolute;
+  top: 50%;
+  left: 50.5%;
+  transform: translate(-50%, -50%);
+  width: 14vw;
+  height: 45vh;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.comparison-container .img-comparison {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
 
 /*# sourceMappingURL=premium-plans-comparison.component.css.map */

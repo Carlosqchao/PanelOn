@@ -10,7 +10,7 @@ import {ButtonComponent} from '../../components/button/button.component';
 
 @Component({
   selector: 'app-subscription-plans',
-  imports: [PremiumDescriptionComponent, PremiumPlansComparisonComponent, HeaderBacklinkComponent, FreePlanComponent, PremiumPlanMonthlyComponent, ButtonComponent],
+  imports: [PremiumDescriptionComponent, PremiumPlansComparisonComponent, HeaderBacklinkComponent, FreePlanComponent, ButtonComponent],
   templateUrl: './subscription-plans.component.html',
   styleUrl: './subscription-plans.component.scss'
 })
