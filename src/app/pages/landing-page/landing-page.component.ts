@@ -3,11 +3,28 @@ import { LandingCarouselComponent } from '../../components/landing-carousel/land
 import { ComicCardComponent } from '../../components/comic-card/comic-card.component';
 import { CommonModule } from '@angular/common';
 import { SectionTitleComponent } from '../../components/section-title/section-title.component';
+import {NewsCardComponent} from '../../components/news-card/news-card.component';
+import {LandingCharacterCard1Component} from '../../components/landing-character-card-1/landing-character-card-1.component';
+import {
+  LandingCharacterCard2Component
+} from '../../components/landing-character-card-2/landing-character-card-2.component';
+import {
+  LandingCharacterCard3Component
+} from '../../components/landing-character-card-3/landing-character-card-3.component';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [LandingCarouselComponent, ComicCardComponent, SectionTitleComponent, CommonModule],
+  imports: [
+    LandingCarouselComponent,
+    ComicCardComponent,
+    SectionTitleComponent,
+    NewsCardComponent,
+    LandingCharacterCard1Component,
+    LandingCharacterCard2Component,
+    LandingCharacterCard3Component,
+    CommonModule
+  ],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
@@ -39,5 +56,28 @@ export class LandingPageComponent {
     { title: 'Avengers', imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/d/00/6750d4ca9eff7/portrait_uncanny.jpg' },
     { title: 'X-Men', imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/5/d0/6750d4a2405bd/portrait_uncanny.jpg' },
     { title: 'Avengers', imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/d/00/6750d4ca9eff7/portrait_uncanny.jpg' },
+  ];
+
+  news = [
+    {
+      title: 'New Spider-Man Movie Announced',
+      imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/3/30/6750d4c18340e/portrait_uncanny.jpg',
+      author: 'Peter Parker'
+    },
+    {
+      title: 'Star Wars Series Gets New Season',
+      imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/6/70/6750d4ba4b982/portrait_uncanny.jpg',
+      author: 'Luke Skywalker'
+    },
+    {
+      title: 'Avengers Assemble for New Event',
+      imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/d/00/6750d4ca9eff7/portrait_uncanny.jpg',
+      author: 'Tony Stark'
+    },
+    {
+      title: 'Avengers Face New Threat',
+      imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/d/00/6750d4ca9eff7/portrait_uncanny.jpg',
+      author: 'Steve Rogers'
+    }
   ];
 }
