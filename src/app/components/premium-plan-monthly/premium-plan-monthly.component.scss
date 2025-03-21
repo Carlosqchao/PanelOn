@@ -7,8 +7,8 @@ $font-weight-description: bold;
 $font-size-price: 2rem;
 $font-weight-price: bold;
 
-$container-width: 36.46vw;
-$container-height: 34.7vh;
+$container-width: 45vw;
+$container-height: 45vh;
 
 @mixin flex-column() {
   display: flex;
@@ -30,12 +30,14 @@ $container-height: 34.7vh;
     font-size: $font-size-title;
     font-weight: $font-weight-title;
     width: 100%;
+    padding: 0 4vw;
   }
 
   .section-description-container {
     justify-content: center;
     font-size: $font-size-description;
     font-weight: $font-weight-description;
+    text-align: center;
     width: 65%;
   }
 

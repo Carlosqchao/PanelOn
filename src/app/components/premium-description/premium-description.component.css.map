@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["premium-description.component.scss"],"names":[],"mappings":"AAUA;EAJE;EACA;EAKA;EACA;;AAEA;EACE,WAhBS;EAiBT,aAjBS;EAkBT;EACA;EACA;;AAGF;EACE,WAtBY;EAuBZ,aAtBc;EAuBd;EACA;EACA;EACA;EACA","file":"premium-description.component.css"}
+{
+"version": 3,
+"mappings": "AAUA,8BAA+B;EAJ7B,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EAKtB,KAAK,EAAE,IAAI;EACX,eAAe,EAAE,MAAM;EAEvB,mEAAqC;IACnC,SAAS,EAhBA,MAAM;IAiBf,WAAW,EAjBF,MAAM;IAkBf,OAAO,EAAE,IAAI;IACb,eAAe,EAAE,MAAM;IACvB,UAAU,EAAE,GAAG;EAGjB,sEAAwC;IACtC,SAAS,EAtBG,MAAM;IAuBlB,WAAW,EAtBG,IAAI;IAuBlB,UAAU,EAAE,MAAM;IAClB,OAAO,EAAE,IAAI;IACb,eAAe,EAAE,MAAM;IACvB,KAAK,EAAE,GAAG;IACV,MAAM,EAAE,QAAQ",
+"sources": ["premium-description.component.scss"],
+"names": [],
+"file": "premium-description.component.css"
+}

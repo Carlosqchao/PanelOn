@@ -2,23 +2,20 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: center;
-}
-.premium-description-container .premium-description-title-container {
-  font-size: 2rem;
-  font-weight: 2rem;
-  display: flex;
-  justify-content: center;
-  margin-top: 1vh;
-}
-.premium-description-container .premium-description-subtitle-container {
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  width: 35%;
-  margin: 2vh auto;
-}
+  justify-content: center; }
+  .premium-description-container .premium-description-title-container {
+    font-size: 1.8rem;
+    font-weight: 1.8rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 1vh; }
+  .premium-description-container .premium-description-subtitle-container {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 35%;
+    margin: 2vh auto; }
 
 /*# sourceMappingURL=premium-description.component.css.map */

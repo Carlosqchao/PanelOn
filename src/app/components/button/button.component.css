@@ -1,0 +1,22 @@
+:root {
+  --button-text-color: white;
+  --button-background-color: #E76F51;
+  --button-background-hover: #E66041;
+  --button-text-size: 1.2rem;
+  --button-width: 7vw;
+  --button-height: 7vh; }
+
+#button-general {
+  width: var(--button-width);
+  height: var(--button-height);
+  cursor: pointer;
+  color: var(--button-text-color);
+  font-weight: bold;
+  font-size: var(--button-font-size);
+  background-color: var(--button-background-color);
+  border: none; }
+
+#button-general:hover {
+  background-color: var(--button-background-color-hover); }
+
+/*# sourceMappingURL=button.component.css.map */

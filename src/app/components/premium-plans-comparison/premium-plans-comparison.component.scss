@@ -1,3 +1,6 @@
+$image-weight: 45vw;
+$image-height: 45vh;
+
 @mixin flex-column() {
   display: flex;
   flex-direction: row;
@@ -5,7 +8,7 @@
 
 .comparison-container {
   @include flex-column();
-  position: absolute;
+  position: relative;
   justify-content: center;
   align-items: flex-start;
   width: 100%;
@@ -13,12 +16,12 @@
   .img-comparison-container {
     position: absolute;
     top: 50%;
-    left: 51%;
+    left: 50.5%;
     transform: translate(-50%, -50%);
-    z-index: 10;
   }
 
   .img-comparison {
-    width: 95%;
+    width: $image-weight;
+    height: $image-height;
   }
 }

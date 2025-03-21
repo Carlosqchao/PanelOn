@@ -1,7 +1,12 @@
 .free-plan-container {
   justify-content: center;
   flex-direction: row;
-  width: 100%;
-}
+  width: 100%; }
+  .free-plan-container .free-plan-description-container {
+    justify-content: center;
+    text-align: center;
+    width: 75%; }
+  .free-plan-container .free-plan-button-container {
+    width: 30%; }
 
 /*# sourceMappingURL=free-plan.component.css.map */

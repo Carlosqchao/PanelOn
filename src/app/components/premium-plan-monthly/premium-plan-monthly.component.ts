@@ -1,8 +1,12 @@
 import { Component, Input } from '@angular/core';
+import {ButtonComponent} from '../button/button.component';
 
 @Component({
   selector: 'app-premium-plan-monthly',
   templateUrl: './premium-plan-monthly.component.html',
+  imports: [
+    ButtonComponent
+  ],
   styleUrl: './premium-plan-monthly.component.scss'
 })
 export class PremiumPlanMonthlyComponent {
@@ -11,4 +15,10 @@ export class PremiumPlanMonthlyComponent {
   @Input() backgroundSection: string = '#D9D9D9';
   @Input() backgroundPrice: string  = '#EEEEEE';
   @Input() price: string = '9.99€';
+
+  buttonPlan = {
+    buttonTitle: this.title,
+    backgroundColorButton: this,
+    backgroundColorHoverButton: string = '#E66041'
+  }
 }

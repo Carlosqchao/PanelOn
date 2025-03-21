@@ -1,3 +1,9 @@
+$title-size: 1.5rem;
+$title-weight: bold;
+
+$description-size: 1.2rem;
+$title-weight: bold;
+
 @mixin flex-row() {
   justify-content: center;
   flex-direction: row;
@@ -6,6 +12,16 @@
 .free-plan-container {
   @include flex-row();
   width: 100%;
+
+  .free-plan-description-container {
+    justify-content: center;
+    text-align: center;
+    width: 75%;
+  }
+
+  .free-plan-button-container {
+    width: 30%;
+  }
 }
 
 
