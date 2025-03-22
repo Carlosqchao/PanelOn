@@ -1,0 +1,37 @@
+.character-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+.overflow-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  flex-direction: row;
+  max-width: 600px;
+  height: 400px;
+  overflow: visible;
+  border-radius: 4px;
+}
+
+.overflow-image {
+  position: absolute;
+  max-width: 120%;
+  max-height: 120%;
+  top: -10%;
+  z-index: 10;
+}
+
+.character-name {
+  margin-top: 15vh;
+  margin-bottom: 6vh;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+  color: #E76F51;
+}
