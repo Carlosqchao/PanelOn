@@ -1,0 +1,48 @@
+<div class="payment-form-container">
+  <form class="payment-form">
+    <div class="summary-header">
+      <h1 id="header-title"> {{ title }} </h1>
+    </div>
+    <div class="card-container">
+      <app-payment-card>
+      </app-payment-card>
+    </div>
+    <div class="input-box-container">
+      <label>CARD NUMBER</label>
+      <input class="card-number-input" type="text" pattern="^\d{16}$" placeholder="ex: 1234 5678 9012 3456" required>
+    </div>
+
+    <div class="input-box-container">
+      <label>CARD HOLDER</label>
+      <input class="card-holder-input" type="text" pattern="^[A-Z][a-z]{1,}$" placeholder="ex: Tomás Ferreira" required>
+    </div>
+
+    <div class="flex-box">
+      <div class="input-box-container">
+        <label>EXPIRATION MONTH</label>
+        <select class="expiration-date-month-input" required>
+          <option value="month" selected disabled>MM</option>
+        </select>
+      </div>
+
+      <div class="input-box-container">
+        <label>EXPIRATION YEAR</label>
+        <select class="expiration-date-year-input" required>
+          <option value="year" selected disabled>YYYY</option>
+        </select>
+      </div>
+
+      <div class="input-box-container">
+        <label>CVV</label>
+        <input class="cvv-input" type="number" pattern="^\d{3,4}$" placeholder="ex: 544" required>
+      </div>
+
+    </div>
+
+    <div class="button-box-container">
+      <app-button
+        [text]="'Pay now!'">
+      </app-button>
+    </div>
+  </form>
+</div>

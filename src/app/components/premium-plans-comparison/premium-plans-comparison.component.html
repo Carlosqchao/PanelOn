@@ -10,6 +10,8 @@
     [backgroundColorHoverPrice]="planMonthlyComponent.backgroundColorHoverButton"
     [buttonHeight]="planMonthlyComponent.buttonHeight"
     [buttonWidth]="planMonthlyComponent.buttonWidth"
+    [planType]="'monthly'"
+    (planSelected)="handlePlanRedirect($event)"
     >
   </app-premium-plan-monthly>
   <div class="img-comparison-container">
@@ -25,6 +27,8 @@
     [backgroundColorPrice]="planYearlyComponent.backgroundColorButton"
     [backgroundColorHoverPrice]="planYearlyComponent.backgroundColorHoverButton"
     [buttonHeight]="planYearlyComponent.buttonHeight"
-    [buttonWidth]="planYearlyComponent.buttonWidth">
+    [buttonWidth]="planYearlyComponent.buttonWidth"
+    [planType]="'annual'"
+    (planSelected)="handlePlanRedirect($event)">
   </app-premium-plan-monthly>
 </div>

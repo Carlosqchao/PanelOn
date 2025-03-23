@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {NgClass} from '@angular/common';
 
 @Component({
@@ -19,6 +19,13 @@ export class ButtonComponent {
   @Input() buttonWidth: string = 'auto';
   @Input() buttonHeight: string = 'auto';
   @Input() customClass: string = '';
+
+  // @ts-ignore
+  @Output() buttonClick = new EventEmitter<void>();
+
+  onClick() {
+    this.buttonClick.emit();
+  }
 
   isHovering: boolean = false;
 }

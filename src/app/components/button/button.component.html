@@ -6,6 +6,7 @@
         [style.color]="textColor"
         [style.font-size]="textSize"
         [style.width]="buttonWidth"
-        [style.height]="buttonHeight"> {{ text }}
+        [style.height]="buttonHeight"
+        (click)="onClick()"> {{ text }}
 </button>
 

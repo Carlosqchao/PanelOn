@@ -1,0 +1,67 @@
+.payment-form-container {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+}
+.payment-form-container #header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 4vh;
+}
+.payment-form-container .payment-form {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  padding: 1.2vh 1.2vw;
+  width: 22vw;
+}
+.payment-form-container .payment-form .flex-box {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  display: flex;
+  gap: 15px;
+}
+.payment-form-container .payment-form .card-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4vh;
+}
+.payment-form-container .input-box-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 1vh;
+  font-family: "Roboto", sans-serif;
+}
+.payment-form-container .input-box-container label {
+  margin-bottom: 0.5vh;
+  font-size: 0.97rem;
+}
+.payment-form-container .input-box-container input, .payment-form-container .input-box-container select {
+  width: 100%;
+  height: 3.7vh;
+  padding: 0.5vw;
+  border-radius: 0.2vw;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #444;
+}
+.payment-form-container .input-box-container input:focus, .payment-form-container .input-box-container select:focus {
+  outline: none;
+}
+.payment-form-container .button-box-container {
+  margin-top: 1vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=payment-form.component.css.map */
