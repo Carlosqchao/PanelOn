@@ -1,48 +1,43 @@
 <div class="payment-form-container">
-  <form class="payment-form">
+  <form class="payment-form" (submit)="handleSubmit(); $event.preventDefault()">
     <div class="summary-header">
-      <h1 id="header-title"> {{ title }} </h1>
+      <h1 id="header-title">{{ title }}</h1>
     </div>
+
     <div class="card-container">
-      <app-payment-card>
-      </app-payment-card>
-    </div>
-    <div class="input-box-container">
-      <label>CARD NUMBER</label>
-      <input class="card-number-input" type="text" pattern="^\d{16}$" placeholder="ex: 1234 5678 9012 3456" required>
+      <app-payment-card></app-payment-card>
     </div>
 
     <div class="input-box-container">
       <label>CARD HOLDER</label>
-      <input class="card-holder-input" type="text" pattern="^[A-Z][a-z]{1,}$" placeholder="ex: Tomás Ferreira" required>
+      <input
+        class="card-holder-input"
+        type="text"
+        placeholder="ex: Tomás Ferreira"
+        [(ngModel)]="cardHolder"
+        name="cardHolder"
+        required>
     </div>
 
-    <div class="flex-box">
-      <div class="input-box-container">
-        <label>EXPIRATION MONTH</label>
-        <select class="expiration-date-month-input" required>
-          <option value="month" selected disabled>MM</option>
-        </select>
-      </div>
-
-      <div class="input-box-container">
-        <label>EXPIRATION YEAR</label>
-        <select class="expiration-date-year-input" required>
-          <option value="year" selected disabled>YYYY</option>
-        </select>
-      </div>
-
-      <div class="input-box-container">
-        <label>CVV</label>
-        <input class="cvv-input" type="number" pattern="^\d{3,4}$" placeholder="ex: 544" required>
-      </div>
-
+    <div class="input-box-container">
+      <label>EMAIL</label>
+      <input
+        class="card-email-input"
+        type="text"
+        placeholder="ex: tomas.ferreira09@gmail.com"
+        [(ngModel)]="cardHolder"
+        name="cardHolder"
+        required>
     </div>
+
+    <div class="input-box-container">
+      <label>CARD DETAILS</label>
+      <div id="card-element" class="stripe-card-element"></div>
+    </div>
+
 
     <div class="button-box-container">
-      <app-button
-        [text]="'Pay now!'">
-      </app-button>
+      <app-button [text]="'Pay now!'"></app-button>
     </div>
   </form>
 </div>
