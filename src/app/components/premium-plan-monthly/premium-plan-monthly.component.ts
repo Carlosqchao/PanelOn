@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ButtonComponent} from '../button/button.component';
 
 @Component({
@@ -21,4 +21,12 @@ export class PremiumPlanMonthlyComponent {
   @Input() buttonHeight: string = '4vh';
   @Input() backgroundColorPrice: string = '#EEEEEE';
   @Input() backgroundColorHoverPrice: string = '#B8B8B8';
+
+  @Input() planType: string = 'monthly';
+
+  @Output() planSelected = new EventEmitter<string>();
+
+  onPlanClick() {
+    this.planSelected.emit(this.planType);
+  }
 }

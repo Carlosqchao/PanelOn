@@ -1,12 +1,11 @@
 import {Component} from '@angular/core';
 import {PremiumPlanMonthlyComponent} from '../premium-plan-monthly/premium-plan-monthly.component';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {PremiumDescriptionComponent} from '../premium-description/premium-description.component';
-import {ButtonComponent} from '../button/button.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-premium-plans-comparison',
-  imports: [PremiumPlanMonthlyComponent, CommonModule, ButtonComponent],
+  imports: [PremiumPlanMonthlyComponent, CommonModule],
   templateUrl: './premium-plans-comparison.component.html',
   styleUrl: './premium-plans-comparison.component.scss'
 })
@@ -35,6 +34,12 @@ export class PremiumPlansComparisonComponent {
     backgroundColorHoverButton: '#E66041',
     buttonWidth: '10vw',
     buttonHeight: '7vh',
+  }
+
+  constructor(private router: Router) {}
+
+  handlePlanRedirect(planType: string) {
+    this.router.navigate(['/payment'], { queryParams: { plan: planType } });
   }
 
   imagePath = "/PanelOn/src/assets/plan-versus.svg"

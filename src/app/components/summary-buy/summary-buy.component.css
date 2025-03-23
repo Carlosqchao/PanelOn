@@ -1,0 +1,71 @@
+.summary-buy-container {
+  background-color: #fff;
+  justify-self: center;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+  width: 22vw;
+  color: #1a1a1a;
+  margin-bottom: 2vh;
+}
+.summary-buy-container .summary-header {
+  margin-bottom: 1.5rem;
+}
+.summary-buy-container .summary-header #header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+}
+.summary-buy-container .summary-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+.summary-buy-container .summary-content .subscription-figure {
+  display: flex;
+  flex-direction: column;
+  width: 8vw;
+  height: 8vh;
+  background-color: #fef7dc;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.summary-buy-container .summary-content .subscription-figure #subscription-caption {
+  font-size: 0.8rem;
+  color: #666;
+  align-items: center;
+  margin: 0;
+  padding-top: 0.2vh;
+}
+.summary-buy-container .summary-content .subscription-figure #subscription-img {
+  width: 50px;
+  height: auto;
+}
+.summary-buy-container .summary-content .summary-buy {
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.summary-buy-container .summary-content .summary-buy #summary-subscription {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  justify-self: center;
+}
+.summary-buy-container .summary-content .summary-buy #price-subscription {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #000;
+  align-self: flex-end;
+}
+
+/*# sourceMappingURL=summary-buy.component.css.map */
