@@ -11,7 +11,8 @@
   </app-free-plan>
   <div class="free-button-container">
     <app-button
-      [text]="freePlan.textButton">
+      [text]="freePlan.textButton"
+      (buttonClick)="goHome()">
     </app-button>
   </div>
 </div>
