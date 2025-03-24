@@ -4,6 +4,8 @@ import {SectionTitleComponent} from '../../components/section-title/section-titl
 import {CharacterTextComponent} from '../../components/character-text/character-text.component';
 import {CharacterCardComponent} from '../../components/character-card/character-card.component';
 import {NgForOf} from '@angular/common';
+import {ComicCardComponent} from '../../components/comic-card/comic-card.component';
+import {FooterComponent} from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-character-page',
@@ -12,7 +14,9 @@ import {NgForOf} from '@angular/common';
     SectionTitleComponent,
     CharacterTextComponent,
     CharacterCardComponent,
-    NgForOf
+    NgForOf,
+    ComicCardComponent,
+    FooterComponent
   ],
   templateUrl: './character-page.component.html',
   styleUrl: './character-page.component.scss'
@@ -39,6 +43,12 @@ export class CharacterPageComponent {
       superheroName: 'Captain America',
       characterName: 'Steve Rogers'
     }
+  ];
+
+  comics = [
+    { title: 'Spider-Man', imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/3/30/6750d4c18340e/portrait_uncanny.jpg' },
+    { title: 'Avengers', imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/d/00/6750d4ca9eff7/portrait_uncanny.jpg' },
+    { title: 'Spider-Man 2', imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/9/80/645577dc06dca/portrait_uncanny.jpg' },
   ];
 }
 
