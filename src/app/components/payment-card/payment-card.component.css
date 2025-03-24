@@ -1,6 +1,6 @@
 .card-container {
-  width: 400px;
-  height: 250px;
+  width: 18vw;
+  height: 20vh;
   perspective: 1000px;
   position: relative;
 }
@@ -13,7 +13,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  padding: 20px;
+  padding: 1vh;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   backface-visibility: hidden;
   transition: transform 0.8s ease-in-out;
@@ -38,7 +38,7 @@
   align-items: center;
 }
 .card-assets img {
-  width: 50px;
+  width: 2.8vw;
   height: auto;
 }
 
