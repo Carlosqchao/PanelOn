@@ -1,12 +1,9 @@
 import { Component, Input } from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-landing-character-card-3',
   templateUrl: './landing-character-card-3.component.html',
-  imports: [
-    RouterLink
-  ],
   styleUrls: ['./landing-character-card-3.component.scss']
 })
 export class LandingCharacterCard3Component {
