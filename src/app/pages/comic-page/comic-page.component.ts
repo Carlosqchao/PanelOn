@@ -4,6 +4,7 @@ import {ComicCoverComponent} from '../../components/comic-cover/comic-cover.comp
 import {ComicDescriptionComponent} from '../../components/comic-description/comic-description.component';
 import {CharacterCardComponent} from '../../components/character-card/character-card.component';
 import {NgForOf} from '@angular/common';
+import {ComicStatusComponent} from '../../components/comic-status/comic-status.component';
 
 @Component({
   selector: 'app-comic-page',
@@ -12,7 +13,8 @@ import {NgForOf} from '@angular/common';
     ComicCoverComponent,
     ComicDescriptionComponent,
     CharacterCardComponent,
-    NgForOf
+    NgForOf,
+    ComicStatusComponent
   ],
   templateUrl: './comic-page.component.html',
   styleUrl: './comic-page.component.scss'
@@ -23,6 +25,8 @@ export class ComicPageComponent {
   author: string = "DC Comics";
   genre: string = "Superhero, Romance, Adventure";
   releaseDate: string = "March 1958";
+  status: string = "Completed";
+  rating: number = 4.5;
 
   characters = [
     {
