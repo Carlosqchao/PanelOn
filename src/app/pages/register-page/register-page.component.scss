@@ -1,0 +1,356 @@
+$background-color: #000000;
+$resalt-color: #e76f51;
+$resalt-color-darker: #e68a3f;
+$dark-gray: #1F1F1F;
+$text-color: #000000;
+$gray: #555;
+$resalt-color-lighter: #fff8ef;
+$login-bg-color: #fff8ef;
+
+
+$font-family: "Roboto", sans-serif;
+
+
+$mobile-breakpoint: 768px;
+$tablet-breakpoint: 1025px;
+
+
+$input-border-color: #ccc;
+$box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+$border-radius: 5px;
+$button-radius: 5px;
+$input-width: 65vh;
+$input-height: 6vh;
+$input-width-group: 65vh;
+$input-height-group: 8.5vh;
+$font-size-base: 1.2rem;
+$font-size-small: 1rem;
+$font-size-large: 2.75rem;
+
+
+@mixin flex-center($direction: row) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+
+@mixin flex-group() {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+
+body {
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+
+.aside-image {
+  width: 40%;
+  height: 100vh;
+  float: left;
+
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+}
+
+
+.register-container {
+  width: auto;
+  background-color: $resalt-color-lighter;
+  color: $text-color;
+  @include flex-center(column);
+  height: 100vh;
+  padding: 5vh 0;
+
+
+  .register-logo {
+    display: none;
+  }
+
+
+  .register-header {
+    @include flex-center(column);
+    gap: 1vh;
+    margin-bottom: 4vh;
+
+
+    h1 {
+      font-size: $font-size-large;
+      font-family: $font-family;
+      font-weight: bold;
+      color: $text-color;
+      text-transform: uppercase;
+    }
+  }
+
+
+  #back-link {
+    width: $input-width;
+    text-align: left;
+    cursor: pointer;
+    font-size: $font-size-small;
+    color: $text-color;
+    text-decoration: none;
+    margin-bottom: 3vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  .register-form {
+    @include flex-center(column);
+
+
+    label {
+      margin-top: 1vh;
+      font-size: $font-size-base;
+      font-family: $font-family;
+    }
+
+
+    input {
+      width: $input-width;
+      height: $input-height;
+      font-size: $font-size-base;
+      padding: 1vh 1vh;
+      border: 0.1vh solid $input-border-color;
+      border-radius: $border-radius;
+      box-shadow: $box-shadow;
+      margin-top: 0.3vh;
+      margin-bottom: 0.3vh;
+      background-color: #fff;
+      font-family: $font-family;
+    }
+
+
+    input:focus {
+      outline: none;
+      box-shadow: $box-shadow;
+      border: 0.1vh solid $input-border-color;
+    }
+
+
+    .name-group {
+      @include flex-group();
+      height: $input-height-group;
+      width: $input-width-group;
+      margin-bottom: 0.3vh;
+      gap: 0.5vw;
+
+
+      input {
+        width: 50%;
+      }
+    }
+
+
+    button {
+      width: 15vw;
+      height: 5vh;
+      background-color: $resalt-color;
+      font-size: 20px;
+      font-weight: bold;
+      color: $text-color;
+      font-family: $font-family;
+      border: none;
+      cursor: pointer;
+      border-radius: $button-radius;
+      padding: 1vh 2vh;
+      margin-top: 2vh;
+      margin-bottom: 3vh;
+      display: block;
+    }
+  }
+
+
+  #sign-in-link {
+    color: $text-color;
+    font-size: $font-size-small;
+    font-family: $font-family;
+    margin-top: 2vh;
+    display: block;
+
+
+    .link-text {
+      font-weight: lighter;
+      font-size: 0.7rem;
+    }
+
+
+    #sign-in-btn {
+      text-decoration: none;
+      color: $text-color;
+      font-weight: bolder;
+      font-size: 1.25rem;
+    }
+  }
+
+
+  #error-container {
+    color: red;
+    font-size: 14px;
+    font-family: $font-family;
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+
+
+    ul {
+      padding-left: 20px;
+    }
+  }
+
+
+  :valid {
+    border-color: green;
+  }
+
+
+  :invalid {
+    border-color: red;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .register-container {
+    width: 60%;
+    .register-header h1 {
+      font-size: 2rem;
+    }
+    #back-link {
+      text-align: left;
+      cursor: pointer;
+      font-size: $font-size-small;
+      color: $text-color;
+      text-decoration: none;
+      margin-bottom: 1vh;
+      width: 45vw;
+    }
+
+
+    nav {
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+
+  .aside-image {
+    width: 50%;
+    margin-left: 0%;
+  }
+
+
+  .register-form input {
+    width: 45vw;
+    height: 7vh;
+  }
+
+
+  .register-form button {
+    width: 20vw;
+    height: 6vh;
+    font-size: 18px;
+  }
+
+
+  .register-form .name-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 15vh;
+    width: 41vh;
+    margin-bottom: 0.1vh;
+    gap: 0.3vw;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .register-container {
+    width: 100%;
+    margin-top: 0;
+    padding: 10vh 0;
+  }
+
+
+  .aside-image {
+    display: none;
+  }
+
+
+  .register-header h1 {
+    font-size: 1.8rem;
+  }
+
+
+  .register-form input {
+    width: 80vw;
+    height: 8vh;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+
+
+  .register-form button {
+    width: 40vw;
+    height: 7vh;
+    font-size: 16px;
+  }
+
+
+  .register-form .name-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 4vh;
+    width: 41vh;
+    margin-bottom: 3vh;
+    gap: 0.5vw;
+  }
+
+
+  #back-link {
+    width: 80vw;
+  }
+
+
+  #sign-in-link {
+    font-size: 0.8rem;
+
+
+    .link-text {
+      font-size: 0.7rem;
+    }
+
+
+    #sign-in-btn {
+      font-size: 0.8rem;
+    }
+  }
+}
