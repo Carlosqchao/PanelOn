@@ -1,0 +1,38 @@
+<aside class="aside-image">
+  <img class="background-aside-image" src="{{ imageSource }}" alt="Loading Image.">
+</aside>
+
+
+<main class="register-container">
+  <header class="register-header">
+    <div class="register-logo">
+      <img class="logo-image" src="{{ logoSource }}" alt="Loading Image.">
+    </div>
+    <h1>Sign up!</h1>
+  </header>
+
+
+  <nav aria-label="Go back">
+    <a id="back-link" href="#" onclick="history.back(); return false"> &larr; Go back</a>
+  </nav>
+
+
+  <section class="register-form-container">
+    <form class="register-form" id="register-form" method="post">
+      <div class="name-group">
+        <input type="text" id="name" name="first-name" autocomplete="off" placeholder="First Name" required>
+        <input type="text" id="surname" name="last-name" autocomplete="current-password"  placeholder="Last Name" required>
+      </div>
+      <input type="text" id="email" name="email" placeholder="Email" required>
+      <input type="text" id="username" name="username" placeholder="Username" required>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
+      <button class="register-btn" type="submit">Sign up</button>
+    </form>
+  </section>
+
+
+  <footer>
+    <p id="sign-in-link">Already have an account? <a href="" id="sign-in-btn">Sign in</a></p>
+  </footer>
+</main>
