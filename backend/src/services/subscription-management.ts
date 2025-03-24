@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import {stripe} from '../config/stripe';
+import { stripe } from '../config/stripe';
+import { db } from '../config/firebase'
 
 export async function createSubscription(req: Request, res: Response) {
   const { paymentMethodId, planType, userId, email } = req.body;
@@ -49,4 +50,16 @@ export async function createSubscription(req: Request, res: Response) {
     console.error('Stripe subscription error:', err);
     return res.status(500).json({ error: 'Something went wrong creating the subscription.' });
   }
+}
+
+export async function getCurrentSubscription(req: Request, res: Response) {
+  return;
+}
+
+export async function updateSubscription(req: Request, res: Response) {
+  return;
+}
+
+export async function cancelSubscription(req: Request, res: Response) {
+  return;
 }
