@@ -21,3 +21,15 @@
       [characterName]="character.characterName"
     ></app-character-card>
 </div>
+
+<app-section-title position="left" text="COMICS"></app-section-title>
+
+<div class="center-container">
+  <app-comic-card
+    *ngFor="let comic of comics"
+    [imageUrl]="comic.imageUrl"
+    [title]="comic.title">
+  </app-comic-card>
+</div>
+
+<app-footer></app-footer>
