@@ -1,54 +1,56 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: Arial, sans-serif;
+$background-color: #000000;
+$font-family: "Roboto", sans-serif;
+
+
+.align{
+  display:flex;
+  flex-direction:row;
+  width:100%;
+  height:100%;
 }
 
-.container {
-  display: flex; /* Organiza el contenedor en una fila (horizontalmente) */
-  height: 100vh;
-  width: 100%;
+.aside-img {
+  width:50%;
+
+  img {
+    float: left;
+    width: 100%;
+    height: 100vh;
+    object-fit: fill;
+  }
 }
 
-img {
-  float: left;
-  height: 100vh; /* La imagen ocupa todo el alto de la pantalla */
-  width: auto; /* Mantiene la proporción de la imagen */
-  object-fit: cover; /* Ajusta la imagen para cubrir el área sin distorsionarse */
-}
 
-.form-container {
-  display: flex; /* Necesario para usar flexbox */
-  align-items: center; /* Centra el formulario verticalmente */
-  flex-direction: column;
-  background-color: #E76F511A; /* Fondo semitransparente para contraste */
-  color: black; /* Texto blanco para contraste */
-  height: 100vh; /* El formulario tiene la misma altura que la pantalla */
-  box-sizing: border-box;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Agrega una sombra para darle más énfasis */
-  border-radius: 10px; /* Bordes redondeados */
-  padding-top: 14vh;
+.form-container{
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  height: 95vh;
+  width: 45%;
+  background-color: #E76F511A;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  padding: 100px;
+  border-radius: 5px;
 }
-
-.form-container form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
 .form-container form input,
 .form-container form button {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
-  border-radius: 5px;
+  border-radius: 3px;
   border: none;
-  font-size: 16px;
+  font-size: 1rem;
+  font-family: $font-family;
 }
 
 .form-container form input {
   background-color: #ffffff;
   color: #ffffff;
+  font-size: 1rem;
 }
 
 .form-container form button {
@@ -72,10 +74,10 @@ img {
   background-color: #D9D9D9;
   width: 30vw;
   height: 20vh;
-  padding-left: 14vw;
+  padding-left: 13.7vw;
   position: relative;
   z-index: 3;
-  padding-top: 7.5vh;
+  padding-top: 8.5vh;
   margin-bottom: 3vh;
 
 }
@@ -87,17 +89,151 @@ img {
   border-radius: 50%;
   position: absolute;
   top: 5.3vh;
-  left: 12.3vw;
+  left: 11vw;
   z-index: -1;
+}
+
+.title{
+  height: 3vh;
+  margin-bottom: 1vh;
+}
+
+.author{
+  height: 3vh;
+  margin-bottom: 1vh;
+
+}
+textarea {
+  resize: none;
+  width: 30vw;
+  height: 15vh;
+  line-height: 1.5;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  vertical-align: top;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  padding: 0;
+  display: flex;
+  align-items: center;  /* Centra verticalmente */
+  justify-content: center;
+}
+
+textarea::placeholder {
+  color: #aaa;  /* Color del texto placeholder */
+  text-align: center;  /* Centra el texto del placeholder horizontalmente */
+  line-height: 14vh;  /* Ajusta la altura de línea para centrar mejor verticalmente */
 }
 
 
 
 input{
+  font-size: 1rem;
   width: 30vw;
-  height: 3vh;
-  margin: 0.5vw;
-  border-radius: 1vh;
-  text-align: center;
+  height: 120%;
+  text-align: left;
+
+  /* Estilo para el placeholder */
+  &::placeholder {
+    text-align: center; /* Centra el texto del placeholder */
+  }
 }
+
+.upload-button {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.genre-item {
+  display: inline-block;
+  padding: 5px 10px;  /* Ajusta el tamaño del borde con el padding */
+  margin: 5px;  /* Espaciado entre los géneros */
+  border: 2px solid #000000; /* Agrega un borde negro, puedes cambiar el color */
+  border-radius: 3px; /* Opcional: bordes redondeados */
+  background-color: #F0F0F0; /* Opcional: fondo para los géneros */
+}
+
+.situation-selector {
+  width: 100%;  // Hace que el contenedor ocupe todo el ancho disponible
+  margin: 10px 0;  // Agrega margen arriba y abajo para separar los elementos
+}
+
+.situation-selector select {
+  width: 100%;
+  height: 3vh;
+  padding: 3px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+.situation-selector select:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.genre-selector {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.genre-selector select {
+  width: 80%;
+  height: 3vh;
+  padding: 3px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+.genre-selector select:focus {
+  outline: none;  // Elimina el contorno predeterminado
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);  // Sombra suave al enfocar
+}
+
+.genre-selector button {
+  padding: 3px 15px;
+  background-color: #b73a3a;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 1px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+.genre-selector button:hover {
+  background-color: #0056b3;  // Fondo más oscuro cuando el mouse pasa por encima
+}
+
+.genre-selector button:focus {
+  outline: none;  // Elimina el contorno predeterminado
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);  // Agrega una sombra al hacer foco
+}
+
+.upload-button button{
+  background-color: #E76F51; /* Fondo con el color #E76F51 */
+  color: #ffffff; /* El color del texto es blanco */
+  font-size: 1rem; /* Tamaño de letra 1 rem */
+  padding: 10px 20px; /* Espaciado interno (arriba/abajo y izquierda/derecha) */
+  border: 2px solid #E76F51; /* Borde con el mismo color que el fondo */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Aparece un cursor tipo puntero al pasar el mouse */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave al pasar el mouse */
+}
+
+.upload-button button:hover {
+  background-color: #ffffff; /* Fondo blanco al pasar el mouse */
+  color: #E76F51; /* El color del texto cambia a #E76F51 */
+  border: 2px solid #E76F51; /* El borde sigue siendo el color #E76F51 */
+}
+
 
