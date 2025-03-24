@@ -1,17 +1,19 @@
-<div class="card">
-  <div class="card-text">
-    <div>
-      <span>40</span>
-      <span>¢</span>
+ <div class="card" (click)="onCardClick()">
+    <div class="card-image" [style.backgroundColor]="backgroundColor">
+      <img [src]="imageUrl" [alt]="imageAlt">
     </div>
-    <div>
-      <span>29</span>
-      <span>JAN</span>
-      <span>02461</span>
+    <div class="card-text">
+      <h2>{{brandName}}</h2>
+      <p>COMICS<br>GROUP</p>
+      <div>
+        <div>
+          <span>15</span>
+          <span>¢</span>
+        </div>
+        <div>
+          <span>27</span>
+          <span>May</span>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="card-image" [style.backgroundColor]="backgroundColor">
-    <p>© 1979 {{brandName}} <br>Comics Group</p>
-    <img [src]="imageUrl" [alt]="imageAlt">
-  </div>
-</div>
