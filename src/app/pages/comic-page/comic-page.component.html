@@ -9,3 +9,17 @@
   [genre]="genre"
   [releaseDate]="releaseDate"
 ></app-comic-description>
+
+<div class="center-container">
+  <p>COMIC CHARACTERS</p>
+</div>
+
+<div class="center-container">
+  <app-character-card
+    *ngFor="let character of characters"
+    [imageUrl]="character.imageUrl"
+    [superheroName]="character.superheroName"
+    [characterName]="character.characterName"
+  ></app-character-card>
+</div>
+
