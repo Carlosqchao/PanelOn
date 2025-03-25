@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,12 +8,13 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./section-title.component.scss'],
   imports: [CommonModule]
 })
-export class SectionTitleComponent {
+export class SectionTitleComponent implements OnInit {
+  @Input() position: 'left' | 'center' | 'right' = 'left';
   @Input() text: string = '';
-  @Input() alignment: 'left' | 'center' | 'right' = 'center';
 
+  alignmentClass: string = 'text-left';
 
-  get alignmentClass(): string {
-    return `text-${this.alignment}`;
+  ngOnInit(): void {
+    this.alignmentClass = `text-${this.position}`;
   }
 }

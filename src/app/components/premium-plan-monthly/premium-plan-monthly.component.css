@@ -1,0 +1,36 @@
+.monthly-plan-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 45vw;
+  height: 45vh;
+  padding: 1vh 1vw;
+  gap: 2vh;
+}
+.monthly-plan-container .section-plan-title-container {
+  display: flex;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 100%;
+  padding: 0 4vw;
+}
+.monthly-plan-container .section-plan-title-container #section-title {
+  top: 0;
+}
+.monthly-plan-container .section-description-container {
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  width: 65%;
+}
+.monthly-plan-container .button-general-container {
+  margin-top: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=premium-plan-monthly.component.css.map */

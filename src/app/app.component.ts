@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AppService } from './app.service';
 
@@ -7,7 +8,11 @@ import { AppService } from './app.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [RouterOutlet, CommonModule],
+  template: `
+    <router-outlet></router-outlet>
+  `,
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   comics$;

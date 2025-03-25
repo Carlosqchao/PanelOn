@@ -1,0 +1,16 @@
+@mixin flex-row() {
+  justify-content: center;
+  flex-direction: row;
+}
+
+.free-plan {
+  @include flex-row;
+  display: flex;
+  margin-top: 5vh;
+}
+
+.free-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

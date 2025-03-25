@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<app-comic-cover></app-comic-cover>
+
+<app-comic-description
+  [title]="title"
+  [synopsis]="synopsis"
+  [author]="author"
+  [genre]="genre"
+  [releaseDate]="releaseDate"
+></app-comic-description>
+
+<div class="center-container">
+  <p>COMIC CHARACTERS</p>
+</div>
+
+<div class="center-container">
+  <app-character-card
+    *ngFor="let character of characters"
+    [imageUrl]="character.imageUrl"
+    [superheroName]="character.superheroName"
+    [characterName]="character.characterName"
+  ></app-character-card>
+</div>
+
+<app-comic-status
+  [status]="status"
+  [rating]="rating"
+></app-comic-status>
+
+<div class="center-container">
+  <app-button text="READ THE COMIC"></app-button>
+</div>
+
+<app-footer></app-footer>

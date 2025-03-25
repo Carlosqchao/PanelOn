@@ -1,0 +1,21 @@
+<div class="card" (click)="onCardClick()">
+  <div class="card-image" [style.backgroundColor]="backgroundColor">
+    <img [src]="imageUrl" [alt]="imageAlt">
+  </div>
+  <div class="card-text">
+    <div class="card-text-left">
+      <h2>{{brandName}}</h2>
+      <p>COMICS<br>GROUP</p>
+    </div>
+    <div>
+      <div>
+        <span>15</span>
+        <span>¢</span>
+      </div>
+      <div>
+        <span>27</span>
+        <span>May</span>
+      </div>
+    </div>
+  </div>
+</div>
