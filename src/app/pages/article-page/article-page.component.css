@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .news-article {
+  position: relative;
   background-color: #fdf5ec;
   padding: 4rem 1.5rem;
   max-width: 800px;

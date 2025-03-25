@@ -5,6 +5,7 @@ $highlight-color: #e85d47;
 $font-family: 'Helvetica Neue', sans-serif;
 
 .news-article {
+  position: relative;
   background-color: $background-color;
   padding: 4rem 1.5rem;
   max-width: 800px;
