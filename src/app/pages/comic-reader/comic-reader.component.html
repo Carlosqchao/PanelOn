@@ -5,13 +5,14 @@
     Spiderman
 </h1>
 
-<div id="pdf-container" #pdfContainter>
+<div id="pdf-container" #pdfContainter (click)="pageChangeOnClick($event,pdfContainter)">
   <canvas #pdfCanvas></canvas>
 </div>
 
-<div id="buttons">
-<button class="page_button" (click)="prevPage()">Previous Page</button>
-<button class="page_button" (click)="nextPage()">Next Page</button>
+<div id="Pagebuttons">
+  <button class="page_button" (click)="prevPage()"><</button>
+  <input id="PageNumber" #InputNumber type="number"  min="0" max="{{ maxPages }}" (keydown.enter)="pageInputChange()" [placeholder]="pageNumber">
+  <button class="page_button" (click)="nextPage()">></button>
 </div>
 
 <p>ESTOS SON LOS COMENTARIOS </p>

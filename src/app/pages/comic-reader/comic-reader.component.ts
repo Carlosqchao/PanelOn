@@ -1,4 +1,12 @@
-import { Component, OnInit, ElementRef, ViewChild, Input, SimpleChanges, OnChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  Input,
+  SimpleChanges,
+  OnChanges,
+} from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
 import {HeaderComponent} from "../../components/header/header.component";
 
@@ -11,11 +19,16 @@ import {HeaderComponent} from "../../components/header/header.component";
 export class ComicReaderComponent implements OnInit, OnChanges {
   @ViewChild('pdfCanvas', {static: true}) canvasElement!: ElementRef<HTMLCanvasElement>;
   @ViewChild('pdfContainter', {static: true}) pdfContainter!: ElementRef<HTMLDivElement>;
+  @ViewChild('InputNumber',{static: false}) inputNumber!: ElementRef<HTMLInputElement>;
+  @Input()pdfUrl: string = "../../assets/COMIC castellano WEB_ok.pdf";
 
-  @Input()pdfUrl: string = "../../assets/Using_HTML5_Form_Validation.pdf";
 
   private pdfDocument: any = null;
-  private pageNumber: number = 1;
+  maxPages=0;
+  InputNumber: number=0;
+  protected pageNumber: number = 1;
+  scale=0;
+
 
   constructor() {
     pdfjsLib.GlobalWorkerOptions.workerSrc = '../../assets/pdf.worker.mjs';
@@ -35,11 +48,9 @@ export class ComicReaderComponent implements OnInit, OnChanges {
 
   async loadPdf(): Promise<void> {
     try {
-      // Carga el documento PDF
       this.pdfDocument = await pdfjsLib.getDocument(this.pdfUrl).promise;
-
-      // Renderiza la primera página por defecto
-      this.renderPage(this.pageNumber);
+      this.maxPages=this.pdfDocument.numPages;
+      await this.renderPage(this.pageNumber);
     } catch (error) {
       console.error('Error al cargar el PDF:', error);
     }
@@ -49,30 +60,26 @@ export class ComicReaderComponent implements OnInit, OnChanges {
     if (!this.pdfDocument) return;
 
     try {
-      // Obtiene la página
       const page = await this.pdfDocument.getPage(pageNumber);
 
       const container= this.pdfContainter.nativeElement
-      // Escala que determinará el tamaño de renderizado
-      const scale = container.clientWidth / page.getViewport({scale:1}).width;
+      const scale = container.clientWidth / page.getViewport({scale:1.25}).width;
 
-      // Viewport para la página
+
       const viewport = page.getViewport({scale});
-// Canvas donde se renderizará la página
       const canvas = this.canvasElement.nativeElement;
       const context = canvas.getContext('2d');
 
-      // Ajusta el tamaño del canvas al viewport
       canvas.height = viewport.height;
       canvas.width = viewport.width;
 
-      // Renderiza la página en el canvas
       const renderContext = {
         canvasContext: context,
         viewport: viewport
       };
 
       await page.render(renderContext).promise;
+
     } catch (error) {
       console.error('Error al renderizar la página:', error);
     }
@@ -89,6 +96,24 @@ export class ComicReaderComponent implements OnInit, OnChanges {
         this.pageNumber--;
         this.renderPage(this.pageNumber);
 
+  }
+
+  pageInputChange(): void {
+    this.InputNumber = parseInt(this.inputNumber.nativeElement.value);
+    if (this.InputNumber>this.maxPages){
+      this.inputNumber.nativeElement.value = String(this.maxPages);
+      this.renderPage(this.maxPages);
+    }else{
+      this.renderPage(this.InputNumber)
+    }
+  }
+
+  pageChangeOnClick(evt: MouseEvent, pdfContainter: HTMLDivElement) {
+    if (evt.pageX>=pdfContainter.clientWidth/2){
+        this.nextPage();
+    }else if (evt.pageX<=pdfContainter.clientWidth/2){
+      this.prevPage();
+    }
   }
 }
 
