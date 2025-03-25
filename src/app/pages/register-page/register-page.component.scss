@@ -63,7 +63,7 @@ body {
 
 .aside-image {
   width: 40%;
-  height: 100vh;
+  height:100vh;
   float: left;
 
 
@@ -74,14 +74,12 @@ body {
   }
 }
 
-
 .register-container {
   width: auto;
   background-color: $resalt-color-lighter;
   color: $text-color;
   @include flex-center(column);
-  height: 100vh;
-  padding: 5vh 0;
+  height: 100%;
 
 
   .register-logo {
@@ -112,7 +110,7 @@ body {
     font-size: $font-size-small;
     color: $text-color;
     text-decoration: none;
-    margin-bottom: 3vh;
+    margin-bottom: 2vh;
     margin-left: auto;
     margin-right: auto;
   }
@@ -120,6 +118,7 @@ body {
 
   .register-form {
     @include flex-center(column);
+
 
 
     label {
@@ -258,10 +257,6 @@ body {
   }
 
 
-  .aside-image {
-    width: 50%;
-    margin-left: 0%;
-  }
 
 
   .register-form input {
