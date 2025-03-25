@@ -1,10 +1,12 @@
 import {Component, Input} from '@angular/core';
 import {HeaderComponent} from '../../components/header/header.component';
+import {FooterComponent} from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-article-page',
   imports: [
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   templateUrl: './article-page.component.html',
   styleUrl: './article-page.component.scss'
