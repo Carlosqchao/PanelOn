@@ -1,16 +1,18 @@
 export interface Comment {
-  author: number;
+  author_id: number;
   comment: string;
-  reply: number[];
+  reply: string[];
 }
 
 export interface Comic {
-  id: number;
+  cover: string;
   title: string;
   synopsis: string;
-  genre: number[];
+  published: string;
+  author: string;
+  genre: string[];
   state: string;
-  author: number;
+  author_id: number;
   content: string;
-  comments?: Comment[];
+  comments: Comment[];
 }
