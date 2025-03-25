@@ -6,6 +6,7 @@ import {CharacterCardComponent} from '../../components/character-card/character-
 import {NgForOf} from '@angular/common';
 import {ComicStatusComponent} from '../../components/comic-status/comic-status.component';
 import {FooterComponent} from '../../components/footer/footer.component';
+import {ButtonComponent} from '../../components/button/button.component';
 
 @Component({
   selector: 'app-comic-page',
@@ -16,7 +17,8 @@ import {FooterComponent} from '../../components/footer/footer.component';
     CharacterCardComponent,
     NgForOf,
     ComicStatusComponent,
-    FooterComponent
+    FooterComponent,
+    ButtonComponent
   ],
   templateUrl: './comic-page.component.html',
   styleUrl: './comic-page.component.scss'

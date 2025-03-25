@@ -13,6 +13,7 @@ import {
 } from '../../components/landing-character-card-3/landing-character-card-3.component';
 import {FooterComponent} from '../../components/footer/footer.component';
 import {HeaderComponent} from '../../components/header/header.component';
+import {ButtonComponent} from '../../components/button/button.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -27,7 +28,8 @@ import {HeaderComponent} from '../../components/header/header.component';
     LandingCharacterCard3Component,
     FooterComponent,
     CommonModule,
-    HeaderComponent
+    HeaderComponent,
+    ButtonComponent
   ],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
