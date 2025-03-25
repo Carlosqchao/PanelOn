@@ -1,0 +1,33 @@
+$title-size: 1.8rem;
+$title-weight: bold;
+$subtitle-size: 1.2rem;
+$subtitle-weight: bold;
+
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+.premium-description-container {
+  @include flex-column();
+  width: 100%;
+  justify-content: center;
+
+  .premium-description-title-container {
+    font-size: $title-size;
+    font-weight: $title-size;
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5vh;
+  }
+
+  .premium-description-subtitle-container {
+    font-size: $subtitle-size;
+    font-weight: $subtitle-weight;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 35%;
+    margin: 1.5vh auto;
+  }
+}

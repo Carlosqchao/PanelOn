@@ -1,0 +1,43 @@
+<div class="payment-form-container">
+  <form class="payment-form" (submit)="handleSubmit(); $event.preventDefault()">
+    <div class="summary-header">
+      <h1 id="header-title">{{ title }}</h1>
+    </div>
+
+    <div class="card-container">
+      <app-payment-card></app-payment-card>
+    </div>
+
+    <div class="input-box-container">
+      <label>CARD HOLDER</label>
+      <input
+        class="card-holder-input"
+        type="text"
+        placeholder="ex: Tomás Ferreira"
+        [(ngModel)]="cardHolder"
+        name="cardHolder"
+        required>
+    </div>
+
+    <div class="input-box-container">
+      <label>EMAIL</label>
+      <input
+        class="card-email-input"
+        type="text"
+        placeholder="ex: tomas.ferreira09@gmail.com"
+        [(ngModel)]="email"
+        name="email"
+        required>
+    </div>
+
+    <div class="input-box-container">
+      <label>CARD DETAILS</label>
+      <div id="card-element" class="stripe-card-element"></div>
+    </div>
+
+
+    <div class="button-box-container">
+      <app-button [text]="'Pay now!'"></app-button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,34 @@
+<div class="comparison-container">
+  <app-premium-plan-monthly
+    [title]="planMonthlyComponent.title"
+    [description]="planMonthlyComponent.description"
+    [backgroundSection]="planMonthlyComponent.backgroundSection"
+    [buttonTitle]="planMonthlyComponent.buttonTitle"
+    [buttonTextColor]="planMonthlyComponent.buttonTextColor"
+    [buttonTextSize]="planMonthlyComponent.buttonTextSize"
+    [backgroundColorPrice]="planMonthlyComponent.backgroundColorButton"
+    [backgroundColorHoverPrice]="planMonthlyComponent.backgroundColorHoverButton"
+    [buttonHeight]="planMonthlyComponent.buttonHeight"
+    [buttonWidth]="planMonthlyComponent.buttonWidth"
+    [planType]="'monthly'"
+    (planSelected)="handlePlanRedirect($event)"
+    >
+  </app-premium-plan-monthly>
+  <div class="img-comparison-container">
+    <img src="assets/plan-versus.svg" class="img-comparison" alt="vs">
+  </div>
+  <app-premium-plan-monthly
+    [title]="planYearlyComponent.title"
+    [description]="planYearlyComponent.description"
+    [backgroundSection]="planYearlyComponent.backgroundSection"
+    [buttonTitle]="planYearlyComponent.buttonTitle"
+    [buttonTextColor]="planYearlyComponent.buttonTextColor"
+    [buttonTextSize]="planYearlyComponent.buttonTextSize"
+    [backgroundColorPrice]="planYearlyComponent.backgroundColorButton"
+    [backgroundColorHoverPrice]="planYearlyComponent.backgroundColorHoverButton"
+    [buttonHeight]="planYearlyComponent.buttonHeight"
+    [buttonWidth]="planYearlyComponent.buttonWidth"
+    [planType]="'annual'"
+    (planSelected)="handlePlanRedirect($event)">
+  </app-premium-plan-monthly>
+</div>
