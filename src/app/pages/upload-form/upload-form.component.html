@@ -17,11 +17,21 @@
         <span class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
       </div>
       <div class="title">
-        <input type="text" id="title" [(ngModel)]="title" name="title" required placeholder="Title">
+        <app-input-field
+            [typeInput]="'text'"
+            [nameInput]="'title'"
+            [customClass]="'author'"
+            [placeHolder]="'Title'">
+        </app-input-field>
       </div>
 
       <div class="author">
-        <input type="text" id="author" [(ngModel)]="author" name="author" required placeholder="Author">
+        <app-input-field
+          [typeInput]="'text'"
+          [nameInput]="'author'"
+          [customClass]="'author'"
+          [placeHolder]="'Author'">
+        </app-input-field>
       </div>
 
       <div class="synopsis">

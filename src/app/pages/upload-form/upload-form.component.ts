@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {NgForOf, NgIf} from '@angular/common';
+import {InputFieldComponent} from '../../components/input-field/input-field.component';
 
 @Component({
   selector: 'app-upload-form',
   standalone: true,
-  imports: [FormsModule, NgForOf, NgIf],
+  imports: [FormsModule, NgForOf, NgIf, InputFieldComponent],
   templateUrl: './upload-form.component.html',
   styleUrls: ['./upload-form.component.scss']
 })
