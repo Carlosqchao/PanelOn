@@ -1,0 +1,21 @@
+<div class="monthly-plan-container" [style.background-color]="backgroundSection">
+  <div class="section-plan-title-container">
+    <h1 id="section-tittle"> {{ title }} </h1>
+  </div>
+  <div class="section-description-container">
+    <p id="section-description"> {{ description }}</p>
+    <div class="button-general-container">
+      <app-button
+        [customClass]="'button-plan'"
+        [text]="buttonTitle"
+        [textColor]="buttonTextColor"
+        [textSize]="buttonTextSize"
+        [backgroundColor]="backgroundColorPrice"
+        [backgroundHover]="backgroundColorHoverPrice"
+        [buttonWidth]="buttonWidth"
+        [buttonHeight]="buttonHeight"
+        (buttonClick)="onPlanClick()">
+      </app-button>
+    </div>
+  </div>
+</div>

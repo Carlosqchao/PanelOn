@@ -1,0 +1,24 @@
+.free-plan-container {
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+}
+.free-plan-container .free-plan-description-container {
+  justify-content: center;
+  text-align: center;
+  width: 80%;
+}
+.free-plan-container .free-plan-description-container #free-plan-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.free-plan-container .free-plan-description-container #free-plan-description {
+  margin-top: 1.2vh;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.free-plan-container .free-plan-button-container {
+  width: 30%;
+}
+
+/*# sourceMappingURL=free-plan.component.css.map */

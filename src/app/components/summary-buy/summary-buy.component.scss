@@ -1,0 +1,90 @@
+$background-color: #fff;
+$text-color: #1a1a1a;
+$muted-color: #666;
+$bold-color: #000;
+$highlight-color: #5c5c5c;
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row($justify: space-between, $align: center) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+.summary-buy-container {
+  background-color: $background-color;
+  justify-self: center;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+  width: 22vw;
+  color: $text-color;
+  margin-bottom: 2vh;
+
+  .summary-header {
+    margin-bottom: 1.5rem;
+
+    #header-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: $bold-color;
+    }
+  }
+
+  .summary-content {
+    @include flex-row(flex-start, flex-start);
+    gap: 1.5rem;
+
+    .subscription-figure {
+      @include flex-column;
+      width: 8vw;
+      height: 8vh;
+      background-color: #fef7dc;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      #subscription-caption {
+        font-size: 0.8rem;
+        color: $muted-color;
+        align-items: center;
+        margin: 0;
+        padding-top: 0.2vh;
+      }
+
+
+      #subscription-img {
+        width: 50px;
+        height: auto;
+      }
+    }
+
+    .summary-buy {
+      margin-top: 1vh;
+      @include flex-row(space-between, center);
+      width: 100%;
+
+      #summary-subscription {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin: 0;
+        display: flex;
+        justify-self: center;
+      }
+
+      #price-subscription {
+        margin-top: 0.5rem;
+        font-weight: bold;
+        font-size: 1rem;
+        color: $bold-color;
+        align-self: flex-end;
+      }
+    }
+  }
+}

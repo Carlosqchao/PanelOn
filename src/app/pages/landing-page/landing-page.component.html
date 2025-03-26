@@ -1,15 +1,70 @@
+<app-header></app-header>
+
 <app-landing-carousel
   [items]="carouselItems"
   [autoSlide]="true"
   [slideInterval]="5000">
 </app-landing-carousel>
 
-<app-section-title [text]="'NEW COMICS'" [alignment]="'left'"></app-section-title>
+<app-section-title position="left" text="NEW COMICS"></app-section-title>
 
-<div class="comics-container">
+<div class="center-container">
   <app-comic-card
-    *ngFor="let comic of comics"
-    [imageUrl]="comic.imageUrl"
-    [title]="comic.title">
+    *ngFor="let comic of comics | slice: 0:4"
+    [imageUrl]="comic.cover"
+    [title]="comic.title"
+    [comicId]="comic.id">
   </app-comic-card>
 </div>
+
+<div class="center-container">
+  <app-button text="SHOW MORE"></app-button>
+</div>
+
+<app-section-title position="center" text="LATEST NEWS"></app-section-title>
+
+<div class="center-container">
+  <app-news-card
+    *ngFor="let new of news"
+    [imageUrl]="new.imageUrl"
+    [author]="new.author"
+    [title]="new.title"
+  ></app-news-card>
+</div>
+
+<div class="center-container">
+  <app-button text="SHOW MORE"></app-button>
+</div>
+
+<app-section-title position="left" text="CHARACTERS"></app-section-title>
+
+<div class="center-container">
+  <app-landing-character-card-1
+    [imageUrl]="'https://res.cloudinary.com/dsgvp2wmj/image/upload/v1636769866/466-4665707_hulk-png-avengers-earths-mightiest-heroes-hulk-transparent-removebg-preview_hxdclj.png'"
+    [imageAlt]="'Hulk character'"
+    [backgroundColor]="'#FFDD33'"
+    [brandName]="'MARVEL'">
+  </app-landing-character-card-1>
+
+  <app-landing-character-card-2
+    [imageUrl]="'https://pngimg.com/uploads/spider_man/spider_man_PNG59.png'"
+    [imageAlt]="'Spider-Man character'"
+    [backgroundColor]="'#5CAAB4'"
+    [brandName]="'MARVEL'">
+  </app-landing-character-card-2>
+
+  <app-landing-character-card-3
+    [imageUrl]="'https://www.pngkey.com/png/full/82-824923_deadpool-deadpool-marvel-comics.png'"
+    [imageAlt]="'Deadpool character'"
+    [backgroundColor]="'#A01F29'"
+    [brandName]="'MARVEL'">
+  </app-landing-character-card-3>
+</div>
+
+<div class="center-container"><p>Meet your favourite characters and their universes.</p></div>
+
+<div class="center-container">
+  <app-button text="SHOW MORE"></app-button>
+</div>
+
+<app-footer></app-footer>

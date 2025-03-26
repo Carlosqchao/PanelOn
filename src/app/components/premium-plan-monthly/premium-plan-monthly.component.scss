@@ -1,0 +1,54 @@
+$font-size-title: 1.2rem;
+$font-weight-title: bold;
+
+$font-size-description: 1rem;
+$font-weight-description: bold;
+
+$font-size-price: 2rem;
+$font-weight-price: bold;
+
+$container-width: 45vw;
+$container-height: 45vh;
+
+@mixin flex-column() {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.monthly-plan-container {
+  @include flex-column();
+  align-items: center;
+  width: $container-width;
+  height: $container-height;
+  padding: 1vh 1vw;
+  gap: 2vh;
+
+  .section-plan-title-container {
+    display: flex;
+    justify-content: center;
+    font-size: $font-size-title;
+    font-weight: $font-weight-title;
+    width: 100%;
+    padding: 0 4vw;
+
+    #section-title {
+      top: 0;
+    }
+  }
+
+  .section-description-container {
+    justify-content: center;
+    font-size: $font-size-description;
+    font-weight: $font-weight-description;
+    text-align: center;
+    width: 65%;
+  }
+
+  .button-general-container {
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

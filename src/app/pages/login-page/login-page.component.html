@@ -1,0 +1,36 @@
+<aside class="aside-image">
+  <img class="background-aside-image" src="{{ imageSource }}" alt="Loading Image.">
+</aside>
+
+
+<main class="login-container">
+  <header class="login-header">
+    <div class="login-logo">
+      <img class="logo-image" src="{{ logoSource }}" alt="Loading Image.">
+    </div>
+    <h1>LOG IN</h1>
+  </header>
+
+
+  <nav aria-label="Go back">
+    <a id="back-link" href="#" onclick="history.back(); return false"> ← Go back</a>
+  </nav>
+
+
+  <section class="login-form-container">
+    <form class="login-form" id="login-form" method="post">
+      <input type="text" id="username" name="username" autocomplete="off" placeholder="Username" required>
+      <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Password" required>
+      <div class="login-btn-container">
+        <app-button text="SIGN IN" textColor="#000"></app-button>
+      </div>
+    </form>
+  </section>
+
+
+  <footer class="login-links">
+    <p id="sign-up-link">Don't have an account? <a href="register" id="sign-up-btn">Sign up</a></p>
+    <p id="reemail-link">Forget your password? <a href="" id="reemail-btn">Send email</a></p>
+  </footer>
+</main>
+
