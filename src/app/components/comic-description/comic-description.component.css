@@ -1,0 +1,32 @@
+.comic-description-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px; }
+  .comic-description-container .title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 50px;
+    text-align: center;
+    text-transform: uppercase; }
+  .comic-description-container .description-section {
+    margin-bottom: 20px; }
+    .comic-description-container .description-section h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px; }
+    .comic-description-container .description-section p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555; }
+  .comic-description-container .details-section p {
+    font-size: 1rem;
+    margin: 20px 0;
+    color: #333; }
+    .comic-description-container .details-section p strong {
+      font-weight: bold;
+      color: #1a1a1a; }
+
+/*# sourceMappingURL=comic-description.component.css.map */

@@ -1,0 +1,49 @@
+@charset "UTF-8";
+.comic-status-container {
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 40px auto;
+  padding: 15px; }
+  .comic-status-container .status-section,
+  .comic-status-container .rating-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; }
+    .comic-status-container .status-section .label,
+    .comic-status-container .rating-section .label {
+      font-weight: bold;
+      color: #333;
+      margin-right: 10px;
+      font-size: 1rem; }
+    .comic-status-container .status-section .value,
+    .comic-status-container .rating-section .value {
+      font-size: 1rem;
+      color: #555;
+      text-transform: uppercase; }
+  .comic-status-container .rating-section .stars {
+    display: flex;
+    gap: 5px;
+    margin-right: 10px; }
+    .comic-status-container .rating-section .stars .star {
+      font-size: 1.2rem; }
+      .comic-status-container .rating-section .stars .star.filled {
+        color: #ffd700; }
+      .comic-status-container .rating-section .stars .star.half-filled {
+        position: relative;
+        color: #d3d3d3; }
+        .comic-status-container .rating-section .stars .star.half-filled::before {
+          content: '★';
+          position: absolute;
+          left: 0;
+          width: 50%;
+          overflow: hidden;
+          color: #ffd700; }
+      .comic-status-container .rating-section .stars .star.empty {
+        color: #d3d3d3; }
+  .comic-status-container .rating-section .rating-value {
+    font-size: 1rem;
+    color: #555; }
+
+/*# sourceMappingURL=comic-status.component.css.map */

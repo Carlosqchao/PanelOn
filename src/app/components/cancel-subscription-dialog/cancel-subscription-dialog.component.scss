@@ -7,8 +7,7 @@ $subtitle-color: black;
 $subtitle-weight: 400;
 
 $dialog-width: 21.5vw;
-$dialog-height: 30vh;
-
+$dialog-height: 35vh;
 
 @mixin flex-column {
   display: flex;
@@ -28,11 +27,13 @@ $dialog-height: 30vh;
 
   .cancel-subscription-modal-header {
     @include flex-row;
+    padding-top: 1vh;
     justify-content: center;
     align-items: center;
     color: $title-color;
     font-size: $title-size;
     font-weight: $title-weight;
+    text-align: center;
     width: 100%;
     height: 8vh;
     gap: 20px;
@@ -48,6 +49,7 @@ $dialog-height: 30vh;
     align-items: center;
     width: 100%;
     font-size: $subtitle-size;
+    text-align: center;
 
     #cancel-modal-subscription-message {
       font-weight: $subtitle-weight;

@@ -1,0 +1,36 @@
+.comic-cover-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15vh;
+  padding: 20px;
+  border-radius: 10px; }
+  .comic-cover-container .comic-cover {
+    max-width: 600px;
+    width: 100%;
+    margin-bottom: 20px; }
+    .comic-cover-container .comic-cover img {
+      width: 100%;
+      height: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 5px; }
+  .comic-cover-container .icons-section {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+    justify-content: flex-end; }
+    .comic-cover-container .icons-section .icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s ease; }
+      .comic-cover-container .icons-section .icon:hover {
+        transform: scale(1.1); }
+      .comic-cover-container .icons-section .icon img {
+        width: 25px;
+        height: 25px;
+        margin-bottom: 5px; }
+
+/*# sourceMappingURL=comic-cover.component.css.map */
