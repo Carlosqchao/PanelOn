@@ -4,7 +4,7 @@ section {
   font-weight: bold;
   font-family: "Roboto", sans-serif;
   margin-top: 5%;
-  padding: 10px;
+  padding: 0.625rem;
   width: 100%;
 
   &.align-left {
@@ -22,17 +22,16 @@ section {
 
 div {
   width: auto;
-  padding: 10px;
-  justify-content:center;
-  align-items:center;
+  padding: 1rem 2rem;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 10px;
   background-color: #D9D9D9;
   color: #E76F51;
 }
 
 .text-left {
-  margin-left: 5%;
+  margin-left: 10%;
   margin-right: 0;
 }
 
@@ -42,6 +41,6 @@ div {
 }
 
 .text-right {
-  margin-right: 5%;
+  margin-right: 10%;
   margin-left: 0;
 }
