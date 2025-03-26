@@ -10,8 +10,8 @@
 
 <div class="center-container">
   <app-comic-card
-    *ngFor="let comic of comics"
-    [imageUrl]="comic.imageUrl"
+    *ngFor="let comic of comics | slice: 0:4"
+    [imageUrl]="comic.cover"
     [title]="comic.title">
   </app-comic-card>
 </div>
