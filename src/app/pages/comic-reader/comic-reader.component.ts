@@ -9,14 +9,36 @@ import {
 } from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
 import {HeaderComponent} from "../../components/header/header.component";
+import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {ComicStatusComponent} from '../../components/comic-status/comic-status.component';
+import {FooterComponent} from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-comic-reader',
-  imports: [HeaderComponent],
+  imports: [NgForOf, ComicStatusComponent, NgIf, HeaderComponent, FooterComponent, NgClass],
   templateUrl: './comic-reader.component.html',
   styleUrl: './comic-reader.component.scss'
 })
 export class ComicReaderComponent implements OnInit, OnChanges {
+  icons: { name: string, url: string }[] = [
+    { name: 'Save',url: '/save.png'},
+    { name: 'Like', url: '/like.png' },
+    { name: 'Share', url: '/share.png' },
+  ];
+  @Input() status: string = 'Unknown';
+  @Input() rating: number = 0;
+
+  stars: number[] = [0, 1, 2, 3, 4];
+
+  getStarClass(index: number): string {
+    if (this.rating >= index + 1) {
+      return 'filled';
+    } else if (this.rating >= index + 0.5) {
+      return 'half-filled';
+    } else {
+      return 'empty';
+    }
+  }
   @ViewChild('pdfCanvas', {static: true}) canvasElement!: ElementRef<HTMLCanvasElement>;
   @ViewChild('pdfContainter', {static: true}) pdfContainter!: ElementRef<HTMLDivElement>;
   @ViewChild('InputNumber',{static: false}) inputNumber!: ElementRef<HTMLInputElement>;
@@ -63,7 +85,7 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       const page = await this.pdfDocument.getPage(pageNumber);
 
       const container= this.pdfContainter.nativeElement
-      const scale = container.clientWidth / page.getViewport({scale:1.25}).width;
+      const scale = container.clientWidth / page.getViewport({scale:2}).width;
 
 
       const viewport = page.getViewport({scale});
@@ -115,6 +137,7 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       this.prevPage();
     }
   }
+
 }
 
 

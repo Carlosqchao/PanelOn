@@ -1,5 +1,5 @@
 h1{
-  padding: 15vh 5vh 0 5vh;
+  padding: 5vh 5vh 0 5vh;
 }
 
 #pdf-container {
@@ -23,8 +23,8 @@ h1{
   width: 100%;
   display: flex;
   flex-direction: row;
-  place-content: center;
   place-items: center;
+
 }
 
 
@@ -40,4 +40,95 @@ canvas {
   border: none;
   margin: 0 2vw;
   font-size: 10vh;
+  color: gray;
 }
+
+.icons-section {
+  display: flex;
+  gap: 20px;
+
+  .icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    img {
+      width: 25px;
+      height: 25px;
+      margin-bottom: 5px;
+    }
+
+  }
+
+}
+
+#BottomButtons{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+  place-self: center;
+}
+
+.rating-section {
+  display: flex;
+  align-items: flex-end;
+  .label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px;
+    font-size: 3vh;
+  }
+
+  .value {
+    font-size: 3vh;
+    color: #555;
+    text-transform: uppercase;
+  }
+}
+
+
+  .stars {
+    display: flex;
+    gap: 5px;
+    place-items: center;
+    place-self: center;
+    margin-right: 1vw;
+
+    .star {
+      font-size: 3vh;
+
+      &.filled {
+        color: #ffd700;
+      }
+
+      &.half-filled {
+        position: relative;
+        color: #d3d3d3;
+
+        &::before {
+          content: '★';
+          position: absolute;
+          left: 0;
+          width: 50%;
+          overflow: hidden;
+          color: #ffd700;
+        }
+      }
+
+      &.empty {
+        color: #d3d3d3;
+      }
+    }
+  }
+
+  .rating-value {
+    font-size: 3vh;
+    color: #555;
+  }
+

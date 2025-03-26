@@ -63,4 +63,8 @@ export class ComicPageComponent implements OnInit {
       });
     }
   }
+
+  callToRead() {
+    window.location.href = "comic-reader";
+  }
 }

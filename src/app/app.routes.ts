@@ -19,6 +19,6 @@ export const routes: Routes = [
   { path: 'news', component: ArticlePageComponent },
   { path: 'subscription-plans', component: SubscriptionPlansComponent},
   { path: 'payment', component: PaymentPageComponent},
-  { path: '**', redirectTo: '' },
   {path: 'comic-reader', component: ComicReaderComponent},
+  { path: '**', redirectTo: '' },
 ];
