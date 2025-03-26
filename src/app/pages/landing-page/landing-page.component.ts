@@ -76,6 +76,9 @@ export class LandingPageComponent implements OnInit {
       author: 'Steve Rogers'
     }
   ];
+  characters: any[] = [];
+  selectedCharacters: any[] = [];
+  predefinedColors = ['#FFDD33', '#5CAAB4', '#A01F29'];
 
   constructor(private appService: AppService) {}
 
@@ -89,5 +92,23 @@ export class LandingPageComponent implements OnInit {
         console.error('Error al cargar los cómics desde Firestore:', err);
       }
     });
+
+    this.appService.getCharacters().subscribe({
+      next: (characters) => {
+        this.characters = characters;
+        this.selectRandomCharacters();
+      },
+      error: (err) => {
+        console.error('Error al cargar los personajes desde Firestore:', err);
+      }
+    });
+  }
+
+  selectRandomCharacters(): void {
+    const shuffled = [...this.characters].sort(() => 0.5 - Math.random());
+    this.selectedCharacters = shuffled.slice(0, 3).map((char, index) => ({
+      ...char,
+      backgroundColor: this.predefinedColors[index]
+    }));
   }
 }
