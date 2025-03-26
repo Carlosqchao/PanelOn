@@ -10,7 +10,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = './assets/pdf.worker.mjs';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet,CommonModule],
-    template: `
+  template: `
     <router-outlet></router-outlet>
     `,
   styleUrls: ['./app.component.scss']

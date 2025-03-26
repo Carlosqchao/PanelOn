@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-character-card-3',
@@ -12,12 +12,15 @@ export class LandingCharacterCard3Component {
   @Input() imageAlt: string = 'Character image';
   @Input() backgroundColor: string = '#A01F29';
   @Input() brandName: string = 'MARVEL';
+  @Input() characterId: string = '';
 
   constructor(private router: Router) {}
 
   onCardClick(): void {
-    this.router.navigate(['character']).then(() => {
-      window.scrollTo(0, 0);
-    });
+    if (this.characterId) {
+      this.router.navigate(['character', this.characterId]).then(() => {
+        window.scrollTo(0, 0);
+      });
+    }
   }
 }

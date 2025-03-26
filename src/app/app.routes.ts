@@ -9,10 +9,11 @@ import {SubscriptionPlansComponent} from './pages/subscription-plans/subscriptio
 import {PaymentPageComponent} from './pages/payment-page/payment-page.component';
 import {ArticlePageComponent} from './pages/article-page/article-page.component';
 import {ComicReaderComponent} from "./pages/comic-reader/comic-reader.component";
+import {ModalTestingComponent} from './pages/modal-testing/modal-testing.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'character', component: CharacterPageComponent },
+  { path: 'character/:id', component: CharacterPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'comic/:id', component: ComicPageComponent },
@@ -20,5 +21,6 @@ export const routes: Routes = [
   { path: 'subscription-plans', component: SubscriptionPlansComponent},
   { path: 'payment', component: PaymentPageComponent},
   {path: 'comic-reader', component: ComicReaderComponent},
-  { path: '**', redirectTo: '' },
+  { path: 'modalTest', component: ModalTestingComponent},
+  { path: '**', redirectTo: '' }
 ];

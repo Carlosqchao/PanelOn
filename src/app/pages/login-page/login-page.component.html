@@ -2,7 +2,6 @@
   <img class="background-aside-image" src="{{ imageSource }}" alt="Loading Image.">
 </aside>
 
-
 <main class="login-container">
   <header class="login-header">
     <div class="login-logo">
@@ -11,26 +10,63 @@
     <h1>LOG IN</h1>
   </header>
 
-
   <nav aria-label="Go back">
     <a id="back-link" href="#" onclick="history.back(); return false"> ← Go back</a>
   </nav>
 
-
   <section class="login-form-container">
-    <form class="login-form" id="login-form" method="post">
-      <input type="text" id="username" name="username" autocomplete="off" placeholder="Username" required>
-      <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Password" required>
+    <form class="login-form" id="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="username"
+        autocomplete="off"
+        placeholder="Username"
+        required
+        pattern="^[a-zA-Z0-9_]{4,16}$"
+        #usernameInput="ngModel"
+      >
+      <div *ngIf="formSubmitted && usernameInput.invalid" class="error-message">
+        {{ getErrorMessage(usernameInput, { required: 'Username is required.', pattern: 'Username must be 4-16 characters (letters, numbers, _).' }) }}
+      </div>
+
+      <div class="password-container">
+        <input
+          [type]="passwordVisible ? 'text' : 'password'"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          autocomplete="current-password"
+          placeholder="Password"
+          required
+          #passwordInput="ngModel"
+        >
+        <span class="toggle-password" (click)="togglePasswordVisibility()">
+          <img [src]="passwordVisible ? eyeOpenIcon : eyeClosedIcon" alt="Toggle Password Visibility">
+        </span>
+      </div>
+      <div *ngIf="formSubmitted && passwordInput.invalid" class="error-message">
+        {{ getErrorMessage(passwordInput, { required: 'Password is required.' }) }}
+      </div>
+
+      <div *ngIf="formSubmitted && errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
       <div class="login-btn-container">
-        <app-button text="SIGN IN" textColor="#000"></app-button>
+        <app-button
+          text="SIGN IN"
+          textColor="#fff"
+          [disabled]="loginForm.invalid"
+          type="submit"
+        ></app-button>
       </div>
     </form>
   </section>
 
-
   <footer class="login-links">
     <p id="sign-up-link">Don't have an account? <a href="register" id="sign-up-btn">Sign up</a></p>
-    <p id="reemail-link">Forget your password? <a href="" id="reemail-btn">Send email</a></p>
+    <p id="reemail-link">Forgot your password? <a href="#" id="reemail-btn">Send email</a></p>
   </footer>
 </main>
-
