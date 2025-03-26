@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import {Firestore, collection, collectionData, doc} from '@angular/fire/firestore';
 import { Observable, catchError, of } from 'rxjs';
+import {docData} from 'rxfire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,16 @@ export class AppService {
       catchError(error => {
         console.error('Error obteniendo cómics:', error);
         return of([]);
+      })
+    );
+  }
+
+  getComicById(comicId: string): Observable<any> {
+    const comicDoc = doc(this.firestore, `/comics/${comicId}`);
+    return docData(comicDoc, { idField: 'id' }).pipe(
+      catchError(error => {
+        console.error('Error obteniendo el cómic:', error);
+        return of(null);
       })
     );
   }
