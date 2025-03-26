@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppService } from '../../app.service';
 import { LandingCarouselComponent } from '../../components/landing-carousel/landing-carousel.component';
@@ -11,6 +11,8 @@ import { LandingCharacterCard3Component } from '../../components/landing-charact
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { ButtonComponent } from '../../components/button/button.component';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-landing-page',
@@ -31,7 +33,9 @@ import { ButtonComponent } from '../../components/button/button.component';
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
+
   carouselItems = [
     {
       id: 1,
@@ -83,7 +87,9 @@ export class LandingPageComponent implements OnInit {
   constructor(private appService: AppService) {}
 
   ngOnInit(): void {
-    this.appService.getComics().subscribe({
+    this.appService.getComics().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
       next: (comics) => {
         this.comics = comics;
         console.log('Cómics cargados desde Firestore:');
@@ -93,7 +99,9 @@ export class LandingPageComponent implements OnInit {
       }
     });
 
-    this.appService.getCharacters().subscribe({
+    this.appService.getCharacters().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
       next: (characters) => {
         this.characters = characters;
         this.selectRandomCharacters();
@@ -110,5 +118,10 @@ export class LandingPageComponent implements OnInit {
       ...char,
       backgroundColor: this.predefinedColors[index]
     }));
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

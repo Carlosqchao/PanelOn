@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <app-character-image
-  [characterName]="character.name"
+  [characterName]="character.characterName"
   [imageUrl]="character.image"
   [backgroundColor]="predefinedColors[1]">
 </app-character-image>
@@ -18,8 +18,8 @@
   <app-character-card
     *ngFor="let character of relatedCharacters"
     [imageUrl]="character.image"
-    [superheroName]="character.name"
-    [characterName]="character.realName || character.name"
+    [superheroName]="character.characterName"
+    [characterName]="character.name"
   ></app-character-card>
 </div>
 
