@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
+import {RouterLink} from '@angular/router';
+import {ButtonComponent} from '../../components/button/button.component';
 
 @Component({
   selector: 'app-register-page',
-  imports: [],
+  imports: [
+    RouterLink,
+    ButtonComponent
+  ],
   templateUrl: './register-page.component.html',
+  standalone: true,
   styleUrl: './register-page.component.scss'
 })
 export class RegisterPageComponent {

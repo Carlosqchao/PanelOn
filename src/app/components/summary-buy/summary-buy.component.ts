@@ -7,6 +7,7 @@ import {NgOptimizedImage} from '@angular/common';
     NgOptimizedImage
   ],
   templateUrl: './summary-buy.component.html',
+  standalone: true,
   styleUrl: './summary-buy.component.scss'
 })
 export class SummaryBuyComponent {

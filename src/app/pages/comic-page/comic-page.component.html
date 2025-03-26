@@ -1,8 +1,9 @@
 <app-header></app-header>
 
-<app-comic-cover></app-comic-cover>
+<app-comic-cover *ngIf="cover" [comicCoverUrl]="cover"></app-comic-cover>
 
 <app-comic-description
+  *ngIf="title"
   [title]="title"
   [synopsis]="synopsis"
   [author]="author"
@@ -10,11 +11,11 @@
   [releaseDate]="releaseDate"
 ></app-comic-description>
 
-<div class="center-container">
+<div class="center-container" *ngIf="characters.length > 0">
   <p>COMIC CHARACTERS</p>
 </div>
 
-<div class="center-container">
+<div class="center-container" *ngIf="characters.length > 0">
   <app-character-card
     *ngFor="let character of characters"
     [imageUrl]="character.imageUrl"
@@ -24,6 +25,7 @@
 </div>
 
 <app-comic-status
+  *ngIf="status"
   [status]="status"
   [rating]="rating"
 ></app-comic-status>

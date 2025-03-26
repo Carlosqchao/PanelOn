@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'character', component: CharacterPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
-  { path: 'comic', component: ComicPageComponent },
+  { path: 'comic/:id', component: ComicPageComponent },
   { path: 'news', component: ArticlePageComponent },
   { path: 'subscription-plans', component: SubscriptionPlansComponent},
   { path: 'payment', component: PaymentPageComponent},

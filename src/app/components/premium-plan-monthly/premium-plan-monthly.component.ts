@@ -7,6 +7,7 @@ import {ButtonComponent} from '../button/button.component';
   imports: [
     ButtonComponent
   ],
+  standalone: true,
   styleUrl: './premium-plan-monthly.component.scss'
 })
 export class PremiumPlanMonthlyComponent {

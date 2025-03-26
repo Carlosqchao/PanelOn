@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import {ButtonComponent} from '../../components/button/button.component';
 
 @Component({
   selector: 'app-login-page',
-  imports: [],
+  imports: [
+    ButtonComponent
+  ],
   templateUrl: './login-page.component.html',
+  standalone: true,
   styleUrl: './login-page.component.scss'
 })
 export class LoginPageComponent {
