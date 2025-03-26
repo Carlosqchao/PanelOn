@@ -8,6 +8,7 @@ import {PremiumPlansComparisonComponent} from './components/premium-plans-compar
 import {SubscriptionPlansComponent} from './pages/subscription-plans/subscription-plans.component';
 import {PaymentPageComponent} from './pages/payment-page/payment-page.component';
 import {ArticlePageComponent} from './pages/article-page/article-page.component';
+import {ModalTestingComponent} from './pages/modal-testing/modal-testing.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'news', component: ArticlePageComponent },
   { path: 'subscription-plans', component: SubscriptionPlansComponent},
   { path: 'payment', component: PaymentPageComponent},
+  { path: 'modalTest', component: ModalTestingComponent},
   { path: '**', redirectTo: '' }
 ];
