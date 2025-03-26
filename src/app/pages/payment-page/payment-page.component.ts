@@ -12,6 +12,7 @@ import {ActivatedRoute} from '@angular/router';
     HeaderBacklinkComponent
   ],
   templateUrl: './payment-page.component.html',
+  standalone: true,
   styleUrl: './payment-page.component.scss'
 })
 export class PaymentPageComponent implements OnInit {

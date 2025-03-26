@@ -7,6 +7,7 @@ import {NgForOf} from '@angular/common';
   imports: [
     NgForOf
   ],
+  standalone: true,
   styleUrls: ['./comic-cover.component.scss']
 })
 export class ComicCoverComponent {

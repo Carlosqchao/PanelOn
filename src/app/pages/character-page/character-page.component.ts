@@ -21,6 +21,7 @@ import {HeaderComponent} from '../../components/header/header.component';
     HeaderComponent
   ],
   templateUrl: './character-page.component.html',
+  standalone: true,
   styleUrl: './character-page.component.scss'
 })
 export class CharacterPageComponent {

@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
     PaymentCardComponent
   ],
   templateUrl: './payment-form.component.html',
+  standalone: true,
   styleUrl: './payment-form.component.scss'
 })
 

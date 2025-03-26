@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-landing-character-card-2',
   templateUrl: './landing-character-card-2.component.html',
+  standalone: true,
   styleUrls: ['./landing-character-card-2.component.scss']
 })
 export class LandingCharacterCard2Component {

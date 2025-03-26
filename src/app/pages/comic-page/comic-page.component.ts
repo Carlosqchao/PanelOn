@@ -21,6 +21,7 @@ import {ButtonComponent} from '../../components/button/button.component';
     ButtonComponent
   ],
   templateUrl: './comic-page.component.html',
+  standalone: true,
   styleUrl: './comic-page.component.scss'
 })
 export class ComicPageComponent {
