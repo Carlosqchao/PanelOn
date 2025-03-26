@@ -4,6 +4,7 @@ import {Component, Input} from '@angular/core';
   selector: 'app-free-plan',
   imports: [],
   templateUrl: './free-plan.component.html',
+  standalone: true,
   styleUrl: './free-plan.component.scss'
 })
 export class FreePlanComponent {

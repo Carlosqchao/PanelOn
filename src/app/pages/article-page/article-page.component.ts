@@ -9,6 +9,7 @@ import {FooterComponent} from '../../components/footer/footer.component';
     FooterComponent
   ],
   templateUrl: './article-page.component.html',
+  standalone: true,
   styleUrl: './article-page.component.scss'
 })
 export class ArticlePageComponent {

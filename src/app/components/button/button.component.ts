@@ -8,7 +8,7 @@ import {NgClass} from '@angular/common';
   imports: [
     NgClass
   ],
-  standalone: true
+  standalone: true,
 })
 export class ButtonComponent {
   @Input() text: string = 'Click Me';

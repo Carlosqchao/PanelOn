@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
   selector: 'app-subscription-plans',
   imports: [PremiumDescriptionComponent, PremiumPlansComparisonComponent, HeaderBacklinkComponent, FreePlanComponent, ButtonComponent],
   templateUrl: './subscription-plans.component.html',
+  standalone: true,
   styleUrl: './subscription-plans.component.scss'
 })
 export class SubscriptionPlansComponent {

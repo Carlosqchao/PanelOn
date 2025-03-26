@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
   selector: 'app-premium-plans-comparison',
   imports: [PremiumPlanMonthlyComponent, CommonModule],
   templateUrl: './premium-plans-comparison.component.html',
+  standalone: true,
   styleUrl: './premium-plans-comparison.component.scss'
 })
 export class PremiumPlansComparisonComponent {
