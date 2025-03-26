@@ -53,6 +53,16 @@ export class AppService {
     );
   }
 
+  getCharacterById(characterId: string): Observable<any> {
+    const characterDoc = doc(this.firestore, `/characters/${characterId}`);
+    return docData(characterDoc, { idField: 'id' }).pipe(
+      catchError(error => {
+        console.error('Error fetching character:', error);
+        return of(null);
+      })
+    );
+  }
+
   getNews(): Observable<any[]> {
     const newsCollection = collection(this.firestore, 'news');
     console.log('Consultando noticias:', newsCollection);

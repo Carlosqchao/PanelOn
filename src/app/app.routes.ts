@@ -11,7 +11,7 @@ import {ArticlePageComponent} from './pages/article-page/article-page.component'
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'character', component: CharacterPageComponent },
+  { path: 'character/:id', component: CharacterPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'comic/:id', component: ComicPageComponent },

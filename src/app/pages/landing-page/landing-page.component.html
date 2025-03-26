@@ -40,13 +40,15 @@
 
 <div class="center-container" *ngIf="selectedCharacters.length >= 3">
   <app-landing-character-card-1
-    [imageUrl]="selectedCharacters[1].image"
+    [characterId]="selectedCharacters[0].id"
+    [imageUrl]="selectedCharacters[0].image"
     [imageAlt]="selectedCharacters[0].name + ' character'"
     [backgroundColor]="selectedCharacters[0].backgroundColor"
     [brandName]="'MARVEL'">
   </app-landing-character-card-1>
 
   <app-landing-character-card-2
+    [characterId]="selectedCharacters[1].id"
     [imageUrl]="selectedCharacters[1].image"
     [imageAlt]="selectedCharacters[1].name + ' character'"
     [backgroundColor]="selectedCharacters[1].backgroundColor"
@@ -54,6 +56,7 @@
   </app-landing-character-card-2>
 
   <app-landing-character-card-3
+    [characterId]="selectedCharacters[2].id"
     [imageUrl]="selectedCharacters[2].image"
     [imageAlt]="selectedCharacters[2].name + ' character'"
     [backgroundColor]="selectedCharacters[2].backgroundColor"
