@@ -12,7 +12,8 @@
   <app-comic-card
     *ngFor="let comic of comics | slice: 0:4"
     [imageUrl]="comic.cover"
-    [title]="comic.title">
+    [title]="comic.title"
+    [comicId]="comic.id">
   </app-comic-card>
 </div>
 
