@@ -7,9 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:PanelOn": "node dist/panel-on/server/server.mjs",
-    "copy-pdfjs": "copy -R node_modules/pdfjs-dist/build/pdf.worker.mjs src/assets/",
-    "postinstall": "npm run copy-pdfjs"
+    "serve:ssr:PanelOn": "node dist/panel-on/server/server.mjs"
   },
   "private": true,
   "dependencies": {
