@@ -12,7 +12,7 @@ import {ModalTestingComponent} from './pages/modal-testing/modal-testing.compone
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'character', component: CharacterPageComponent },
+  { path: 'character/:id', component: CharacterPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'comic/:id', component: ComicPageComponent },

@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import {Firestore, collection, collectionData, doc} from '@angular/fire/firestore';
 import { Observable, catchError, of } from 'rxjs';
+import { where, query } from '@angular/fire/firestore';
 import {docData} from 'rxfire/firestore';
 
 @Injectable({
@@ -33,7 +34,6 @@ export class AppService {
 
   getUsers(): Observable<any[]> {
     const usersCollection = collection(this.firestore, '/users');
-    console.log('Consultando usuarios:', usersCollection);
     return collectionData(usersCollection, { idField: 'id' }).pipe(
       catchError(error => {
         console.error('Error obteniendo usuarios:', error);
@@ -44,7 +44,6 @@ export class AppService {
 
   getCharacters(): Observable<any[]> {
     const charactersCollection = collection(this.firestore, 'characters');
-    console.log('Consultando personajes:', charactersCollection);
     return collectionData(charactersCollection, { idField: 'id' }).pipe(
       catchError(error => {
         console.error('Error obteniendo personajes:', error);
@@ -53,9 +52,41 @@ export class AppService {
     );
   }
 
+  getCharacterById(characterId: string): Observable<any> {
+    const characterDoc = doc(this.firestore, `/characters/${characterId}`);
+    return docData(characterDoc, { idField: 'id' }).pipe(
+      catchError(error => {
+        console.error('Error fetching character:', error);
+        return of(null);
+      })
+    );
+  }
+
+
+  getRelatedCharacters(characterIds: string[]): Observable<any[]> {
+    const charactersCollection = collection(this.firestore, 'characters');
+    const q = query(charactersCollection, where('id', 'in', characterIds));
+    return collectionData(q, { idField: 'id' }).pipe(
+      catchError(error => {
+        console.error('Error obteniendo personajes relacionados:', error);
+        return of([]);
+      })
+    );
+  }
+
+  getRelatedComics(comicIds: string[]): Observable<any[]> {
+    const comicsCollection = collection(this.firestore, 'comics');
+    const q = query(comicsCollection, where('id', 'in', comicIds));
+    return collectionData(q, { idField: 'id' }).pipe(
+      catchError(error => {
+        console.error('Error obteniendo cómics relacionados:', error);
+        return of([]);
+      })
+    );
+  }
+
   getNews(): Observable<any[]> {
     const newsCollection = collection(this.firestore, 'news');
-    console.log('Consultando noticias:', newsCollection);
     return collectionData(newsCollection, { idField: 'id' }).pipe(
       catchError(error => {
         console.error('Error obteniendo noticias:', error);
@@ -66,7 +97,6 @@ export class AppService {
 
   getDonations(): Observable<any[]> {
     const donationsCollection = collection(this.firestore, 'donations');
-    console.log('Consultando donaciones:', donationsCollection);
     return collectionData(donationsCollection, { idField: 'id' }).pipe(
       catchError(error => {
         console.error('Error obteniendo donaciones:', error);
@@ -77,7 +107,6 @@ export class AppService {
 
   getPayments(): Observable<any[]> {
     const paymentsCollection = collection(this.firestore, 'payments');
-    console.log('Consultando pagos:', paymentsCollection);
     return collectionData(paymentsCollection, { idField: 'id' }).pipe(
       catchError(error => {
         console.error('Error obteniendo pagos:', error);
@@ -88,7 +117,6 @@ export class AppService {
 
   getGenres(): Observable<any[]> {
     const genresCollection = collection(this.firestore, 'genres');
-    console.log('Consultando géneros:', genresCollection);
     return collectionData(genresCollection, { idField: 'id' }).pipe(
       catchError(error => {
         console.error('Error obteniendo géneros:', error);
