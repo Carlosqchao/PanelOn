@@ -10,6 +10,7 @@ import { ComicStatusComponent } from '../../components/comic-status/comic-status
 import { FooterComponent } from '../../components/footer/footer.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -43,6 +44,7 @@ export class ComicPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private appService: AppService
   ) {}
 
@@ -91,5 +93,11 @@ export class ComicPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  callToRead() {
+      this.router.navigate(['comic-reader']).then(() => {
+        window.scrollTo(0, 0);
+      });
   }
 }
