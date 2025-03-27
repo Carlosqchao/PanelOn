@@ -12,10 +12,12 @@ import {HeaderComponent} from "../../components/header/header.component";
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {ComicStatusComponent} from '../../components/comic-status/comic-status.component';
 import {FooterComponent} from '../../components/footer/footer.component';
+import {CommentComponent} from '../../components/comment/comment.component';
+import {ButtonComponent} from '../../components/button/button.component';
 
 @Component({
   selector: 'app-comic-reader',
-  imports: [NgForOf, ComicStatusComponent, NgIf, HeaderComponent, FooterComponent, NgClass],
+  imports: [NgForOf, ComicStatusComponent, NgIf, HeaderComponent, FooterComponent, NgClass, CommentComponent, ButtonComponent],
   templateUrl: './comic-reader.component.html',
   styleUrl: './comic-reader.component.scss'
 })
@@ -25,6 +27,18 @@ export class ComicReaderComponent implements OnInit, OnChanges {
     { name: 'Like', url: '/like.png' },
     { name: 'Share', url: '/share.png' },
   ];
+
+  comments = [
+    { userIcon: 'https://randomuser.me/api/portraits/women/28.jpg', username: 'Carlos Ruano', comment: 'Lorem ipsum odor amet, consectetur adipiscing elit.' },
+    { userIcon: 'https://randomuser.me/api/portraits/men/92.jpg', username: 'Ana Lopez', comment: 'Apulvinar vestibulum natoque fermentum.' },
+    { userIcon: 'https://randomuser.me/api/portraits/women/28.jpg', username: 'Carlos Ruano', comment: 'Lorem ipsum odor amet, consectetur adipiscing elit.' },
+    { userIcon: 'https://randomuser.me/api/portraits/men/92.jpg', username: 'Ana Lopez', comment: 'Apulvinar vestibulum natoque fermentum.' },
+    { userIcon: 'https://randomuser.me/api/portraits/women/28.jpg', username: 'Carlos Ruano', comment: 'Lorem ipsum odor amet, consectetur adipiscing elit.' },
+    { userIcon: 'https://randomuser.me/api/portraits/men/92.jpg', username: 'Ana Lopez', comment: 'Apulvinar vestibulum natoque fermentum.' },
+    { userIcon: 'https://randomuser.me/api/portraits/women/28.jpg', username: 'Carlos Ruano', comment: 'Lorem ipsum odor amet, consectetur adipiscing elit.' },
+    { userIcon: 'https://randomuser.me/api/portraits/men/92.jpg', username: 'Ana Lopez', comment: 'Apulvinar vestibulum natoque fermentum.' },
+  ];
+
   @Input() status: string = 'Unknown';
   @Input() rating: number = 0;
 
