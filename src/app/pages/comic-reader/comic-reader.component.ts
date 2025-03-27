@@ -16,8 +16,6 @@ import { takeUntil } from 'rxjs/operators';
   standalone: true,
   imports: [
     NgForOf,
-    ComicStatusComponent,
-    NgIf,
     HeaderComponent,
     FooterComponent,
     NgClass,
