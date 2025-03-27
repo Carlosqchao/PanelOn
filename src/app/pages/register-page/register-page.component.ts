@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterPageComponent {
   imageSource: string = 'https://1.bp.blogspot.com/-j7pelIBKTn0/XacCFsSjsII/AAAAAAAAf_Y/rvpqFruHKj8Hym6PS7n7P0V3J3nmHvs5wCLcBGAsYHQ/s1600/05.jpg';
-  logoSource: string = '';
+  logoSource: string = '/PanelOnLogo.png';
 
   firstName: string = '';
   lastName: string = '';

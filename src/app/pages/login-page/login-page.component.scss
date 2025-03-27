@@ -23,7 +23,12 @@
 }
 
 .login-container .login-logo {
-  display: none;
+  display: flex;
+
+  img {
+    width: 12rem;
+    height: auto;
+  }
 }
 
 .login-container .login-header {
