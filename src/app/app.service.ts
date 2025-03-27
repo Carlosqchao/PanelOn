@@ -170,7 +170,6 @@ export class AppService {
     try {
       const charactersCollection = collection(this.firestore, 'characters');
       const docRef = await addDoc(charactersCollection, character);
-      Segur;
       return docRef.id;
     } catch (error) {
       console.error('Error adding character:', error);
