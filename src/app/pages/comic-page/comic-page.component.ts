@@ -96,8 +96,12 @@ export class ComicPageComponent implements OnInit, OnDestroy {
   }
 
   callToRead() {
-      this.router.navigate(['comic-reader']).then(() => {
+    const comicId = this.route.snapshot.paramMap.get('id');
+    if (comicId) {
+      this.router.navigate(['comic-reader', comicId]).then(() => {
         window.scrollTo(0, 0);
       });
+    }
   }
+
 }

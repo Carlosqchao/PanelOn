@@ -132,3 +132,20 @@ canvas {
     color: #555;
   }
 
+
+.comment-section {
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+  justify-self: center;
+  align-items: center;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  padding: 2vh 2vw;
+  max-height: 40vh;
+}

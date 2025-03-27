@@ -13,6 +13,7 @@ import {ModalTestingComponent} from './pages/modal-testing/modal-testing.compone
 import { UploadFormComponent } from './pages/upload-form/upload-form.component';
 
 
+
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'upload-form', component: UploadFormComponent, data: { hideHeader: true } },
@@ -23,7 +24,7 @@ export const routes: Routes = [
   { path: 'news', component: ArticlePageComponent },
   { path: 'subscription-plans', component: SubscriptionPlansComponent},
   { path: 'payment', component: PaymentPageComponent},
-  {path: 'comic-reader', component: ComicReaderComponent},
+  {path: 'comic-reader/:id', component: ComicReaderComponent},
   { path: 'modalTest', component: ModalTestingComponent},
   { path: '**', redirectTo: '' }
 ];
