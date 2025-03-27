@@ -11,6 +11,7 @@ import {ArticlePageComponent} from './pages/article-page/article-page.component'
 import {ComicReaderComponent} from "./pages/comic-reader/comic-reader.component";
 import {ModalTestingComponent} from './pages/modal-testing/modal-testing.component';
 import { UploadFormComponent } from './pages/upload-form/upload-form.component';
+import {UserPageComponent} from './pages/user-page/user-page.component';
 
 
 export const routes: Routes = [
@@ -25,5 +26,6 @@ export const routes: Routes = [
   { path: 'payment', component: PaymentPageComponent},
   {path: 'comic-reader', component: ComicReaderComponent},
   { path: 'modalTest', component: ModalTestingComponent},
+  { path: 'user-page', component: UserPageComponent },
   { path: '**', redirectTo: '' }
 ];
