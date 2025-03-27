@@ -25,10 +25,10 @@ import { takeUntil } from 'rxjs/operators';
     ButtonComponent,
   ],
   templateUrl: './comic-reader.component.html',
-  styleUrls: ['./comic-reader.component.scss']
+  styleUrl: './comic-reader.component.scss'
 })
 export class ComicReaderComponent implements OnInit, OnChanges {
-  icons: { name: string; url: string }[] = [
+  icons: { name: string, url: string }[] = [
     { name: 'Save', url: '/save.png' },
     { name: 'Like', url: '/like.png' },
     { name: 'Share', url: '/share.png' },
@@ -36,9 +36,9 @@ export class ComicReaderComponent implements OnInit, OnChanges {
   @Input() status: string = 'Unknown';
   @Input() rating: number = 0;
   stars: number[] = [0, 1, 2, 3, 4];
-  pdfUrl: string = '';
-  comments: any[] = [];
+  @Input() pdfUrl: string = "../../assets/COMIC castellano WEB_ok.pdf";
   title: string = '';
+  comments: any[] = [];
   defaultUserIcon: string = 'https://randomuser.me/api/portraits/men/23.jpg';
   defaultUsername: string = 'Carlos Ruano Rachid';
   private destroy$ = new Subject<void>();
@@ -49,7 +49,9 @@ export class ComicReaderComponent implements OnInit, OnChanges {
 
   private pdfDocument: any = null;
   maxPages = 0;
+  InputNumber: number = 0;
   protected pageNumber: number = 1;
+  scale = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -62,6 +64,10 @@ export class ComicReaderComponent implements OnInit, OnChanges {
     const comicId = this.route.snapshot.paramMap.get('id');
     if (comicId) {
       this.loadComicData(comicId);
+
+    }
+    if (this.pdfUrl) {
+      this.loadPdf();
     }
   }
 
@@ -77,13 +83,10 @@ export class ComicReaderComponent implements OnInit, OnChanges {
     ).subscribe({
       next: (comic) => {
         if (comic) {
-          console.log('Comic data loaded:', comic);
           this.title = comic.title || 'Untitled Comic';
-          this.pdfUrl = comic.pdfUrl || '../../assets/COMIC castellano WEB_ok.pdf';
           this.status = comic.state || 'Unknown';
           this.rating = comic.rating || 0;
           this.comments = comic.comments || [];
-          this.loadPdf();
         }
       },
       error: (err) => {
@@ -92,13 +95,14 @@ export class ComicReaderComponent implements OnInit, OnChanges {
     });
   }
 
+
   async loadPdf(): Promise<void> {
     try {
       this.pdfDocument = await pdfjsLib.getDocument(this.pdfUrl).promise;
       this.maxPages = this.pdfDocument.numPages;
       await this.renderPage(this.pageNumber);
     } catch (error) {
-      console.error('Error loading PDF:', error);
+      console.error('Error al cargar el PDF:', error);
     }
   }
 
@@ -107,6 +111,7 @@ export class ComicReaderComponent implements OnInit, OnChanges {
 
     try {
       const page = await this.pdfDocument.getPage(pageNumber);
+
       const container = this.pdfContainter.nativeElement;
       const scale = container.clientWidth / page.getViewport({ scale: 2 }).width;
 
@@ -114,53 +119,46 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       const canvas = this.canvasElement.nativeElement;
       const context = canvas.getContext('2d');
 
-      if (context) {
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
 
-        const renderContext = {
-          canvasContext: context,
-          viewport: viewport
-        };
+      const renderContext = {
+        canvasContext: context,
+        viewport: viewport
+      };
 
-        await page.render(renderContext).promise;
-      }
+      await page.render(renderContext).promise;
+
     } catch (error) {
-      console.error('Error rendering page:', error);
+      console.error('Error al renderizar la página:', error);
     }
   }
 
   async nextPage(): Promise<void> {
-    if (this.pageNumber < this.maxPages) {
+    if (this.pageNumber < this.pdfDocument.numPages) {
       this.pageNumber++;
-      await this.renderPage(this.pageNumber);
+      this.renderPage(this.pageNumber);
     }
   }
 
   async prevPage(): Promise<void> {
-    if (this.pageNumber > 1) {
+    if (this.pageNumber > 0) {
       this.pageNumber--;
-      await this.renderPage(this.pageNumber);
+      this.renderPage(this.pageNumber);
     }
   }
 
   pageInputChange(): void {
-    const inputValue = parseInt(this.inputNumber.nativeElement.value);
-    if (inputValue >= 1 && inputValue <= this.maxPages) {
-      this.pageNumber = inputValue;
-      this.renderPage(this.pageNumber);
-    } else if (inputValue > this.maxPages) {
-      this.pageNumber = this.maxPages;
+    this.InputNumber = parseInt(this.inputNumber.nativeElement.value);
+    if (this.InputNumber > this.maxPages) {
       this.inputNumber.nativeElement.value = String(this.maxPages);
       this.renderPage(this.maxPages);
     } else {
-      this.pageNumber = 1;
-      this.inputNumber.nativeElement.value = '1';
-      this.renderPage(1);
+      this.renderPage(this.InputNumber);
     }
   }
 
-  pageChangeOnClick(evt: MouseEvent, pdfContainter: HTMLDivElement): void {
+  pageChangeOnClick(evt: MouseEvent, pdfContainter: HTMLDivElement) {
     if (evt.pageX >= pdfContainter.clientWidth / 2) {
       this.nextPage();
     } else if (evt.pageX <= pdfContainter.clientWidth / 2) {
@@ -177,4 +175,5 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       return 'empty';
     }
   }
+
 }
