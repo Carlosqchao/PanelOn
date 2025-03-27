@@ -3,7 +3,7 @@
 <app-character-image
   [characterName]="character.characterName"
   [imageUrl]="character.image"
-  [backgroundColor]="predefinedColors[1]">
+  [backgroundColor]="randomColor">
 </app-character-image>
 
 <app-section-title position="left" text="BASE HISTORY"></app-section-title>
@@ -16,10 +16,11 @@
 
 <div class="center-container">
   <app-character-card
-    *ngFor="let character of relatedCharacters"
-    [imageUrl]="character.image"
-    [superheroName]="character.characterName"
-    [characterName]="character.name"
+    *ngFor="let related of relatedCharacters"
+    [imageUrl]="related.image"
+    [superheroName]="related.characterName"
+    [characterName]="related.name"
+    [characterId]="related.id"
   ></app-character-card>
 </div>
 

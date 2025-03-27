@@ -6,26 +6,28 @@
   width: 100%;
 }
 
-
 .overflow-container {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   display: flex;
   justify-content: center;
   position: relative;
   width: 100%;
   flex-direction: row;
-  max-width: 1000px;
-  height: 600px;
+  max-width: 62.5rem;
+  height: 30.5rem;
   overflow: visible;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 .overflow-image {
   position: absolute;
-  max-width: 120%;
-  max-height: 120%;
-  top: -10%;
+  max-width: 130%;
+  max-height: 130%;
+  top: -2%;
   z-index: 10;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 .character-name {
