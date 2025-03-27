@@ -28,4 +28,5 @@ export class ButtonComponent {
   }
 
   isHovering: boolean = false;
+  @Input() disabled!: boolean | null;
 }

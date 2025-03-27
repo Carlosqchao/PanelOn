@@ -1,27 +1,27 @@
 <app-header></app-header>
 
 <app-character-image
-    characterName="SPIDER-MAN"
-    imageUrl="https://pngimg.com/uploads/spider_man/spider_man_PNG59.png"
-    backgroundColor="#5bbcd6">
-
+  [characterName]="character.characterName"
+  [imageUrl]="character.image"
+  [backgroundColor]="randomColor">
 </app-character-image>
 
 <app-section-title position="left" text="BASE HISTORY"></app-section-title>
 
 <app-character-text
-  [historyText]="'Peter Parker is a teenager like any other. He lives with his Aunt May and Uncle Ben, goes to high school, and loves science classes. However, everything changes the day that, during a school trip to a laboratory, Peter is bitten by a radioactive spider and becomes Spider-Man!'"
+  [historyText]="character.description || 'No history available'"
 ></app-character-text>
 
 <app-section-title position="center" text="RELATED CHARACTERS"></app-section-title>
 
 <div class="center-container">
-    <app-character-card
-      *ngFor="let character of characters"
-      [imageUrl]="character.imageUrl"
-      [superheroName]="character.superheroName"
-      [characterName]="character.characterName"
-    ></app-character-card>
+  <app-character-card
+    *ngFor="let related of relatedCharacters"
+    [imageUrl]="related.image"
+    [superheroName]="related.characterName"
+    [characterName]="related.name"
+    [characterId]="related.id"
+  ></app-character-card>
 </div>
 
 <app-section-title position="left" text="COMICS"></app-section-title>
@@ -29,9 +29,10 @@
 <div class="center-container">
   <app-comic-card
     *ngFor="let comic of comics"
-    [imageUrl]="comic.imageUrl"
-    [title]="comic.title">
-  </app-comic-card>
+    [imageUrl]="comic.cover"
+    [title]="comic.title"
+    [comicId]="comic.id"
+  ></app-comic-card>
 </div>
 
 <app-footer></app-footer>

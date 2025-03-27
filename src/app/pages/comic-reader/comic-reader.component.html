@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+<h1>
+    Spiderman
+</h1>
+
+<div id="pdf-container" #pdfContainter (click)="pageChangeOnClick($event,pdfContainter)">
+  <canvas #pdfCanvas></canvas>
+</div>
+
+<div id="BottomButtons">
+  <div class="rating-section">
+    <span class="label">Rating:</span>
+    <div class="stars">
+      <span
+        *ngFor="let star of stars"
+        class="star"
+        [ngClass]="getStarClass(star)"
+      >
+        ★
+      </span>
+    </div>
+    <span class="rating-value">{{ rating }} / 5</span>
+  </div>
+
+
+  <div id="Pagebuttons">
+    <button class="page_button" (click)="prevPage()"><</button>
+    <input id="PageNumber" #InputNumber type="number"  min="0" max="{{ maxPages }}" (keydown.enter)="pageInputChange()" [placeholder]="pageNumber">
+    <button class="page_button" (click)="nextPage()">></button>
+  </div>
+
+  <div class="icons-section">
+    <div class="icon" *ngFor="let icon of icons">
+      <img [src]="icon.url" [alt]="icon.name" />
+    </div>
+  </div>
+
+</div>
+
+
+<app-footer></app-footer>

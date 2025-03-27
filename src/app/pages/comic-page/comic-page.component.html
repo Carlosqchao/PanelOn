@@ -18,9 +18,10 @@
 <div class="center-container" *ngIf="characters.length > 0">
   <app-character-card
     *ngFor="let character of characters"
-    [imageUrl]="character.imageUrl"
-    [superheroName]="character.superheroName"
-    [characterName]="character.characterName"
+    [imageUrl]="character.image"
+    [superheroName]="character.characterName"
+    [characterName]="character.name"
+    [characterId]="character.id"
   ></app-character-card>
 </div>
 
@@ -31,7 +32,9 @@
 ></app-comic-status>
 
 <div class="center-container">
-  <app-button text="READ THE COMIC"></app-button>
+  <app-button text="READ THE COMIC"
+    (click)="callToRead()">
+  </app-button>
 </div>
 
 <app-footer></app-footer>

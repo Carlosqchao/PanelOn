@@ -1,0 +1,26 @@
+<div class="cancel-subscription-modal">
+  <div class="cancel-subscription-modal-header">
+    <h1 id="cancel-modal-subscription-title"> {{ data.title }} </h1>
+    <div class="button-container">
+      <app-button
+        [text]="'X'"
+        [buttonHeight]="'0.5vh'"
+        [buttonWidth]="'0.5vw'"
+        [backgroundColor]="'transparent'"
+        [backgroundHover]="'transparent'"
+        [textColor]="'black'"
+        (buttonClick)="close()">
+      </app-button>
+    </div>
+  </div>
+  <div class="cancel-subscription-modal-content">
+    <h2 id="cancel-modal-subscription-message"> {{ data.message }} </h2>
+    <form class="cancel-modal-subscription-form">
+      <input type="password" placeholder="Password">
+      <input type="password" placeholder="Confirm Password">
+      <app-button
+        [text]="'Cancel subscription'">
+      </app-button>
+    </form>
+  </div>
+</div>

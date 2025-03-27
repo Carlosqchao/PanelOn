@@ -12,12 +12,15 @@ export class LandingCharacterCard1Component {
   @Input() imageAlt: string = '';
   @Input() backgroundColor: string = '';
   @Input() brandName: string = '';
+  @Input() characterId: string = '';
 
   constructor(private router: Router) {}
 
   onCardClick(): void {
-    this.router.navigate(['character']).then(() => {
-      window.scrollTo(0, 0);
-    });
+    if (this.characterId) {
+      this.router.navigate(['character', this.characterId]).then(() => {
+        window.scrollTo(0, 0);
+      });
+    }
   }
 }

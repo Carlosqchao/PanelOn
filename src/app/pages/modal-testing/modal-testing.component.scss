@@ -1,0 +1,28 @@
+
+@mixin flex-row() {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+.cancel-subscription-modal {
+  @include flex-column;
+
+  gap: 30px;
+
+  .modal-header {
+    @include flex-row;
+
+    color: red;
+    font-weight: bold;
+    padding: 0.5vw 0.8vh;
+
+    #modal-closer {
+      left: 0;
+    }
+  }
+}

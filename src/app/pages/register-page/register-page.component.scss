@@ -27,8 +27,15 @@
 }
 
 .register-container .register-logo {
-  display: none;
+  display: flex;
+
+  img {
+    width: 12rem;
+    height: auto;
+  }
 }
+
+
 
 .register-container .register-header {
   display: flex;
@@ -90,15 +97,27 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  height: 8.5vh;
-  width: 65vh;
+  align-items: flex-start;
+  height: auto;
+  width: 100%;
   margin-bottom: 0.3vh;
   gap: 0.5vw;
 }
 
 .register-container .register-form .name-group input {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.register-container .register-form .name-group > div {
+  display: flex;
+  flex-direction: column;
   width: 50%;
+}
+
+.register-container .register-form .name-group .error-message {
+  width: 100%;
+  margin-bottom: 0.3vh;
 }
 
 .register-container .register-form button {
@@ -133,8 +152,59 @@
   font-size: 1.25rem;
 }
 
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 0.3vh;
+  text-align: left;
+  width: 65vh;
+}
+
 .register-btn-container {
   margin-top: 2vh;
+}
+
+.password-container {
+  position: relative;
+  width: 65vh;
+}
+
+.password-container input {
+  width: 100%;
+  height: 6vh;
+  font-size: 1.2rem;
+  padding: 1vh 3vh 1vh 1vh;
+  border: 0.1vh solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin-top: 0.3vh;
+  margin-bottom: 0.3vh;
+  background-color: #fff;
+  font-family: "Roboto", sans-serif;
+  align-content: center;
+  align-items: center;
+}
+
+.password-container input:focus {
+  outline: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  border: 0.1vh solid #ccc;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.3rem;
+  display: block;
+}
+
+.toggle-password img {
+  width: 1.8rem;
+  height: 1.8rem;
 }
 
 @media (max-width: 1024px) {
@@ -177,6 +247,27 @@
     margin-bottom: 0.1vh;
     gap: 0.3vw;
   }
+
+  .register-container .register-form .name-group > div {
+    width: 100%;
+  }
+
+  .register-container .register-form .name-group input {
+    width: 100%;
+  }
+
+  .register-container .register-form .name-group .error-message {
+    width: 45vw;
+  }
+
+  .password-container {
+    width: 45vw;
+  }
+
+  .password-container input {
+    width: 100%;
+    height: 7vh;
+  }
 }
 
 @media (max-width: 480px) {
@@ -218,6 +309,19 @@
     gap: 0.5vw;
   }
 
+  .register-container .register-form .name-group > div {
+    width: 100%;
+  }
+
+  .register-container .register-form .name-group input {
+    width: 100%;
+  }
+
+  .register-container .register-form .name-group .error-message {
+    width: 80vw;
+    font-size: 0.8rem;
+  }
+
   #back-link {
     width: 80vw;
   }
@@ -228,5 +332,21 @@
 
   .register-container #sign-in-link #sign-in-btn {
     font-size: 0.8rem;
+  }
+
+  /* Ajuste para el contenedor de contraseña en móviles */
+  .password-container {
+    width: 80vw;
+  }
+
+  .password-container input {
+    width: 100%;
+    height: 8vh;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+
+  .toggle-password {
+    font-size: 0.9rem; /* Ajustar tamaño del ícono en móviles */
   }
 }
