@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<form (ngSubmit)="onSubmit()">
+
+  <div class="aside-img">
+    <img src="https://media.mycomicshop.com/n_iv/600/1168751.jpg" alt="Comic Cover">
+  </div>
+
+  <div class="form-container">
+
+    <div class="inner-form-container">
+      <div class="file-upload">
+        <div class="circle"></div>
+        <label for="file" class="file-label">
+          <i class="fas fa-upload fa-2x"></i>
+          <input type="file" id="file" (change)="onFileSelected($event)" name="file" style="display: none">
+        </label>
+        <span class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
+      </div>
+      <div class="title">
+        <app-input-field
+            [typeInput]="'text'"
+            [nameInput]="'title'"
+            [customClass]="'author'"
+            [placeHolder]="'Title'">
+        </app-input-field>
+      </div>
+
+      <div class="author">
+        <app-input-field
+          [typeInput]="'text'"
+          [nameInput]="'author'"
+          [customClass]="'author'"
+          [placeHolder]="'Author'">
+        </app-input-field>
+      </div>
+
+      <div class="synopsis">
+        <textarea id="synopsis" [(ngModel)]="synopsis" name="synopsis" placeholder="Synopsys" rows="4" cols="50"></textarea>
+
+      </div>
+
+      <div class="situation-selector">
+        <select id="situation" [(ngModel)]="situation" name="situation" required>
+          <option value="" disabled selected>State</option>
+          <option value="In process">In process</option>
+          <option value="Finished">Finished</option>
+        </select>
+      </div>
+      <div class="genre-selector">
+        <select id="genre" [(ngModel)]="selectedGenre" name="selectedGenre">
+          <option value="" disabled selected>Select Genre</option>
+          <option value="Action">Action</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Drama">Drama</option>
+          <option value="Comedy">Comedy</option>
+        </select>
+        <button type="button" (click)="addGenre()">Add</button>
+      </div>
+      <div class="genre-list">
+        <p>Selected Genres:</p>
+        <span *ngFor="let genre of selectedGenres" class="genre-item">{{ genre }}</span>
+      </div>
+      <div class="upload-button">
+        <button type="submit"> <strong>UPLOAD</strong></button>
+      </div>
+    </div>
+  </div>
+
+</form>

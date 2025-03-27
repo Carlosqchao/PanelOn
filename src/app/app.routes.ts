@@ -10,9 +10,12 @@ import {PaymentPageComponent} from './pages/payment-page/payment-page.component'
 import {ArticlePageComponent} from './pages/article-page/article-page.component';
 import {ComicReaderComponent} from "./pages/comic-reader/comic-reader.component";
 import {ModalTestingComponent} from './pages/modal-testing/modal-testing.component';
+import { UploadFormComponent } from './pages/upload-form/upload-form.component';
+
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
+  { path: 'upload-form', component: UploadFormComponent, data: { hideHeader: true } },
   { path: 'character/:id', component: CharacterPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
