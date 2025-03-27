@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import {Firestore, collection, collectionData, doc, addDoc, deleteDoc, setDoc} from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, addDoc, deleteDoc, setDoc } from '@angular/fire/firestore';
 import { Observable, catchError, of } from 'rxjs';
 import { where, query } from '@angular/fire/firestore';
 import { docData } from 'rxfire/firestore';
@@ -16,7 +16,7 @@ export class AppService {
     const comicsCollection = collection(this.firestore, '/comics');
     return collectionData(comicsCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error obteniendo cómics:', error);
+        console.error('Error fetching comics:', error);
         return of([]);
       })
     );
@@ -26,7 +26,7 @@ export class AppService {
     const comicDoc = doc(this.firestore, `/comics/${comicId}`);
     return docData(comicDoc, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error obteniendo el cómic:', error);
+        console.error('Error fetching comic:', error);
         return of(null);
       })
     );
@@ -36,7 +36,7 @@ export class AppService {
     const usersCollection = collection(this.firestore, '/users');
     return collectionData(usersCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error obteniendo usuarios:', error);
+        console.error('Error fetching users:', error);
         return of([]);
       })
     );
@@ -46,7 +46,7 @@ export class AppService {
     const charactersCollection = collection(this.firestore, 'characters');
     return collectionData(charactersCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error obteniendo personajes:', error);
+        console.error('Error fetching characters:', error);
         return of([]);
       })
     );
@@ -62,13 +62,12 @@ export class AppService {
     );
   }
 
-
   getRelatedCharacters(characterIds: string[]): Observable<any[]> {
     const charactersCollection = collection(this.firestore, 'characters');
     const q = query(charactersCollection, where('id', 'in', characterIds));
     return collectionData(q, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error obteniendo personajes relacionados:', error);
+        console.error('Error fetching related characters:', error);
         return of([]);
       })
     );
@@ -79,7 +78,7 @@ export class AppService {
     const q = query(comicsCollection, where('id', 'in', comicIds));
     return collectionData(q, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error obteniendo cómics relacionados:', error);
+        console.error('Error fetching related comics:', error);
         return of([]);
       })
     );
@@ -89,7 +88,7 @@ export class AppService {
     const newsCollection = collection(this.firestore, 'news');
     return collectionData(newsCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error obteniendo noticias:', error);
+        console.error('Error fetching news:', error);
         return of([]);
       })
     );
@@ -99,7 +98,7 @@ export class AppService {
     const donationsCollection = collection(this.firestore, 'donations');
     return collectionData(donationsCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error obteniendo donaciones:', error);
+        console.error('Error fetching donations:', error);
         return of([]);
       })
     );
@@ -109,7 +108,7 @@ export class AppService {
     const paymentsCollection = collection(this.firestore, 'payments');
     return collectionData(paymentsCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error obteniendo pagos:', error);
+        console.error('Error fetching payments:', error);
         return of([]);
       })
     );
@@ -119,7 +118,7 @@ export class AppService {
     const genresCollection = collection(this.firestore, 'genres');
     return collectionData(genresCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error obteniendo géneros:', error);
+        console.error('Error fetching genres:', error);
         return of([]);
       })
     );
@@ -129,10 +128,9 @@ export class AppService {
     try {
       const comicsCollection = collection(this.firestore, '/comics');
       const docRef = await addDoc(comicsCollection, comic);
-      console.log('Cómic añadido con ID:', docRef.id);
       return docRef.id;
     } catch (error) {
-      console.error('Error añadiendo cómic:', error);
+      console.error('Error adding comic:', error);
       throw error;
     }
   }
@@ -141,9 +139,8 @@ export class AppService {
     try {
       const comicDoc = doc(this.firestore, `/comics/${comicId}`);
       await setDoc(comicDoc, comic, { merge: true });
-      console.log('Cómic actualizado:', comicId);
     } catch (error) {
-      console.error('Error actualizando cómic:', error);
+      console.error('Error updating comic:', error);
       throw error;
     }
   }
@@ -152,9 +149,8 @@ export class AppService {
     try {
       const comicDoc = doc(this.firestore, `/comics/${comicId}`);
       await deleteDoc(comicDoc);
-      console.log('Cómic eliminado:', comicId);
     } catch (error) {
-      console.error('Error eliminando cómic:', error);
+      console.error('Error deleting comic:', error);
       throw error;
     }
   }
@@ -163,10 +159,9 @@ export class AppService {
     try {
       const usersCollection = collection(this.firestore, '/users');
       const docRef = await addDoc(usersCollection, user);
-      console.log('Usuario añadido con ID:', docRef.id);
       return docRef.id;
     } catch (error) {
-      console.error('Error añadiendo usuario:', error);
+      console.error('Error adding user:', error);
       throw error;
     }
   }
@@ -175,10 +170,10 @@ export class AppService {
     try {
       const charactersCollection = collection(this.firestore, 'characters');
       const docRef = await addDoc(charactersCollection, character);
-      console.log('Personaje añadido con ID:', docRef.id);
+      Segur;
       return docRef.id;
     } catch (error) {
-      console.error('Error añadiendo personaje:', error);
+      console.error('Error adding character:', error);
       throw error;
     }
   }
@@ -187,10 +182,9 @@ export class AppService {
     try {
       const newsCollection = collection(this.firestore, 'news');
       const docRef = await addDoc(newsCollection, news);
-      console.log('Noticia añadida con ID:', docRef.id);
       return docRef.id;
     } catch (error) {
-      console.error('Error añadiendo noticia:', error);
+      console.error('Error adding news:', error);
       throw error;
     }
   }
@@ -199,10 +193,9 @@ export class AppService {
     try {
       const donationsCollection = collection(this.firestore, 'donations');
       const docRef = await addDoc(donationsCollection, donation);
-      console.log('Donación añadida con ID:', docRef.id);
       return docRef.id;
     } catch (error) {
-      console.error('Error añadiendo donación:', error);
+      console.error('Error adding donation:', error);
       throw error;
     }
   }
@@ -211,10 +204,9 @@ export class AppService {
     try {
       const paymentsCollection = collection(this.firestore, 'payments');
       const docRef = await addDoc(paymentsCollection, payment);
-      console.log('Pago añadido con ID:', docRef.id);
       return docRef.id;
     } catch (error) {
-      console.error('Error añadiendo pago:', error);
+      console.error('Error adding payment:', error);
       throw error;
     }
   }
@@ -223,10 +215,9 @@ export class AppService {
     try {
       const genresCollection = collection(this.firestore, 'genres');
       const docRef = await addDoc(genresCollection, genre);
-      console.log('Género añadido con ID:', docRef.id);
       return docRef.id;
     } catch (error) {
-      console.error('Error añadiendo género:', error);
+      console.error('Error adding genre:', error);
       throw error;
     }
   }
