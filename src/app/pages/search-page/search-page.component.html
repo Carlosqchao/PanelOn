@@ -1,5 +1,16 @@
 <app-header></app-header>
-<div class="search-bar">
-<app-search-bar (search)="handleSearch($event)" (filter)="handleFilter()"></app-search-bar>
-</div>
-<app-footer></app-footer>
+  <div class="center-container">
+    <div class="search-bar">
+      <app-search-bar (search)="handleSearch($event)" (filter)="handleFilter()"></app-search-bar>
+    </div>
+  </div>
+
+  <div class="center-container">
+    <app-comic-card
+      *ngFor="let comic of comics | slice: 0:comics.length"
+      [imageUrl]="comic.cover"
+      [title]="comic.title"
+      [comicId]="comic.id">
+    </app-comic-card>
+  </div>
+  <app-footer></app-footer>
