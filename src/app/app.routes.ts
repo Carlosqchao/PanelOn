@@ -27,5 +27,6 @@ export const routes: Routes = [
   {path: 'comic-reader', component: ComicReaderComponent},
   { path: 'modalTest', component: ModalTestingComponent},
   { path: 'user-page', component: UserPageComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
+  {path: 'upload-form', component: UploadFormComponent, data: { hideHeader: true } }
 ];
