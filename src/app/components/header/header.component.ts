@@ -1,12 +1,15 @@
 import { Component, HostListener } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {NgClass} from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
+import { User } from '@angular/fire/auth';
+import {AuthService} from '../../../../backend/src/services/user-auth';
 
 @Component({
   selector: 'app-header',
   imports: [
     RouterLink,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './header.component.html',
   standalone: true,
@@ -15,6 +18,13 @@ import {NgClass} from '@angular/common';
 export class HeaderComponent {
   private lastScroll = 0;
   public isVisible = true;
+  public user: User | null = null;
+
+  constructor(private authService: AuthService) {
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+    });
+  }
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: Event) {
@@ -33,5 +43,9 @@ export class HeaderComponent {
     }
 
     this.lastScroll = currentScroll;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
