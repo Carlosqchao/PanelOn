@@ -23,26 +23,29 @@ export class LoginPageComponent {
   password: string = '';
 
   errorMessage: string = '';
+  successMessage: string = '';
   formSubmitted: boolean = false;
+  isResetPasswordMode: boolean = false;
 
   passwordVisible: boolean = false;
   eyeOpenIcon: string = '/closed-eye.jpg';
   eyeClosedIcon: string = '/open-eye.jpg';
 
   @ViewChild('loginForm') loginForm!: NgForm;
+  @ViewChild('emailInput') emailInput!: NgForm;
+  @ViewChild('passwordInput') passwordInput!: NgForm;
 
   onSubmit() {
+    this.isResetPasswordMode = false;
     this.formSubmitted = true;
     this.errorMessage = '';
+    this.successMessage = '';
 
     if (!this.loginForm.valid) {
       return;
     }
 
-    console.log('Login submitted:', {
-      email: this.email,
-      password: this.password
-    });
+    console.log('Login submitted:', { email: this.email, password: this.password });
 
     this.authService.login(this.email, this.password).subscribe({
       next: () => {
@@ -58,26 +61,73 @@ export class LoginPageComponent {
     });
   }
 
+  resetPassword(event: Event) {
+    event.preventDefault();
+    this.isResetPasswordMode = true;
+    this.errorMessage = '';
+    this.successMessage = '';
+    this.formSubmitted = true;
+
+    if (!this.email) {
+      this.errorMessage = 'Please enter your email.';
+      return;
+    }
+
+    this.authService.sendPasswordResetEmail(this.email).subscribe({
+      next: () => {
+        this.successMessage = 'A password reset email has been sent. Check your inbox.';
+        this.formSubmitted = false;
+      },
+      error: (err: any) => {
+        this.handleResetPasswordError(err);
+      }
+    });
+  }
+
   private handleLoginError(err: any) {
     if (err.code) {
       switch (err.code) {
         case 'auth/user-not-found':
-          this.errorMessage = 'No user found with this email. Please register.';
+          this.errorMessage = 'No user found with this email. Please sign up.';
           break;
         case 'auth/wrong-password':
-          this.errorMessage = 'Invalid email or password. Please try again.';
+          this.errorMessage = 'Invalid email or password. Try again.';
           break;
         case 'auth/invalid-credential':
-          this.errorMessage = 'Invalid email or password. Please try again.';
+          this.errorMessage = 'Invalid email or password. Try again.';
           break;
         case 'auth/too-many-requests':
-          this.errorMessage = 'Too many login attempts. Please try again later.';
+          this.errorMessage = 'Too many attempts. Try again later.';
           break;
         case 'auth/network-request-failed':
-          this.errorMessage = 'Network error. Please check your connection and try again.';
+          this.errorMessage = 'Network error. Check your connection and try again.';
           break;
         default:
-          this.errorMessage = `Error during login: ${err.message}`;
+          this.errorMessage = `Login error: ${err.message}`;
+          break;
+      }
+    } else {
+      this.errorMessage = `Unexpected error: ${err.message || 'An unknown error occurred'}`;
+    }
+  }
+
+  private handleResetPasswordError(err: any) {
+    if (err.code) {
+      switch (err.code) {
+        case 'auth/invalid-email':
+          this.errorMessage = 'Please enter a valid email address.';
+          break;
+        case 'auth/user-not-found':
+          this.errorMessage = 'No account found with this email.';
+          break;
+        case 'auth/too-many-requests':
+          this.errorMessage = 'Too many requests. Try again later.';
+          break;
+        case 'auth/network-request-failed':
+          this.errorMessage = 'Network error. Check your connection and try again.';
+          break;
+        default:
+          this.errorMessage = `Error sending email: ${err.message}`;
           break;
       }
     } else {
