@@ -1,12 +1,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <form (ngSubmit)="onSubmit()">
-
   <div class="aside-img">
     <img src="https://media.mycomicshop.com/n_iv/600/1168751.jpg" alt="Comic Cover">
   </div>
-
   <div class="form-container">
-
     <div class="inner-form-container">
       <div class="file-upload">
         <div class="circle"></div>
@@ -17,36 +14,22 @@
         <span class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
       </div>
       <div class="title">
-        <app-input-field
-            [typeInput]="'text'"
-            [nameInput]="'title'"
-            [customClass]="'author'"
-            [placeHolder]="'Title'">
-        </app-input-field>
+        <input type="text" name="title" placeholder="Title">
       </div>
-
       <div class="author">
-        <app-input-field
-          [typeInput]="'text'"
-          [nameInput]="'author'"
-          [customClass]="'author'"
-          [placeHolder]="'Author'">
-        </app-input-field>
+        <input type="text" name="author" placeholder="Author">
       </div>
-
       <div class="synopsis">
         <textarea id="synopsis" [(ngModel)]="synopsis" name="synopsis" placeholder="Synopsys" rows="4" cols="50"></textarea>
-
       </div>
-
-      <div class="situation-selector">
+      <div class="state-container">
         <select id="situation" [(ngModel)]="situation" name="situation" required>
           <option value="" disabled selected>State</option>
           <option value="In process">In process</option>
           <option value="Finished">Finished</option>
         </select>
       </div>
-      <div class="genre-selector">
+      <div class="genre-container">
         <select id="genre" [(ngModel)]="selectedGenre" name="selectedGenre">
           <option value="" disabled selected>Select Genre</option>
           <option value="Action">Action</option>
@@ -61,10 +44,11 @@
         <p>Selected Genres:</p>
         <span *ngFor="let genre of selectedGenres" class="genre-item">{{ genre }}</span>
       </div>
+
+
       <div class="upload-button">
-        <button type="submit"> <strong>UPLOAD</strong></button>
+        <app-button text="UPLOAD"></app-button>
       </div>
     </div>
   </div>
-
 </form>
