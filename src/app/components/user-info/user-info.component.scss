@@ -1,0 +1,91 @@
+.user-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.userNameBar{
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.userNameBarButton {
+  border-radius: 50%;
+  transition: transform 0.6s ease;
+}
+
+.userNameBarButton:hover {
+  transform: rotate(360deg);
+}
+
+
+.icon{
+  width: 80%;
+  padding: 0.25rem;
+}
+
+.userName{
+  font-weight: bold;
+  font-size: 2rem;
+
+}
+
+.userDescription{
+  width: 50%;
+  color: #737373;
+  font-size: 1rem;
+}
+
+.userImage{
+  width: 20rem;
+  border-radius: 50%;
+}
+
+.subscriptionBar{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.subscribeButton {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: black;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.subscribeButton:hover {
+  transform: scale(1.1);
+  background-color: #eeee48;
+}
+
+.subscribeButton:active {
+  transform: scale(1);
+}
+
+.cancelButton {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.cancelButton:hover {
+  transform: scale(1.1);
+  background-color: lightcoral;
+}
+
+.cancelButton:active {
+  transform: translateX(-5px);
+}

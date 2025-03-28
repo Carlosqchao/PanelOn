@@ -1,0 +1,25 @@
+<app-header-backlink></app-header-backlink>
+<div class="user-page">
+  <app-user-info userName="User name" image="https://www.w3schools.com/w3images/avatar2.png" description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem"></app-user-info>
+  <div class="options-container">
+    <div class=center-container>
+      <app-profile-option imageURL="favouritesIcon.png" optionName="FAVOURITES"></app-profile-option>
+      <app-profile-option imageURL="readingIcon.png" optionName="READING"></app-profile-option>
+      <app-profile-option imageURL="readedIcon.png" optionName="READ"></app-profile-option>
+    </div>
+    <div class="center-container">
+      <app-profile-option imageURL="boughtIcon.png" optionName="BOUGHT"></app-profile-option>
+      <app-profile-option imageURL="myComicsIcon.png" optionName="MY COMICS"></app-profile-option>
+      <app-profile-option imageURL="wishlistIcon.png" optionName="WISHLIST"></app-profile-option>
+    </div>
+  </div>
+
+  <div class="center-container">
+    <app-user-metrics value="44" title="Read comics"></app-user-metrics>
+    <app-user-metrics value="5" title="Published comics "></app-user-metrics>
+    <app-user-metrics value="125" title="Comic Likes"></app-user-metrics>
+  </div>
+
+  <app-button text="UPLOAD A COMIC" buttonWidth="30rem" buttonHeight="5rem" (click)="callToRead()"></app-button>
+
+</div>
