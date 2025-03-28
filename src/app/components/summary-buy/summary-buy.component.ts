@@ -1,10 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-summary-buy',
   imports: [
-    NgOptimizedImage
   ],
   templateUrl: './summary-buy.component.html',
   standalone: true,
