@@ -16,6 +16,9 @@
         </label>
         <span class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
       </div>
+      <nav aria-label="Go back">
+        <a id="back-link" href="#" onclick="history.back(); return false"> &larr; Go back</a>
+      </nav>
       <div class="title">
         <app-input-field
             [typeInput]="'text'"

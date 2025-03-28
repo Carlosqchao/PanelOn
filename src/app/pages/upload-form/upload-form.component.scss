@@ -232,3 +232,14 @@ textarea::placeholder {
   color: #E76F51;
   border: 2px solid #E76F51;
 }
+#back-link {
+  color: black;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+#back-link:hover,
+#back-link:visited,
+#back-link:active {
+  color: black;
+}

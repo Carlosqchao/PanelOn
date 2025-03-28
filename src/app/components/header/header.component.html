@@ -12,7 +12,7 @@
       <a routerLink="">CHARACTERS</a>
     </li>
     <li class="navigation-item">
-      <a routerLink="">COMICS</a>
+      <a [routerLink]="['/search-page']" [queryParams]="{ option: 'comic' }">COMICS</a>
     </li>
     <li class="navigation-item">
       <a routerLink="/news">NEWS</a>

@@ -9,6 +9,7 @@ html, body {
   display: flex; /* Organiza el contenedor en una fila (horizontalmente) */
   height: 100vh;
   width: 100%;
+  place-content: center;
 }
 
 img {

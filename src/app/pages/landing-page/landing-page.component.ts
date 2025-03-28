@@ -13,6 +13,7 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
@@ -84,7 +85,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   selectedCharacters: any[] = [];
   predefinedColors = ['#FFDD33', '#5CAAB4', '#A01F29'];
 
-  constructor(private appService: AppService) {}
+  constructor(private appService: AppService, private router: Router) {}
 
   ngOnInit(): void {
     this.appService.getComics().pipe(
@@ -124,4 +125,14 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
+
+  callToSearch(option: string): void {
+    this.router.navigate(['search-page'], { queryParams: { option } }).then(() => {
+      window.scrollTo(0, 0);
+    });
+  }
+
 }
+
+
+

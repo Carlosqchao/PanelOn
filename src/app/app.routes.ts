@@ -12,7 +12,7 @@ import {ComicReaderComponent} from "./pages/comic-reader/comic-reader.component"
 import {ModalTestingComponent} from './pages/modal-testing/modal-testing.component';
 import { UploadFormComponent } from './pages/upload-form/upload-form.component';
 import {UserPageComponent} from './pages/user-page/user-page.component';
-
+import { SearchPageComponent } from './pages/search-page/search-page.component';
 
 
 export const routes: Routes = [
@@ -28,6 +28,7 @@ export const routes: Routes = [
   {path: 'comic-reader/:id', component: ComicReaderComponent},
   { path: 'modalTest', component: ModalTestingComponent},
   { path: 'user-page', component: UserPageComponent },
-  { path: '**', redirectTo: '' },
-  {path: 'upload-form', component: UploadFormComponent, data: { hideHeader: true } }
+  {path: 'upload-form', component: UploadFormComponent, data: { hideHeader: true } },
+  {path: 'search-page', component: SearchPageComponent},
+  { path: '**', redirectTo: '' }
 ];
