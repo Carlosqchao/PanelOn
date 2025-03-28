@@ -71,7 +71,6 @@ export class ComicPageComponent implements OnInit, OnDestroy {
               ).subscribe({
                 next: (relatedCharacters) => {
                   this.characters = relatedCharacters;
-                  console.log('Personajes relacionados cargados:', this.characters);
                 },
                 error: (err) => {
                   console.error('Error al cargar personajes relacionados:', err);
