@@ -17,7 +17,7 @@ export class LoginPageComponent {
   router = inject(Router);
 
   imageSource: string = 'https://imgix.bustle.com/uploads/image/2022/7/23/f33a5352-e7ad-4d17-9b73-b364ba445391-clean2.jpeg';
-  logoSource: string = '/PanelOnLogo.png';
+  logoSource: string = '/favicon.ico';
 
   email: string = '';
   password: string = '';

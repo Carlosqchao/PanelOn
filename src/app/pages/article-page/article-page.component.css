@@ -10,6 +10,7 @@
   line-height: 1.6;
 }
 .news-article .article-header {
+  margin-top: 7vh;
   margin-bottom: 2rem;
 }
 .news-article .article-header #article-title {

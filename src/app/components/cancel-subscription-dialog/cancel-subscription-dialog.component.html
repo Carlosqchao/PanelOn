@@ -16,8 +16,18 @@
   <div class="cancel-subscription-modal-content">
     <h2 id="cancel-modal-subscription-message"> {{ data.message }} </h2>
     <form class="cancel-modal-subscription-form">
-      <input type="password" placeholder="Password">
-      <input type="password" placeholder="Confirm Password">
+      <app-input-field
+        [typeInput]="'password'"
+        [placeHolder]="'Password'"
+        [inputWidth]="'12vw'"
+        [inputHeight]="'4vh'">
+      </app-input-field>
+      <app-input-field
+        [typeInput]="'password'"
+        [placeHolder]="'Confirm Password'"
+        [inputWidth]="'12vw'"
+        [inputHeight]="'4vh'">
+      </app-input-field>
       <app-button
         [text]="'Cancel subscription'">
       </app-button>
