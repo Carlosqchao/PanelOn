@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 interface CarouselItem {
   id: number;
@@ -23,15 +24,17 @@ export class LandingCarouselComponent implements OnInit {
   currentIndex: number = 0;
   timeoutId?: number;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   ngOnInit(): void {
-    if (this.autoSlide) {
+    if (this.autoSlide && isPlatformBrowser(this.platformId)) {
       this.autoSlideImages();
     }
   }
 
   selectItem(index: number): void {
     this.currentIndex = index;
-    if (this.autoSlide) {
+    if (this.autoSlide && isPlatformBrowser(this.platformId)) {
       this.resetTimer();
     }
   }
@@ -43,7 +46,7 @@ export class LandingCarouselComponent implements OnInit {
       this.currentIndex--;
     }
 
-    if (this.autoSlide) {
+    if (this.autoSlide && isPlatformBrowser(this.platformId)) {
       this.resetTimer();
     }
   }
@@ -55,7 +58,7 @@ export class LandingCarouselComponent implements OnInit {
       this.currentIndex++;
     }
 
-    if (this.autoSlide) {
+    if (this.autoSlide && isPlatformBrowser(this.platformId)) {
       this.resetTimer();
     }
   }
@@ -68,8 +71,10 @@ export class LandingCarouselComponent implements OnInit {
   }
 
   autoSlideImages(): void {
-    this.timeoutId = window.setTimeout(() => {
-      this.onNextClick();
-    }, this.slideInterval);
+    if (isPlatformBrowser(this.platformId)) {
+      this.timeoutId = window.setTimeout(() => {
+        this.onNextClick();
+      }, this.slideInterval);
+    }
   }
 }

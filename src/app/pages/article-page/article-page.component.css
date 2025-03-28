@@ -2,7 +2,7 @@
 .news-article {
   position: relative;
   background-color: #fdf5ec;
-  padding: 4rem 1.5rem;
+  padding: 7vh 1.5vw;
   max-width: 800px;
   margin: 0 auto;
   font-family: "Helvetica Neue", sans-serif;
@@ -10,6 +10,7 @@
   line-height: 1.6;
 }
 .news-article .article-header {
+  margin-top: 7vh;
   margin-bottom: 2rem;
 }
 .news-article .article-header #article-title {

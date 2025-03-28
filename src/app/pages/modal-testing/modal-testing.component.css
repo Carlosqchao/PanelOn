@@ -1,0 +1,17 @@
+.cancel-subscription-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.cancel-subscription-modal .modal-header {
+  display: flex;
+  flex-direction: row;
+  color: red;
+  font-weight: bold;
+  padding: 0.5vw 0.8vh;
+}
+.cancel-subscription-modal .modal-header #modal-closer {
+  left: 0;
+}
+
+/*# sourceMappingURL=modal-testing.component.css.map */
