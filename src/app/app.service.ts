@@ -32,6 +32,7 @@ export class AppService {
     );
   }
 
+
   getUsers(): Observable<any[]> {
     const usersCollection = collection(this.firestore, '/users');
     return collectionData(usersCollection, { idField: 'id' }).pipe(

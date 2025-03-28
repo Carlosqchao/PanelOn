@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject, ViewChild } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../components/button/button.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import {AuthService} from '../../../../backend/src/services/user-auth';
 
 @Component({
   selector: 'app-register-page',
@@ -12,6 +13,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent {
+  authService = inject(AuthService);
+  router = inject(Router);
+
   imageSource: string = 'https://1.bp.blogspot.com/-j7pelIBKTn0/XacCFsSjsII/AAAAAAAAf_Y/rvpqFruHKj8Hym6PS7n7P0V3J3nmHvs5wCLcBGAsYHQ/s1600/05.jpg';
   logoSource: string = '/PanelOnLogo.png';
 
@@ -38,6 +42,7 @@ export class RegisterPageComponent {
     this.errorMessage = '';
 
     if (!this.registerForm.valid) {
+      this.errorMessage = 'Invalid form. Please fill all the fields.';
       return;
     }
 
@@ -54,8 +59,44 @@ export class RegisterPageComponent {
       password: this.password
     });
 
-    this.registerForm.resetForm();
-    this.formSubmitted = false;
+    const formValues = this.registerForm.value;
+    this.authService
+      .register(
+        formValues.email,
+        formValues.username,
+        formValues['first-name'],
+        formValues['last-name'],
+        formValues.password
+    ).subscribe({
+      next: () => {
+        console.log('Registro exitoso, redirigiendo...');
+        this.router.navigateByUrl('');
+      },
+      error: (err) => {
+        console.error('Error completo:', err);
+        if (err.code) {
+          switch (err.code) {
+            case 'auth/email-already-in-use':
+              this.errorMessage = 'The email is already registered. Please use another email or log in.';
+              break;
+            case 'auth/invalid-email':
+              this.errorMessage = 'The email is not valid. Please check the format.';
+              break;
+            case 'auth/weak-password':
+              this.errorMessage = 'The password is too weak. It must be at least 6 characters long.';
+              break;
+            case 'auth/operation-not-allowed':
+              this.errorMessage = 'Registration with email and password is not enabled. Contact the administrator.';
+              break;
+            default:
+              this.errorMessage = `Error during registration: ${err.message}`;
+              break;
+          }
+        } else {
+          this.errorMessage = `Unexpected error: ${err.message}`;
+        }
+      }
+    });
   }
 
   togglePasswordVisibility() {

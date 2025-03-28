@@ -18,17 +18,16 @@
     <form class="login-form" id="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <input
         type="text"
-        id="username"
-        name="username"
-        [(ngModel)]="username"
-        autocomplete="off"
-        placeholder="Username"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="Email"
         required
-        pattern="^[a-zA-Z0-9_]{4,16}$"
-        #usernameInput="ngModel"
+        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        #emailInput="ngModel"
       >
-      <div *ngIf="formSubmitted && usernameInput.invalid" class="error-message">
-        {{ getErrorMessage(usernameInput, { required: 'Username is required.', pattern: 'Username must be 4-16 characters (letters, numbers, _).' }) }}
+      <div *ngIf="formSubmitted && emailInput.invalid" class="error-message">
+        {{ getErrorMessage(emailInput, { required: 'Email is required.', pattern: 'Please enter a valid email address.' }) }}
       </div>
 
       <div class="password-container">

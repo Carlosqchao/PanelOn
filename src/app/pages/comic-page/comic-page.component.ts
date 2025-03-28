@@ -71,7 +71,6 @@ export class ComicPageComponent implements OnInit, OnDestroy {
               ).subscribe({
                 next: (relatedCharacters) => {
                   this.characters = relatedCharacters;
-                  console.log('Personajes relacionados cargados:', this.characters);
                 },
                 error: (err) => {
                   console.error('Error al cargar personajes relacionados:', err);
@@ -96,8 +95,12 @@ export class ComicPageComponent implements OnInit, OnDestroy {
   }
 
   callToRead() {
-      this.router.navigate(['comic-reader']).then(() => {
+    const comicId = this.route.snapshot.paramMap.get('id');
+    if (comicId) {
+      this.router.navigate(['comic-reader', comicId]).then(() => {
         window.scrollTo(0, 0);
       });
+    }
   }
+
 }
