@@ -18,7 +18,7 @@
 </div>
 
 <div class="center-container">
-  <app-button text="SHOW MORE" (buttonClick)="callToRead()"></app-button>
+  <app-button text="SHOW MORE" (buttonClick)="callToSearch('comic')"></app-button>
 </div>
 
 <app-section-title position="left" text="LATEST NEWS"></app-section-title>
@@ -33,7 +33,7 @@
 </div>
 
 <div class="center-container">
-  <app-button text="SHOW MORE"></app-button>
+  <app-button text="SHOW MORE" (buttonClick)="callToSearch('news')"></app-button>
 </div>
 
 <app-section-title position="left" text="CHARACTERS"></app-section-title>
@@ -69,7 +69,7 @@
 </div>
 
 <div class="center-container">
-  <app-button text="SHOW MORE"></app-button>
+  <app-button text="SHOW MORE" (buttonClick)="callToSearch('characters')"></app-button>
 </div>
 
 <app-footer></app-footer>

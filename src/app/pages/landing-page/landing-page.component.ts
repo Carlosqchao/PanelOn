@@ -126,11 +126,12 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  callToRead(): void{
-    this.router.navigate(['search-page']).then(() => {
+  callToSearch(option: string): void {
+    this.router.navigate(['search-page'], { queryParams: { option } }).then(() => {
       window.scrollTo(0, 0);
     });
   }
+
 }
 
 
