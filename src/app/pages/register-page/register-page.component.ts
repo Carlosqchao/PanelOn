@@ -8,7 +8,7 @@ import {AuthService} from '../../../../backend/src/services/user-auth';
 @Component({
   selector: 'app-register-page',
   standalone: true,
-  imports: [RouterLink, ButtonComponent, FormsModule, CommonModule],
+  imports: [ButtonComponent, FormsModule, CommonModule],
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.scss']
 })
@@ -17,7 +17,7 @@ export class RegisterPageComponent {
   router = inject(Router);
 
   imageSource: string = 'https://1.bp.blogspot.com/-j7pelIBKTn0/XacCFsSjsII/AAAAAAAAf_Y/rvpqFruHKj8Hym6PS7n7P0V3J3nmHvs5wCLcBGAsYHQ/s1600/05.jpg';
-  logoSource: string = '/PanelOnLogo.png';
+  logoSource: string = '/favicon.ico';
 
   firstName: string = '';
   lastName: string = '';
