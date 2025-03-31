@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
+  sendPasswordResetEmail,
   User
 } from '@angular/fire/auth';
 import { Observable, from, BehaviorSubject } from 'rxjs';
@@ -106,5 +107,9 @@ export class AuthService {
 
   getCurrentUser(): User | null {
     return this.userSubject.value;
+  }
+
+  sendPasswordResetEmail(email: string): Observable<any> {
+    return from(sendPasswordResetEmail(this.firebaseAuth, email));
   }
 }

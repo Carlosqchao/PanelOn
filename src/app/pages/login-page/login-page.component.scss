@@ -165,13 +165,22 @@
   height: auto;
 }
 
-.error-message {
-  color: red;
+.error-message,
+.success-message {
   font-size: 0.9rem;
   font-family: "Roboto", sans-serif;
   margin-bottom: 0.3vh;
   text-align: left;
   width: 35.14vw;
+}
+
+.error-message {
+  color: red;
+}
+
+.success-message {
+  color: green;
+  margin-bottom: 0.4vh;
 }
 
 @media (max-width: 1024px) {
@@ -253,54 +262,10 @@
   .login-container .login-links #reemail-btn {
     font-size: 0.8rem;
   }
-}
-
-@media (max-width: 480px) {
-  .login-container {
-    width: 100%;
-    margin-top: 0;
-    padding: 10vh 0;
-  }
-
-  .aside-image {
-    display: none;
-  }
-
-  .login-container .login-header h1 {
-    font-size: 1.8rem;
-  }
-
-  .login-container .login-form input {
-    width: 80vw;
-    height: 8vh;
-    font-size: 0.9rem;
-    text-align: left;
-  }
-
-  .login-container .login-form button {
-    width: 40vw;
-    height: 7vh;
-    font-size: 16px;
-  }
-
-  #back-link {
-    width: 80vw;
-  }
-
-  .login-container .login-links {
-    font-size: 0.8rem;
-  }
-
-  .login-container .login-links #sign-up-btn {
-    font-size: 0.8rem;
-  }
-
-  .login-container .login-links #reemail-btn {
-    font-size: 0.8rem;
-  }
 
   .password-container,
-  .error-message {
+  .error-message,
+  .success-message {
     width: 80vw;
   }
 }

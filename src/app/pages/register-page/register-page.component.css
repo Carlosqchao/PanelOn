@@ -1,15 +1,7 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
   margin: 0;
-}
-
-body {
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
-  overflow-y: hidden;
 }
 
 .aside-image {
@@ -17,6 +9,7 @@ body {
   height: 100vh;
   float: left;
 }
+
 .aside-image img {
   width: 100%;
   height: 100%;
@@ -31,12 +24,17 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
-  padding: 5vh 0;
+  height: 100%;
 }
+
 .register-container .register-logo {
-  display: none;
+  display: flex;
 }
+.register-container .register-logo img {
+  width: 12rem;
+  height: auto;
+}
+
 .register-container .register-header {
   display: flex;
   justify-content: center;
@@ -45,6 +43,7 @@ body {
   gap: 1vh;
   margin-bottom: 4vh;
 }
+
 .register-container .register-header h1 {
   font-size: 2.75rem;
   font-family: "Roboto", sans-serif;
@@ -52,28 +51,26 @@ body {
   color: #000000;
   text-transform: uppercase;
 }
-.register-container #back-link {
+
+#back-link {
   width: 65vh;
   text-align: left;
   cursor: pointer;
   font-size: 1rem;
   color: #000000;
   text-decoration: none;
-  margin-bottom: 3vh;
+  margin-bottom: 2vh;
   margin-left: auto;
   margin-right: auto;
 }
+
 .register-container .register-form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.register-container .register-form label {
-  margin-top: 1vh;
-  font-size: 1.2rem;
-  font-family: "Roboto", sans-serif;
-}
+
 .register-container .register-form input {
   width: 65vh;
   height: 6vh;
@@ -87,25 +84,40 @@ body {
   background-color: #fff;
   font-family: "Roboto", sans-serif;
 }
+
 .register-container .register-form input:focus {
   outline: none;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   border: 0.1vh solid #ccc;
 }
+
 .register-container .register-form .name-group {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  gap: 5px;
-  height: 8.5vh;
-  width: 65vh;
+  align-items: flex-start;
+  height: auto;
+  width: 100%;
   margin-bottom: 0.3vh;
   gap: 0.5vw;
 }
+
 .register-container .register-form .name-group input {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.register-container .register-form .name-group > div {
+  display: flex;
+  flex-direction: column;
   width: 50%;
 }
+
+.register-container .register-form .name-group .error-message {
+  width: 100%;
+  margin-bottom: 0.3vh;
+}
+
 .register-container .register-form button {
   width: 15vw;
   height: 5vh;
@@ -122,6 +134,7 @@ body {
   margin-bottom: 3vh;
   display: block;
 }
+
 .register-container #sign-in-link {
   color: #000000;
   font-size: 1rem;
@@ -129,33 +142,67 @@ body {
   margin-top: 2vh;
   display: block;
 }
-.register-container #sign-in-link .link-text {
-  font-weight: lighter;
-  font-size: 0.7rem;
-}
+
 .register-container #sign-in-link #sign-in-btn {
   text-decoration: none;
   color: #000000;
   font-weight: bolder;
   font-size: 1.25rem;
 }
-.register-container #error-container {
+
+.error-message {
   color: red;
-  font-size: 14px;
+  font-size: 0.9rem;
   font-family: "Roboto", sans-serif;
-  margin-top: 15px;
-  padding: 10px;
-  border: 1px solid red;
+  margin-bottom: 0.3vh;
+  text-align: left;
+  width: 65vh;
+}
+
+.register-btn-container {
+  margin-top: 2vh;
+}
+
+.password-container {
+  position: relative;
+  width: 65vh;
+}
+
+.password-container input {
+  width: 100%;
+  height: 6vh;
+  font-size: 1.2rem;
+  padding: 1vh 3vh 1vh 1vh;
+  border: 0.1vh solid #ccc;
   border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin-top: 0.3vh;
+  margin-bottom: 0.3vh;
+  background-color: #fff;
+  font-family: "Roboto", sans-serif;
+  align-content: center;
+  align-items: center;
 }
-.register-container #error-container ul {
-  padding-left: 20px;
+
+.password-container input:focus {
+  outline: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  border: 0.1vh solid #ccc;
 }
-.register-container :valid {
-  border-color: green;
+
+.toggle-password {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.3rem;
+  display: block;
 }
-.register-container :invalid {
-  border-color: red;
+
+.toggle-password img {
+  width: 1.8rem;
+  height: 1.8rem;
 }
 
 @media (max-width: 1024px) {
@@ -165,7 +212,7 @@ body {
   .register-container .register-header h1 {
     font-size: 2rem;
   }
-  .register-container #back-link {
+  #back-link {
     text-align: left;
     cursor: pointer;
     font-size: 1rem;
@@ -174,24 +221,16 @@ body {
     margin-bottom: 1vh;
     width: 45vw;
   }
-  .register-container nav {
-    width: 100%;
-    text-align: left;
-  }
-  .aside-image {
-    width: 50%;
-    margin-left: 0%;
-  }
-  .register-form input {
+  .register-container .register-form input {
     width: 45vw;
     height: 7vh;
   }
-  .register-form button {
+  .register-container .register-form button {
     width: 20vw;
     height: 6vh;
     font-size: 18px;
   }
-  .register-form .name-group {
+  .register-container .register-form .name-group {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -200,6 +239,22 @@ body {
     width: 41vh;
     margin-bottom: 0.1vh;
     gap: 0.3vw;
+  }
+  .register-container .register-form .name-group > div {
+    width: 100%;
+  }
+  .register-container .register-form .name-group input {
+    width: 100%;
+  }
+  .register-container .register-form .name-group .error-message {
+    width: 45vw;
+  }
+  .password-container {
+    width: 45vw;
+  }
+  .password-container input {
+    width: 100%;
+    height: 7vh;
   }
 }
 @media (max-width: 480px) {
@@ -211,21 +266,21 @@ body {
   .aside-image {
     display: none;
   }
-  .register-header h1 {
+  .register-container .register-header h1 {
     font-size: 1.8rem;
   }
-  .register-form input {
+  .register-container .register-form input {
     width: 80vw;
     height: 8vh;
     font-size: 0.9rem;
     text-align: left;
   }
-  .register-form button {
+  .register-container .register-form button {
     width: 40vw;
     height: 7vh;
     font-size: 16px;
   }
-  .register-form .name-group {
+  .register-container .register-form .name-group {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -235,17 +290,37 @@ body {
     margin-bottom: 3vh;
     gap: 0.5vw;
   }
+  .register-container .register-form .name-group > div {
+    width: 100%;
+  }
+  .register-container .register-form .name-group input {
+    width: 100%;
+  }
+  .register-container .register-form .name-group .error-message {
+    width: 80vw;
+    font-size: 0.8rem;
+  }
   #back-link {
     width: 80vw;
   }
-  #sign-in-link {
+  .register-container #sign-in-link {
     font-size: 0.8rem;
   }
-  #sign-in-link .link-text {
-    font-size: 0.7rem;
-  }
-  #sign-in-link #sign-in-btn {
+  .register-container #sign-in-link #sign-in-btn {
     font-size: 0.8rem;
+  }
+  /* Ajuste para el contenedor de contraseña en móviles */
+  .password-container {
+    width: 80vw;
+  }
+  .password-container input {
+    width: 100%;
+    height: 8vh;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .toggle-password {
+    font-size: 0.9rem; /* Ajustar tamaño del ícono en móviles */
   }
 }
 

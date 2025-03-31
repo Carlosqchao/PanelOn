@@ -1,4 +1,4 @@
-<div class="news-card-container">
+<div class="news-card-container" (click)="onCardClick()">
   <img [src]="imageUrl" [alt]="title">
   <p class="news-card-author">{{ author }}</p>
   <p>{{ title }}</p>
