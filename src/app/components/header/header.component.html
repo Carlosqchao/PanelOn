@@ -9,7 +9,7 @@
 
   <ul class="navigation-menu">
     <li class="navigation-item">
-      <a routerLink="">CHARACTERS</a>
+      <a [routerLink]="['/search-page']" [queryParams]="{ option: 'characters' }">CHARACTERS</a>
     </li>
     <li class="navigation-item">
       <a [routerLink]="['/search-page']" [queryParams]="{ option: 'comic' }">COMICS</a>
