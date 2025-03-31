@@ -6,12 +6,11 @@ import {UserMetricsComponent} from '../../components/user-metrics/user-metrics.c
 import {AppService} from '../../app.service';
 import {Router} from '@angular/router';
 import {HeaderBacklinkComponent} from '../../components/header-backlink/header-backlink.component';
-import {ModalTestingComponent} from '../modal-testing/modal-testing.component';
 
 @Component({
   selector: 'app-user-page',
   standalone: true,
-  imports: [ButtonComponent, ProfileOptionComponent, UserInfoComponent, UserMetricsComponent, HeaderBacklinkComponent, ModalTestingComponent],
+  imports: [ButtonComponent, ProfileOptionComponent, UserInfoComponent, UserMetricsComponent, HeaderBacklinkComponent],
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss'
 })

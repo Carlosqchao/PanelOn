@@ -1,8 +1,9 @@
 .carousel-container {
   position: relative;
-  width: 100%;
-  max-width: 1000px;
   margin: 0 auto;
+  margin-top: 13vh;
+  width: 100%;
+  max-width: 70vw;
   overflow: hidden;
   padding-top: 3vh;
 }
@@ -10,7 +11,7 @@
 .carousel-inner {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 70vh;
 }
 
 .carousel-item {
@@ -39,18 +40,18 @@
   top: 50%;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  font-size: 20px;
+  font-size: 2vw;
   border: none;
-  padding: 15px;
+  padding: 1.5vh;
   cursor: pointer;
   z-index: 10;
 
   &.prev {
-    left: 10px;
+    left: 1vw;
   }
 
   &.next {
-    right: 10px;
+    right: 1vw;
   }
 
   &:hover {
@@ -60,16 +61,16 @@
 
 .carousel-indicators {
   position: absolute;
-  bottom: 10px;
+  bottom: 1vh;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px;
+  gap: 1vw;
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  width: 1.2vw;
+  height: 1.2vw;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.5);
   cursor: pointer;

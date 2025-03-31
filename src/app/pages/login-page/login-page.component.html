@@ -1,11 +1,11 @@
 <aside class="aside-image">
-  <img class="background-aside-image" src="{{ imageSource }}" alt="Loading Image.">
+  <img class="background-aside-image" [src]="imageSource" alt="Background Image">
 </aside>
 
 <main class="login-container">
   <header class="login-header">
     <div class="login-logo">
-      <img class="logo-image" src="{{ logoSource }}" alt="Loading Image.">
+      <img class="logo-image" [src]="logoSource" alt="Logo">
     </div>
     <h1>LOG IN</h1>
   </header>
@@ -17,7 +17,7 @@
   <section class="login-form-container">
     <form class="login-form" id="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <input
-        type="text"
+        type="email"
         id="email"
         name="email"
         [(ngModel)]="email"
@@ -26,8 +26,8 @@
         pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
         #emailInput="ngModel"
       >
-      <div *ngIf="formSubmitted && emailInput.invalid" class="error-message">
-        {{ getErrorMessage(emailInput, { required: 'Email is required.', pattern: 'Please enter a valid email address.' }) }}
+      <div *ngIf="formSubmitted && !isResetPasswordMode && emailInput.invalid" class="error-message">
+        {{ getErrorMessage(emailInput, { required: 'Email is required.', pattern: 'Enter a valid email.' }) }}
       </div>
 
       <div class="password-container">
@@ -45,12 +45,15 @@
           <img [src]="passwordVisible ? eyeOpenIcon : eyeClosedIcon" alt="Toggle Password Visibility">
         </span>
       </div>
-      <div *ngIf="formSubmitted && passwordInput.invalid" class="error-message">
+      <div *ngIf="formSubmitted && !isResetPasswordMode && passwordInput.invalid" class="error-message">
         {{ getErrorMessage(passwordInput, { required: 'Password is required.' }) }}
       </div>
 
       <div *ngIf="formSubmitted && errorMessage" class="error-message">
         {{ errorMessage }}
+      </div>
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
       </div>
 
       <div class="login-btn-container">
@@ -65,7 +68,10 @@
   </section>
 
   <footer class="login-links">
-    <p id="sign-up-link">Don't have an account? <a href="register" id="sign-up-btn">Sign up</a></p>
-    <p id="reemail-link">Forgot your password? <a href="#" id="reemail-btn">Send email</a></p>
+    <p id="sign-up-link">Don't have an account? <a href="register" id="sign-up-btn">Sign Up</a></p>
+    <p id="reemail-link">
+      Forgot your password?
+      <a href="#" id="reemail-btn" (click)="resetPassword($event)">Send Email</a>
+    </p>
   </footer>
 </main>
