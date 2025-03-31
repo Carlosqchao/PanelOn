@@ -1,0 +1,12 @@
+<button class="button-general"
+        [ngClass]="customClass"
+        [style.background-color]="isHovering ? backgroundHover : backgroundColor"
+        (mouseenter)="isHovering = true"
+        (mouseleave)="isHovering = false"
+        [style.color]="textColor"
+        [style.font-size]="textSize"
+        [style.width]="buttonWidth"
+        [style.height]="buttonHeight"
+        (click)="onClick()"> {{ text }}
+</button>
+

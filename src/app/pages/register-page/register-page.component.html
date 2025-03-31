@@ -1,0 +1,139 @@
+<aside class="aside-image">
+  <img class="background-aside-image" src="{{ imageSource }}" alt="Loading Image.">
+</aside>
+
+<main class="register-container">
+  <div class="register-header">
+    <div class="register-logo">
+      <img class="logo-image" src="{{ logoSource }}" alt="Loading Image.">
+    </div>
+    <h1>Sign up!</h1>
+  </div>
+
+  <nav aria-label="Go back">
+    <a id="back-link" href="#" onclick="history.back(); return false"> ← Go back</a>
+  </nav>
+
+  <section class="register-form-container">
+    <form class="register-form" id="register-form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <div class="name-group">
+        <div>
+          <input
+            type="text"
+            id="name"
+            name="first-name"
+            [(ngModel)]="firstName"
+            autocomplete="off"
+            placeholder="First Name"
+            required
+            pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ]{2,50}$"
+            #firstNameInput="ngModel"
+          >
+          <div *ngIf="formSubmitted && firstNameInput.invalid" class="error-message">
+            {{ getErrorMessage(firstNameInput, { required: 'First name is required.', pattern: 'First name must contain only letters (2-50 characters).' }) }}
+          </div>
+        </div>
+
+        <div>
+          <input
+            type="text"
+            id="surname"
+            name="last-name"
+            [(ngModel)]="lastName"
+            placeholder="Last Name"
+            required
+            pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ]{2,50}$"
+            #lastNameInput="ngModel"
+          >
+          <div *ngIf="formSubmitted && lastNameInput.invalid" class="error-message">
+            {{ getErrorMessage(lastNameInput, { required: 'Last name is required.', pattern: 'Last name must contain only letters (2-50 characters).' }) }}
+          </div>
+        </div>
+      </div>
+
+      <input
+        type="text"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="Email"
+        required
+        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        #emailInput="ngModel"
+      >
+      <div *ngIf="formSubmitted && emailInput.invalid" class="error-message">
+        {{ getErrorMessage(emailInput, { required: 'Email is required.', pattern: 'Please enter a valid email address.' }) }}
+      </div>
+
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="username"
+        placeholder="Username"
+        required
+        pattern="^[a-zA-Z0-9_]{4,16}$"
+        #usernameInput="ngModel"
+      >
+      <div *ngIf="formSubmitted && usernameInput.invalid" class="error-message">
+        {{ getErrorMessage(usernameInput, { required: 'Username is required.', pattern: 'Username must be 4-16 characters (letters, numbers, _).' }) }}
+      </div>
+
+      <div class="password-container">
+        <input
+          [type]="passwordVisible ? 'text' : 'password'"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Password"
+          autocomplete="off"
+          required
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d\S]{8,}$"
+          #passwordInput="ngModel"
+        >
+        <span class="toggle-password" (click)="togglePasswordVisibility()">
+          <img [src]="passwordVisible ? eyeOpenIcon : eyeClosedIcon" alt="Visibility">
+        </span>
+      </div>
+      <div *ngIf="formSubmitted && passwordInput.invalid" class="error-message">
+        {{ getErrorMessage(passwordInput, { required: 'Password is required.', pattern: 'Password must be at least 8 characters, with 1 uppercase, 1 lowercase, 1 number, and 1 special character.' }) }}
+      </div>
+
+      <div class="password-container">
+        <input
+          [type]="confirmPasswordVisible ? 'text' : 'password'"
+          id="confirm-password"
+          name="confirm-password"
+          autocomplete="off"
+          [(ngModel)]="confirmPassword"
+          placeholder="Confirm Password"
+          required
+          #confirmPasswordInput="ngModel"
+        >
+        <span class="toggle-password" (click)="toggleConfirmPasswordVisibility()">
+          <img [src]="confirmPasswordVisible ? eyeOpenIcon : eyeClosedIcon" alt="Visibility">
+        </span>
+      </div>
+      <div *ngIf="formSubmitted && confirmPasswordInput.invalid" class="error-message">
+        {{ getErrorMessage(confirmPasswordInput, { required: 'Confirm password is required.' }) }}
+      </div>
+
+      <div *ngIf="formSubmitted && errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <div class="register-btn-container">
+        <app-button
+          text="SIGN UP"
+          textColor="#fff"
+          [disabled]="registerForm.invalid"
+          type="submit"
+        ></app-button>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <p id="sign-in-link">Already have an account? <a href="login" id="sign-in-btn">Sign in</a></p>
+  </footer>
+</main>

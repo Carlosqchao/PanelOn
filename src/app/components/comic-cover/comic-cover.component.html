@@ -1,0 +1,11 @@
+<div class="comic-cover-container">
+  <div class="comic-cover">
+    <img [src]="comicCoverUrl" alt="Comic Cover" />
+  </div>
+
+  <div class="icons-section">
+    <div class="icon" *ngFor="let icon of icons">
+      <img [src]="icon.url" [alt]="icon.name" />
+    </div>
+  </div>
+</div>

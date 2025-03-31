@@ -1,0 +1,17 @@
+<div class="user-info">
+  <img class="userImage" [src]="image">
+  <div class="userNameBar">
+    <p class="userName">{{userName}}</p>
+    <button class="userNameBarButton">
+      <img class="icon" src="pencilIcon.png">
+    </button>
+    <button class="userNameBarButton">
+      <img class="icon" src="bellIcon.png">
+    </button>
+  </div>
+  <div class="subscriptionBar">
+    <button class="subscribeButton">Active Subscription Plan</button>
+    <button class="cancelButton" (click)="openModal()"><span style="color: red">Cancel subscription</span></button>
+  </div>
+  <p class="userDescription">{{description}}</p>
+</div>

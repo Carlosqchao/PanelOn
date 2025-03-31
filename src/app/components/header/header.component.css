@@ -1,0 +1,73 @@
+.main-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color: #D9D9D9;
+  width: 100%;
+  height: 11vh;
+  top: 0;
+  z-index: 100;
+  transition: transform 0.3s ease-in-out;
+}
+.main-nav a {
+  cursor: pointer;
+  color: black;
+  margin: 2.5vh;
+  font-size: 1.2rem;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+}
+
+.logo-container {
+  display: flex;
+  align-items: flex-start;
+  left: 0;
+  width: 20%;
+}
+.logo-container img {
+  width: 12vh;
+  height: 12vh;
+  object-fit: contain;
+}
+
+.navigation-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.navigation-menu .navigation-item {
+  margin: 0 2.5vh;
+}
+
+.auth-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+.auth-links a {
+  margin: 5px;
+}
+.auth-links span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: black;
+}
+
+.header-visible {
+  transform: translateY(0);
+}
+
+.header-hidden {
+  transform: translateY(-100%);
+}
+
+/*# sourceMappingURL=header.component.css.map */

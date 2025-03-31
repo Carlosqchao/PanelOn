@@ -1,0 +1,14 @@
+.free-plan {
+  justify-content: center;
+  flex-direction: row;
+  display: flex;
+  margin-top: 5vh;
+}
+
+.free-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=subscription-plans.component.css.map */

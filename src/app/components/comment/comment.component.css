@@ -1,0 +1,45 @@
+.comment-container {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+  max-width: 600px;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+  padding: 3vh 3vw;
+  background-color: #f0f0f0;
+  margin-bottom: 1vh;
+  transition: transform 0.3s ease;
+}
+.comment-container:hover {
+  transform: scale(1.05);
+}
+.comment-container .user-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.comment-container .comment-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+.comment-container .comment-content .username {
+  font-size: 1.2rem;
+  margin: 0 0 1vh 0;
+  font-weight: bold;
+}
+.comment-container .comment-content .comment-text {
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.5;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+/*# sourceMappingURL=comment.component.css.map */

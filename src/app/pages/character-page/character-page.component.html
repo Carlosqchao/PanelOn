@@ -1,0 +1,38 @@
+<app-header></app-header>
+
+<app-character-image
+  [characterName]="character.characterName"
+  [imageUrl]="character.image"
+  [backgroundColor]="randomColor">
+</app-character-image>
+
+<app-section-title position="left" text="BASE HISTORY"></app-section-title>
+
+<app-character-text
+  [historyText]="character.description || 'No history available'"
+></app-character-text>
+
+<app-section-title position="center" text="RELATED CHARACTERS"></app-section-title>
+
+<div class="center-container">
+  <app-character-card
+    *ngFor="let related of relatedCharacters"
+    [imageUrl]="related.image"
+    [superheroName]="related.characterName"
+    [characterName]="related.name"
+    [characterId]="related.id"
+  ></app-character-card>
+</div>
+
+<app-section-title position="left" text="COMICS"></app-section-title>
+
+<div class="center-container">
+  <app-comic-card
+    *ngFor="let comic of comics"
+    [imageUrl]="comic.cover"
+    [title]="comic.title"
+    [comicId]="comic.id"
+  ></app-comic-card>
+</div>
+
+<app-footer></app-footer>

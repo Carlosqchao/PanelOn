@@ -1,0 +1,77 @@
+<aside class="aside-image">
+  <img class="background-aside-image" [src]="imageSource" alt="Background Image">
+</aside>
+
+<main class="login-container">
+  <header class="login-header">
+    <div class="login-logo">
+      <img class="logo-image" [src]="logoSource" alt="Logo">
+    </div>
+    <h1>LOG IN</h1>
+  </header>
+
+  <nav aria-label="Go back">
+    <a id="back-link" href="#" onclick="history.back(); return false"> ← Go back</a>
+  </nav>
+
+  <section class="login-form-container">
+    <form class="login-form" id="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="Email"
+        required
+        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        #emailInput="ngModel"
+      >
+      <div *ngIf="formSubmitted && !isResetPasswordMode && emailInput.invalid" class="error-message">
+        {{ getErrorMessage(emailInput, { required: 'Email is required.', pattern: 'Enter a valid email.' }) }}
+      </div>
+
+      <div class="password-container">
+        <input
+          [type]="passwordVisible ? 'text' : 'password'"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          autocomplete="current-password"
+          placeholder="Password"
+          required
+          #passwordInput="ngModel"
+        >
+        <span class="toggle-password" (click)="togglePasswordVisibility()">
+          <img [src]="passwordVisible ? eyeOpenIcon : eyeClosedIcon" alt="Toggle Password Visibility">
+        </span>
+      </div>
+      <div *ngIf="formSubmitted && !isResetPasswordMode && passwordInput.invalid" class="error-message">
+        {{ getErrorMessage(passwordInput, { required: 'Password is required.' }) }}
+      </div>
+
+      <div *ngIf="formSubmitted && errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+
+      <div class="login-btn-container">
+        <app-button
+          text="SIGN IN"
+          textColor="#fff"
+          [disabled]="loginForm.invalid"
+          type="submit"
+        ></app-button>
+      </div>
+    </form>
+  </section>
+
+  <footer class="login-links">
+    <p id="sign-up-link">Don't have an account? <a href="register" id="sign-up-btn">Sign Up</a></p>
+    <p id="reemail-link">
+      Forgot your password?
+      <a href="#" id="reemail-btn" (click)="resetPassword($event)">Send Email</a>
+    </p>
+  </footer>
+</main>

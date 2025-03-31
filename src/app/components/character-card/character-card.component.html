@@ -1,0 +1,10 @@
+<div class="character-card" (click)="onCardClick()">
+  <div class="image-container">
+    <img [src]="imageUrl" alt="{{ superheroName }}" class="character-image" />
+  </div>
+  <div class="red-line"></div>
+  <div class="info-container">
+    <h2 class="superhero-name">{{ superheroName }}</h2>
+    <p class="character-name">{{ characterName }}</p>
+  </div>
+</div>

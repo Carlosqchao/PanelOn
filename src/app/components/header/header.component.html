@@ -1,0 +1,38 @@
+<nav class="main-nav"
+     aria-label="Main Navigation"
+     [ngClass]="{'header-hidden': !isVisible, 'header-visible': isVisible}">
+  <div class="logo-container">
+    <a routerLink="">
+      <img class="logo-image" src="/favicon.ico" alt=""/>
+    </a>
+  </div>
+
+  <ul class="navigation-menu">
+    <li class="navigation-item">
+      <a [routerLink]="['/search-page']" [queryParams]="{ option: 'characters' }">CHARACTERS</a>
+    </li>
+    <li class="navigation-item">
+      <a [routerLink]="['/search-page']" [queryParams]="{ option: 'comic' }">COMICS</a>
+    </li>
+    <li class="navigation-item">
+      <a [routerLink]="['/search-page']" [queryParams]="{ option: 'news' }">NEWS</a>
+    </li>
+    <li class="navigation-item">
+      <a routerLink="/subscription-plans">SUBSCRIPTION</a>
+    </li>
+  </ul>
+
+  <div class="auth-links">
+    <ng-container *ngIf="!user">
+      <a routerLink="/register">Sign up</a>
+      <span>/</span>
+      <a routerLink="/login">Login</a>
+    </ng-container>
+
+    <ng-container *ngIf="user">
+      <a routerLink="/user-page">Profile</a>
+      <span>/</span>
+      <a (click)="logout()">Logout</a>
+    </ng-container>
+  </div>
+</nav>

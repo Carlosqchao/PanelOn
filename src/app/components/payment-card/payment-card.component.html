@@ -1,0 +1,40 @@
+<div class="card-container">
+  <div class="front-card">
+    <div class="card-assets">
+      <img src="assets/chip.png" alt="Chip">
+      <img src="assets/visa.png" alt="Visa Logo">
+    </div>
+
+    <div class="card-number-box">
+      <p class="label">{{ cardNumber }}</p>
+    </div>
+
+    <div class="flex-box">
+      <div class="box">
+        <p class="label">CARD HOLDER</p>
+        <div class="card-holder-name">
+          <p> {{ cardHolder }} </p>
+        </div>
+      </div>
+      <div class="box">
+        <p class="label">EXPIRES</p>
+        <div class="expiration-date">
+          <p class="exp-month"> {{ expMonth }} </p>
+          <p class="exp-year"> {{ expYear }} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-card">
+    <div class="card-stripe"></div>
+
+    <div class="cvv-section">
+      <p class="label">CVV</p>
+      <div class="cvv-box">
+        <p> {{ cvv }}</p>
+      </div>
+      <img src="assets/visa.png" alt="Visa Logo" class="card-brand">
+    </div>
+  </div>
+</div>
