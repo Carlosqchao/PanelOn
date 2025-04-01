@@ -11,6 +11,12 @@
   [releaseDate]="releaseDate"
 ></app-comic-description>
 
+<div class="center-container" style="margin-bottom: 3vh;">
+  <app-button text="READ THE COMIC"
+              (click)="callToRead()">
+  </app-button>
+</div>
+
 <div class="center-container" *ngIf="characters.length > 0">
   <p>COMIC CHARACTERS</p>
 </div>
@@ -30,11 +36,5 @@
   [status]="status"
   [rating]="rating"
 ></app-comic-status>
-
-<div class="center-container">
-  <app-button text="READ THE COMIC"
-    (click)="callToRead()">
-  </app-button>
-</div>
 
 <app-footer></app-footer>
