@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<app-comic-cover *ngIf="cover" [comicCoverUrl]="cover"></app-comic-cover>
+<app-comic-cover *ngIf="cover"  [comicCoverUrl]="cover" (click)="callToRead()"></app-comic-cover>
 
 <app-comic-description
   *ngIf="title"
