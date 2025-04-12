@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:PanelOn": "node dist/panel-on/server/server.mjs",
+    "serve:ssr:PanelOn": "node dist/panel-on/server/server.mjs"
   },
   "private": true,
   "dependencies": {
