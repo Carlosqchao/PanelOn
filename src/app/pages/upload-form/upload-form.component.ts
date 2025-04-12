@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {NgForOf, NgIf} from '@angular/common';
 import {ButtonComponent} from '../../components/button/button.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-upload-form',
@@ -20,6 +21,7 @@ export class UploadFormComponent {
   selectedFile: File | null = null;
   invalidFile: boolean = false;
 
+  constructor(private http: HttpClient) {}
   addGenre(): void {
     if (this.selectedGenre && !this.selectedGenres.includes(this.selectedGenre)) {
       this.selectedGenres.push(this.selectedGenre);
@@ -52,13 +54,27 @@ export class UploadFormComponent {
 
 
   onSubmit(): void {
-    console.log("Form submitted!");
-    console.log("Title:", this.title);
-    console.log("Author:", this.author);
-    console.log("Synopsis:", this.synopsis);
-    console.log("Situation:", this.situation);
-    console.log("Selected Genres:", this.selectedGenres);
-    console.log("Selected File:", this.selectedFile);
+    if (!this.selectedFile) {
+      alert('Por favor selecciona un archivo');
+      return;
+    }
+    const formData = new FormData();
+    formData.append('file', this.selectedFile);
+
+    this.http.post<{ nsfw: boolean }>('http://localhost:3000/check-nsfw', formData)
+      .subscribe({
+        next: (res: { nsfw: any; }) => {
+          if (res.nsfw) {
+            alert('⚠️ El PDF contiene contenido NSFW');
+          } else {
+            alert('✅ El PDF está limpio');
+          }
+        },
+        error: (err: any) => {
+          console.error('Error al analizar el PDF:', err);
+          alert('Ocurrió un error al verificar el PDF');
+        }
+      });
   }
 
   isPDF(file: File | null): Promise<boolean> {
