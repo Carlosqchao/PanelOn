@@ -12,6 +12,11 @@
           <input type="file" id="file" (change)="onFileSelected($event)" name="file" style="display: none">
         </label>
         <span class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
+
+        <!-- Mostrar advertencia solo si el archivo no es PDF -->
+        <div *ngIf="invalidFile" class="file-warning">
+          <p style="color: red;">Por favor, selecciona un archivo PDF.</p>
+        </div>
       </div>
       <nav aria-label="Go back">
         <a id="back-link" href="#" onclick="history.back(); return false"> &larr; Go back</a>
