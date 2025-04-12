@@ -43,8 +43,8 @@ export class UploadFormComponent {
           this.invalidFile = false;
         } else {
           this.invalidFile = true;
-          this.selectedFile = null;  // Desmarcar el archivo
-          //alert("Por favor, selecciona un archivo PDF.");
+          this.selectedFile = null;
+
         }
       }).catch(() => {
         alert("Ocurrió un error al intentar verificar el archivo.");
@@ -83,7 +83,7 @@ export class UploadFormComponent {
 
       reader.onload = function () {
         const arr = new Uint8Array(reader.result as ArrayBuffer);
-        const header = String.fromCharCode(...arr.slice(0, 5)); // %PDF-
+        const header = String.fromCharCode(...arr.slice(0, 5));
         const isPdf = header === '%PDF-';
 
         if (!isPdf) {
@@ -99,7 +99,7 @@ export class UploadFormComponent {
       };
 
       // @ts-ignore
-      reader.readAsArrayBuffer(file.slice(0, 5)); // lee solo los primeros 5 bytes
+      reader.readAsArrayBuffer(file.slice(0, 5));
     });
   }
 
