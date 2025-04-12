@@ -8,6 +8,8 @@ import {AppService} from '../../app.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NewsCardComponent} from '../../components/news-card/news-card.component';
 import {CharacterCardComponent} from '../../components/character-card/character-card.component';
+import {map, take} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 
 @Component({
@@ -26,34 +28,22 @@ import {CharacterCardComponent} from '../../components/character-card/character-
 })
 export class SearchPageComponent implements OnInit {
   handleComicSearch(query: string) {
-    const containers = document.querySelectorAll<HTMLDivElement>("app-comic-card");
-    console.log(containers[0]);
-    containers.forEach(container => {
-      // @ts-ignore
-      if (container.textContent.toLowerCase().includes(query.toLowerCase()) || container.className.includes(query)) {
-        container.style.display = "block";
-      } else {
-        container.style.display = "none";
-      }
+    this.appService.getComics().pipe(
+      map(comics => comics.filter(comic => comic.title.toLowerCase().includes(query.toLowerCase())))
+    ).subscribe(result => {
+      this.comics = result;
     });
   }
 
-  handleFilter() {
+
+handleFilter() {
     console.log('Filter clicked');
   }
 
   comics: any[] = [];
   constructor(private appService: AppService, private router: Router,private activatedRoute: ActivatedRoute,) {}
   option: string = '';
-  news: ({
-    title: string;
-    imageUrl: string;
-    author: string;
-  } | { title: string; imageUrl: string; author: string; } | {
-    title: string;
-    imageUrl: string;
-    author: string;
-  })[] | undefined;
+  news: ({ title: string; imageUrl: string; author: string; })[] | undefined;
   selectedCharacters: any[] | undefined;
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -69,9 +59,6 @@ export class SearchPageComponent implements OnInit {
     });
 
   }
-
-
-
 
   loadComics(): void {
     this.appService.getComics().subscribe({
@@ -110,14 +97,14 @@ export class SearchPageComponent implements OnInit {
     ];
   }
   handleNewsSearch(query: string) {
-    const containers = document.querySelectorAll<HTMLDivElement>("app-news-card");
-    containers.forEach(container => {
-      // @ts-ignore
-      if (container.textContent.toLowerCase().includes(query.toLowerCase()) || container.className.includes(query)) {
-        container.style.display = "block";
-      } else {
-        container.style.display = "none";
-      }
+    this.appService.getNews().pipe(
+      map(news =>
+        news.filter(report =>
+          report.title?.toLowerCase().includes(query.toLowerCase())
+        )
+      )
+    ).subscribe(result => {
+      this.news = result; // ← esto debe incluir imageUrl si viene desde el servicio
     });
   }
 
@@ -134,14 +121,11 @@ export class SearchPageComponent implements OnInit {
   }
 
   handleCharacterSearch(query: string) {
-    const containers = document.querySelectorAll<HTMLDivElement>("app-character-card");
-    containers.forEach(container => {
-      // @ts-ignore
-      if (container.textContent.toLowerCase().includes(query.toLowerCase()) || container.className.includes(query)) {
-        container.style.display = "block";
-      } else {
-        container.style.display = "none";
-      }
+    this.appService.getCharacters().pipe(
+      map( selectedCharacters => selectedCharacters.filter(character => character.characterName.toLowerCase().includes(query.toLowerCase())))
+    ).subscribe(result => {
+      console.log(result);
+      this.selectedCharacters = result;
     });
   }
 }
