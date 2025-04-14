@@ -27,6 +27,8 @@ import {takeUntil} from 'rxjs/operators';
   styleUrl: './search-page.component.scss'
 })
 export class SearchPageComponent implements OnInit {
+
+
   handleComicSearch(query: string) {
     this.appService.getComics().pipe(
       map(comics => comics.filter(comic => comic.title.toLowerCase().includes(query.toLowerCase())))
@@ -36,14 +38,14 @@ export class SearchPageComponent implements OnInit {
   }
 
 
-handleFilter() {
-    console.log('Filter clicked');
-  }
+  handleFilter() {
+      console.log(this.appService.getGenres());
+    }
 
   comics: any[] = [];
   constructor(private appService: AppService, private router: Router,private activatedRoute: ActivatedRoute,) {}
   option: string = '';
-  news: ({ title: string; imageUrl: string; author: string; })[] | undefined;
+  news: ({ title: string; image: string; author: string; })[] | undefined;
   selectedCharacters: any[] | undefined;
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -73,29 +75,12 @@ handleFilter() {
   }
 
   loadNews(): void {
-    this.news = [
-      {
-        title: 'New Spider-Man Movie Announced',
-        imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/3/30/6750d4c18340e/portrait_uncanny.jpg',
-        author: 'Peter Parker'
-      },
-      {
-        title: 'Star Wars Series Gets New Season',
-        imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/6/70/6750d4ba4b982/portrait_uncanny.jpg',
-        author: 'Luke Skywalker'
-      },
-      {
-        title: 'Avengers Assemble for New Event',
-        imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/d/00/6750d4ca9eff7/portrait_uncanny.jpg',
-        author: 'Tony Stark'
-      },
-      {
-        title: 'Avengers Face New Threat',
-        imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/d/00/6750d4ca9eff7/portrait_uncanny.jpg',
-        author: 'Steve Rogers'
-      }
-    ];
+    this.appService.getNews().pipe(
+    ).subscribe(result => {
+      this.news = result;
+    });
   }
+
   handleNewsSearch(query: string) {
     this.appService.getNews().pipe(
       map(news =>
@@ -104,7 +89,7 @@ handleFilter() {
         )
       )
     ).subscribe(result => {
-      this.news = result; // ← esto debe incluir imageUrl si viene desde el servicio
+      this.news = result;
     });
   }
 
@@ -112,7 +97,6 @@ handleFilter() {
     this.appService.getCharacters().subscribe({
       next: (selectedCharacters: any[]) => {
         this.selectedCharacters = selectedCharacters;
-        console.log('Cómics cargados desde Firestore:');
       },
       error: (err: any) => {
         console.error('Error al cargar los cómics:', err);
