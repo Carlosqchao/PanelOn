@@ -13,7 +13,7 @@
     <app-search-bar (search)="handleNewsSearch($event)" (filter)="handleFilter()"></app-search-bar>
   </div>
   <div class="center-container">
-    <app-news-card *ngFor="let new of news" [imageUrl]="new.imageUrl" [author]="new.author" [title]="new.title"></app-news-card>
+    <app-news-card *ngFor="let new of news" [imageUrl]="new.image" [author]="new.author" [title]="new.title"></app-news-card>
   </div>
 </div>
 
