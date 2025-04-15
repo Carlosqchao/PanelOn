@@ -35,8 +35,6 @@
   }
 }
 
-
-
 .register-container .register-header {
   display: flex;
   justify-content: center;
@@ -85,6 +83,11 @@
   margin-bottom: 0.3vh;
   background-color: #fff;
   font-family: "Roboto", sans-serif;
+}
+
+.register-container .register-form input::placeholder {
+  color: #666;
+  opacity: 1;
 }
 
 .register-container .register-form input:focus {
@@ -184,6 +187,10 @@
   font-family: "Roboto", sans-serif;
   align-content: center;
   align-items: center;
+}
+
+.password-container input::placeholder {
+  color: #666; /* Ensure placeholder color for password inputs */
 }
 
 .password-container input:focus {
@@ -334,7 +341,6 @@
     font-size: 0.8rem;
   }
 
-  /* Ajuste para el contenedor de contraseña en móviles */
   .password-container {
     width: 80vw;
   }
@@ -347,6 +353,6 @@
   }
 
   .toggle-password {
-    font-size: 0.9rem; /* Ajustar tamaño del ícono en móviles */
+    font-size: 0.9rem;
   }
 }

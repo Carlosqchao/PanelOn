@@ -21,9 +21,7 @@ export class HeaderComponent {
   public user: User | null = null;
 
   constructor(private authService: AuthService) {
-    this.authService.user$.subscribe(user => {
-      this.user = user;
-    });
+    this.user = this.authService.getCurrentUser();
   }
 
   @HostListener('window:scroll', ['$event'])
