@@ -84,7 +84,6 @@
 }
 
 .sort-button {
-  background-color: transparent;
   color: #333;
   border: 1px solid #ccc;
   padding: 10px 14px;
@@ -97,6 +96,7 @@
   position: absolute;
   top: -5vh;
   left: 75vh;
+  background: lightgray;
 }
 
 .sort-button:hover {
