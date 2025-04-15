@@ -51,6 +51,21 @@
         </div>
       </div>
 
+      <div>
+        <input
+          type="date"
+          id="birthdate"
+          name="birthdate"
+          [(ngModel)]="birthdate"
+          placeholder="Birth Date"
+          required
+          #birthdateInput="ngModel"
+        >
+        <div *ngIf="formSubmitted && birthdateInput.invalid" class="error-message">
+          {{ getErrorMessage(birthdateInput, { required: 'Birth date is required.'}) }}
+        </div>
+      </div>
+
       <input
         type="text"
         id="email"
