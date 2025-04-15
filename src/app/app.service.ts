@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, collectionData, doc, addDoc, deleteDoc, setDoc } from '@angular/fire/firestore';
-import { Observable, catchError, of } from 'rxjs';
+import {Firestore, collection, collectionData, doc, addDoc, deleteDoc, setDoc, getDocs} from '@angular/fire/firestore';
+import {Observable, catchError, of, map} from 'rxjs';
 import { where, query } from '@angular/fire/firestore';
 import { docData } from 'rxfire/firestore';
 
@@ -221,4 +221,34 @@ export class AppService {
       throw error;
     }
   }
+
+  getComicsOrderedByDate(ascending: boolean = false): Observable<any[]> {
+    const comicsCollection = collection(this.firestore, 'comics');
+
+    return collectionData(comicsCollection, { idField: 'id' }).pipe(
+      map((comics: any[]) =>
+        comics
+          .filter(comic => comic.published != null)
+          .sort((a, b) => {
+            const dateA = new Date(a.published).getTime();
+            const dateB = new Date(b.published).getTime();
+            return ascending ? dateA - dateB : dateB - dateA;
+          })
+      )
+    );
+  }
+
+
+  getComicsOrderedByRating(ascending: boolean = false): Observable<any[]> {
+    const comicsCollection = collection(this.firestore, 'comics');
+
+    return collectionData(comicsCollection, { idField: 'id' }).pipe(
+      map((comics: any[]) =>
+        comics
+          .filter(comic => comic.rating != null)
+          .sort((a, b) => ascending ? a.rating - b.rating : b.rating - a.rating)
+      )
+    );
+  }
+
 }

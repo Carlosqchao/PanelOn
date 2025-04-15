@@ -114,19 +114,23 @@
           [ngClass]="{ 'invalid': selectedGenres.length === 0 && formSubmitted }"
         >
           <option value="" disabled selected>Select Genre</option>
-          <option value="Action">Action</option>
-          <option value="Adventure">Adventure</option>
-          <option value="Fantasy">Fantasy</option>
-          <option value="Drama">Drama</option>
-          <option value="Comedy">Comedy</option>
+          <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
         </select>
-
         <button type="button" (click)="addGenre()">Add</button>
       </div>
       <div class="genre-list">
-        <p>Selected Genres:</p>
-        <span *ngFor="let genre of selectedGenres" class="genre-item">{{ genre }}</span>
+        <p>Selected Genres (click to remove):</p>
+        <span
+          *ngFor="let genre of selectedGenres"
+          class="genre-item"
+          (click)="removeGenre(genre)"
+          style="cursor: pointer; margin-right: 8px;"
+        >
+    {{ genre }}
+          <i class="fas fa-times" style="margin-left: 4px; color: red;"></i>
+  </span>
       </div>
+
 
       <div *ngIf="selectedGenres.length === 0 && formSubmitted" class="error-message">
         Please select at least one genre.
