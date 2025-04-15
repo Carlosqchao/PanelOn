@@ -1,8 +1,9 @@
-import {Component, input} from '@angular/core';
+import {Component, input, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {ButtonComponent} from '../../components/button/button.component';
 import { HttpClient } from '@angular/common/http';
+import {AppService} from '../../app.service';
 
 @Component({
   selector: 'app-upload-form',
@@ -11,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './upload-form.component.html',
   styleUrls: ['./upload-form.component.scss']
 })
-export class UploadFormComponent {
+export class UploadFormComponent implements OnInit {
   title = '';
   author = '';
   synopsis = '';
@@ -25,8 +26,17 @@ export class UploadFormComponent {
   isLoading: boolean = false;
   formSubmitted = false;
   isSizeValid: boolean = true;
+  genres: string[] = [];
 
-  constructor(private http: HttpClient) {}
+  ngOnInit() {
+    this.AppService.getGenres().subscribe(result => {
+      this.genres = result.map(genre => genre.name);
+    });
+
+  }
+
+
+  constructor(private http: HttpClient, private AppService: AppService) {}
   addGenre(): void {
     if (this.selectedGenre && !this.selectedGenres.includes(this.selectedGenre)) {
       this.selectedGenres.push(this.selectedGenre);
@@ -147,6 +157,12 @@ export class UploadFormComponent {
   }
   isFileValid(): boolean {
     return this.selectedFile !== null && !this.invalidFile;
+  }
+  removeGenre(genre: string): void {
+    const index = this.selectedGenres.indexOf(genre);
+    if (index !== -1) {
+      this.selectedGenres.splice(index, 1);
+    }
   }
 
 }

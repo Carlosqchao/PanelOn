@@ -1,7 +1,45 @@
 <app-header></app-header>
-<div class="center-container"*ngIf="option === 'comic'">
+
+<div class="center-container" *ngIf="option === 'comic'">
   <div class="search-bar">
-    <app-search-bar (search)="handleComicSearch($event)" (filter)="handleFilter()"></app-search-bar>
+    <div class="search-sort-wrapper">
+      <app-search-bar (search)="handleComicSearch($event)" (filter)="handleFilter()"></app-search-bar>
+
+      <div class="dropdown">
+        <button class="sort-button" (click)="toggleDropdown()">
+          Order by...
+        </button>
+        <div class="dropdown-content" *ngIf="dropdownVisible">
+          <button class="dropdown-item" (click)="loadComicsOrderedByDate()">
+            {{ sortByDateAscending ? '↓ Date of publish' : '↑ Date of publish' }}
+          </button>
+
+          <button class="dropdown-item" (click)="loadComicsOrderedByRating()">
+            {{ sortByRatingAscending ? '↓ Rating' : '↑ Rating' }}
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-dropdown" *ngIf="filterVisible">
+      <div class="filter-header">
+        <h4>Filtrar por Género</h4>
+        <button class="close-btn" (click)="filterVisible = false">Cerrar</button>
+      </div>
+      <div class="filter-options">
+        <label *ngFor="let genre of availableGenres" class="filter-item">
+          <input
+            type="checkbox"
+            [value]="genre"
+            [checked]="selectedGenres.includes(genre)"
+            (change)="toggleGenre(genre)"
+            class="checkbox-input"
+          />
+          <span class="checkbox-label">{{ genre }}</span>
+        </label>
+      </div>
+    </div>
   </div>
   <div class="center-container">
     <app-comic-card *ngFor="let comic of comics" [imageUrl]="comic.cover" [title]="comic.title" [comicId]="comic.id"></app-comic-card>
