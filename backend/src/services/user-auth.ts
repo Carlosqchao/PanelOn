@@ -38,9 +38,10 @@ export class AuthService {
     username: string,
     name: string,
     lastName: string,
+    birthdate: string,
     password: string
   ): Observable<void> {
-    console.log('Starting registration with:', { email, username, name, lastName });
+    console.log('Starting registration with:', { email, username, name, lastName, birthdate });
     const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password)
       .then(response => {
         console.log('User created in Authentication:', response.user.uid);
@@ -56,7 +57,8 @@ export class AuthService {
           email: email,
           username: username,
           name: name,
-          lastName: lastName
+          lastName: lastName,
+          birthdate: birthdate
         };
 
         console.log('Attempting to save to Firestore with addUser:', userData);
