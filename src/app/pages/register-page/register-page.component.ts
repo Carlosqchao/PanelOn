@@ -3,7 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../components/button/button.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {AuthService} from '../../../../backend/src/services/user-auth';
+import { AuthService } from '../../../../backend/src/services/user-auth';
 
 @Component({
   selector: 'app-register-page',
@@ -21,6 +21,7 @@ export class RegisterPageComponent {
 
   firstName: string = '';
   lastName: string = '';
+  birthdate: string = '';
   email: string = '';
   username: string = '';
   password: string = '';
@@ -54,6 +55,7 @@ export class RegisterPageComponent {
     console.log('Form submitted:', {
       firstName: this.firstName,
       lastName: this.lastName,
+      birthdate: this.birthdate,
       email: this.email,
       username: this.username,
       password: this.password
@@ -66,37 +68,39 @@ export class RegisterPageComponent {
         formValues.username,
         formValues['first-name'],
         formValues['last-name'],
+        formValues.birthdate,
         formValues.password
-    ).subscribe({
-      next: () => {
-        console.log('Registro exitoso, redirigiendo...');
-        this.router.navigateByUrl('');
-      },
-      error: (err) => {
-        console.error('Error completo:', err);
-        if (err.code) {
-          switch (err.code) {
-            case 'auth/email-already-in-use':
-              this.errorMessage = 'The email is already registered. Please use another email or log in.';
-              break;
-            case 'auth/invalid-email':
-              this.errorMessage = 'The email is not valid. Please check the format.';
-              break;
-            case 'auth/weak-password':
-              this.errorMessage = 'The password is too weak. It must be at least 6 characters long.';
-              break;
-            case 'auth/operation-not-allowed':
-              this.errorMessage = 'Registration with email and password is not enabled. Contact the administrator.';
-              break;
-            default:
-              this.errorMessage = `Error during registration: ${err.message}`;
-              break;
+      )
+      .subscribe({
+        next: () => {
+          console.log('Registro exitoso, redirigiendo...');
+          this.router.navigateByUrl('');
+        },
+        error: (err) => {
+          console.error('Error completo:', err);
+          if (err.code) {
+            switch (err.code) {
+              case 'auth/email-already-in-use':
+                this.errorMessage = 'The email is already registered. Please use another email or log in.';
+                break;
+              case 'auth/invalid-email':
+                this.errorMessage = 'The email is not valid. Please check the format.';
+                break;
+              case 'auth/weak-password':
+                this.errorMessage = 'The password is too weak. It must be at least 6 characters long.';
+                break;
+              case 'auth/operation-not-allowed':
+                this.errorMessage = 'Registration with email and password is not enabled. Contact the administrator.';
+                break;
+              default:
+                this.errorMessage = `Error during registration: ${err.message}`;
+                break;
+            }
+          } else {
+            this.errorMessage = `Unexpected error: ${err.message}`;
           }
-        } else {
-          this.errorMessage = `Unexpected error: ${err.message}`;
         }
-      }
-    });
+      });
   }
 
   togglePasswordVisibility() {
