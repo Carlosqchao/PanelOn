@@ -60,7 +60,17 @@ export class ComicPageComponent implements OnInit, OnDestroy {
             this.synopsis = comic.synopsis || '';
             this.author = comic.author || '';
             this.genre = Array.isArray(comic.genre) ? comic.genre.join(', ') : comic.genre || '';
-            this.releaseDate = comic.published || '';
+            const rawDate = comic.published;
+            if (rawDate) {
+              const date = new Date(rawDate);
+              this.releaseDate = date.toLocaleDateString('en-US', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+              });
+            } else {
+              this.releaseDate = '';
+            }
             this.status = comic.state || '';
             this.rating = comic.rating || 0;
             this.cover = comic.cover || '';
