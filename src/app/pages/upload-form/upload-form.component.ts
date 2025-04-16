@@ -1,24 +1,42 @@
-import { Component } from '@angular/core';
+import {Component, input, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {NgForOf, NgIf} from '@angular/common';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {ButtonComponent} from '../../components/button/button.component';
+import { HttpClient } from '@angular/common/http';
+import {AppService} from '../../app.service';
 
 @Component({
   selector: 'app-upload-form',
   standalone: true,
-  imports: [FormsModule, NgForOf, NgIf, ButtonComponent],
+  imports: [FormsModule, NgForOf, NgIf, ButtonComponent, NgClass],
   templateUrl: './upload-form.component.html',
   styleUrls: ['./upload-form.component.scss']
 })
-export class UploadFormComponent {
+export class UploadFormComponent implements OnInit {
   title = '';
   author = '';
   synopsis = '';
   situation = '';
   selectedGenres: string[] = [];
   selectedGenre = '';
+  selectedPegi = '';
   selectedFile: File | null = null;
+  invalidFile: boolean = false;
+  loadingStatus: 'loading' | 'clean' | 'nsfw' | null = null;
+  isLoading: boolean = false;
+  formSubmitted = false;
+  isSizeValid: boolean = true;
+  genres: string[] = [];
 
+  ngOnInit() {
+    this.AppService.getGenres().subscribe(result => {
+      this.genres = result.map(genre => genre.name);
+    });
+
+  }
+
+
+  constructor(private http: HttpClient, private AppService: AppService) {}
   addGenre(): void {
     if (this.selectedGenre && !this.selectedGenres.includes(this.selectedGenre)) {
       this.selectedGenres.push(this.selectedGenre);
@@ -30,20 +48,121 @@ export class UploadFormComponent {
     }
   }
 
+  filePreview = false;
+
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length) {
-      this.selectedFile = input.files[0];
+      this.loadingStatus = null;
+      const file = input.files[0];
+      if (file.size > 100000000) {
+        this.isSizeValid = false;
+        return;
+      }
+      this.isPDF(file).then(isPdf => {
+        if (isPdf) {
+          this.selectedFile = file;
+          this.invalidFile = false;
+          this.filePreview = true;
+          this.isLoading = true;
+          this.loadingStatus = 'loading';
+
+          const formData = new FormData();
+          formData.append('file', this.selectedFile);
+
+          this.http.post<{ nsfw: boolean }>('http://localhost:3000/check-nsfw', formData)
+            .subscribe({
+              next: (res) => {
+                this.loadingStatus = res.nsfw ? 'nsfw' : 'clean';
+                this.isLoading = false;
+              },
+              error: (err) => {
+                this.isLoading = false;
+                this.loadingStatus = null;
+                console.error('Error al analizar el PDF:', err);
+                alert('Ocurrió un error al verificar el PDF');
+              }
+            });
+        } else {
+          this.invalidFile = true;
+          this.selectedFile = null;
+          this.filePreview = false;
+        }
+      }).catch(() => {
+        alert("Ocurrió un error al intentar verificar el archivo.");
+        this.filePreview = false;
+      });
     }
   }
 
+
   onSubmit(): void {
-    console.log("Form submitted!");
-    console.log("Title:", this.title);
-    console.log("Author:", this.author);
-    console.log("Synopsis:", this.synopsis);
-    console.log("Situation:", this.situation);
-    console.log("Selected Genres:", this.selectedGenres);
-    console.log("Selected File:", this.selectedFile);
+    this.formSubmitted = true;
+
+    const isFormValid =
+      this.isValidTitle() &&
+      this.isValidAuthor() &&
+      this.situation != '' &&
+      this.selectedGenres.length > 0 &&
+      this.isPegiSelected() &&
+      this.selectedFile !== null &&
+      !this.invalidFile &&
+      this.loadingStatus === 'clean';
+
+      console.log(isFormValid);
+
+    if (isFormValid) {
+      console.log("Uploading form");
+      return;
+    }
+}
+
+
+
+  isPDF(file: File | null): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = function () {
+        const arr = new Uint8Array(reader.result as ArrayBuffer);
+        const header = String.fromCharCode(...arr.slice(0, 5));
+        const isPdf = header === '%PDF-';
+
+        if (!isPdf) {
+          console.warn('File is not PDF.');
+        }
+
+        resolve(isPdf);
+      };
+
+      reader.onerror = function () {
+        console.error('Error reading file.');
+        reject(reader.error);
+      };
+
+      // @ts-ignore
+      reader.readAsArrayBuffer(file.slice(0, 5));
+    });
   }
+  isValidTitle(): boolean {
+    return /^[\p{L}\p{N}][\p{L}\p{N} .,:;!¡¿?\-']{0,48}[\p{L}\p{N}]$/u.test(this.title);
+  }
+
+  isValidAuthor(): boolean {
+
+    return /^[\p{L}\p{N}][\p{L}\p{N} .,:;!¡¿?\-']{0,48}[\p{L}\p{N}]$/u.test(this.author);
+  }
+  isPegiSelected(): boolean {
+    return this.selectedPegi !== '';
+  }
+  isFileValid(): boolean {
+    return this.selectedFile !== null && !this.invalidFile;
+  }
+  removeGenre(genre: string): void {
+    const index = this.selectedGenres.indexOf(genre);
+    if (index !== -1) {
+      this.selectedGenres.splice(index, 1);
+    }
+  }
+
 }
