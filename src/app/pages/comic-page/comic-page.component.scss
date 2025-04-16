@@ -1,0 +1,22 @@
+.center-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  .age-restriction-message {
+    color: red;
+    font-size: 1rem;
+    margin: 1rem;
+    text-align: center;
+  }
+
+  app-button.restricted {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+app-comic-cover.restricted {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
