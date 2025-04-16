@@ -45,7 +45,7 @@ export class LoginPageComponent {
       return;
     }
 
-    console.log('Login submitted:', { email: this.email, password: this.password });
+    console.log('Login submitted');
 
     this.authService.login(this.email, this.password).subscribe({
       next: () => {
