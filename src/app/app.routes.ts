@@ -13,6 +13,7 @@ import {ModalTestingComponent} from './pages/modal-testing/modal-testing.compone
 import { UploadFormComponent } from './pages/upload-form/upload-form.component';
 import {UserPageComponent} from './pages/user-page/user-page.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
+import {CommunityComponent} from './pages/community/community.component';
 
 
 export const routes: Routes = [
@@ -30,5 +31,6 @@ export const routes: Routes = [
   { path: 'user-page', component: UserPageComponent },
   {path: 'upload-form', component: UploadFormComponent, data: { hideHeader: true } },
   {path: 'search-page', component: SearchPageComponent},
+  {path: 'community', component: CommunityComponent},
   { path: '**', redirectTo: '' }
 ];
