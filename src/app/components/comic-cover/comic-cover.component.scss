@@ -19,31 +19,4 @@
       border-radius: 5px;
     }
   }
-
-  .icons-section {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    max-width: 600px;
-    justify-content: flex-end;
-
-    .icon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-
-      &:hover {
-        transform: scale(1.1);
-      }
-
-      img {
-        width: 25px;
-        height: 25px;
-        margin-bottom: 5px;
-      }
-
-    }
-  }
 }

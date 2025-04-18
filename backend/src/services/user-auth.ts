@@ -146,6 +146,14 @@ export class AuthService {
     return this.userSubject.value;
   }
 
+  getCurrentUserId(): string {
+    const user = this.getCurrentUser();
+    if (!user) {
+      throw new Error('No hay usuario autenticado');
+    }
+    return user.uid;
+  }
+
   sendPasswordResetEmail(email: string): Observable<any> {
     console.log('Enviando email de recuperación a:', email);
     return from(sendPasswordResetEmail(this.firebaseAuth, email));
