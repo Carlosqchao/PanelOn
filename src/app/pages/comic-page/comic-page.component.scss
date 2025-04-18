@@ -1,5 +1,6 @@
 .center-container {
   display: flex;
+  padding-bottom: 3vh;
   align-items: center;
   gap: 20px;
 
@@ -14,6 +15,13 @@
     opacity: 0.6;
     cursor: not-allowed;
   }
+}
+
+.icons-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 app-comic-cover.restricted {
