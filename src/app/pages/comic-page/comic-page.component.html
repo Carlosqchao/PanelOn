@@ -1,50 +1,54 @@
 <app-header></app-header>
 
-<app-comic-cover
-  *ngIf="cover"
-  [comicCoverUrl]="cover"
-  [ngClass]="{'restricted': !canRead}"
-  (click)="callToRead()">
-</app-comic-cover>
-
-<app-comic-description
-  *ngIf="title"
-  [title]="title"
-  [synopsis]="synopsis"
-  [author]="author"
-  [genre]="genre"
-  [releaseDate]="releaseDate">
-</app-comic-description>
-
-<div class="center-container" style="margin-bottom: 3vh;" *ngIf="user">
-  <app-button
-    text="READ COMIC"
+<div class="comic-page" *ngIf="comic">
+  <app-comic-cover
+    [comicCoverUrl]="comic.cover"
     [ngClass]="{'restricted': !canRead}"
     (click)="callToRead()">
-  </app-button>
-  <p *ngIf="!canRead" class="age-restriction-message">
-    Sorry, you must be at least {{ pegi }} years old to read this comic.
-  </p>
-</div>
+  </app-comic-cover>
 
-<div class="center-container" *ngIf="characters.length > 0">
-  <p>COMIC CHARACTERS</p>
-</div>
+  <div class="icons-section">
+    <app-action-icons [comic]="comic"></app-action-icons>
+  </div>
 
-<div class="center-container" *ngIf="characters.length > 0">
-  <app-character-card
-    *ngFor="let character of characters"
-    [imageUrl]="character.image"
-    [superheroName]="character.characterName"
-    [characterName]="character.name"
-    [characterId]="character.id">
-  </app-character-card>
-</div>
+  <app-comic-description
+    [title]="comic.title"
+    [synopsis]="comic.synopsis"
+    [author]="comic.author"
+    [genre]="Array.isArray(comic.genre) ? comic.genre.join(', ') : comic.genre"
+    [releaseDate]="comic.published">
+  </app-comic-description>
 
-<app-comic-status
-  *ngIf="status"
-  [status]="status"
-  [rating]="rating">
-</app-comic-status>
+  <div class="center-container read-button-container" *ngIf="user">
+    <app-button
+      text="READ COMIC"
+      [ngClass]="{'restricted': !canRead}"
+      (click)="callToRead()">
+    </app-button>
+    <p *ngIf="!canRead" class="age-restriction-message">
+      Sorry, you must be at least {{ comic.pegi }} years old to read this comic.
+    </p>
+  </div>
+
+  <div class="center-container" *ngIf="characters.length > 0">
+    <p>COMIC CHARACTERS</p>
+  </div>
+
+  <div class="center-container" *ngIf="characters.length > 0">
+    <app-character-card
+      *ngFor="let character of characters"
+      [imageUrl]="character.image"
+      [superheroName]="character.characterName"
+      [characterName]="character.name"
+      [characterId]="character.id">
+    </app-character-card>
+  </div>
+
+  <app-comic-status
+    [status]="comic.state"
+    [rating]="comic.rating">
+  </app-comic-status>
+
+</div>
 
 <app-footer></app-footer>
