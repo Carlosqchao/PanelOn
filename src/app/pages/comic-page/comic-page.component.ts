@@ -1,19 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { HeaderComponent } from '../../components/header/header.component';
 import { ComicCoverComponent } from '../../components/comic-cover/comic-cover.component';
 import { ComicDescriptionComponent } from '../../components/comic-description/comic-description.component';
 import { CharacterCardComponent } from '../../components/character-card/character-card.component';
-import {NgClass, NgForOf, NgIf} from '@angular/common';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { ComicStatusComponent } from '../../components/comic-status/comic-status.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import {IUser} from '../../models/user';
-import {UserStoreService} from '../../../../backend/src/services/user-store';
+import { IUser } from '../../models/user';
+import { UserStoreService } from '../../../../backend/src/services/user-store';
+import { ActionIconsComponent } from '../../components/action-icons/action-icons.component';
+import { Comic } from '../../models/comic';
 
 @Component({
   selector: 'app-comic-page',
@@ -28,22 +29,15 @@ import {UserStoreService} from '../../../../backend/src/services/user-store';
     FooterComponent,
     ButtonComponent,
     NgIf,
-    NgClass
+    NgClass,
+    ActionIconsComponent
   ],
   templateUrl: './comic-page.component.html',
   styleUrls: ['./comic-page.component.scss']
 })
 export class ComicPageComponent implements OnInit, OnDestroy {
-  title: string = '';
-  synopsis: string = '';
-  author: string = '';
-  genre: string = '';
-  releaseDate: string = '';
-  status: string = '';
-  rating: number = 0;
+  comic: Comic | null = null;
   characters: any[] = [];
-  cover: string = '';
-  pegi: number = 0;
   user: IUser | null = null;
   canRead: boolean = true;
   private destroy$ = new Subject<void>();
@@ -68,25 +62,21 @@ export class ComicPageComponent implements OnInit, OnDestroy {
       ).subscribe({
         next: (comic) => {
           if (comic) {
-            this.title = comic.title || '';
-            this.synopsis = comic.synopsis || '';
-            this.author = comic.author || '';
-            this.genre = Array.isArray(comic.genre) ? comic.genre.join(', ') : comic.genre || '';
-            const rawDate = comic.published;
-            if (rawDate) {
-              const date = new Date(rawDate);
-              this.releaseDate = date.toLocaleDateString('en-US', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-              });
-            } else {
-              this.releaseDate = '';
-            }
-            this.status = comic.state || '';
-            this.rating = comic.rating || 0;
-            this.cover = comic.cover || '';
-            this.pegi = comic.pegi || 0;
+            this.comic = {
+              id: comicId,
+              title: comic.title || '',
+              synopsis: comic.synopsis || '',
+              author: comic.author || '',
+              genre: Array.isArray(comic.genre) ? comic.genre.join(', ') : comic.genre || '',
+              published: comic.published || '',
+              state: comic.state || '',
+              rating: comic.rating || 0,
+              cover: comic.cover || '',
+              pegi: comic.pegi || 0,
+              relatedCharacters: comic.relatedCharacters || [],
+              author_id: comic.author_id || 0,
+              comments: comic.comments || []
+            };
 
             if (comic.relatedCharacters?.length) {
               this.appService.getRelatedCharacters(comic.relatedCharacters).pipe(
@@ -128,7 +118,7 @@ export class ComicPageComponent implements OnInit, OnDestroy {
     }
 
     if (!this.canRead) {
-      alert(`Sorry, you must be at least ${this.pegi} years old to read this comic.`);
+      alert(`Sorry, you must be at least ${this.comic?.pegi} years old to read this comic.`);
       return;
     }
 
@@ -141,12 +131,14 @@ export class ComicPageComponent implements OnInit, OnDestroy {
   }
 
   private checkAgeRestriction(): void {
-    if (!this.user || !this.pegi) {
+    if (!this.user || !this.comic?.pegi) {
       this.canRead = true;
       return;
     }
 
     const userAge = this.userStore.getUserAge();
-    this.canRead = userAge >= this.pegi;
+    this.canRead = userAge >= this.comic.pegi;
   }
+
+  protected readonly Array = Array;
 }
