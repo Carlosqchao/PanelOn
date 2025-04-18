@@ -16,6 +16,7 @@ app.use(cors());
 // @ts-ignore
 app.post('/check-nsfw', upload.single('file'), async (req: Request, res: Response) => {
   const pdfPath = req.file?.path;
+  const pegi = req.body.pegi;
   const outputDir = path.join(__dirname, '../output');
   const outputPrefix = path.join(outputDir, 'page');
 
@@ -35,8 +36,7 @@ app.post('/check-nsfw', upload.single('file'), async (req: Request, res: Respons
       return res.status(500).json({ error: 'PDF conversion failed' });
     }
     console.log('stdout:', stdout);
-
-    const python = spawn('python', ['src/nsfw-backend/src/nsfw_check.py', outputDir]);
+    const python = spawn('python', ['src/nsfw-backend/src/nsfw_check.py', outputDir, pegi]);
 
     let output = '';
     python.stdout.on('data', (data) => output += data.toString());

@@ -55,6 +55,7 @@ export class UploadFormComponent implements OnInit {
     if (input.files && input.files.length) {
       this.loadingStatus = null;
       const file = input.files[0];
+      if(!this.isPegiSelected()) return
       if (file.size > 100000000) {
         this.isSizeValid = false;
         return;
@@ -69,6 +70,7 @@ export class UploadFormComponent implements OnInit {
 
           const formData = new FormData();
           formData.append('file', this.selectedFile);
+          formData.append('pegi', this.selectedPegi);
 
           this.http.post<{ nsfw: boolean }>('http://localhost:3000/check-nsfw', formData)
             .subscribe({

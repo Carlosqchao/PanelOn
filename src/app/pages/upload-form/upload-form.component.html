@@ -31,6 +31,11 @@
             Please select a valid PDF. Max size: 100MB.
           </p>
         </div>
+        <div *ngIf="!isPegiSelected()" class="file-warning">
+          <p style="color: red;">
+            Please select a Pegi rating before Uploading
+          </p>
+        </div>
 
 
       </div>
