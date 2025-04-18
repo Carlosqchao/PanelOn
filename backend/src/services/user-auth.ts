@@ -10,6 +10,8 @@ import {
 } from '@angular/fire/auth';
 import { Observable, from, BehaviorSubject } from 'rxjs';
 import { AppService } from '../../../src/app/app.service';
+import { UserStoreService } from './user-store';
+import { IUser } from '../../../src/app/models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -17,18 +19,36 @@ import { AppService } from '../../../src/app/app.service';
 export class AuthService {
   firebaseAuth = inject(Auth);
   appService = inject(AppService);
+  userStore = inject(UserStoreService);
 
   private userSubject = new BehaviorSubject<User | null>(null);
   public user$ = this.userSubject.asObservable();
 
   constructor() {
     this.firebaseAuth.onAuthStateChanged(
-      (user) => {
+      (user: User | null) => {
+        console.log('Estado de autenticación cambió, usuario:', user);
         this.userSubject.next(user);
+        if (user) {
+          this.appService.getUserByUid(user.uid).subscribe({
+            next: (userData: IUser) => {
+              console.log('Datos de Firestore cargados exitosamente:', userData);
+              this.userStore.setUser(userData);
+            },
+            error: (error) => {
+              console.error('Error al cargar datos de Firestore para el usuario:', error);
+              this.userStore.setUser(null);
+            },
+          });
+        } else {
+          console.log('No hay usuario autenticado');
+          this.userStore.clearUser();
+        }
       },
       (error) => {
-        console.error('Authentication state error:', error);
+        console.error('Error en el estado de autenticación:', error);
         this.userSubject.next(null);
+        this.userStore.clearUser();
       }
     );
   }
@@ -41,19 +61,18 @@ export class AuthService {
     birthdate: string,
     password: string
   ): Observable<void> {
-    console.log('Starting registration with:', { email, username, name, lastName, birthdate });
+    console.log('Iniciando registro con email:', email);
     const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password)
       .then(response => {
-        console.log('User created in Authentication:', response.user.uid);
-        const updatePromise = updateProfile(response.user, { displayName: username })
-          .then(() => console.log('displayName updated successfully'))
+        const user: User = response.user;
+        console.log('Usuario registrado con UID:', user.uid);
+        const updatePromise = updateProfile(user, { displayName: username })
           .catch(err => {
-            console.error('Error updating displayName:', err);
+            console.error('Error al actualizar el displayName:', err);
             throw err;
           });
 
-        const userData = {
-          uid: response.user.uid,
+        const userData: IUser = {
           email: email,
           username: username,
           name: name,
@@ -61,21 +80,24 @@ export class AuthService {
           birthdate: birthdate
         };
 
-        console.log('Attempting to save to Firestore with addUser:', userData);
-        const saveDataPromise = this.appService.addUser(userData)
+        const saveDataPromise = this.appService.addUser(userData, user.uid)
           .then(docId => {
-            console.log('User saved to Firestore with ID:', docId);
+            console.log('Usuario guardado en Firestore, UID:', docId);
+            this.userStore.setUser(userData);
           })
           .catch(err => {
-            console.error('Error saving to Firestore with addUser:', err);
+            console.error('Error al guardar usuario en Firestore:', err);
             throw err;
           });
 
         return Promise.all([updatePromise, saveDataPromise]);
       })
-      .then(() => undefined)
+      .then(() => {
+        console.log('Registro completado exitosamente');
+        return undefined;
+      })
       .catch(err => {
-        console.error('General registration error:', err);
+        console.error('Error general en el registro:', err);
         throw err;
       });
 
@@ -83,14 +105,25 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<void> {
-    console.log('Starting login with:', { email });
+    console.log('Iniciando login con email:', email);
     const promise = signInWithEmailAndPassword(this.firebaseAuth, email, password)
       .then(response => {
-        console.log('User authenticated successfully:', response.user.uid);
+        const user: User = response.user;
+        console.log('Usuario autenticado con UID:', user.uid);
+        this.appService.getUserByUid(user.uid).subscribe({
+          next: (userData: IUser) => {
+            console.log('Datos de Firestore cargados después del login:', userData);
+            this.userStore.setUser(userData);
+          },
+          error: (error) => {
+            console.error('Error al cargar datos de Firestore después del login:', error);
+            this.userStore.setUser(null);
+          },
+        });
         return undefined;
       })
       .catch(err => {
-        console.error('Login error:', err);
+        console.error('Error en el login:', err);
         throw err;
       });
 
@@ -98,12 +131,14 @@ export class AuthService {
   }
 
   logout(): void {
+    console.log('Iniciando logout');
     signOut(this.firebaseAuth)
       .then(() => {
-        console.log('User logged out');
+        console.log('Usuario deslogueado exitosamente');
+        this.userStore.clearUser();
       })
       .catch((error) => {
-        console.error('Error logging out:', error);
+        console.error('Error al desloguear:', error);
       });
   }
 
@@ -111,7 +146,16 @@ export class AuthService {
     return this.userSubject.value;
   }
 
+  getCurrentUserId(): string {
+    const user = this.getCurrentUser();
+    if (!user) {
+      throw new Error('No hay usuario autenticado');
+    }
+    return user.uid;
+  }
+
   sendPasswordResetEmail(email: string): Observable<any> {
+    console.log('Enviando email de recuperación a:', email);
     return from(sendPasswordResetEmail(this.firebaseAuth, email));
   }
 }

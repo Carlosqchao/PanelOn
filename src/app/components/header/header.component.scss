@@ -79,3 +79,11 @@ $section-width: 20%;
 .header-hidden {
   transform: translateY(-100%);
 }
+
+.username {
+  max-width: 100px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
