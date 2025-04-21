@@ -59,28 +59,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   ];
 
   comics: any[] = [];
-  news = [
-    {
-      title: 'New Spider-Man Movie Announced',
-      imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/3/30/6750d4c18340e/portrait_uncanny.jpg',
-      author: 'Peter Parker'
-    },
-    {
-      title: 'Star Wars Series Gets New Season',
-      imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/6/70/6750d4ba4b982/portrait_uncanny.jpg',
-      author: 'Luke Skywalker'
-    },
-    {
-      title: 'Avengers Assemble for New Event',
-      imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/d/00/6750d4ca9eff7/portrait_uncanny.jpg',
-      author: 'Tony Stark'
-    },
-    {
-      title: 'Avengers Face New Threat',
-      imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/d/00/6750d4ca9eff7/portrait_uncanny.jpg',
-      author: 'Steve Rogers'
-    }
-  ];
+  news: any[] = [];
   characters: any[] = [];
   selectedCharacters: any[] = [];
   predefinedColors = ['#FFDD33', '#5CAAB4', '#A01F29'];
@@ -93,10 +72,20 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     ).subscribe({
       next: (comics) => {
         this.comics = comics;
-        console.log('Cómics cargados desde Firestore:');
       },
       error: (err) => {
         console.error('Error al cargar los cómics desde Firestore:', err);
+      }
+    });
+
+    this.appService.getNews().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (news) => {
+        this.news = news.slice(0, 4);
+      },
+      error: (err) => {
+        console.error('Error al cargar las noticias desde Firestore:', err);
       }
     });
 
@@ -131,8 +120,4 @@ export class LandingPageComponent implements OnInit, OnDestroy {
       window.scrollTo(0, 0);
     });
   }
-
 }
-
-
-
