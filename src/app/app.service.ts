@@ -1,8 +1,18 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, collectionData, doc, addDoc, deleteDoc, setDoc } from '@angular/fire/firestore';
-import { Observable, catchError, of } from 'rxjs';
+import {
+  Firestore,
+  collection,
+  collectionData,
+  doc,
+  addDoc,
+  deleteDoc,
+  setDoc,
+  getDoc
+} from '@angular/fire/firestore';
+import {Observable, catchError, of, map, from} from 'rxjs';
 import { where, query } from '@angular/fire/firestore';
 import { docData } from 'rxfire/firestore';
+import {IUser} from './models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -125,6 +135,28 @@ export class AppService {
     );
   }
 
+  getUserByUid(uid: string): Observable<IUser> {
+    console.log('Buscando usuario en Firestore con UID:', uid);
+    const userDocRef = doc(this.firestore, `users/${uid}`);
+    return from(
+      getDoc(userDocRef)
+        .then((docSnap) => {
+          if (docSnap.exists()) {
+            const userData = docSnap.data() as IUser;
+            console.log('Usuario encontrado en Firestore:', userData);
+            return userData;
+          } else {
+            console.error('No se encontró usuario con UID:', uid);
+            throw new Error('User not found');
+          }
+        })
+        .catch((error) => {
+          console.error('Error al buscar usuario en Firestore:', error);
+          throw error;
+        })
+    );
+  }
+
   async addComic(comic: any): Promise<string> {
     try {
       const comicsCollection = collection(this.firestore, '/comics');
@@ -156,13 +188,14 @@ export class AppService {
     }
   }
 
-  async addUser(user: any): Promise<string> {
+  async addUser(userData: IUser, uid: string): Promise<string> {
     try {
-      const usersCollection = collection(this.firestore, '/users');
-      const docRef = await addDoc(usersCollection, user);
-      return docRef.id;
+      const userDocRef = doc(this.firestore, `/users/${uid}`);
+      await setDoc(userDocRef, userData);
+      console.log('Usuario guardado en Firestore con UID:', uid);
+      return uid;
     } catch (error) {
-      console.error('Error adding user:', error);
+      console.error('Error al guardar usuario en Firestore:', error);
       throw error;
     }
   }
@@ -221,4 +254,34 @@ export class AppService {
       throw error;
     }
   }
+
+  getComicsOrderedByDate(ascending: boolean = false): Observable<any[]> {
+    const comicsCollection = collection(this.firestore, 'comics');
+
+    return collectionData(comicsCollection, { idField: 'id' }).pipe(
+      map((comics: any[]) =>
+        comics
+          .filter(comic => comic.published != null)
+          .sort((a, b) => {
+            const dateA = new Date(a.published).getTime();
+            const dateB = new Date(b.published).getTime();
+            return ascending ? dateA - dateB : dateB - dateA;
+          })
+      )
+    );
+  }
+
+
+  getComicsOrderedByRating(ascending: boolean = false): Observable<any[]> {
+    const comicsCollection = collection(this.firestore, 'comics');
+
+    return collectionData(comicsCollection, { idField: 'id' }).pipe(
+      map((comics: any[]) =>
+        comics
+          .filter(comic => comic.rating != null)
+          .sort((a, b) => ascending ? a.rating - b.rating : b.rating - a.rating)
+      )
+    );
+  }
+
 }

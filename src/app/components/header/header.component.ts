@@ -1,8 +1,12 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
 import { User } from '@angular/fire/auth';
-import {AuthService} from '../../../../backend/src/services/user-auth';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../../../backend/src/services/user-auth';
+import {IUser} from '../../models/user';
+import {UserStoreService} from '../../../../backend/src/services/user-store';
+
 
 @Component({
   selector: 'app-header',
@@ -15,15 +19,39 @@ import {AuthService} from '../../../../backend/src/services/user-auth';
   standalone: true,
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   private lastScroll = 0;
   public isVisible = true;
   public user: User | null = null;
+  public userData: IUser | null = null;
+  private userSubscription: Subscription;
+  private userDataSubscription: Subscription;
 
-  constructor(private authService: AuthService) {
-    this.authService.user$.subscribe(user => {
+  constructor(
+    private authService: AuthService,
+    private userStore: UserStoreService
+  ) {
+    this.userSubscription = this.authService.user$.subscribe((user: User | null) => {
       this.user = user;
     });
+
+    this.userDataSubscription = this.userStore.user$.subscribe((userData: IUser | null) => {
+      this.userData = userData;
+    });
+  }
+
+  ngOnInit() {
+    this.user = this.authService.getCurrentUser();
+    this.userData = this.userStore.getUser();
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+    if (this.userDataSubscription) {
+      this.userDataSubscription.unsubscribe();
+    }
   }
 
   @HostListener('window:scroll', ['$event'])

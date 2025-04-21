@@ -1,0 +1,11 @@
+<div class="icons-section" *ngIf="comic">
+  <div class="icon" id="save-icon" (click)="toggleSave()">
+    <img [src]="isSaved ? img_saved : img_save" alt="Save Icon">
+  </div>
+  <div class="icon" id="like-icon">
+    <img [src]="isLiked ? img_liked : img_like" alt="Like Icon">
+  </div>
+  <div class="icon" id="share-icon">
+    <img [src]="img_share" alt="Share Icon">
+  </div>
+</div>

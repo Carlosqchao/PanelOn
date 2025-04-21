@@ -1,5 +1,10 @@
-$background-color: #000000;
+$background-color: #FFF8EF;
 $font-family: "Roboto", sans-serif;
+
+.form-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
 
 .align {
   display: flex;
@@ -8,29 +13,24 @@ $font-family: "Roboto", sans-serif;
   height: 100%;
 }
 
-.aside-img {
+.aside-img img{
+  position: fixed;
+  height: 100vh;
   width: 50%;
-  img {
-    float: left;
-    width: 100%;
-    height: 100vh;
-    object-fit: fill;
-  }
 }
 
-.form-container {
-  position: absolute;
-  top: 50%;
-  left: 75%;
-  height: 95%;
-  transform: translate(-50%, -50%);
-  width: 40%;
+
+.inner-form-container {
+  padding: 0 5vh;
   background-color: #e76f511a;
   display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 5px;
   box-sizing: border-box;
+  flex-direction: column;
+  width: 50%;
+  border: 60px solid $background-color;
+  align-items: center;
+  border-radius: 80px;
 }
 
 
@@ -39,27 +39,39 @@ $font-family: "Roboto", sans-serif;
   justify-content: center;
   align-items: center;
   background-color: #d9d9d9;
-  width: 30vw;
-  height: 20vh;
+  min-height: 20vh;
   position: relative;
   z-index: 3;
   margin-bottom: 3vh;
+  flex-direction: column;
+  line-height: 3vh;
+  width: 65vh;
+  margin-top: 3vh;
+
+
 
   .circle {
     width: 100px;
     height: 100px;
     background-color: #a9a9a9;
     border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     z-index: -1;
+    align-content: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+    &.circle-empty {
+      background-color: #d9d9d9;
+    }
   }
 }
+
 textarea {
   resize: none;
-  width: 29.8vw;
+  width: 30vw;
   height: 15vh;
   line-height: 1.5;
   font-size: 1.2rem;
@@ -86,9 +98,8 @@ textarea {
 }
 .title {
   margin-bottom: 4vh;
-  height: 6vh;
   input {
-    width: 65vh;
+    width: 30vw;
     height: 6vh;
     color: #aaa;
     font-size: 1.2rem;
@@ -111,8 +122,9 @@ textarea {
 .author {
   margin-bottom: 5vh;
   height: 5vh;
+
   input {
-    width: 65vh;
+    width: 30vw;
     height: 6vh;
     font-size: 1.2rem;
     color: #aaa;
@@ -138,6 +150,7 @@ textarea {
   color: #aaa;
   justify-content: center;
   width: 100%;
+  margin: 1vh 0;
   button {
     background-color: #e76f51;
     color: #ffffff;
@@ -166,12 +179,11 @@ textarea {
 }
 
 .state-container {
-  width: 100%;
   margin: 10px 0;
   display: flex;
   align-items: center;
   select {
-    width: 67.5vh;
+    width: 31vw;
     height: 6vh;
     font-size: 1.2rem;
     padding: 1vh 1vh;
@@ -193,14 +205,13 @@ textarea {
 }
 
 .genre-container {
-  width: 100%;
   margin: 10px 0;
   color: #aaa;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   select {
-    width: 50vh;
+    width: 23.5vw;
     height: 6vh;
     font-size: 1.2rem;
     color: #aaa;
@@ -213,6 +224,7 @@ textarea {
     background-color: #fff;
     font-family: $font-family;
     text-align: left;
+    margin-right: 1vh;
     &:focus {
       outline: none;
       border: 0.1vh solid transparent;
@@ -244,4 +256,73 @@ textarea {
       box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     }
   }
+}
+.progress-bar {
+  width: 100%;
+  min-height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress {
+  height: 100%;
+  width: 100%;
+  transition: background-color 0.5s ease;
+}
+
+.progress.loading {
+  background: linear-gradient(to right, #007bff, #66b2ff);
+  background-size: 200% 100%;
+  animation: loading-animation 1.5s infinite;
+}
+
+.progress.clean {
+  background-color: #28a745;
+}
+
+.progress.nsfw {
+  background-color: #dc3545;
+}
+
+@keyframes loading-animation {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.message {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.clean-message {
+  color: #28a745;
+}
+
+.nsfw-message {
+  color: #dc3545;
+}
+.invalid {
+  border: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 4px;
+}
+.state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-left: 2px;
 }
