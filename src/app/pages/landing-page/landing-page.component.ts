@@ -71,7 +71,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
             description: item.content ? item.content.substring(0, 100) + '...' : 'Sin descripción',
             newsId: item.id || `news_${index}`
           };
-          console.log('Mapeo de carouselItem:', carouselItem);
           return carouselItem;
         });
         const newsIds = this.carouselItems.map(item => item.newsId);
