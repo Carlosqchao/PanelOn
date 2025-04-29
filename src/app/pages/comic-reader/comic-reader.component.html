@@ -16,7 +16,8 @@
 
     <div id="Pagebuttons">
       <button class="page_button" (click)="prevPage()"><</button>
-      <input id="PageNumber" #InputNumber type="number" min="1" max="{{ maxPages }}" (keydown.enter)="pageInputChange()" [placeholder]="pageNumber">
+      <input id="PageNumber" #InputNumber type="text" min="1" max="{{ maxPages }}"
+          (input)="numberChecker()"   (keydown.enter)="pageInputChange()" [placeholder]="pageNumber">
       <button class="page_button" (click)="nextPage()">></button>
     </div>
     <app-action-icons></app-action-icons>

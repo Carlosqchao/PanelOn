@@ -105,7 +105,7 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       const page = await this.pdfDocument.getPage(pageNumber);
 
       const container = this.pdfContainter.nativeElement;
-      const scale = container.clientWidth / page.getViewport({ scale: 2 }).width;
+      const scale = container.clientWidth / page.getViewport({ scale: 2.45 }).width;
 
       const viewport = page.getViewport({ scale });
       const canvas = this.canvasElement.nativeElement;
@@ -161,6 +161,8 @@ export class ComicReaderComponent implements OnInit, OnChanges {
     }
   }
 
+
+
   fullscreen(): void {
     const container = this.pdfContainter.nativeElement;
     if (container.requestFullscreen) {
@@ -180,4 +182,9 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       this.renderPage(this.pageNumber)
     }
   };
+
+  numberChecker() {
+    let number =this.inputNumber.nativeElement.value.replace(/\D/g, '');
+    this.inputNumber.nativeElement.value = number;
+    }
 }

@@ -4,10 +4,10 @@ h1{
 
 
 .fullscreen{
-  height: 30vh;
   background: #fff8ef;
-
 }
+#PageNumber{
+  width:50% }
 
 #pdf-container {
   display: flex;
@@ -17,15 +17,7 @@ h1{
   align-content: center;
   justify-content: center;
 }
-#pdf-container:fullscreen {
-  display: flex;
-  height: 90%;
-  place-self: center;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  padding: 5vh 5vh 0 5vh;
-}
+
 #PageNumber{
   height: 10vh;
   background-color: transparent;

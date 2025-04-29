@@ -14,7 +14,8 @@ $section-width: 20%;
 .main-nav {
   @include flex-center(row);
   position: fixed;
-  background-color: #D9D9D9;
+  background-color: #E76F51;
+  background: linear-gradient(-45deg,#E76F51, #cd5031);
   width: 100%;
   height: $header-height;
   top: 0;
@@ -23,7 +24,7 @@ $section-width: 20%;
 
   a {
     cursor: pointer;
-    color: black;
+    color: white;
     margin: $margin-spacing;
     font-size: $font-size;
     text-decoration: none;
