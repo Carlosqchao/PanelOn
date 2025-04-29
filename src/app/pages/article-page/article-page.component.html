@@ -1,18 +1,14 @@
-<app-header>
-</app-header>
-<article class="news-article">
+<app-header></app-header>
+<article class="news-article" *ngIf="news">
   <div class="article-header">
-    <h1 id="article-title"> {{ title }} </h1>
-    <p id="article-author">by {{ author }}</p>
+    <h1 id="article-title">{{ news.title }}</h1>
+    <p id="article-author">by {{ news.author }}</p>
   </div>
   <figure class="article-image">
-    <img src="{{ imgSrc }}">
+    <img [src]="news.image" [alt]="news.title">
   </figure>
   <article class="article-content">
-    <p id="article-content">
-      {{ articleContent }}
-    </p>
+    <p id="article-content">{{ news.content }}</p>
   </article>
 </article>
-<app-footer>
-</app-footer>
+<app-footer></app-footer>

@@ -37,50 +37,9 @@ import { Router } from '@angular/router';
 export class LandingPageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
-  carouselItems = [
-    {
-      id: 1,
-      title: 'Imagen 1',
-      imageUrl: 'https://www.brooklyncomicshop.com/BCS/wp-content/uploads/2018/09/Batman-Article-Batman-Title-Brooklyn-Comic-Shop.jpg',
-      description: 'Descripción de la imagen 1'
-    },
-    {
-      id: 2,
-      title: 'Imagen 2',
-      imageUrl: 'https://www.eslahoradelastortas.com/blog/media/2021/07/stp00.jpg',
-      description: 'Descripción de la imagen 2'
-    },
-    {
-      id: 3,
-      title: 'Imagen 3',
-      imageUrl: 'https://www.telemadrid.es/2014/08/26/imagenes-de-archivo/actioncomic1214superman_1605149476_2010551_1300x731.jpg',
-      description: 'Descripción de la imagen 3'
-    }
-  ];
-
+  carouselItems: any[] = [];
   comics: any[] = [];
-  news = [
-    {
-      title: 'New Spider-Man Movie Announced',
-      imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/3/30/6750d4c18340e/portrait_uncanny.jpg',
-      author: 'Peter Parker'
-    },
-    {
-      title: 'Star Wars Series Gets New Season',
-      imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/6/70/6750d4ba4b982/portrait_uncanny.jpg',
-      author: 'Luke Skywalker'
-    },
-    {
-      title: 'Avengers Assemble for New Event',
-      imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/d/00/6750d4ca9eff7/portrait_uncanny.jpg',
-      author: 'Tony Stark'
-    },
-    {
-      title: 'Avengers Face New Threat',
-      imageUrl: 'https://cdn.marvel.com/u/prod/marvel/i/mg/d/00/6750d4ca9eff7/portrait_uncanny.jpg',
-      author: 'Steve Rogers'
-    }
-  ];
+  news: any[] = [];
   characters: any[] = [];
   selectedCharacters: any[] = [];
   predefinedColors = ['#FFDD33', '#5CAAB4', '#A01F29'];
@@ -93,10 +52,35 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     ).subscribe({
       next: (comics) => {
         this.comics = comics;
-        console.log('Cómics cargados desde Firestore:');
       },
       error: (err) => {
         console.error('Error al cargar los cómics desde Firestore:', err);
+      }
+    });
+
+    this.appService.getNews().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (news) => {
+        this.news = news.slice(0, 4);
+        this.carouselItems = news.slice(0, 8).map((item, index) => {
+          const carouselItem = {
+            id: index + 1,
+            title: item.title || 'Sin título',
+            image: item.image || 'https://via.placeholder.com/800x400?text=Imagen+no+disponible',
+            description: item.content ? item.content.substring(0, 100) + '...' : 'Sin descripción',
+            newsId: item.id || `news_${index}`
+          };
+          return carouselItem;
+        });
+        const newsIds = this.carouselItems.map(item => item.newsId);
+        if (new Set(newsIds).size !== newsIds.length) {
+          console.warn('¡Advertencia: newsIds duplicados detectados!', newsIds);
+        }
+      },
+      error: (err) => {
+        console.error('Error al cargar las noticias desde Firestore:', err);
+        this.carouselItems = [];
       }
     });
 
@@ -131,8 +115,4 @@ export class LandingPageComponent implements OnInit, OnDestroy {
       window.scrollTo(0, 0);
     });
   }
-
 }
-
-
-
