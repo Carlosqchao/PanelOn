@@ -1,15 +1,31 @@
 h1{
-  padding: 5vh 5vh 0 5vh;
+  padding: 15vh 5vh 0 5vh;
+}
+
+
+.fullscreen{
+  height: 30vh;
+  background: #fff8ef;
+
 }
 
 #pdf-container {
   display: flex;
+  width: 100%;
+  place-self: center;
   align-items: center;
   align-content: center;
   justify-content: center;
-
 }
-
+#pdf-container:fullscreen {
+  display: flex;
+  height: 90%;
+  place-self: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  padding: 5vh 5vh 0 5vh;
+}
 #PageNumber{
   height: 10vh;
   background-color: transparent;
@@ -24,12 +40,12 @@ h1{
   display: flex;
   flex-direction: row;
   place-items: center;
-
 }
 
 
 canvas {
   margin:2.5vh;
+  object-fit: contain;
 }
 
 
