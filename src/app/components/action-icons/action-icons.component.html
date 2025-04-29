@@ -2,7 +2,7 @@
   <div class="icon" id="save-icon" (click)="toggleSave()">
     <img [src]="isSaved ? img_saved : img_save" alt="Save Icon">
   </div>
-  <div class="icon" id="like-icon">
+  <div class="icon" id="like-icon" (click)="toggleLike()">
     <img [src]="isLiked ? img_liked : img_like" alt="Like Icon">
   </div>
   <div class="icon" id="share-icon">
