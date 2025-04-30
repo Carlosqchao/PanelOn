@@ -1,7 +1,14 @@
+export interface Comment {
+  id?: string;
+  author_id: string;
+  content: string;
+  created_at: Date | any;
+  replies?: Comment[];
+}
+
 export interface Comic {
   author: string;
   author_id: number;
-  comments: string[];
   cover: string;
   genre: string[];
   id: string;
