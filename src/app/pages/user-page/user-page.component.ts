@@ -11,6 +11,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {CancelSubscriptionDialogComponent} from '../../components/cancel-subscription-dialog/cancel-subscription-dialog.component';
 import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {User} from '@angular/fire/auth';
+import {AuthService} from '../../../../backend/src/services/user-auth';
 
 @Component({
   selector: 'app-user-page',
@@ -20,12 +22,17 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './user-page.component.scss'
 })
 export class UserPageComponent implements OnInit {
-  user: null|IUser = null;
-  dialog: MatDialog = inject(MatDialog);
-  isEditingUsername = false;
-  newUsername = '';
 
   userStoreService = inject(UserStoreService);
+  userAuthService: AuthService = inject(AuthService);
+  user: User | null = null;
+  userData: IUser | null = null;
+  dialog: MatDialog = inject(MatDialog);
+  userDataEdit: Partial<IUser> = {};
+  isEditingUsername = false;
+  isEditingDescription = false;
+
+
   constructor(private appService: AppService, private router: Router) {}
 
   callToRead(): void{
@@ -44,30 +51,46 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this.userStoreService.getUser()
+    this.userAuthService.getCurrentUser().subscribe(user => this.user = user);
+    this.userStoreService.getUser().subscribe(userData => this.userData = userData);
   }
 
   toggleUsernameEdit(): void {
     this.isEditingUsername = !this.isEditingUsername;
-    if (this.isEditingUsername && this.user) {
-      this.newUsername = this.user.username;
+    if (this.isEditingUsername && this.userData) {
+      this.userDataEdit = {...this.userData};
     }
   }
 
-  saveUsername(): void {
-    if (this.user && this.newUsername.trim() !== '') {
-      this.user.username = this.newUsername.trim();
-
-      // Aquí deberías llamar al servicio para actualizar el nombre en la base de datos
-      // this.userStoreService.updateUsername(this.user.id, this.newUsername);
-
-      // Actualiza el usuario en el store
-      this.userStoreService.setUser(this.user);
+  toggleDescriptionEdit(): void {
+    this.isEditingDescription = !this.isEditingDescription;
+    if (this.isEditingDescription && this.userData) {
+      this.userDataEdit = {...this.userData};
+      if (!this.userDataEdit.description) {
+        this.userDataEdit.description = '';
+      }
     }
-    this.isEditingUsername = false;
+  }
+
+  async saveUsername(){
+    await this.appService.updateUser(this.user?.uid, this.userDataEdit);
+    this.cancelEdit();
+    location.reload();
+  }
+
+  async saveDescription(){
+    await this.appService.updateUser(this.user?.uid, this.userDataEdit);
+    this.cancelEdit();
+    location.reload();
   }
 
   cancelEdit(): void {
     this.isEditingUsername = false;
+    this.isEditingDescription = false;
+    this.userDataEdit = {};
+  }
+
+  hasDescription(): boolean {
+    return !!this.userData?.description && this.userData.description.trim() !== '';
   }
 }

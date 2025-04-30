@@ -1,20 +1,20 @@
 <app-header-backlink></app-header-backlink>
 <div class="user-page" *ngIf="user">
   <div class="user-info">
-    <img class="userImage" src="">
+    <img class="userImage" *ngIf="userData?.imageUrl" [src]="userData?.imageUrl">
+    <img class="userImage" *ngIf="!userData?.imageUrl" src="default-profile-icon.jpg">
+
     <div class="userNameBar">
-      <!-- Edit mode username-->
       <div *ngIf="isEditingUsername; else displayUsername" class="edit-username-container">
-        <input type="text" [(ngModel)]="newUsername" class="edit-username-input" placeholder="Username" (keyup.enter)="saveUsername()">
+        <input type="text" [(ngModel)]="this.userDataEdit.username" class="edit-username-input" placeholder="Username" (keyup.enter)="saveUsername()">
         <div class="edit-actions">
           <button class="action-button save-button" (click)="saveUsername()">✓</button>
           <button class="action-button cancel-button" (click)="cancelEdit()">✗</button>
         </div>
       </div>
 
-      <!-- Normal mode username-->
       <ng-template #displayUsername>
-        <p class="userName">{{user?.username}}</p>
+        <p class="userName">{{userData?.username}}</p>
         <button class="pencilIcon" (click)="toggleUsernameEdit()">
           <img class="icon" src="pencilIcon.png">
         </button>
@@ -24,17 +24,45 @@
         <img class="icon" src="bellIcon.png">
       </button>
     </div>
+
+    <div class="userDescriptionSection">
+      <div *ngIf="isEditingDescription; else displayDescription" class="edit-description-container">
+        <textarea [(ngModel)]="userDataEdit.description" class="edit-description-input"
+                  placeholder="Añade una descripción sobre ti..." (keyup.enter)="saveDescription()"></textarea>
+        <div class="edit-actions">
+          <button class="action-button save-button" (click)="saveDescription()">✓</button>
+          <button class="action-button cancel-button" (click)="cancelEdit()">✗</button>
+        </div>
+      </div>
+
+      <ng-template #displayDescription>
+        <div *ngIf="hasDescription(); else addDescription" class="description-container">
+          <div class="description-editable" (click)="toggleDescriptionEdit()">
+            <p class="userDescription">{{userData?.description}}</p>
+            <span class="edit-hint">click description to edit</span>
+          </div>
+        </div>
+
+        <ng-template #addDescription>
+          <button class="add-description-button" (click)="toggleDescriptionEdit()">
+            Añadir descripción
+          </button>
+        </ng-template>
+      </ng-template>
+    </div>
+
     <div class="subscriptionBar">
       <button class="subscribeButton">Active Subscription Plan</button>
       <button class="cancelButton" (click)="openModal()"><span style="color: red">Cancel subscription</span></button>
     </div>
-    <p class="userDescription"></p>
   </div>
 
   <div class="options-container">
     <div class=center-container>
       <app-profile-option imageURL="favouritesIcon.png" optionName="SAVED"></app-profile-option>
       <app-profile-option imageURL="readingIcon.png" optionName="READING"></app-profile-option>
+    </div>
+    <div class=center-container>
       <app-profile-option imageURL="myComicsIcon.png" optionName="MY COMICS"></app-profile-option>
       <app-profile-option imageURL="wishlistIcon.png" optionName="LIKES"></app-profile-option>
     </div>
