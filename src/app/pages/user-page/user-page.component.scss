@@ -13,3 +13,170 @@
   align-items: center;
   justify-content: center;
 }
+
+.user-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.userNameBar{
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.pencilIcon{
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.pencilIcon:hover{
+  background-color: lightgrey;
+}
+
+.bellIcon{
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.bellIcon:hover{
+  background-color: lightgrey;
+}
+
+.icon{
+  width: 80%;
+  padding: 0.25rem;
+}
+
+.userName{
+  font-weight: bold;
+  font-size: 2rem;
+
+}
+
+.userDescription{
+  width: 50%;
+  color: #737373;
+  font-size: 1rem;
+}
+
+.userImage{
+  width: 20rem;
+  border-radius: 50%;
+}
+
+.subscriptionBar{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.subscribeButton {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: black;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.subscribeButton:hover {
+  transform: scale(1.1);
+  background-color: #eeee48;
+}
+
+.subscribeButton:active {
+  transform: scale(1);
+}
+
+.cancelButton {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.cancelButton:hover {
+  transform: scale(1.1);
+  background-color: lightcoral;
+}
+
+.cancelButton:active {
+  transform: translateX(-5px);
+}
+
+.edit-username-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.edit-username-input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 15rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.edit-username-input:focus {
+  border-color: #eeee48;
+  box-shadow: 0 0 5px rgba(238, 238, 72, 0.5);
+}
+
+.edit-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.action-button:hover {
+  transform: scale(1.1);
+}
+
+.action-button:active {
+  transform: scale(1);
+}
+
+.save-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.save-button:hover {
+  background-color: #45a049;
+}
+
+.cancel-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #e53935;
+}
