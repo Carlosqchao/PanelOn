@@ -7,12 +7,16 @@ import {
   addDoc,
   deleteDoc,
   setDoc,
-  getDoc
+  getDoc,
+  CollectionReference,
+  DocumentReference
 } from '@angular/fire/firestore';
-import {Observable, catchError, of, map, from} from 'rxjs';
-import { where, query } from '@angular/fire/firestore';
+import { Observable, catchError, of, map, from } from 'rxjs';
+import { where, query, orderBy } from '@angular/fire/firestore';
 import { docData } from 'rxfire/firestore';
-import {IUser} from './models/user';
+import { IUser } from './models/user';
+import { Comment } from './models/comic';
+import { Timestamp } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +30,6 @@ export class AppService {
     const comicsCollection = collection(this.firestore, '/comics');
     return collectionData(comicsCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching comics:', error);
         return of([]);
       })
     );
@@ -36,18 +39,95 @@ export class AppService {
     const comicDoc = doc(this.firestore, `/comics/${comicId}`);
     return docData(comicDoc, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching comic:', error);
         return of(null);
       })
     );
   }
 
+  getCommentsByComicId(comicId: string): Observable<Comment[]> {
+    const commentsCollection = collection(this.firestore, `/comics/${comicId}/comments`);
+    const q = query(commentsCollection, orderBy('created_at', 'desc'));
+    return collectionData(q, { idField: 'id' }).pipe(
+      map((comments: any[]) => comments.map(comment => ({
+        ...comment,
+        created_at: comment['created_at'] instanceof Timestamp ? comment['created_at'].toDate() : comment['created_at']
+      } as Comment))),
+      catchError(error => {
+        return of([]);
+      })
+    );
+  }
+
+  getRepliesByCommentId(comicId: string, commentId: string): Observable<Comment[]> {
+    const repliesCollection = collection(this.firestore, `/comics/${comicId}/comments/${commentId}/replies`);
+    const q = query(repliesCollection, orderBy('created_at', 'asc'));
+    return collectionData(q, { idField: 'id' }).pipe(
+      map((replies: any[]) => replies.map(reply => ({
+        ...reply,
+        created_at: reply['created_at'] instanceof Timestamp ? reply['created_at'].toDate() : reply['created_at']
+      } as Comment))),
+      catchError(error => {
+        return of([]);
+      })
+    );
+  }
+
+  async addComment(comicId: string, comment: Omit<Comment, 'id' | 'created_at'>): Promise<string> {
+    try {
+      const commentsCollection = collection(this.firestore, `/comics/${comicId}/comments`);
+      const newComment = {
+        ...comment,
+        created_at: new Date()
+      };
+      const docRef = await addDoc(commentsCollection, newComment);
+      return docRef.id;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async addReply(comicId: string, commentId: string, reply: Omit<Comment, 'id' | 'created_at'>): Promise<string> {
+    try {
+      const repliesCollection = collection(this.firestore, `/comics/${comicId}/comments/${commentId}/replies`);
+      const newReply = {
+        ...reply,
+        created_at: new Date()
+      };
+      const docRef = await addDoc(repliesCollection, newReply);
+      return docRef.id;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateComment(comicId: string, commentId: string, content: string, isReply: boolean = false, parentCommentId?: string): Promise<void> {
+    try {
+      const docPath = isReply
+        ? `/comics/${comicId}/comments/${parentCommentId}/replies/${commentId}`
+        : `/comics/${comicId}/comments/${commentId}`;
+      const commentDoc = doc(this.firestore, docPath);
+      await setDoc(commentDoc, { content }, { merge: true });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async deleteComment(comicId: string, commentId: string, isReply: boolean = false, parentCommentId?: string): Promise<void> {
+    try {
+      const docPath = isReply
+        ? `/comics/${comicId}/comments/${parentCommentId}/replies/${commentId}`
+        : `/comics/${comicId}/comments/${commentId}`;
+      const commentDoc = doc(this.firestore, docPath);
+      await deleteDoc(commentDoc);
+    } catch (error) {
+      throw error;
+    }
+  }
 
   getUsers(): Observable<any[]> {
     const usersCollection = collection(this.firestore, '/users');
     return collectionData(usersCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching users:', error);
         return of([]);
       })
     );
@@ -57,7 +137,6 @@ export class AppService {
     const charactersCollection = collection(this.firestore, 'characters');
     return collectionData(charactersCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching characters:', error);
         return of([]);
       })
     );
@@ -67,7 +146,6 @@ export class AppService {
     const characterDoc = doc(this.firestore, `/characters/${characterId}`);
     return docData(characterDoc, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching character:', error);
         return of(null);
       })
     );
@@ -78,7 +156,6 @@ export class AppService {
     const q = query(charactersCollection, where('id', 'in', characterIds));
     return collectionData(q, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching related characters:', error);
         return of([]);
       })
     );
@@ -89,7 +166,6 @@ export class AppService {
     const q = query(comicsCollection, where('id', 'in', comicIds));
     return collectionData(q, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching related comics:', error);
         return of([]);
       })
     );
@@ -99,7 +175,6 @@ export class AppService {
     const newsCollection = collection(this.firestore, 'news');
     return collectionData(newsCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching news:', error);
         return of([]);
       })
     );
@@ -109,7 +184,6 @@ export class AppService {
     const newsDoc = doc(this.firestore, `/news/${newsId}`);
     return docData(newsDoc, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching news:', error);
         return of(null);
       })
     );
@@ -119,7 +193,6 @@ export class AppService {
     const donationsCollection = collection(this.firestore, 'donations');
     return collectionData(donationsCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching donations:', error);
         return of([]);
       })
     );
@@ -129,7 +202,6 @@ export class AppService {
     const paymentsCollection = collection(this.firestore, 'payments');
     return collectionData(paymentsCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching payments:', error);
         return of([]);
       })
     );
@@ -139,29 +211,24 @@ export class AppService {
     const genresCollection = collection(this.firestore, 'genres');
     return collectionData(genresCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching genres:', error);
         return of([]);
       })
     );
   }
 
   getUserByUid(uid: string): Observable<IUser> {
-    console.log('Buscando usuario en Firestore con UID:', uid);
     const userDocRef = doc(this.firestore, `users/${uid}`);
     return from(
       getDoc(userDocRef)
         .then((docSnap) => {
           if (docSnap.exists()) {
             const userData = docSnap.data() as IUser;
-            console.log('Usuario encontrado en Firestore:', userData);
             return userData;
           } else {
-            console.error('No se encontró usuario con UID:', uid);
             throw new Error('User not found');
           }
         })
         .catch((error) => {
-          console.error('Error al buscar usuario en Firestore:', error);
           throw error;
         })
     );
@@ -173,7 +240,6 @@ export class AppService {
       const docRef = await addDoc(comicsCollection, comic);
       return docRef.id;
     } catch (error) {
-      console.error('Error adding comic:', error);
       throw error;
     }
   }
@@ -183,7 +249,6 @@ export class AppService {
       const comicDoc = doc(this.firestore, `/comics/${comicId}`);
       await setDoc(comicDoc, comic, { merge: true });
     } catch (error) {
-      console.error('Error updating comic:', error);
       throw error;
     }
   }
@@ -193,7 +258,6 @@ export class AppService {
       const comicDoc = doc(this.firestore, `/comics/${comicId}`);
       await deleteDoc(comicDoc);
     } catch (error) {
-      console.error('Error deleting comic:', error);
       throw error;
     }
   }
@@ -202,10 +266,8 @@ export class AppService {
     try {
       const userDocRef = doc(this.firestore, `/users/${uid}`);
       await setDoc(userDocRef, userData);
-      console.log('Usuario guardado en Firestore con UID:', uid);
       return uid;
     } catch (error) {
-      console.error('Error al guardar usuario en Firestore:', error);
       throw error;
     }
   }
@@ -216,7 +278,6 @@ export class AppService {
       const docRef = await addDoc(charactersCollection, character);
       return docRef.id;
     } catch (error) {
-      console.error('Error adding character:', error);
       throw error;
     }
   }
@@ -227,7 +288,6 @@ export class AppService {
       const docRef = await addDoc(newsCollection, news);
       return docRef.id;
     } catch (error) {
-      console.error('Error adding news:', error);
       throw error;
     }
   }
@@ -238,7 +298,6 @@ export class AppService {
       const docRef = await addDoc(donationsCollection, donation);
       return docRef.id;
     } catch (error) {
-      console.error('Error adding donation:', error);
       throw error;
     }
   }
@@ -249,7 +308,6 @@ export class AppService {
       const docRef = await addDoc(paymentsCollection, payment);
       return docRef.id;
     } catch (error) {
-      console.error('Error adding payment:', error);
       throw error;
     }
   }
@@ -260,7 +318,6 @@ export class AppService {
       const docRef = await addDoc(genresCollection, genre);
       return docRef.id;
     } catch (error) {
-      console.error('Error adding genre:', error);
       throw error;
     }
   }
@@ -281,7 +338,6 @@ export class AppService {
     );
   }
 
-
   getComicsOrderedByRating(ascending: boolean = false): Observable<any[]> {
     const comicsCollection = collection(this.firestore, 'comics');
 
@@ -293,5 +349,4 @@ export class AppService {
       )
     );
   }
-
 }
