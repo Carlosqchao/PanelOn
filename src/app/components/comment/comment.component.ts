@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '../../app.service';
-import {UserStoreService} from '../../../../backend/src/services/user-store';
+import { UserStoreService } from '../../../../backend/src/services/user-store';
 import { AuthService } from '../../../../backend/src/services/user-auth';
 import { Comment } from '../../models/comic';
 import { FormsModule } from '@angular/forms';
@@ -19,13 +19,13 @@ export class CommentComponent implements OnInit, OnDestroy {
   @Input() comment!: Comment;
   @Input() comicId: string = '';
   @Input() parentCommentId: string = '';
-  @Input() parentUsername: string = ''; // Username of the parent comment's author
+  @Input() parentUsername: string = '';
   @Input() currentUserId: string = '';
   @Output() deleteEvent = new EventEmitter<{ commentId: string, isReply: boolean, parentCommentId?: string }>();
   @Output() updateEvent = new EventEmitter<{ commentId: string, content: string, isReply: boolean, parentCommentId?: string }>();
 
-  userIcon: string = '/assets/default-user-icon.png'; // Default user icon
-  username: string = 'Anonymous'; // Default username
+  userIcon: string = '../../assets/default-user-icon.png';
+  username: string = 'Carlos Ruano Rachid';
   isEditing: boolean = false;
   editedContent: string = '';
   showReplyForm: boolean = false;
@@ -33,8 +33,8 @@ export class CommentComponent implements OnInit, OnDestroy {
   showAllReplies: boolean = false;
   maxVisibleReplies: number = 3;
 
-  // Track usernames for all replies
   replyUsernames: Record<string, string> = {};
+  replyUserIcons: Record<string, string> = {};
 
   private userSubscription: Subscription | undefined;
 
@@ -45,27 +45,42 @@ export class CommentComponent implements OnInit, OnDestroy {
   ) {}
 
   get isCommentOwner(): boolean {
-    return this.comment.author_id === this.currentUserId;
+    return this.comment.author_id === this.currentUserId && this.currentUserId !== '';
   }
 
   get visibleReplies(): Comment[] {
-    if (!this.comment.replies || this.comment.replies.length === 0) return [];
-    return this.showAllReplies ? this.comment.replies : this.comment.replies.slice(0, this.maxVisibleReplies);
+    if (!this.comment.replies || this.comment.replies.length === 0) {
+      console.log('No replies or replies array is empty');
+      return [];
+    }
+    const visible = this.showAllReplies ? this.comment.replies : this.comment.replies.slice(0, this.maxVisibleReplies);
+    return visible;
   }
 
   get hasMoreReplies(): boolean {
-    return !!this.comment.replies && this.comment.replies.length > this.maxVisibleReplies && !this.showAllReplies;
+    const hasMore = !!this.comment.replies && this.comment.replies.length > this.maxVisibleReplies && !this.showAllReplies;
+    return hasMore;
   }
 
   toggleEdit(): void {
     if (this.showReplyForm) return;
 
     if (this.isEditing) {
-      this.updateEvent.emit({
-        commentId: this.comment.id!,
-        content: this.editedContent,
-        isReply: !!this.parentCommentId,
-        parentCommentId: this.parentCommentId || undefined
+      this.appService.updateComment(
+        this.comicId,
+        this.comment.id!,
+        this.editedContent,
+        !!this.parentCommentId,
+        this.parentCommentId
+      ).then(() => {
+        this.updateEvent.emit({
+          commentId: this.comment.id!,
+          content: this.editedContent,
+          isReply: !!this.parentCommentId,
+          parentCommentId: this.parentCommentId || undefined
+        });
+      }).catch(error => {
+        console.error('Error updating comment:', error);
       });
     } else {
       this.editedContent = this.comment.content;
@@ -77,10 +92,19 @@ export class CommentComponent implements OnInit, OnDestroy {
   delete(): void {
     if (this.isEditing || this.showReplyForm) return;
 
-    this.deleteEvent.emit({
-      commentId: this.comment.id!,
-      isReply: !!this.parentCommentId,
-      parentCommentId: this.parentCommentId || undefined
+    this.appService.deleteComment(
+      this.comicId,
+      this.comment.id!,
+      !!this.parentCommentId,
+      this.parentCommentId
+    ).then(() => {
+      this.deleteEvent.emit({
+        commentId: this.comment.id!,
+        isReply: !!this.parentCommentId,
+        parentCommentId: this.parentCommentId || undefined
+      });
+    }).catch(error => {
+      console.error('Error deleting comment:', error);
     });
   }
 
@@ -98,7 +122,7 @@ export class CommentComponent implements OnInit, OnDestroy {
   }
 
   addReply(): void {
-    if (!this.newReplyContent.trim()) return;
+    if (!this.newReplyContent.trim() || !this.currentUserId) return;
 
     const reply: Omit<Comment, 'id' | 'created_at'> = {
       author_id: this.currentUserId,
@@ -109,37 +133,54 @@ export class CommentComponent implements OnInit, OnDestroy {
       this.newReplyContent = '';
       this.showReplyForm = false;
       this.loadReplies();
+    }).catch(error => {
+      console.error('Error adding reply:', error);
     });
   }
 
   loadReplies(): void {
     if (this.comment.id) {
-      this.appService.getRepliesByCommentId(this.comicId, this.comment.id).subscribe(replies => {
-        this.comment.replies = replies;
-
-        if (replies && replies.length > 0) {
-          replies.forEach(reply => {
-            this.loadUsernameForReply(reply);
-          });
+      console.log(`Fetching replies for comic ${this.comicId}, comment ${this.comment.id}`);
+      this.appService.getRepliesByCommentId(this.comicId, this.comment.id).subscribe({
+        next: (replies) => {
+          this.comment.replies = replies || [];
+          this.showAllReplies = false;
+          if (replies && replies.length > 0) {
+            replies.forEach(reply => {
+              this.loadUserDetailsForReply(reply);
+            });
+          }
+        },
+        error: (error) => {
+          console.error('Error loading replies:', error);
+          this.comment.replies = [];
+          this.showAllReplies = false;
         }
       });
+    } else {
+      console.warn('No comment ID provided for loading replies');
+      this.comment.replies = [];
+      this.showAllReplies = false;
     }
   }
 
-  loadUsernameForReply(reply: Comment): void {
-    if (reply.author_id === this.currentUserId) {
-      this.replyUsernames[reply.id!] = this.username;
-    } else {
-      // Fetch username from AppService or use a default
-      this.appService.getUserByUid(reply.author_id).subscribe({
-        next: (userData: IUser) => {
-          this.replyUsernames[reply.id!] = userData.username || 'User ' + reply.author_id;
-        },
-        error: () => {
-          this.replyUsernames[reply.id!] = 'User ' + reply.author_id;
-        }
-      });
+  loadUserDetailsForReply(reply: Comment): void {
+    if (!reply.author_id) {
+      this.replyUsernames[reply.id!] = 'Carlos Ruano Rachid';
+      this.replyUserIcons[reply.id!] = '../../assets/default-user-icon.png';
+      return;
     }
+
+    this.appService.getUserByUid(reply.author_id).subscribe({
+      next: (userData: IUser) => {
+        this.replyUsernames[reply.id!] = userData.username || 'User ' + reply.author_id;
+        this.replyUserIcons[reply.id!] = userData.imageUrl || '../../assets/default-user-icon.png';
+      },
+      error: () => {
+        this.replyUsernames[reply.id!] = 'User ' + reply.author_id;
+        this.replyUserIcons[reply.id!] = '../../assets/default-user-icon.png';
+      }
+    });
   }
 
   onDeleteReply(event: { commentId: string, isReply: boolean, parentCommentId?: string }): void {
@@ -163,21 +204,35 @@ export class CommentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Subscribe to user data
     this.userSubscription = this.userStoreService.getUser().subscribe(user => {
       if (user) {
-        this.username = user.username || 'Anonymous';
-        this.userIcon = user.imageUrl || '/assets/default-user-icon.png';
         this.currentUserId = user.id || '';
       } else {
-        this.username = 'Anonymous';
-        this.userIcon = '/assets/default-user-icon.png';
         this.currentUserId = '';
       }
     });
 
-    // Load replies
+    this.loadUserDetailsForComment();
     this.loadReplies();
+  }
+
+  loadUserDetailsForComment(): void {
+    if (!this.comment.author_id) {
+      this.username = 'Carlos Ruano Rachid';
+      this.userIcon = '../../assets/default-user-icon.png';
+      return;
+    }
+
+    this.appService.getUserByUid(this.comment.author_id).subscribe({
+      next: (userData: IUser) => {
+        this.username = userData.username || 'User ' + this.comment.author_id;
+        this.userIcon = userData.imageUrl || '../../assets/default-user-icon.png';
+      },
+      error: () => {
+        this.username = 'User ' + this.comment.author_id;
+        this.userIcon = '../../assets/default-user-icon.png';
+      }
+    });
   }
 
   ngOnDestroy(): void {

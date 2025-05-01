@@ -11,23 +11,23 @@
       <button *ngIf="isCommentOwner" [disabled]="isEditing || showReplyForm" (click)="delete()">Delete</button>
     </div>
 
-    <!-- Reply form -->
+
     <div *ngIf="showReplyForm" class="reply-form">
       <textarea [(ngModel)]="newReplyContent" placeholder="Write your reply..." class="reply-textarea"></textarea>
-      <button (click)="addReply()">Submit Reply</button>
+      <div class="form-buttons">
+        <button (click)="addReply()">Submit Reply</button>
+        <button class="cancel-btn" (click)="toggleReplyForm()">Cancel</button>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Replies container -->
 <div class="replies-container" *ngIf="comment.replies && comment.replies.length > 0">
   <div class="reply-wrapper" *ngFor="let reply of visibleReplies; let i = index">
-    <!-- Reply indicator - show for all replies except the first level direct replies -->
     <div class="reply-indicator" *ngIf="i > 0 || parentCommentId">
       <span class="reply-arrow">↪</span> Replying to <span class="reply-username">{{ getRepliedToUsername(i) }}</span>
     </div>
 
-    <!-- Comment component for reply -->
     <app-comment
       [comment]="reply"
       [comicId]="comicId"
@@ -39,7 +39,6 @@
     </app-comment>
   </div>
 
-  <!-- View more replies button -->
   <button *ngIf="hasMoreReplies" class="view-more-btn" (click)="toggleShowAllReplies()">
     Show {{ (comment.replies.length - maxVisibleReplies) }} more {{ (comment.replies.length - maxVisibleReplies) === 1 ? 'reply' : 'replies' }}
   </button>

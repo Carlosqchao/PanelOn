@@ -8,6 +8,7 @@ import {
   deleteDoc,
   setDoc,
   getDoc,
+  getDocs,
   CollectionReference,
   DocumentReference
 } from '@angular/fire/firestore';
@@ -118,6 +119,13 @@ export class AppService {
         ? `/comics/${comicId}/comments/${parentCommentId}/replies/${commentId}`
         : `/comics/${comicId}/comments/${commentId}`;
       const commentDoc = doc(this.firestore, docPath);
+      if (!isReply) {
+        const repliesCollection = collection(this.firestore, `/comics/${comicId}/comments/${commentId}/replies`);
+        const repliesSnapshot = await getDocs(repliesCollection);
+        for (const replyDoc of repliesSnapshot.docs) {
+          await deleteDoc(replyDoc.ref);
+        }
+      }
       await deleteDoc(commentDoc);
     } catch (error) {
       throw error;
@@ -223,7 +231,7 @@ export class AppService {
         .then((docSnap) => {
           if (docSnap.exists()) {
             const userData = docSnap.data() as IUser;
-            return userData;
+            return { ...userData, id: uid };
           } else {
             throw new Error('User not found');
           }
