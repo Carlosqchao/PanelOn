@@ -140,5 +140,10 @@ export class ComicPageComponent implements OnInit, OnDestroy {
     this.canRead = userAge >= this.comic.pegi;
   }
 
+  getPegiIconUrl(): string {
+    if (!this.comic?.pegi) return '';
+    return `/pegi-${this.comic.pegi}.png`;
+  }
+
   protected readonly Array = Array;
 }
