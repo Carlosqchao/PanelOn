@@ -1,16 +1,12 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <form (ngSubmit)="onSubmit()">
   <div class="aside-img">
     <img src="https://media.mycomicshop.com/n_iv/600/1168751.jpg" alt="Comic Cover">
   </div>
   <div class="form-container">
-
     <div class="inner-form-container">
       <div class="file-upload">
         <div class="circle" [ngClass]="{ 'circle-empty': filePreview }">
-
-
-        <label for="file" class="file-label">
+          <label for="file" class="file-label">
             <ng-container *ngIf="!filePreview; else fileIcon">
               <i class="fas fa-upload fa-2x"></i>
             </ng-container>
@@ -19,7 +15,7 @@
               <div class="file-preview">
                 <i class="fas fa-file-pdf fa-3x"></i>
                 <br>
-                <p>{{ selectedFile?.name }}</p>
+                <p>{{ getShortFileName(selectedFile?.name) }}</p>
               </div>
             </ng-template>
 
@@ -31,25 +27,19 @@
             Please select a valid PDF. Max size: 100MB.
           </p>
         </div>
-        <div *ngIf="!isPegiSelected()" class="file-warning">
-          <p style="color: red;">
-            Please select a Pegi rating before Uploading
-          </p>
+      </div>
+
+      <!-- Mostrar el PEGI sugerido o NSFW -->
+      <div *ngIf="nsfwResult">
+        <div *ngIf="loadingStatus === 'clean'" class="message clean-message">
+          ✅ The PDF is clean. PEGI Suggested: {{ nsfwResult.pegi }}
         </div>
-
-
+        <div *ngIf="loadingStatus === 'nsfw'" class="message nsfw-message">
+          ⚠️ The PDF violates the Terms and Conditions.
+        </div>
       </div>
 
-      <div *ngIf="loadingStatus === 'clean' || loadingStatus === 'nsfw'"
-           [ngClass]="{
-       'message': true,
-       'clean-message': loadingStatus === 'clean',
-       'nsfw-message': loadingStatus === 'nsfw'
-     }">
-        {{ loadingStatus === 'clean' ? ' The PDF is valid' : ' The PDF violates the Terms and Conditions' }}
-      </div>
-
-
+      <!-- Estado de carga -->
       <div *ngIf="loadingStatus" class="progress-bar">
         <div class="progress" [ngClass]="{
             'loading': loadingStatus === 'loading',
@@ -58,13 +48,13 @@
         }"></div>
       </div>
 
-
       <div style="align-self: flex-start;">
         <nav aria-label="Go back">
-          <a id="back-link"   href="#" onclick="history.back(); return false"> &larr; Go back</a>
+          <a id="back-link" href="#" onclick="history.back(); return false" style="color: black"> &larr; Go back</a>
         </nav>
       </div>
 
+      <!-- Resto del formulario: Título, Autor, etc. -->
       <div class="title">
         <input
           type="text"
@@ -140,28 +130,6 @@
       <div *ngIf="selectedGenres.length === 0 && formSubmitted" class="error-message">
         Please select at least one genre.
       </div>
-
-      <div class="state-container">
-        <select
-          id="pegi"
-          [(ngModel)]="selectedPegi"
-          name="selectedPegi"
-          required
-          [ngClass]="{ 'invalid': !isPegiSelected() && formSubmitted }"
-        >
-          <option value="" disabled selected>Define a PEGI</option>
-          <option value="PEGI 3">PEGI 3</option>
-          <option value="PEGI 7">PEGI 7</option>
-          <option value="PEGI 12">PEGI 12</option>
-          <option value="PEGI 16">PEGI 16</option>
-          <option value="PEGI 18">PEGI 18</option>
-        </select>
-
-        <div *ngIf="!isPegiSelected() && formSubmitted" class="error-message">
-          Please select a PEGI rating.
-        </div>
-      </div>
-
 
       <div class="upload-button">
         <app-button text="UPLOAD"></app-button>

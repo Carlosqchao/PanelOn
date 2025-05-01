@@ -36,15 +36,23 @@ app.post('/check-nsfw', upload.single('file'), async (req: Request, res: Respons
       return res.status(500).json({ error: 'PDF conversion failed' });
     }
     console.log('stdout:', stdout);
-    const python = spawn('python', ['src/nsfw-backend/src/nsfw_check.py', outputDir, pegi]);
+
+    const python = spawn('C:\\Users\\Carlos Ruano\\WebstormProjects\\PanelOn\\.venv\\Scripts\\python.EXE', ['src/nsfw-backend/src/nsfw_check.py', outputDir]);
+
 
     let output = '';
     python.stdout.on('data', (data) => output += data.toString());
     python.stderr.on('data', (data) => console.error('stderr:', data.toString()));
 
     python.on('close', (code) => {
-      const result = output.includes('NSFW');
-      res.json({ nsfw: result });
+      try {
+        const result = JSON.parse(output);
+        res.json(result);
+        console.log('Resultado del análisis NSFW:', result);
+      } catch (e) {
+        console.error('Error parseando la salida de Python:', output);
+        res.status(500).json({ error: 'Error analizando resultados NSFW' });
+      }
     });
   });
 });
