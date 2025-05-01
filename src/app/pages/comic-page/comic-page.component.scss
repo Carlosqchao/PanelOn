@@ -54,5 +54,16 @@
   width: 100px;
   height: auto;
   transform: rotate(30deg);
+  transition: opacity 1s ease, transform 1s ease;
   z-index: 10;
+}
+
+.pegi-icon:hover {
+  opacity: 1.2;
+  transform: scale(1.2);
+}
+
+app-comic-status {
+  width: 100%;
+  justify-content: space-between;
 }
