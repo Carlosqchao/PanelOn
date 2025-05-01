@@ -78,7 +78,9 @@ export class SearchPageComponent implements OnInit {
   comics: any[] = [];
   constructor(private appService: AppService, private router: Router,private activatedRoute: ActivatedRoute,) {}
   option: string = '';
-  news: ({ title: string; image: string; author: string; })[] | undefined;
+  news: ({
+    id: string;
+    title: string; image: string; author: string; })[] | undefined;
   selectedCharacters: any[] | undefined;
 
 
@@ -160,7 +162,8 @@ export class SearchPageComponent implements OnInit {
     this.appService.getNews().pipe(
       map(news =>
         news.filter(report =>
-          report.title?.toLowerCase().includes(query.toLowerCase())
+          report.title?.toLowerCase().includes(query.toLowerCase()) ||
+          report.author?.toLowerCase().includes(query.toLowerCase())
         )
       )
     ).subscribe(result => {

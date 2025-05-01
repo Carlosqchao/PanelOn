@@ -25,11 +25,12 @@
 
 <div class="center-container">
   <app-news-card
-    *ngFor="let new of news"
-    [imageUrl]="new.imageUrl"
-    [author]="new.author"
-    [title]="new.title"
-  ></app-news-card>
+    *ngFor="let news of news"
+    [imageUrl]="news.image"
+    [author]="news.author"
+    [title]="news.title"
+    [newsId]="news.id">
+  </app-news-card>
 </div>
 
 <div class="center-container">

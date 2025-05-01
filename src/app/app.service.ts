@@ -105,6 +105,16 @@ export class AppService {
     );
   }
 
+  getNewsById(newsId: string): Observable<any> {
+    const newsDoc = doc(this.firestore, `/news/${newsId}`);
+    return docData(newsDoc, { idField: 'id' }).pipe(
+      catchError(error => {
+        console.error('Error fetching news:', error);
+        return of(null);
+      })
+    );
+  }
+
   getDonations(): Observable<any[]> {
     const donationsCollection = collection(this.firestore, 'donations');
     return collectionData(donationsCollection, { idField: 'id' }).pipe(
