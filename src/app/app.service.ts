@@ -7,7 +7,7 @@ import {
   addDoc,
   deleteDoc,
   setDoc,
-  getDoc
+  getDoc, updateDoc
 } from '@angular/fire/firestore';
 import {Observable, catchError, of, map, from} from 'rxjs';
 import { where, query } from '@angular/fire/firestore';
@@ -105,6 +105,16 @@ export class AppService {
     );
   }
 
+  getNewsById(newsId: string): Observable<any> {
+    const newsDoc = doc(this.firestore, `/news/${newsId}`);
+    return docData(newsDoc, { idField: 'id' }).pipe(
+      catchError(error => {
+        console.error('Error fetching news:', error);
+        return of(null);
+      })
+    );
+  }
+
   getDonations(): Observable<any[]> {
     const donationsCollection = collection(this.firestore, 'donations');
     return collectionData(donationsCollection, { idField: 'id' }).pipe(
@@ -198,6 +208,11 @@ export class AppService {
       console.error('Error al guardar usuario en Firestore:', error);
       throw error;
     }
+  }
+
+  updateUser(id: string | undefined, data: Partial<IUser>){
+    const userDocRef = doc(this.firestore, `/users/${id}`);
+    return updateDoc(userDocRef, data);
   }
 
   async addCharacter(character: any): Promise<string> {
