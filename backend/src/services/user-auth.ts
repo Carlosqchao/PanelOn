@@ -147,16 +147,17 @@ export class AuthService {
     return this.userSubject.asObservable();
   }
 
-  userId?: string;
-  getCurrentUserId() {
-    this.userSubject.subscribe( user => {
-      this.userId = user?.uid;
-    })
-    return this.userId;
+  getCurrentUserId(): Observable<string> {
+    return this.getCurrentUser().pipe(
+      map(user => {
+        if (!user) throw new Error('No hay usuario autenticado');
+        return user.uid;
+      })
+    );
   }
 
   sendPasswordResetEmail(email: string): Observable<any> {
     console.log('Enviando email de recuperación a:', email);
-    return from(sendPasswordResetEmail(this.firebaseAuth, email));
+    return from(sendPasswordResetEmail(this.firebaseAuth,email));
   }
 }

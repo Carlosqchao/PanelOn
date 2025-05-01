@@ -7,12 +7,14 @@ import {
   addDoc,
   deleteDoc,
   setDoc,
-  getDoc, updateDoc
+  getDoc, updateDoc, getDocs
 } from '@angular/fire/firestore';
 import {Observable, catchError, of, map, from, switchMap, combineLatest} from 'rxjs';
-import { where, query } from '@angular/fire/firestore';
+import { where, query, orderBy } from '@angular/fire/firestore';
 import { docData } from 'rxfire/firestore';
-import {IUser} from './models/user';
+import { IUser } from './models/user';
+import { Comment } from './models/comic';
+import { Timestamp } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -71,6 +73,92 @@ export class AppService {
     );
   }
 
+  getCommentsByComicId(comicId: string): Observable<Comment[]> {
+    const commentsCollection = collection(this.firestore, `/comics/${comicId}/comments`);
+    const q = query(commentsCollection, orderBy('created_at', 'desc'));
+    return collectionData(q, { idField: 'id' }).pipe(
+      map((comments: any[]) => comments.map(comment => ({
+        ...comment,
+        created_at: comment['created_at'] instanceof Timestamp ? comment['created_at'].toDate() : comment['created_at']
+      } as Comment))),
+      catchError(error => {
+        return of([]);
+      })
+    );
+  }
+
+  getRepliesByCommentId(comicId: string, commentId: string): Observable<Comment[]> {
+    const repliesCollection = collection(this.firestore, `/comics/${comicId}/comments/${commentId}/replies`);
+    const q = query(repliesCollection, orderBy('created_at', 'asc'));
+    return collectionData(q, { idField: 'id' }).pipe(
+      map((replies: any[]) => replies.map(reply => ({
+        ...reply,
+        created_at: reply['created_at'] instanceof Timestamp ? reply['created_at'].toDate() : reply['created_at']
+      } as Comment))),
+      catchError(error => {
+        return of([]);
+      })
+    );
+  }
+
+  async addComment(comicId: string, comment: Omit<Comment, 'id' | 'created_at'>): Promise<string> {
+    try {
+      const commentsCollection = collection(this.firestore, `/comics/${comicId}/comments`);
+      const newComment = {
+        ...comment,
+        created_at: new Date()
+      };
+      const docRef = await addDoc(commentsCollection, newComment);
+      return docRef.id;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async addReply(comicId: string, commentId: string, reply: Omit<Comment, 'id' | 'created_at'>): Promise<string> {
+    try {
+      const repliesCollection = collection(this.firestore, `/comics/${comicId}/comments/${commentId}/replies`);
+      const newReply = {
+        ...reply,
+        created_at: new Date()
+      };
+      const docRef = await addDoc(repliesCollection, newReply);
+      return docRef.id;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateComment(comicId: string, commentId: string, content: string, isReply: boolean = false, parentCommentId?: string): Promise<void> {
+    try {
+      const docPath = isReply
+        ? `/comics/${comicId}/comments/${parentCommentId}/replies/${commentId}`
+        : `/comics/${comicId}/comments/${commentId}`;
+      const commentDoc = doc(this.firestore, docPath);
+      await setDoc(commentDoc, { content }, { merge: true });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async deleteComment(comicId: string, commentId: string, isReply: boolean = false, parentCommentId?: string): Promise<void> {
+    try {
+      const docPath = isReply
+        ? `/comics/${comicId}/comments/${parentCommentId}/replies/${commentId}`
+        : `/comics/${comicId}/comments/${commentId}`;
+      const commentDoc = doc(this.firestore, docPath);
+      if (!isReply) {
+        const repliesCollection = collection(this.firestore, `/comics/${comicId}/comments/${commentId}/replies`);
+        const repliesSnapshot = await getDocs(repliesCollection);
+        for (const replyDoc of repliesSnapshot.docs) {
+          await deleteDoc(replyDoc.ref);
+        }
+      }
+      await deleteDoc(commentDoc);
+    } catch (error) {
+      throw error;
+    }
+  }
 
   getUsers(): Observable<any[]> {
     const usersCollection = collection(this.firestore, '/users');
@@ -182,8 +270,7 @@ export class AppService {
         .then((docSnap) => {
           if (docSnap.exists()) {
             const userData = docSnap.data() as IUser;
-            console.log('Usuario encontrado en Firestore:', userData);
-            return userData;
+            return { ...userData, id: uid };
           } else {
             console.error('No se encontró usuario con UID:', uid);
             throw new Error('User not found');
