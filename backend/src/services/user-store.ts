@@ -14,7 +14,7 @@ export class UserStoreService {
     this.userSubject.next(user);
   }
 
-  getUser(){
+  getUser() {
     return this.user$;
   }
 
@@ -39,13 +39,15 @@ export class UserStoreService {
   }
 
   user: IUser | null = null;
-  getUserAge(): number {
-    this.getUser().subscribe(user =>
-    this.user = user);
 
-    if (this.user || this.user!.birthdate) {
+  getUserAge(): number {
+    this.getUser().subscribe(user => {
+      this.user = user;
+    });
+
+    if (!this.user || !this.user.birthdate) {
       return 0;
     }
-    return this.calculateAge(this.user!.birthdate);
+    return this.calculateAge(this.user.birthdate);
   }
 }

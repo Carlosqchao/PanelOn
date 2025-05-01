@@ -1,0 +1,34 @@
+<div class="comments-section">
+  <div class="center-container">
+    <app-button text="ADD YOURS" (click)="toggleCommentForm()"></app-button>
+  </div>
+
+  <div class="center-container">
+    <div *ngIf="showCommentForm" class="comment-form">
+      <textarea
+        [(ngModel)]="newCommentContent"
+        placeholder="Write your comment..."
+        class="comment-textarea"
+      ></textarea>
+      <div class="form-buttons">
+        <button (click)="addComment()">Submit</button>
+        <button class="cancel-btn" (click)="toggleCommentForm()">Cancel</button>
+      </div>
+    </div>
+
+    <div *ngIf="isLoading" class="loading">
+      <p>Loading comments...</p>
+    </div>
+
+    <div *ngIf="!isLoading" class="comments-list">
+      <app-comment
+        *ngFor="let comment of comments"
+        [comment]="comment"
+        [comicId]="comicId"
+        [currentUserId]="currentUserId"
+        (deleteEvent)="onDeleteComment($event)"
+        (updateEvent)="onUpdateComment($event)"
+      ></app-comment>
+    </div>
+  </div>
+</div>
