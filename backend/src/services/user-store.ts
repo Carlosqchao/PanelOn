@@ -14,7 +14,7 @@ export class UserStoreService {
     this.userSubject.next(user);
   }
 
-  getUser(){
+  getUser() {
     return this.user$;
   }
 
@@ -39,6 +39,7 @@ export class UserStoreService {
   }
 
   user: IUser | null = null;
+
   getUserAge(): number {
     this.getUser().subscribe(user => {
       this.user = user;

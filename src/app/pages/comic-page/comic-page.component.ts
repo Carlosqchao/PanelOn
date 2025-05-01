@@ -75,7 +75,6 @@ export class ComicPageComponent implements OnInit, OnDestroy {
               pegi: comic.pegi || 0,
               relatedCharacters: comic.relatedCharacters || [],
               author_id: comic.author_id || 0,
-              comments: comic.comments || []
             };
 
             if (comic.relatedCharacters?.length) {
