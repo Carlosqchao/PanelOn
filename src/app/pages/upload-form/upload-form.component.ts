@@ -27,6 +27,7 @@ export class UploadFormComponent implements OnInit {
   formSubmitted = false;
   isSizeValid: boolean = true;
   genres: string[] = [];
+  nsfwResult: { nsfw: boolean, pegi?: string } | null = null;
 
   ngOnInit() {
     this.AppService.getGenres().subscribe(result => {
@@ -55,7 +56,6 @@ export class UploadFormComponent implements OnInit {
     if (input.files && input.files.length) {
       this.loadingStatus = null;
       const file = input.files[0];
-      if(!this.isPegiSelected()) return
       if (file.size > 100000000) {
         this.isSizeValid = false;
         return;
@@ -72,9 +72,10 @@ export class UploadFormComponent implements OnInit {
           formData.append('file', this.selectedFile);
           formData.append('pegi', this.selectedPegi);
 
-          this.http.post<{ nsfw: boolean }>('http://localhost:3000/check-nsfw', formData)
+          this.http.post<{ nsfw: boolean, pegi?: string }>('http://localhost:3000/check-nsfw', formData)
             .subscribe({
               next: (res) => {
+                this.nsfwResult = res;
                 this.loadingStatus = res.nsfw ? 'nsfw' : 'clean';
                 this.isLoading = false;
               },
@@ -106,7 +107,6 @@ export class UploadFormComponent implements OnInit {
       this.isValidAuthor() &&
       this.situation != '' &&
       this.selectedGenres.length > 0 &&
-      this.isPegiSelected() &&
       this.selectedFile !== null &&
       !this.invalidFile &&
       this.loadingStatus === 'clean';
@@ -154,9 +154,6 @@ export class UploadFormComponent implements OnInit {
 
     return /^[\p{L}\p{N}][\p{L}\p{N} .,:;!¡¿?\-']{0,48}[\p{L}\p{N}]$/u.test(this.author);
   }
-  isPegiSelected(): boolean {
-    return this.selectedPegi !== '';
-  }
   isFileValid(): boolean {
     return this.selectedFile !== null && !this.invalidFile;
   }
@@ -166,5 +163,10 @@ export class UploadFormComponent implements OnInit {
       this.selectedGenres.splice(index, 1);
     }
   }
-
+  getShortFileName(fileName: string | undefined): string {
+    if (fileName && fileName.length > 30) {
+      return fileName.substring(0, 30) + '...';
+    }
+    return fileName || '';
+  }
 }
