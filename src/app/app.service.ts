@@ -9,7 +9,7 @@ import {
   setDoc,
   getDoc, updateDoc
 } from '@angular/fire/firestore';
-import {Observable, catchError, of, map, from} from 'rxjs';
+import {Observable, catchError, of, map, from, switchMap, combineLatest} from 'rxjs';
 import { where, query } from '@angular/fire/firestore';
 import { docData } from 'rxfire/firestore';
 import {IUser} from './models/user';
@@ -38,6 +38,41 @@ export class AppService {
       catchError(error => {
         console.error('Error fetching comic:', error);
         return of(null);
+      })
+    );
+  }
+
+  getSavedComics(userId: string |undefined): Observable<any[]> {
+    if (!userId) {
+      console.error('User ID is required');
+      return of([]);
+    }
+
+    // Referencia a la subcolección de cómics guardados del usuario
+    const savedComicsCollection = collection(this.firestore, `/users/${userId}/savedComics`);
+
+    // Obtenemos primero los documentos de la subcolección savedComics
+    return collectionData(savedComicsCollection, { idField: 'comicId' }).pipe(
+      switchMap(savedComics => {
+        // Si no hay cómics guardados, devolvemos un array vacío
+        if (savedComics.length === 0) {
+          return of([]);
+        }
+
+        // Extraemos los IDs de los cómics guardados
+        const comicIds = savedComics.map(item => item.comicId);
+
+        // Para cada ID de cómic, obtenemos el documento completo desde la colección de cómics
+        const comicObservables = comicIds.map(comicId => this.getComicById(comicId));
+
+        // Combinamos todos los observables en uno solo que emite un array
+        return combineLatest(comicObservables).pipe(
+          map(comics => comics.filter(comic => comic !== null)) // Filtramos posibles nulos
+        );
+      }),
+      catchError(error => {
+        console.error('Error fetching saved comics:', error);
+        return of([]);
       })
     );
   }
