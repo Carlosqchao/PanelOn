@@ -19,6 +19,7 @@ export class uploadComicService {
 
   async uploadComic(comicId: string): Promise<void> {
     const userId = this.auth.getCurrentUserId();
+    console.log(userId);
     const comicDocRef = doc(this.firestore, `users/${userId}/uploadedComics/${comicId}`);
     await setDoc(comicDocRef, {
       uploadedAt: new Date()

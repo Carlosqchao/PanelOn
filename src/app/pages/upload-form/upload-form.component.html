@@ -91,12 +91,12 @@
 
 
       <div class="state-container">
-        <select id="situation" [(ngModel)]="situation" name="situation" required>
+        <select id="state" [(ngModel)]="state" name="state" required>
           <option value="" disabled selected>State</option>
           <option value="In process">In process</option>
           <option value="Finished">Finished</option>
         </select>
-        <div *ngIf="formSubmitted && situation === ''" class="error-message">
+        <div *ngIf="formSubmitted && state === ''" class="error-message">
           Please select a state.
         </div>
       </div>
@@ -109,7 +109,7 @@
           [ngClass]="{ 'invalid': selectedGenres.length === 0 && formSubmitted }"
         >
           <option value="" disabled selected>Select Genre</option>
-          <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+          <option *ngFor="let genre of genre" [value]="genre">{{ genre }}</option>
         </select>
         <button type="button" (click)="addGenre()">Add</button>
       </div>

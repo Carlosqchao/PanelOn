@@ -42,6 +42,16 @@ else:
   pegi_result = calcular_pegi(detected_labels)
   print(json.dumps({"nsfw": False, "pegi": pegi_result}))
 
-for archivo in os.listdir(image_dir):
-  archivo_path = os.path.join(image_dir, archivo)
-  os.remove(archivo_path)
+# Obtener lista de archivos ordenada
+imagenes = sorted([f for f in os.listdir(image_dir) if f.lower().endswith(('.jpg', '.jpeg', '.png'))])
+if imagenes:
+  imagen_a_guardar = imagenes[0]
+
+  for archivo in imagenes[1:]:  # empieza desde la segunda
+    archivo_path = os.path.join(image_dir, archivo)
+    os.remove(archivo_path)
+
+  # Opcional: renombrar la imagen para más claridad
+  original_path = os.path.join(image_dir, imagen_a_guardar)
+  nuevo_path = os.path.join(image_dir, 'preview.jpg')
+  os.rename(original_path, nuevo_path)
