@@ -13,6 +13,7 @@ import {ModalTestingComponent} from './pages/modal-testing/modal-testing.compone
 import { UploadFormComponent } from './pages/upload-form/upload-form.component';
 import {UserPageComponent} from './pages/user-page/user-page.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
+import {SavedComicsUserComponent} from './pages/saved-comics-user/saved-comics-user.component';
 
 
 export const routes: Routes = [
@@ -29,5 +30,6 @@ export const routes: Routes = [
   { path: 'modalTest', component: ModalTestingComponent },
   { path: 'user-page', component: UserPageComponent },
   { path: 'search-page', component: SearchPageComponent },
+  { path: 'saved-comics-user', component: SavedComicsUserComponent },
   { path: '**', redirectTo: '' }
 ];
