@@ -7,7 +7,7 @@ import {
   addDoc,
   deleteDoc,
   setDoc,
-  getDoc
+  getDoc, updateDoc
 } from '@angular/fire/firestore';
 import {Observable, catchError, of, map, from} from 'rxjs';
 import { where, query } from '@angular/fire/firestore';
@@ -208,6 +208,11 @@ export class AppService {
       console.error('Error al guardar usuario en Firestore:', error);
       throw error;
     }
+  }
+
+  updateUser(id: string | undefined, data: Partial<IUser>){
+    const userDocRef = doc(this.firestore, `/users/${id}`);
+    return updateDoc(userDocRef, data);
   }
 
   async addCharacter(character: any): Promise<string> {

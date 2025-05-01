@@ -12,15 +12,23 @@
   gap: 1.5rem;
 }
 
-.userNameBarButton {
+.pencilIcon{
   border-radius: 50%;
-  transition: transform 0.6s ease;
+  transition: background-color 0.3s ease;
 }
 
-.userNameBarButton:hover {
-  transform: rotate(360deg);
+.pencilIcon:hover{
+  background-color: lightgrey;
 }
 
+.bellIcon{
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.bellIcon:hover{
+  background-color: lightgrey;
+}
 
 .icon{
   width: 80%;
