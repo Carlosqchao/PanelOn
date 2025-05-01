@@ -147,13 +147,12 @@ export class AuthService {
     return this.userSubject.asObservable();
   }
 
-  getCurrentUserId(): Observable<string> {
-    return this.getCurrentUser().pipe(
-      map(user => {
-        if (!user) throw new Error('No hay usuario autenticado');
-        return user.uid;
-      })
-    );
+  userId?: string;
+  getCurrentUserId() {
+    this.userSubject.subscribe( user => {
+      this.userId = user?.uid;
+    })
+    return this.userId;
   }
 
   sendPasswordResetEmail(email: string): Observable<any> {
