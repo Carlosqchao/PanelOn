@@ -2,10 +2,11 @@
   <div class="carousel-inner">
     <img
       *ngFor="let item of items; let i = index"
-      [src]="item.imageUrl"
+      [src]="item.image"
       [alt]="item.title"
       [ngClass]="{'active': i === currentIndex}"
       class="carousel-item"
+      (click)="getClickHandler(i)($event)"
     />
   </div>
 

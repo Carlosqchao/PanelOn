@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Comic } from '../../models/comic';
 import { ComicSaveService } from '../../../../backend/src/services/saved-comics.service';
+import {LikedComicService} from '../../../../backend/src/services/liked-comic.service';
+
 
 @Component({
   selector: 'app-action-icons',
@@ -20,11 +22,17 @@ export class ActionIconsComponent implements OnInit {
   isSaved = false;
   isLiked = false;
 
-  constructor(private comicSaveService: ComicSaveService) {}
+  constructor(
+    private comicSaveService: ComicSaveService,
+    private likedComicService: LikedComicService
+  ) {}
 
   ngOnInit() {
     this.comicSaveService.isComicSaved(this.comic.id).subscribe(isSaved => {
       this.isSaved = isSaved;
+    });
+    this.likedComicService.isComicLiked(this.comic.id).subscribe(isLiked => {
+      this.isLiked = isLiked;
     });
   }
 
@@ -36,6 +44,18 @@ export class ActionIconsComponent implements OnInit {
     } else {
       this.comicSaveService.saveComic(this.comic.id).then(() => {
         this.isSaved = true;
+      });
+    }
+  }
+
+  toggleLike() {
+    if (this.isLiked) {
+      this.likedComicService.removeLikedComic(this.comic.id).then(() => {
+        this.isLiked = false;
+      });
+    } else {
+      this.likedComicService.likeComic(this.comic.id).then(() => {
+        this.isLiked = true;
       });
     }
   }
