@@ -17,7 +17,7 @@ export class UploadFormComponent implements OnInit {
   title = '';
   author = '';
   synopsis = '';
-  situation = '';
+  state = '';
   selectedGenres: string[] = [];
   selectedGenre = '';
   selectedPegi: string | undefined = '';
@@ -28,18 +28,19 @@ export class UploadFormComponent implements OnInit {
   isUploadingFile = false;
   formSubmitted = false;
   isSizeValid = true;
-  genres: string[] = [];
+  genre: string[] = [];
   nsfwResult: { nsfw: boolean, pegi?: string } | null = null;
   filePreview = false;
   uploadSuccess = false;
   uploadError = false;
+  rating: string =  "0";
 
   constructor(private http: HttpClient, private AppService: AppService, private uploadService: uploadComicService) {}
 
 
   ngOnInit() {
     this.AppService.getGenres().subscribe(result => {
-      this.genres = result.map(genre => genre.name);
+      this.genre = result.map(genre => genre.name);
     });
   }
 
@@ -112,7 +113,7 @@ export class UploadFormComponent implements OnInit {
     const isFormValid =
       this.isValidTitle() &&
       this.isValidAuthor() &&
-      this.situation !== '' &&
+      this.state !== '' &&
       this.selectedGenres.length > 0 &&
       this.selectedFile !== null &&
       !this.invalidFile &&
@@ -123,10 +124,10 @@ export class UploadFormComponent implements OnInit {
       formData.append('title', this.title);
       formData.append('author', this.author);
       formData.append('synopsis', this.synopsis);
-      formData.append('situation', this.situation);
+      formData.append('state', this.state);
       // @ts-ignore
       formData.append('pegi', this.selectedPegi);
-      this.selectedGenres.forEach(genre => formData.append('genres', genre));
+      this.selectedGenres.forEach(genre => formData.append('genre', genre));
       formData.append('file', this.selectedFile!);
 
       this.isUploadingFile = true;
@@ -138,7 +139,7 @@ export class UploadFormComponent implements OnInit {
           this.uploadService.uploadComic(res.comicId);
           form.resetForm();
           this.resetState();
-
+          console.log(this.selectedGenre)
         },
         error: (error) => {
           this.isUploadingFile = false;
@@ -155,7 +156,7 @@ export class UploadFormComponent implements OnInit {
     this.title = '';
     this.author = '';
     this.synopsis = '';
-    this.situation = '';
+    this.state = '';
     this.selectedGenres = [];
     this.selectedGenre = '';
     this.selectedPegi = '';

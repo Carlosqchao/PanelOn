@@ -5,9 +5,6 @@ import path from 'path';
 import * as fs from 'fs';
 import { spawn } from 'child_process';
 import cors from 'cors';
-import {AppService} from '../../app/app.service';
-import {inject} from '@angular/core';
-import {doc, setDoc} from '@angular/fire/firestore';
 
 const app = express();
 const port = 3000;
@@ -81,33 +78,48 @@ app.post('/upload', upload.single('file'), async (req: Request, res: Response) =
     title,
     author,
     synopsis,
-    situation,
+    state,
     pegi,
-    ['genres[]']: genresRaw
+    ['genre[]']: genresRaw,
   } = req.body;
 
-  const rawGenres = req.body.genres;
-  const genres = Array.isArray(rawGenres) ? rawGenres : [rawGenres];
+  const rawGenres = req.body.genre;
+  const genre = Array.isArray(rawGenres) ? rawGenres : [rawGenres];
 
-  if (!pdfPath || !title || !author || !situation || !genres.length) {
+  if (!pdfPath || !title || !author || !state || !genre.length) {
     return res.status(400).json({ error: 'Campos obligatorios faltantes.' });
   }
 
   console.log('✅ Recibido para subida final:');
-  console.log({ title, author, synopsis, situation, pegi, genres, file: pdfPath });
+  console.log({ title, author, synopsis, state, pegi, genre, file: pdfPath });
   const destination = `uploads/${title}.pdf`;
   await bucket.upload(pdfPath, {
     destination
   });
 
+  const coverPath = path.join(__dirname, '../output/preview.jpg');
+
+  if (fs.existsSync(coverPath)) {
+    await bucket.upload(coverPath, {
+      destination: `covers/${title}.jpg`
+    });
+
+    // Eliminar localmente tras subir
+    fs.unlinkSync(coverPath);
+  }
+
+  await bucket.file(`covers/${title}.jpg`).makePublic();
+  const publicUrl = `https://storage.googleapis.com/${bucket.name}/covers/${title}.jpg`;
+
   const comicId = await addComic({
     title,
     author,
     synopsis,
-    situation,
+    state,
     pegi,
-    genres,
-    uploadedAt: new Date()
+    genre,
+    cover: publicUrl,
+    published: new Date().toISOString().split('T')[0]
   });
   res.json({
     message: 'Contenido subido correctamente.',
