@@ -3,7 +3,7 @@ import {ButtonComponent} from '../../components/button/button.component';
 import {ProfileOptionComponent} from '../../components/profile-option/profile-option.component';
 import {UserMetricsComponent} from '../../components/user-metrics/user-metrics.component';
 import {AppService} from '../../app.service';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {HeaderBacklinkComponent} from '../../components/header-backlink/header-backlink.component';
 import {UserStoreService} from '../../../../backend/src/services/user-store';
 import {IUser} from '../../models/user';
@@ -17,7 +17,7 @@ import {AuthService} from '../../../../backend/src/services/user-auth';
 @Component({
   selector: 'app-user-page',
   standalone: true,
-  imports: [ButtonComponent, ProfileOptionComponent, UserMetricsComponent, HeaderBacklinkComponent, NgIf, FormsModule],
+  imports: [ButtonComponent, ProfileOptionComponent, UserMetricsComponent, HeaderBacklinkComponent, NgIf, FormsModule, RouterLink],
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss'
 })
