@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()">
+<form #uploadForm="ngForm" (ngSubmit)="onSubmit(uploadForm)">
   <div class="aside-img">
     <img src="https://media.mycomicshop.com/n_iv/600/1168751.jpg" alt="Comic Cover">
   </div>
@@ -131,6 +131,24 @@
         Please select at least one genre.
       </div>
 
+      <!-- Mostrar el mensaje de éxito después de la carga -->
+      <div *ngIf="uploadSuccess" class="message success-message">
+        ✅ Upload Successful!
+      </div>
+
+      <!-- Mostrar el mensaje de error si algo falla -->
+      <div *ngIf="uploadError" class="message error-message">
+        ⚠️ There was an error during the upload.
+      </div>
+
+      <!-- Estado de carga -->
+      <div *ngIf="isUploadingFile" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Uploading...</p>
+      </div>
+
+
+      <!-- Botón de subida -->
       <div class="upload-button">
         <app-button text="UPLOAD"></app-button>
       </div>

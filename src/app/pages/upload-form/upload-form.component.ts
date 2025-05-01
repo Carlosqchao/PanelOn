@@ -1,9 +1,10 @@
-import {Component, input, OnInit} from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import {NgClass, NgForOf, NgIf} from '@angular/common';
-import {ButtonComponent} from '../../components/button/button.component';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { ButtonComponent } from '../../components/button/button.component';
 import { HttpClient } from '@angular/common/http';
-import {AppService} from '../../app.service';
+import { AppService } from '../../app.service';
+import {uploadComicService} from '../../../../backend/src/services/upload-comic.service';
 
 @Component({
   selector: 'app-upload-form',
@@ -19,25 +20,29 @@ export class UploadFormComponent implements OnInit {
   situation = '';
   selectedGenres: string[] = [];
   selectedGenre = '';
-  selectedPegi = '';
+  selectedPegi: string | undefined = '';
   selectedFile: File | null = null;
-  invalidFile: boolean = false;
+  invalidFile = false;
   loadingStatus: 'loading' | 'clean' | 'nsfw' | null = null;
-  isLoading: boolean = false;
+  isAnalyzingFile = false;
+  isUploadingFile = false;
   formSubmitted = false;
-  isSizeValid: boolean = true;
+  isSizeValid = true;
   genres: string[] = [];
   nsfwResult: { nsfw: boolean, pegi?: string } | null = null;
+  filePreview = false;
+  uploadSuccess = false;
+  uploadError = false;
+
+  constructor(private http: HttpClient, private AppService: AppService, private uploadService: uploadComicService) {}
+
 
   ngOnInit() {
     this.AppService.getGenres().subscribe(result => {
       this.genres = result.map(genre => genre.name);
     });
-
   }
 
-
-  constructor(private http: HttpClient, private AppService: AppService) {}
   addGenre(): void {
     if (this.selectedGenre && !this.selectedGenres.includes(this.selectedGenre)) {
       this.selectedGenres.push(this.selectedGenre);
@@ -49,8 +54,6 @@ export class UploadFormComponent implements OnInit {
     }
   }
 
-  filePreview = false;
-
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length) {
@@ -60,16 +63,18 @@ export class UploadFormComponent implements OnInit {
         this.isSizeValid = false;
         return;
       }
+
       this.isPDF(file).then(isPdf => {
         if (isPdf) {
           this.selectedFile = file;
           this.invalidFile = false;
           this.filePreview = true;
-          this.isLoading = true;
+          this.isAnalyzingFile = true;
           this.loadingStatus = 'loading';
 
           const formData = new FormData();
-          formData.append('file', this.selectedFile);
+          formData.append('file', this.selectedFile!);
+          // @ts-ignore
           formData.append('pegi', this.selectedPegi);
 
           this.http.post<{ nsfw: boolean, pegi?: string }>('http://localhost:3000/check-nsfw', formData)
@@ -77,10 +82,11 @@ export class UploadFormComponent implements OnInit {
               next: (res) => {
                 this.nsfwResult = res;
                 this.loadingStatus = res.nsfw ? 'nsfw' : 'clean';
-                this.isLoading = false;
+                this.isAnalyzingFile = false;
+                this.selectedPegi = this.nsfwResult.pegi;
               },
               error: (err) => {
-                this.isLoading = false;
+                this.isAnalyzingFile = false;
                 this.loadingStatus = null;
                 console.error('Error al analizar el PDF:', err);
                 alert('Ocurrió un error al verificar el PDF');
@@ -98,75 +104,103 @@ export class UploadFormComponent implements OnInit {
     }
   }
 
-
-  onSubmit(): void {
+  onSubmit(form: NgForm): void {
     this.formSubmitted = true;
+    this.uploadSuccess = false;
+    this.uploadError = false;
 
     const isFormValid =
       this.isValidTitle() &&
       this.isValidAuthor() &&
-      this.situation != '' &&
+      this.situation !== '' &&
       this.selectedGenres.length > 0 &&
       this.selectedFile !== null &&
       !this.invalidFile &&
       this.loadingStatus === 'clean';
 
-      console.log(isFormValid);
-
     if (isFormValid) {
-      console.log("Uploading form");
-      return;
+      const formData = new FormData();
+      formData.append('title', this.title);
+      formData.append('author', this.author);
+      formData.append('synopsis', this.synopsis);
+      formData.append('situation', this.situation);
+      // @ts-ignore
+      formData.append('pegi', this.selectedPegi);
+      this.selectedGenres.forEach(genre => formData.append('genres', genre));
+      formData.append('file', this.selectedFile!);
+
+      this.isUploadingFile = true;
+
+      this.http.post('http://localhost:3000/upload', formData).subscribe({
+        next: (res: any) => {
+          this.isUploadingFile = false;
+          this.uploadSuccess = true;
+          this.uploadService.uploadComic(res.comicId);
+          form.resetForm();
+          this.resetState();
+
+        },
+        error: (error) => {
+          this.isUploadingFile = false;
+          this.uploadError = true;
+          console.error('Error al subir:', error);
+          alert('Ocurrió un error al subir el contenido.');
+        }
+      });
     }
-}
+  }
 
 
+  resetState(): void {
+    this.title = '';
+    this.author = '';
+    this.synopsis = '';
+    this.situation = '';
+    this.selectedGenres = [];
+    this.selectedGenre = '';
+    this.selectedPegi = '';
+    this.selectedFile = null;
+    this.invalidFile = false;
+    this.loadingStatus = null;
+    this.formSubmitted = false;
+    this.isSizeValid = true;
+    this.nsfwResult = null;
+    this.filePreview = false;
+  }
 
   isPDF(file: File | null): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-
       reader.onload = function () {
         const arr = new Uint8Array(reader.result as ArrayBuffer);
         const header = String.fromCharCode(...arr.slice(0, 5));
-        const isPdf = header === '%PDF-';
-
-        if (!isPdf) {
-          console.warn('File is not PDF.');
-        }
-
-        resolve(isPdf);
+        resolve(header === '%PDF-');
       };
-
-      reader.onerror = function () {
-        console.error('Error reading file.');
-        reject(reader.error);
-      };
-
-      // @ts-ignore
-      reader.readAsArrayBuffer(file.slice(0, 5));
+      reader.onerror = () => reject(reader.error);
+      reader.readAsArrayBuffer(file!.slice(0, 5));
     });
   }
+
   isValidTitle(): boolean {
     return /^[\p{L}\p{N}][\p{L}\p{N} .,:;!¡¿?\-']{0,48}[\p{L}\p{N}]$/u.test(this.title);
   }
 
   isValidAuthor(): boolean {
-
     return /^[\p{L}\p{N}][\p{L}\p{N} .,:;!¡¿?\-']{0,48}[\p{L}\p{N}]$/u.test(this.author);
   }
+
   isFileValid(): boolean {
     return this.selectedFile !== null && !this.invalidFile;
   }
+
   removeGenre(genre: string): void {
     const index = this.selectedGenres.indexOf(genre);
     if (index !== -1) {
       this.selectedGenres.splice(index, 1);
     }
   }
+
   getShortFileName(fileName: string | undefined): string {
-    if (fileName && fileName.length > 30) {
-      return fileName.substring(0, 30) + '...';
-    }
-    return fileName || '';
+    return fileName && fileName.length > 30 ? fileName.substring(0, 30) + '...' : fileName || '';
   }
 }
