@@ -158,6 +158,6 @@ export class AuthService {
 
   sendPasswordResetEmail(email: string): Observable<any> {
     console.log('Enviando email de recuperación a:', email);
-    return from(sendPasswordResetEmail(this.firebaseAuth, email));
+    return from(sendPasswordResetEmail(this.firebaseAuth,email));
   }
 }
