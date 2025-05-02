@@ -1,16 +1,12 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<form (ngSubmit)="onSubmit()">
+<form #uploadForm="ngForm" (ngSubmit)="onSubmit(uploadForm)">
   <div class="aside-img">
     <img src="https://media.mycomicshop.com/n_iv/600/1168751.jpg" alt="Comic Cover">
   </div>
   <div class="form-container">
-
     <div class="inner-form-container">
       <div class="file-upload">
         <div class="circle" [ngClass]="{ 'circle-empty': filePreview }">
-
-
-        <label for="file" class="file-label">
+          <label for="file" class="file-label">
             <ng-container *ngIf="!filePreview; else fileIcon">
               <i class="fas fa-upload fa-2x"></i>
             </ng-container>
@@ -19,7 +15,7 @@
               <div class="file-preview">
                 <i class="fas fa-file-pdf fa-3x"></i>
                 <br>
-                <p>{{ selectedFile?.name }}</p>
+                <p>{{ getShortFileName(selectedFile?.name) }}</p>
               </div>
             </ng-template>
 
@@ -31,20 +27,19 @@
             Please select a valid PDF. Max size: 100MB.
           </p>
         </div>
-
-
       </div>
 
-      <div *ngIf="loadingStatus === 'clean' || loadingStatus === 'nsfw'"
-           [ngClass]="{
-       'message': true,
-       'clean-message': loadingStatus === 'clean',
-       'nsfw-message': loadingStatus === 'nsfw'
-     }">
-        {{ loadingStatus === 'clean' ? ' The PDF is valid' : ' The PDF violates the Terms and Conditions' }}
+      <!-- Mostrar el PEGI sugerido o NSFW -->
+      <div *ngIf="nsfwResult">
+        <div *ngIf="loadingStatus === 'clean'" class="message clean-message">
+          ✅ The PDF is clean. PEGI Suggested: {{ nsfwResult.pegi }}
+        </div>
+        <div *ngIf="loadingStatus === 'nsfw'" class="message nsfw-message">
+          ⚠️ The PDF violates the Terms and Conditions.
+        </div>
       </div>
 
-
+      <!-- Estado de carga -->
       <div *ngIf="loadingStatus" class="progress-bar">
         <div class="progress" [ngClass]="{
             'loading': loadingStatus === 'loading',
@@ -53,13 +48,13 @@
         }"></div>
       </div>
 
-
       <div style="align-self: flex-start;">
         <nav aria-label="Go back">
-          <a id="back-link"   href="#" onclick="history.back(); return false"> &larr; Go back</a>
+          <a id="back-link" href="#" onclick="history.back(); return false" style="color: black"> &larr; Go back</a>
         </nav>
       </div>
 
+      <!-- Resto del formulario: Título, Autor, etc. -->
       <div class="title">
         <input
           type="text"
@@ -96,12 +91,12 @@
 
 
       <div class="state-container">
-        <select id="situation" [(ngModel)]="situation" name="situation" required>
+        <select id="state" [(ngModel)]="state" name="state" required>
           <option value="" disabled selected>State</option>
           <option value="In process">In process</option>
           <option value="Finished">Finished</option>
         </select>
-        <div *ngIf="formSubmitted && situation === ''" class="error-message">
+        <div *ngIf="formSubmitted && state === ''" class="error-message">
           Please select a state.
         </div>
       </div>
@@ -114,7 +109,7 @@
           [ngClass]="{ 'invalid': selectedGenres.length === 0 && formSubmitted }"
         >
           <option value="" disabled selected>Select Genre</option>
-          <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+          <option *ngFor="let genre of genre" [value]="genre">{{ genre }}</option>
         </select>
         <button type="button" (click)="addGenre()">Add</button>
       </div>
@@ -136,28 +131,24 @@
         Please select at least one genre.
       </div>
 
-      <div class="state-container">
-        <select
-          id="pegi"
-          [(ngModel)]="selectedPegi"
-          name="selectedPegi"
-          required
-          [ngClass]="{ 'invalid': !isPegiSelected() && formSubmitted }"
-        >
-          <option value="" disabled selected>Define a PEGI</option>
-          <option value="PEGI 3">PEGI 3</option>
-          <option value="PEGI 7">PEGI 7</option>
-          <option value="PEGI 12">PEGI 12</option>
-          <option value="PEGI 16">PEGI 16</option>
-          <option value="PEGI 18">PEGI 18</option>
-        </select>
+      <!-- Mostrar el mensaje de éxito después de la carga -->
+      <div *ngIf="uploadSuccess" class="message success-message">
+        ✅ Upload Successful!
+      </div>
 
-        <div *ngIf="!isPegiSelected() && formSubmitted" class="error-message">
-          Please select a PEGI rating.
-        </div>
+      <!-- Mostrar el mensaje de error si algo falla -->
+      <div *ngIf="uploadError" class="message error-message">
+        ⚠️ There was an error during the upload.
+      </div>
+
+      <!-- Estado de carga -->
+      <div *ngIf="isUploadingFile" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Uploading...</p>
       </div>
 
 
+      <!-- Botón de subida -->
       <div class="upload-button">
         <app-button text="UPLOAD"></app-button>
       </div>
