@@ -28,7 +28,7 @@
     <div class="userDescriptionSection">
       <div *ngIf="isEditingDescription; else displayDescription" class="edit-description-container">
         <textarea [(ngModel)]="userDataEdit.description" class="edit-description-input"
-                  placeholder="Añade una descripción sobre ti..." (keyup.enter)="saveDescription()"></textarea>
+                  placeholder="Add description about you" (keyup.enter)="saveDescription()"></textarea>
         <div class="edit-actions">
           <button class="action-button save-button" (click)="saveDescription()">✓</button>
           <button class="action-button cancel-button" (click)="cancelEdit()">✗</button>
@@ -45,7 +45,7 @@
 
         <ng-template #addDescription>
           <button class="add-description-button" (click)="toggleDescriptionEdit()">
-            Añadir descripción
+            add description
           </button>
         </ng-template>
       </ng-template>
@@ -60,18 +60,15 @@
   <div class="options-container">
     <div class=center-container>
       <app-profile-option imageURL="favouritesIcon.png" optionName="SAVED" routerLink="/saved-comics-user"></app-profile-option>
-      <app-profile-option imageURL="readingIcon.png" optionName="READING"></app-profile-option>
-    </div>
-    <div class=center-container>
-      <app-profile-option imageURL="myComicsIcon.png" optionName="MY COMICS"></app-profile-option>
-      <app-profile-option imageURL="wishlistIcon.png" optionName="LIKES"></app-profile-option>
+      <app-profile-option imageURL="myComicsIcon.png" optionName="MY COMICS" routerLink="/uploaded-comics-user"></app-profile-option>
+      <app-profile-option imageURL="wishlistIcon.png" optionName="LIKES" routerLink="/likes-comics-user"></app-profile-option>
     </div>
   </div>
 
   <div class="center-container">
-    <app-user-metrics value="44" title="Read comics"></app-user-metrics>
-    <app-user-metrics value="5" title="Published comics "></app-user-metrics>
-    <app-user-metrics value="125" title="Comic Likes"></app-user-metrics>
+    <app-user-metrics value="{{this.savedComicsCount}}" title="Saved Comics"></app-user-metrics>
+    <app-user-metrics value="{{this.uploadedComicsCount}}" title="Uploaded comics "></app-user-metrics>
+    <app-user-metrics value="{{this.likedComicsCount}}" title="comics with likes"></app-user-metrics>
   </div>
 
   <app-button text="UPLOAD A COMIC" buttonWidth="30rem" buttonHeight="5rem" (click)="callToRead()"></app-button>

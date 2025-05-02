@@ -73,6 +73,115 @@ export class AppService {
     );
   }
 
+  getLikedComics(userId: string |undefined): Observable<any[]> {
+    if (!userId) {
+      console.error('User ID is required');
+      return of([]);
+    }
+
+    const savedComicsCollection = collection(this.firestore, `/users/${userId}/likedComics`);
+
+    return collectionData(savedComicsCollection, { idField: 'comicId' }).pipe(
+      switchMap(savedComics => {
+        if (savedComics.length === 0) {
+          return of([]);
+        }
+
+        const comicIds = savedComics.map(item => item.comicId);
+
+        const comicObservables = comicIds.map(comicId => this.getComicById(comicId));
+
+        return combineLatest(comicObservables).pipe(
+          map(comics => comics.filter(comic => comic !== null))
+        );
+      }),
+      catchError(error => {
+        console.error('Error fetching saved comics:', error);
+        return of([]);
+      })
+    );
+  }
+
+  getUploadedComics(userId: string |undefined): Observable<any[]> {
+    if (!userId) {
+      console.error('User ID is required');
+      return of([]);
+    }
+
+    const savedComicsCollection = collection(this.firestore, `/users/${userId}/uploadedComics`);
+
+    return collectionData(savedComicsCollection, { idField: 'comicId' }).pipe(
+      switchMap(savedComics => {
+        if (savedComics.length === 0) {
+          return of([]);
+        }
+
+        const comicIds = savedComics.map(item => item.comicId);
+
+        const comicObservables = comicIds.map(comicId => this.getComicById(comicId));
+
+        return combineLatest(comicObservables).pipe(
+          map(comics => comics.filter(comic => comic !== null))
+        );
+      }),
+      catchError(error => {
+        console.error('Error fetching saved comics:', error);
+        return of([]);
+      })
+    );
+  }
+
+  getSavedComicsCount(userId: string | undefined): Observable<number> {
+    if (!userId) {
+      console.error('User ID is required');
+      return of(0);
+    }
+
+    const savedComicsCollection = collection(this.firestore, `/users/${userId}/savedComics`);
+
+    return collectionData(savedComicsCollection).pipe(
+      map(comics => comics.length),
+      catchError(error => {
+        console.error('Error counting saved comics:', error);
+        return of(0);
+      })
+    );
+  }
+
+  getLikedComicsCount(userId: string | undefined): Observable<number> {
+    if (!userId) {
+      console.error('User ID is required');
+      return of(0);
+    }
+
+    const likedComicsCollection = collection(this.firestore, `/users/${userId}/likedComics`);
+
+    return collectionData(likedComicsCollection).pipe(
+      map(comics => comics.length),
+      catchError(error => {
+        console.error('Error counting liked comics:', error);
+        return of(0);
+      })
+    );
+  }
+
+  getUploadedComicsCount(userId: string | undefined): Observable<number> {
+    if (!userId) {
+      console.error('User ID is required');
+      return of(0);
+    }
+
+    const uploadedComicsCollection = collection(this.firestore, `/users/${userId}/uploadedComics`);
+
+    return collectionData(uploadedComicsCollection).pipe(
+      map(comics => comics.length),
+      catchError(error => {
+        console.error('Error counting uploaded comics:', error);
+        return of(0);
+      })
+    );
+  }
+
   getCommentsByComicId(comicId: string): Observable<Comment[]> {
     const commentsCollection = collection(this.firestore, `/comics/${comicId}/comments`);
     const q = query(commentsCollection, orderBy('created_at', 'desc'));
