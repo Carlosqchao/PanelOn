@@ -13,6 +13,8 @@ import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {User} from '@angular/fire/auth';
 import {AuthService} from '../../../../backend/src/services/user-auth';
+import {getDownloadURL, ref, Storage, uploadBytes} from '@angular/fire/storage';
+import {combineLatest, filter} from 'rxjs';
 
 @Component({
   selector: 'app-user-page',
@@ -25,6 +27,7 @@ export class UserPageComponent implements OnInit {
 
   userStoreService = inject(UserStoreService);
   userAuthService: AuthService = inject(AuthService);
+  storage: Storage = inject(Storage);
   user: User | null = null;
   userData: IUser | null = null;
   dialog: MatDialog = inject(MatDialog);
@@ -34,6 +37,7 @@ export class UserPageComponent implements OnInit {
   savedComicsCount: number = 0;
   likedComicsCount: number = 0;
   uploadedComicsCount: number = 0;
+  isUploading: boolean = false;
 
 
   constructor(private appService: AppService, private router: Router) {}
@@ -54,12 +58,32 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userAuthService.getCurrentUser().subscribe(user => this.user = user);
-    this.userStoreService.getUser().subscribe(userData => this.userData = userData);
-    this.appService.getSavedComicsCount(this.user?.uid).subscribe(savedComicsCount => {this.savedComicsCount = savedComicsCount;});
-    this.appService.getLikedComicsCount(this.user?.uid).subscribe(likedComicsCount => {this.likedComicsCount = likedComicsCount;});
-    this.appService.getUploadedComicsCount(this.user?.uid).subscribe(uploadedComicsCount => {this.uploadedComicsCount = uploadedComicsCount;});
+    const user$ = this.userAuthService.getCurrentUser().pipe(
+      filter((user): user is User => !!user)
+    );
+
+    const userData$ = this.userStoreService.getUser().pipe(
+      filter((data): data is IUser => !!data)
+    );
+
+    combineLatest([user$, userData$]).subscribe(([user, userData]) => {
+      this.user = user;
+      this.userData = userData;
+
+      this.appService.getSavedComicsCount(user.uid).subscribe(count => {
+        this.savedComicsCount = count;
+      });
+
+      this.appService.getLikedComicsCount(user.uid).subscribe(count => {
+        this.likedComicsCount = count;
+      });
+
+      this.appService.getUploadedComicsCount(user.uid).subscribe(count => {
+        this.uploadedComicsCount = count;
+      });
+    });
   }
+
 
   toggleUsernameEdit(): void {
     this.isEditingUsername = !this.isEditingUsername;
@@ -98,5 +122,37 @@ export class UserPageComponent implements OnInit {
 
   hasDescription(): boolean {
     return !!this.userData?.description && this.userData.description.trim() !== '';
+  }
+
+  openFileSelector(): void {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.onchange = (event) => {
+      const files = (event.target as HTMLInputElement).files;
+      if (files && files.length > 0) {
+        this.uploadProfileImage(files[0]);
+      }
+    };
+    fileInput.click();
+  }
+
+  async uploadProfileImage(file: File): Promise<void> {
+    if (!this.user || !this.user.uid) {
+      console.error('No user logged in');
+      return;
+    }
+    try {
+      this.isUploading = true;
+      const storageRef = ref(this.storage, `profile_images/${this.user.uid}`);
+      const snapshot = await uploadBytes(storageRef, file);
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      await this.appService.updateUser(this.user.uid, { imageUrl: downloadURL });
+      location.reload();
+    } catch (error) {
+      console.error('Error uploading profile image:', error);
+    } finally {
+      this.isUploading = false;
+    }
   }
 }
