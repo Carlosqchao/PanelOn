@@ -13,8 +13,9 @@ import {Observable, catchError, of, map, from, switchMap, combineLatest} from 'r
 import { where, query, orderBy } from '@angular/fire/firestore';
 import { docData } from 'rxfire/firestore';
 import { IUser } from './models/user';
-import { Comment } from './models/comic';
+import {Comic, Comment} from './models/comic';
 import { Timestamp } from 'firebase/firestore';
+import {update} from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root',
@@ -69,6 +70,115 @@ export class AppService {
       catchError(error => {
         console.error('Error fetching saved comics:', error);
         return of([]);
+      })
+    );
+  }
+
+  getLikedComics(userId: string |undefined): Observable<any[]> {
+    if (!userId) {
+      console.error('User ID is required');
+      return of([]);
+    }
+
+    const savedComicsCollection = collection(this.firestore, `/users/${userId}/likedComics`);
+
+    return collectionData(savedComicsCollection, { idField: 'comicId' }).pipe(
+      switchMap(savedComics => {
+        if (savedComics.length === 0) {
+          return of([]);
+        }
+
+        const comicIds = savedComics.map(item => item.comicId);
+
+        const comicObservables = comicIds.map(comicId => this.getComicById(comicId));
+
+        return combineLatest(comicObservables).pipe(
+          map(comics => comics.filter(comic => comic !== null))
+        );
+      }),
+      catchError(error => {
+        console.error('Error fetching saved comics:', error);
+        return of([]);
+      })
+    );
+  }
+
+  getUploadedComics(userId: string |undefined): Observable<any[]> {
+    if (!userId) {
+      console.error('User ID is required');
+      return of([]);
+    }
+
+    const savedComicsCollection = collection(this.firestore, `/users/${userId}/uploadedComics`);
+
+    return collectionData(savedComicsCollection, { idField: 'comicId' }).pipe(
+      switchMap(savedComics => {
+        if (savedComics.length === 0) {
+          return of([]);
+        }
+
+        const comicIds = savedComics.map(item => item.comicId);
+
+        const comicObservables = comicIds.map(comicId => this.getComicById(comicId));
+
+        return combineLatest(comicObservables).pipe(
+          map(comics => comics.filter(comic => comic !== null))
+        );
+      }),
+      catchError(error => {
+        console.error('Error fetching saved comics:', error);
+        return of([]);
+      })
+    );
+  }
+
+  getSavedComicsCount(userId: string | undefined): Observable<number> {
+    if (!userId) {
+      console.error('User ID is required');
+      return of(0);
+    }
+
+    const savedComicsCollection = collection(this.firestore, `/users/${userId}/savedComics`);
+
+    return collectionData(savedComicsCollection).pipe(
+      map(comics => comics.length),
+      catchError(error => {
+        console.error('Error counting saved comics:', error);
+        return of(0);
+      })
+    );
+  }
+
+  getLikedComicsCount(userId: string | undefined): Observable<number> {
+    if (!userId) {
+      console.error('User ID is required');
+      return of(0);
+    }
+
+    const likedComicsCollection = collection(this.firestore, `/users/${userId}/likedComics`);
+
+    return collectionData(likedComicsCollection).pipe(
+      map(comics => comics.length),
+      catchError(error => {
+        console.error('Error counting liked comics:', error);
+        return of(0);
+      })
+    );
+  }
+
+  getUploadedComicsCount(userId: string | undefined): Observable<number> {
+    if (!userId) {
+      console.error('User ID is required');
+      return of(0);
+    }
+
+    const uploadedComicsCollection = collection(this.firestore, `/users/${userId}/uploadedComics`);
+
+    return collectionData(uploadedComicsCollection).pipe(
+      map(comics => comics.length),
+      catchError(error => {
+        console.error('Error counting uploaded comics:', error);
+        return of(0);
       })
     );
   }
@@ -294,10 +404,10 @@ export class AppService {
     }
   }
 
-  async updateComic(comicId: string, comic: any): Promise<void> {
+  async updateComic(comicId: string, comic: Partial<Comic>): Promise<void> {
     try {
       const comicDoc = doc(this.firestore, `/comics/${comicId}`);
-      await setDoc(comicDoc, comic, { merge: true });
+      await updateDoc(comicDoc, comic);
     } catch (error) {
       console.error('Error updating comic:', error);
       throw error;
