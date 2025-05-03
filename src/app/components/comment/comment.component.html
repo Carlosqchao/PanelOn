@@ -25,7 +25,7 @@
 <div class="replies-container" *ngIf="comment.replies && comment.replies.length > 0">
   <div class="reply-wrapper" *ngFor="let reply of visibleReplies; let i = index">
     <div class="reply-indicator" *ngIf="i > 0 || parentCommentId">
-      <span class="reply-arrow">↪</span> Replying to <span class="reply-username">{{ getRepliedToUsername(i) }}</span>
+      <span class="reply-arrow">↪</span> Replying to  <span class="reply-username">{{ getRepliedToUsername(i) }}</span>
     </div>
 
     <app-comment
