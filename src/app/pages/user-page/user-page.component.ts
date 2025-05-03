@@ -31,6 +31,9 @@ export class UserPageComponent implements OnInit {
   userDataEdit: Partial<IUser> = {};
   isEditingUsername = false;
   isEditingDescription = false;
+  savedComicsCount: number = 0;
+  likedComicsCount: number = 0;
+  uploadedComicsCount: number = 0;
 
 
   constructor(private appService: AppService, private router: Router) {}
@@ -53,6 +56,9 @@ export class UserPageComponent implements OnInit {
   ngOnInit() {
     this.userAuthService.getCurrentUser().subscribe(user => this.user = user);
     this.userStoreService.getUser().subscribe(userData => this.userData = userData);
+    this.appService.getSavedComicsCount(this.user?.uid).subscribe(savedComicsCount => {this.savedComicsCount = savedComicsCount;});
+    this.appService.getLikedComicsCount(this.user?.uid).subscribe(likedComicsCount => {this.likedComicsCount = likedComicsCount;});
+    this.appService.getUploadedComicsCount(this.user?.uid).subscribe(uploadedComicsCount => {this.uploadedComicsCount = uploadedComicsCount;});
   }
 
   toggleUsernameEdit(): void {

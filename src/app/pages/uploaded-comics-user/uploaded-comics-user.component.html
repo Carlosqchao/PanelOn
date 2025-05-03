@@ -1,0 +1,10 @@
+<app-header-backlink></app-header-backlink>
+<div class="profile-option center-container">
+  <div class="imageContainer">
+    <img src="myComicsIcon.png" alt="MyComics section image" class="optionImage" />
+  </div>
+  <p class="optionName">MY COMICS</p>
+</div>
+<div class="center-container">
+  <app-comic-card *ngFor="let comic of comics" [imageUrl]="comic.cover" [title]="comic.title" [comicId]="comic.id"></app-comic-card>
+</div>
