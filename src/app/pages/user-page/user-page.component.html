@@ -1,8 +1,16 @@
 <app-header-backlink></app-header-backlink>
 <div class="user-page" *ngIf="user">
   <div class="user-info">
-    <img class="userImage" *ngIf="userData?.imageUrl" [src]="userData?.imageUrl">
-    <img class="userImage" *ngIf="!userData?.imageUrl" src="default-profile-icon.jpg">
+    <div class="profile-image-container">
+      <img class="userImage" *ngIf="userData?.imageUrl" [src]="userData?.imageUrl">
+      <img class="userImage" *ngIf="!userData?.imageUrl" src="assets/images/default-profile-icon.jpg">
+      <div class="image-upload-overlay" (click)="openFileSelector()">
+        <div class="upload-icon" [class.uploading]="isUploading">
+          <span *ngIf="!isUploading">📷</span>
+          <span *ngIf="isUploading">⏳</span>
+        </div>
+      </div>
+    </div>
 
     <div class="userNameBar">
       <div *ngIf="isEditingUsername; else displayUsername" class="edit-username-container">
@@ -72,5 +80,4 @@
   </div>
 
   <app-button text="UPLOAD A COMIC" buttonWidth="30rem" buttonHeight="5rem" (click)="callToRead()"></app-button>
-
 </div>
