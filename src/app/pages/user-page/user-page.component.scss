@@ -47,11 +47,6 @@
   font-size: 2rem;
 }
 
-.userImage {
-  width: 20rem;
-  border-radius: 50%;
-}
-
 .subscriptionBar {
   display: flex;
   flex-direction: row;
@@ -232,4 +227,58 @@
 
 .cancel-button:hover {
   background-color: #e53935;
+}
+
+.profile-image-container {
+  position: relative;
+  width: 30rem;
+  height: 30rem;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+
+  .userImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .image-upload-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    opacity: 0;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .upload-icon {
+      color: white;
+      font-size: 1.5rem;
+      text-align: center;
+
+      &.uploading {
+        animation: spin 1s infinite linear;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
