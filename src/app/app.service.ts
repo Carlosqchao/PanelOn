@@ -13,8 +13,9 @@ import {Observable, catchError, of, map, from, switchMap, combineLatest} from 'r
 import { where, query, orderBy } from '@angular/fire/firestore';
 import { docData } from 'rxfire/firestore';
 import { IUser } from './models/user';
-import { Comment } from './models/comic';
+import {Comic, Comment} from './models/comic';
 import { Timestamp } from 'firebase/firestore';
+import {update} from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root',
@@ -403,10 +404,10 @@ export class AppService {
     }
   }
 
-  async updateComic(comicId: string, comic: any): Promise<void> {
+  async updateComic(comicId: string, comic: Partial<Comic>): Promise<void> {
     try {
       const comicDoc = doc(this.firestore, `/comics/${comicId}`);
-      await setDoc(comicDoc, comic, { merge: true });
+      await updateDoc(comicDoc, comic);
     } catch (error) {
       console.error('Error updating comic:', error);
       throw error;
