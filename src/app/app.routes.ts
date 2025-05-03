@@ -15,6 +15,7 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
 import {SavedComicsUserComponent} from './pages/saved-comics-user/saved-comics-user.component';
 import {LikesComicsUserComponent} from './pages/likes-comics-user/likes-comics-user.component';
 import {UploadedComicsUserComponent} from './pages/uploaded-comics-user/uploaded-comics-user.component';
+import {EditComicPageComponent} from './pages/edit-comic-page/edit-comic-page.component';
 
 
 export const routes: Routes = [
@@ -24,6 +25,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'comic/:id', component: ComicPageComponent },
+  { path: 'edit-comic/:id', component: EditComicPageComponent },
   { path: 'news/:id', component: ArticlePageComponent },
   { path: 'subscription-plans', component: SubscriptionPlansComponent },
   { path: 'payment', component: PaymentPageComponent },

@@ -7,6 +7,7 @@ import {AuthService} from '../../../../backend/src/services/user-auth';
 import {User} from '@angular/fire/auth';
 import {IUser} from '../../models/user';
 import {AppService} from '../../app.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-uploaded-comics-user',
@@ -24,6 +25,7 @@ export class UploadedComicsUserComponent implements OnInit {
   user: User | null = null;
   userData: IUser | null = null;
   comics: any[] = [];
+  private router = inject(Router);
   constructor(private appService: AppService) {}
 
   ngOnInit() {
@@ -32,5 +34,15 @@ export class UploadedComicsUserComponent implements OnInit {
     this.appService.getUploadedComics(this.user?.uid).subscribe(comics => {
       this.comics = comics;
     })
+  }
+
+  goToEditPage(comicId: string) {
+    this.router.navigate(['/edit-comic', comicId]).then(() => {
+      window.scrollTo(0, 0);
+    });
+  }
+
+  async deleteComic(id: string) {
+    await this.appService.deleteComic(id);
   }
 }
