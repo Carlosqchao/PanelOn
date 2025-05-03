@@ -2,7 +2,7 @@
 <div class="user-page" *ngIf="user">
   <div class="user-info">
     <img class="userImage" *ngIf="userData?.imageUrl" [src]="userData?.imageUrl">
-    <img class="userImage" *ngIf="!userData?.imageUrl" src="default-profile-icon.jpg">
+    <img class="userImage" *ngIf="!userData?.imageUrl" src="../../assets/default-user-icon.png">
 
     <div class="userNameBar">
       <div *ngIf="isEditingUsername; else displayUsername" class="edit-username-container">
