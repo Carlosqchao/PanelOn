@@ -2,17 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {CommentsSectionComponent} from '../../components/comments-section/comments-section.component';
 import {HeaderComponent} from '../../components/header/header.component';
 import {FooterComponent} from '../../components/footer/footer.component';
-import {DiscussionService} from '../../../../backend/src/services/discussion.service';
-import {Router} from 'express';
 import {ActivatedRoute} from '@angular/router';
-import {takeUntil} from 'rxjs/operators';
 import {Discussion} from '../../models/discussion';
 import {Subject, Subscription} from 'rxjs';
 import {AppService} from '../../app.service';
 import {SectionTitleComponent} from '../../components/section-title/section-title.component';
 import {UserStoreService} from '../../../../backend/src/services/user-store';
 import {Timestamp} from 'firebase/firestore';
-import {CommentSource} from '../../models/comment-source';
 
 @Component({
   selector: 'app-discussion-chat',
@@ -48,5 +44,5 @@ export class DiscussionChatComponent implements OnInit {
   }
 
 
-  protected readonly CommentSource = CommentSource;
+
 }

@@ -9,13 +9,11 @@ import {
   setDoc,
   getDoc, updateDoc, getDocs
 } from '@angular/fire/firestore';
-import {Observable, catchError, of, map, from, switchMap, combineLatest} from 'rxjs';
+import {Observable, catchError, of, map, from, switchMap, combineLatest, timestamp} from 'rxjs';
 import { where, query, orderBy } from '@angular/fire/firestore';
 import { docData } from 'rxfire/firestore';
-import { IUser } from './models/user';
 import {Comic, Comment} from './models/comic';
 import { Timestamp } from 'firebase/firestore';
-import {update} from '@angular/fire/database';
 import {IUser} from './models/user';
 import {Discussion} from './models/discussion';
 
@@ -528,16 +526,21 @@ export class AppService {
   }
 
 
-  async addDiscussion(discussion: Discussion){
+  async addDiscussion(discussion: Omit<Discussion, 'id'|'date'>){
     try {
       const discussionCollection = collection(this.firestore, '/discussions');
-      const docRef = await addDoc(discussionCollection, discussion);
+      const newDiscussion = {
+        ...discussion,
+        date: new Date(),
+      }
+      const docRef = await addDoc(discussionCollection, newDiscussion);
       return docRef.id;
     } catch (error) {
       console.error('Error adding comic:', error);
       throw error;
     }
   }
+
 
   getDiscussions():Observable<any[]> {
     const comicsCollection = collection(this.firestore, '/discussions');
@@ -548,6 +551,7 @@ export class AppService {
       })
     );
   }
+
 
   getDiscussionById(discussionId: string):Observable<any> {
     const discussionDoc = doc(this.firestore, `/discussions/${discussionId}`);

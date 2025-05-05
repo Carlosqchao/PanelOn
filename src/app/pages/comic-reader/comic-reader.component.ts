@@ -9,6 +9,7 @@ import { CommentsSectionComponent } from '../../components/comments-section/comm
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {ActionIconsComponent} from '../../components/action-icons/action-icons.component';
+import {ButtonComponent} from '../../components/button/button.component';
 
 @Component({
   selector: 'app-comic-reader',
@@ -17,6 +18,8 @@ import {ActionIconsComponent} from '../../components/action-icons/action-icons.c
     HeaderComponent,
     FooterComponent,
     CommentsSectionComponent,
+    ActionIconsComponent,
+    ButtonComponent,
   ],
   templateUrl: './comic-reader.component.html',
   styleUrl: './comic-reader.component.scss'
