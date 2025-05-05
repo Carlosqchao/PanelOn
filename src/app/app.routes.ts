@@ -17,6 +17,7 @@ import {SavedComicsUserComponent} from './pages/saved-comics-user/saved-comics-u
 import {LikesComicsUserComponent} from './pages/likes-comics-user/likes-comics-user.component';
 import {UploadedComicsUserComponent} from './pages/uploaded-comics-user/uploaded-comics-user.component';
 import {EditComicPageComponent} from './pages/edit-comic-page/edit-comic-page.component';
+import {DiscussionChatComponent} from './pages/discussion-chat/discussion-chat.component';
 
 
 export const routes: Routes = [
@@ -33,8 +34,9 @@ export const routes: Routes = [
   { path: 'comic-reader/:id', component: ComicReaderComponent },
   { path: 'modalTest', component: ModalTestingComponent },
   { path: 'user-page', component: UserPageComponent },
-  { path: 'search-page', component: SearchPageComponent},
-  { path: 'community', component: CommunityComponent},
+  {path: 'search-page', component: SearchPageComponent},
+  {path: 'community', component: CommunityComponent},
+  {path: 'discussion/:id', component: DiscussionChatComponent},
   { path: 'saved-comics-user', component: SavedComicsUserComponent },
   { path: 'likes-comics-user', component: LikesComicsUserComponent},
   { path: 'uploaded-comics-user', component: UploadedComicsUserComponent},

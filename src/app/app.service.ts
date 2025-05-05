@@ -12,10 +12,10 @@ import {
 import {Observable, catchError, of, map, from, switchMap, combineLatest} from 'rxjs';
 import { where, query, orderBy } from '@angular/fire/firestore';
 import { docData } from 'rxfire/firestore';
-import { IUser } from './models/user';
 import {Comic, Comment} from './models/comic';
 import { Timestamp } from 'firebase/firestore';
-import {update} from '@angular/fire/database';
+import {IUser} from './models/user';
+import {Discussion,Chat} from './models/discussion';
 
 @Injectable({
   providedIn: 'root',
@@ -543,6 +543,110 @@ export class AppService {
           .sort((a, b) => ascending ? a.rating - b.rating : b.rating - a.rating)
       )
     );
+  }
+
+
+  async addDiscussion(discussion: Omit<Discussion, 'id'|'date'>){
+    try {
+      const discussionCollection = collection(this.firestore, '/discussions');
+      const newDiscussion = {
+        ...discussion,
+        date: new Date(),
+      }
+
+      const docRef = await addDoc(discussionCollection, newDiscussion);
+
+      await updateDoc(docRef, {id:docRef.id});
+      return docRef.id;
+    } catch (error) {
+      console.error('Error adding comic:', error);
+      throw error;
+    }
+  }
+
+
+  getDiscussions():Observable<any[]> {
+    const comicsCollection = collection(this.firestore, '/discussions');
+    return collectionData(comicsCollection, { idField: 'id' }).pipe(
+      catchError(error => {
+        console.error('Error fetching comics:', error);
+        return of([]);
+      })
+    );
+  }
+
+  getDiscussionsOrderedByDate(ascending: boolean = false): Observable<any[]> {
+    const discussionsCollection = collection(this.firestore, 'discussions');
+
+    return collectionData(discussionsCollection, { idField: 'id' }).pipe(
+      map((discussions: any[]) =>
+        discussions
+          .filter(discussions => discussions.published != null)
+          .sort((a, b) => {
+            const dateA = new Date(a.published).getTime();
+            const dateB = new Date(b.published).getTime();
+            return ascending ? dateA - dateB : dateB - dateA;
+          })
+      )
+    );
+  }
+
+
+  getDiscussionById(discussionId: string):Observable<any> {
+    const discussionDoc = doc(this.firestore, `/discussions/${discussionId}`);
+    return docData(discussionDoc, { idField: 'id' }).pipe(
+      catchError(error => {
+        console.error('Error fetching comic:', error);
+        return of(null);
+      })
+    );
+  }
+
+  getChatByDiscussionId(discussionId: string): Observable<Chat[]> {
+    const discussionCollection = collection(this.firestore, `/discussions/${discussionId}/comments`);
+    const q = query(discussionCollection, orderBy('created_at', 'desc'));
+    return collectionData(q, { idField: 'id' }).pipe(
+      map((comments: any[]) => comments.map(comment => ({
+        ...comment,
+        created_at: comment['created_at'] instanceof Timestamp ? comment['created_at'].toDate() : comment['created_at']
+      } as Comment))),
+      catchError(error => {
+        return of([]);
+      })
+    );
+  }
+
+
+  async addChat(discussionId: string, chat: Omit<Chat, 'id' | 'created_at'>): Promise<string> {
+    try {
+      const commentsCollection = collection(this.firestore, `/discussions/${discussionId}/comments`);
+      const newChat = {
+        ...chat,
+        created_at: new Date()
+      };
+      const docRef = await addDoc(commentsCollection, newChat);
+      return docRef.id;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateChat(comicId: string, commentId: string, content: string): Promise<void> {
+    try {
+      const commentDoc = doc(this.firestore, `/discussions/${comicId}/comments/${commentId}`);
+      await setDoc(commentDoc, { content }, { merge: true });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async deleteChat(discussionId: string, commentId: string): Promise<void> {
+    try {
+      const commentDoc = doc(this.firestore, `/discussions/${discussionId}/comments/${commentId}`);
+      await deleteDoc(commentDoc);
+    } catch (error) {
+      throw error;
+    }
   }
 
 }

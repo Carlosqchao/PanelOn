@@ -22,6 +22,9 @@
       <li class="navigation-item">
         <a [routerLink]="['/search-page']" [queryParams]="{ option: 'news' }">NEWS</a>
       </li>
+      <li class="navigation-item">
+        <a [routerLink]="['/community']" [queryParams]="{ option: 'community' }">COMMUNITY</a>
+      </li>
       <li class="navigation-item" *ngIf="!user">
         <a routerLink="/login">SUBSCRIPTION</a>
       </li>

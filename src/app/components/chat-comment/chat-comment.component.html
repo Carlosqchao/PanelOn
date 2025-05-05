@@ -1,0 +1,13 @@
+<div class="comment-container">
+  <img [src]="userIcon" alt="User Icon" class="user-icon">
+  <div class="comment-content">
+    <h3 class="username">{{ username }}</h3>
+    <p class="timestamp">{{ comment.created_at | date:'short' }}</p>
+    <p *ngIf="!isEditing" class="comment-text">{{ comment.content }}</p>
+    <textarea *ngIf="isEditing" [(ngModel)]="editedContent" class="edit-textarea"></textarea>
+    <div class="comment-actions">
+      <button *ngIf="isCommentOwner" [disabled]="showReplyForm" (click)="toggleEdit()">{{ isEditing ? 'Save' : 'Edit' }}</button>
+      <button *ngIf="isCommentOwner" [disabled]="isEditing || showReplyForm" (click)="delete()">Delete</button>
+    </div>
+    </div>
+</div>
