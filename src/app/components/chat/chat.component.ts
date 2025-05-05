@@ -13,7 +13,6 @@ import {ChatCommentComponent} from '../chat-comment/chat-comment.component';
   selector: 'app-chat',
   imports: [
     ButtonComponent,
-    CommentComponent,
     NgForOf,
     NgIf,
     ReactiveFormsModule,

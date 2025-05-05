@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DatePipe, NgIf} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Comment} from '../../models/comic';
 import {Subscription} from 'rxjs';
 import {AppService} from '../../app.service';
 import {AuthService} from '../../../../backend/src/services/user-auth';

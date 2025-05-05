@@ -1,26 +1,18 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CommentsSectionComponent} from '../../components/comments-section/comments-section.component';
 import {HeaderComponent} from '../../components/header/header.component';
-import {FooterComponent} from '../../components/footer/footer.component';
 import {ActivatedRoute} from '@angular/router';
 import {Discussion} from '../../models/discussion';
 import {Subject, Subscription} from 'rxjs';
 import {AppService} from '../../app.service';
 import {SectionTitleComponent} from '../../components/section-title/section-title.component';
 import {UserStoreService} from '../../../../backend/src/services/user-store';
-import {Timestamp} from 'firebase/firestore';
-import {ButtonComponent} from '../../components/button/button.component';
 import {ChatComponent} from '../../components/chat/chat.component';
-import {Router} from 'express';
 
 @Component({
   selector: 'app-discussion-chat',
   imports: [
-    CommentsSectionComponent,
     HeaderComponent,
-    FooterComponent,
     SectionTitleComponent,
-    ButtonComponent,
     ChatComponent
   ],
   templateUrl: './discussion-chat.component.html',

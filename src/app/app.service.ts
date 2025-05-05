@@ -9,7 +9,7 @@ import {
   setDoc,
   getDoc, updateDoc, getDocs
 } from '@angular/fire/firestore';
-import {Observable, catchError, of, map, from, switchMap, combineLatest, timestamp} from 'rxjs';
+import {Observable, catchError, of, map, from, switchMap, combineLatest} from 'rxjs';
 import { where, query, orderBy } from '@angular/fire/firestore';
 import { docData } from 'rxfire/firestore';
 import {Comic, Comment} from './models/comic';

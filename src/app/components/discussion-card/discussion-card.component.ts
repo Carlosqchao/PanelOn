@@ -2,7 +2,6 @@ import {Component, Input} from '@angular/core';
 import {Discussion} from '../../models/discussion';
 import {DatePipe} from '@angular/common';
 import {Router} from '@angular/router';
-import {Timestamp} from 'firebase/firestore';
 
 @Component({
   selector: 'app-discussion-card',
