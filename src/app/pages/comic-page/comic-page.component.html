@@ -1,11 +1,17 @@
 <app-header></app-header>
 
 <div class="comic-page" *ngIf="comic">
-  <app-comic-cover
-    [comicCoverUrl]="comic.cover"
-    [ngClass]="{'restricted': !canRead}"
-    (click)="callToRead()">
-  </app-comic-cover>
+  <div class="comic-cover-wrapper">
+    <div class="comic-cover-image" [ngClass]="{'restricted': !canRead}" (click)="callToRead()">
+      <img [src]="comic.cover" alt="Comic Cover" />
+    </div>
+    <img
+      *ngIf="!canRead"
+      [src]="getPegiIconUrl()"
+      class="pegi-icon"
+      alt="PEGI Rating"
+    />
+  </div>
 
   <div class="icons-section">
     <app-action-icons [comic]="comic"></app-action-icons>
@@ -19,14 +25,14 @@
     [releaseDate]="comic.published">
   </app-comic-description>
 
-  <div class="center-container read-button-container" *ngIf="user">
+  <div class="read-button-container" *ngIf="user">
     <app-button
       text="READ COMIC"
       [ngClass]="{'restricted': !canRead}"
       (click)="callToRead()">
     </app-button>
-    <p *ngIf="!canRead" class="age-restriction-message">
-      Sorry, you must be at least {{ comic.pegi }} years old to read this comic.
+    <p *ngIf="!canRead" class="error-message">
+      Sorry, you must be at least {{ comic?.pegi }} years old to read this comic.
     </p>
   </div>
 
@@ -48,7 +54,6 @@
     [status]="comic.state"
     [rating]="comic.rating">
   </app-comic-status>
-
 </div>
 
 <app-footer></app-footer>

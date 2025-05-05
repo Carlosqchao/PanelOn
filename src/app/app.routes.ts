@@ -4,7 +4,6 @@ import {CharacterPageComponent} from './pages/character-page/character-page.comp
 import {RegisterPageComponent} from './pages/register-page/register-page.component';
 import {LoginPageComponent} from './pages/login-page/login-page.component';
 import {ComicPageComponent} from './pages/comic-page/comic-page.component';
-import {PremiumPlansComparisonComponent} from './components/premium-plans-comparison/premium-plans-comparison.component';
 import {SubscriptionPlansComponent} from './pages/subscription-plans/subscription-plans.component';
 import {PaymentPageComponent} from './pages/payment-page/payment-page.component';
 import {ArticlePageComponent} from './pages/article-page/article-page.component';
@@ -14,6 +13,10 @@ import { UploadFormComponent } from './pages/upload-form/upload-form.component';
 import {UserPageComponent} from './pages/user-page/user-page.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
 import {CommunityComponent} from './pages/community/community.component';
+import {SavedComicsUserComponent} from './pages/saved-comics-user/saved-comics-user.component';
+import {LikesComicsUserComponent} from './pages/likes-comics-user/likes-comics-user.component';
+import {UploadedComicsUserComponent} from './pages/uploaded-comics-user/uploaded-comics-user.component';
+import {EditComicPageComponent} from './pages/edit-comic-page/edit-comic-page.component';
 
 
 export const routes: Routes = [
@@ -23,14 +26,17 @@ export const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'comic/:id', component: ComicPageComponent },
-  { path: 'news', component: ArticlePageComponent },
-  { path: 'subscription-plans', component: SubscriptionPlansComponent},
-  { path: 'payment', component: PaymentPageComponent},
-  {path: 'comic-reader/:id', component: ComicReaderComponent},
-  { path: 'modalTest', component: ModalTestingComponent},
+  { path: 'edit-comic/:id', component: EditComicPageComponent },
+  { path: 'news/:id', component: ArticlePageComponent },
+  { path: 'subscription-plans', component: SubscriptionPlansComponent },
+  { path: 'payment', component: PaymentPageComponent },
+  { path: 'comic-reader/:id', component: ComicReaderComponent },
+  { path: 'modalTest', component: ModalTestingComponent },
   { path: 'user-page', component: UserPageComponent },
-  {path: 'upload-form', component: UploadFormComponent, data: { hideHeader: true } },
-  {path: 'search-page', component: SearchPageComponent},
-  {path: 'community', component: CommunityComponent},
+  { path: 'search-page', component: SearchPageComponent},
+  { path: 'community', component: CommunityComponent},
+  { path: 'saved-comics-user', component: SavedComicsUserComponent },
+  { path: 'likes-comics-user', component: LikesComicsUserComponent},
+  { path: 'uploaded-comics-user', component: UploadedComicsUserComponent},
   { path: '**', redirectTo: '' }
 ];

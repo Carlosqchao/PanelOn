@@ -3,10 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
 import * as pdfjsLib from 'pdfjs-dist';
 import { HeaderComponent } from '../../components/header/header.component';
-import { NgForOf } from '@angular/common';
+import { NgClass, NgForOf } from '@angular/common';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { CommentComponent } from '../../components/comment/comment.component';
-import { ButtonComponent } from '../../components/button/button.component';
+import { CommentsSectionComponent } from '../../components/comments-section/comments-section.component';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {ActionIconsComponent} from '../../components/action-icons/action-icons.component';
@@ -21,6 +20,8 @@ import {ActionIconsComponent} from '../../components/action-icons/action-icons.c
     CommentComponent,
     ButtonComponent,
     ActionIconsComponent,
+    NgClass,
+    CommentsSectionComponent,
   ],
   templateUrl: './comic-reader.component.html',
   styleUrl: './comic-reader.component.scss'
@@ -28,9 +29,8 @@ import {ActionIconsComponent} from '../../components/action-icons/action-icons.c
 export class ComicReaderComponent implements OnInit, OnChanges {
   @Input() pdfUrl: string = "../../assets/COMIC castellano WEB_ok.pdf";
   title: string = '';
-  comments: any[] = [];
-  defaultUserIcon: string = 'https://randomuser.me/api/portraits/men/23.jpg';
-  defaultUsername: string = 'Carlos Ruano Rachid';
+  comicId: string = '';
+  currentUserId: string = '';
   private destroy$ = new Subject<void>();
 
   @ViewChild('pdfCanvas', { static: true }) canvasElement!: ElementRef<HTMLCanvasElement>;
@@ -54,8 +54,8 @@ export class ComicReaderComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     const comicId = this.route.snapshot.paramMap.get('id');
     if (comicId) {
+      this.comicId = comicId;
       this.loadComicData(comicId);
-
     }
     if (this.pdfUrl) {
       this.loadPdf();
@@ -79,6 +79,8 @@ export class ComicReaderComponent implements OnInit, OnChanges {
         if (comic) {
           this.title = comic.title || 'Untitled Comic';
           this.comments = comic.comments || [];
+          this.status = comic.state || 'Unknown';
+          this.rating = comic.rating || 0;
         }
       },
       error: (err) => {
@@ -86,7 +88,6 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       }
     });
   }
-
 
   async loadPdf(): Promise<void> {
     try {

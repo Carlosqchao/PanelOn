@@ -24,18 +24,9 @@
   </div>
 </div>
 
-<div class="center-container" style="margin-top: 5vh;">
-  <app-button text="ADD YOURS"></app-button>
-</div>
-
-<div class="comment-section">
-  <app-comment
-    *ngFor="let comment of comments"
-    [userIcon]="defaultUserIcon"
-    [username]="defaultUsername"
-    [comment]="comment.comment">
-  </app-comment>
-</div>
-
+<app-comments-section
+  [comicId]="comicId"
+  [currentUserId]="currentUserId">
+</app-comments-section>
 
 <app-footer></app-footer>

@@ -2,6 +2,44 @@
   <img [src]="userIcon" alt="User Icon" class="user-icon">
   <div class="comment-content">
     <h3 class="username">{{ username }}</h3>
-    <p class="comment-text">{{ comment }}</p>
+    <p class="timestamp">{{ comment.created_at | date:'short' }}</p>
+    <p *ngIf="!isEditing" class="comment-text">{{ comment.content }}</p>
+    <textarea *ngIf="isEditing" [(ngModel)]="editedContent" class="edit-textarea"></textarea>
+    <div class="comment-actions">
+      <button [disabled]="isEditing || showReplyForm" (click)="toggleReplyForm()">Reply</button>
+      <button *ngIf="isCommentOwner" [disabled]="showReplyForm" (click)="toggleEdit()">{{ isEditing ? 'Save' : 'Edit' }}</button>
+      <button *ngIf="isCommentOwner" [disabled]="isEditing || showReplyForm" (click)="delete()">Delete</button>
+    </div>
+
+
+    <div *ngIf="showReplyForm" class="reply-form">
+      <textarea [(ngModel)]="newReplyContent" placeholder="Write your reply..." class="reply-textarea"></textarea>
+      <div class="form-buttons">
+        <button (click)="addReply()">Submit Reply</button>
+        <button class="cancel-btn" (click)="toggleReplyForm()">Cancel</button>
+      </div>
+    </div>
   </div>
+</div>
+
+<div class="replies-container" *ngIf="comment.replies && comment.replies.length > 0">
+  <div class="reply-wrapper" *ngFor="let reply of visibleReplies; let i = index">
+    <div class="reply-indicator" *ngIf="i > 0 || parentCommentId">
+      <span class="reply-arrow">↪</span> Replying to  <span class="reply-username">{{ getRepliedToUsername(i) }}</span>
+    </div>
+
+    <app-comment
+      [comment]="reply"
+      [comicId]="comicId"
+      [parentCommentId]="comment.id || ''"
+      [currentUserId]="currentUserId"
+      [parentUsername]="username"
+      (deleteEvent)="onDeleteReply($event)"
+      (updateEvent)="onUpdateReply($event)">
+    </app-comment>
+  </div>
+
+  <button *ngIf="hasMoreReplies" class="view-more-btn" (click)="toggleShowAllReplies()">
+    Show {{ (comment.replies.length - maxVisibleReplies) }} more {{ (comment.replies.length - maxVisibleReplies) === 1 ? 'reply' : 'replies' }}
+  </button>
 </div>
