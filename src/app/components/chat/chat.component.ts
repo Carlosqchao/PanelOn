@@ -3,10 +3,10 @@ import {ButtonComponent} from "../button/button.component";
 import {CommentComponent} from "../comment/comment.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {Comment} from '../../models/comic';
 import {Subscription} from 'rxjs';
 import {AppService} from '../../app.service';
 import {UserStoreService} from '../../../../backend/src/services/user-store';
+import {Chat} from '../../models/discussion';
 
 @Component({
   selector: 'app-chat',
@@ -22,10 +22,10 @@ import {UserStoreService} from '../../../../backend/src/services/user-store';
   styleUrl: './chat.component.scss'
 })
 export class ChatComponent {
-  @Input() comicId: string = '';
+  @Input() discussionId: string = '';
   @Input() currentUserId: string = '';
 
-  comments: Comment[] = [];
+  comments: Chat[] = [];
   showCommentForm: boolean = false;
   newCommentContent: string = '';
   isLoading: boolean = true;
@@ -53,7 +53,7 @@ export class ChatComponent {
 
   loadComments(): void {
     this.isLoading = true;
-    this.appService.getCommentsByComicId(this.comicId).subscribe({
+    this.appService.getChatByDiscussionId(this.discussionId).subscribe({
       next: (comments) => {
         this.comments = comments;
         this.isLoading = false;
@@ -78,12 +78,12 @@ export class ChatComponent {
       return;
     }
 
-    const newComment: Omit<Comment, 'id' | 'created_at'> = {
+    const newComment: Omit<Chat, 'id' | 'created_at'> = {
       author_id: this.currentUserId,
       content: this.newCommentContent
     };
 
-    this.appService.addComment(this.comicId, newComment).then(() => {
+    this.appService.addChat(this.discussionId, newComment).then(() => {
       this.newCommentContent = '';
       this.showCommentForm = false;
       this.loadComments();
@@ -93,15 +93,15 @@ export class ChatComponent {
   }
 
   onDeleteComment(event: { commentId: string, isReply: boolean, parentCommentId?: string }): void {
-    this.appService.deleteComment(this.comicId, event.commentId, event.isReply, event.parentCommentId).then(() => {
+    this.appService.deleteChat(this.discussionId, event.commentId).then(() => {
       this.loadComments();
     }).catch(err => {
       console.error('Error deleting comment:', err);
     });
   }
 
-  onUpdateComment(event: { commentId: string, content: string, isReply: boolean, parentCommentId?: string }): void {
-    this.appService.updateComment(this.comicId, event.commentId, event.content, event.isReply, event.parentCommentId).then(() => {
+  onUpdateComment(event: { commentId: string, content: string}): void {
+    this.appService.updateChat(this.discussionId, event.commentId, event.content).then(() => {
       this.loadComments();
     }).catch(err => {
       console.error('Error updating comment:', err);

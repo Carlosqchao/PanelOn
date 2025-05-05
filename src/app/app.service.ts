@@ -15,7 +15,7 @@ import { docData } from 'rxfire/firestore';
 import {Comic, Comment} from './models/comic';
 import { Timestamp } from 'firebase/firestore';
 import {IUser} from './models/user';
-import {Discussion} from './models/discussion';
+import {Discussion,Chat} from './models/discussion';
 
 @Injectable({
   providedIn: 'root',
@@ -602,6 +602,51 @@ export class AppService {
     );
   }
 
+  getChatByDiscussionId(discussionId: string): Observable<Chat[]> {
+    const discussionCollection = collection(this.firestore, `/discussions/${discussionId}/comments`);
+    const q = query(discussionCollection, orderBy('created_at', 'desc'));
+    return collectionData(q, { idField: 'id' }).pipe(
+      map((comments: any[]) => comments.map(comment => ({
+        ...comment,
+        created_at: comment['created_at'] instanceof Timestamp ? comment['created_at'].toDate() : comment['created_at']
+      } as Comment))),
+      catchError(error => {
+        return of([]);
+      })
+    );
+  }
 
+
+  async addChat(discussionId: string, chat: Omit<Chat, 'id' | 'created_at'>): Promise<string> {
+    try {
+      const commentsCollection = collection(this.firestore, `/discussions/${discussionId}/comments`);
+      const newChat = {
+        ...chat,
+        created_at: new Date()
+      };
+      const docRef = await addDoc(commentsCollection, newChat);
+      return docRef.id;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateChat(comicId: string, commentId: string, content: string): Promise<void> {
+    try {
+      const commentDoc = doc(this.firestore, `/discussions/${comicId}/comments/${commentId}`);
+      await setDoc(commentDoc, { content }, { merge: true });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async deleteChat(comicId: string, commentId: string): Promise<void> {
+    try {
+      const commentDoc = doc(this.firestore, `/comics/${comicId}/comments/${commentId}`);
+      await deleteDoc(commentDoc);
+    } catch (error) {
+      throw error;
+    }
+  }
 
 }

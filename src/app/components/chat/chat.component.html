@@ -24,7 +24,7 @@
       <app-comment
         *ngFor="let comment of comments"
         [comment]="comment"
-        [comicId]="comicId"
+        [comicId]="discussionId"
         [currentUserId]="currentUserId"
         (deleteEvent)="onDeleteComment($event)"
         (updateEvent)="onUpdateComment($event)"

@@ -1,7 +1,7 @@
 import {Timestamp} from 'firebase/firestore';
 
 
-export interface Comment {
+export interface Chat {
   id?: string;
   author_id: string;
   content: string;
