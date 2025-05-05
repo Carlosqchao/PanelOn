@@ -9,6 +9,8 @@ import {AppService} from '../../app.service';
 import {SectionTitleComponent} from '../../components/section-title/section-title.component';
 import {UserStoreService} from '../../../../backend/src/services/user-store';
 import {Timestamp} from 'firebase/firestore';
+import {ButtonComponent} from '../../components/button/button.component';
+import {ChatComponent} from '../../components/chat/chat.component';
 
 @Component({
   selector: 'app-discussion-chat',
@@ -16,7 +18,9 @@ import {Timestamp} from 'firebase/firestore';
     CommentsSectionComponent,
     HeaderComponent,
     FooterComponent,
-    SectionTitleComponent
+    SectionTitleComponent,
+    ButtonComponent,
+    ChatComponent
   ],
   templateUrl: './discussion-chat.component.html',
   styleUrl: './discussion-chat.component.scss'

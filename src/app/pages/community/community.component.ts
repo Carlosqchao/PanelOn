@@ -40,6 +40,7 @@ export class CommunityComponent implements OnInit {
   newDiscussionTitle:string='';
   @Input() currentUserId:string='';
   private subscription:Subscription|undefined;
+  discussionsByDate: Discussion[]=[];
 
   constructor(private appService: AppService,
               private userStoreService: UserStoreService,
@@ -54,6 +55,16 @@ export class CommunityComponent implements OnInit {
     ).subscribe({
       next: (discussions) => {
         this.discussions = discussions;
+      },
+      error: (err) => {
+        console.error('Error al cargar los cómics desde Firestore:', err);
+      }
+    })
+    this.appService.getDiscussionsOrderedByDate(true).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe({
+      next: (discussions) => {
+        this.discussionsByDate = discussions;
       },
       error: (err) => {
         console.error('Error al cargar los cómics desde Firestore:', err);

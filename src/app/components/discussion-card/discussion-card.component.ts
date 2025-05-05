@@ -7,25 +7,22 @@ import {Timestamp} from 'firebase/firestore';
 @Component({
   selector: 'app-discussion-card',
   templateUrl: './discussion-card.component.html',
-  imports: [
-    DatePipe
-  ],
+  imports: [DatePipe],
   styleUrl: './discussion-card.component.scss'
 })
 export class DiscussionCardComponent{
-  @Input() discussion: Discussion = {id:"",discussion:"",userId:"",date:new Timestamp(0,0),title:""};
+  @Input() discussion!: Discussion;
   date?:string;
 
   constructor(private router: Router) {}
 
 
   onSeeMore() {
-    if(this.discussion?.id){
+    if(this.discussion.id){
       this.router.navigate(['discussion',this.discussion.id]).then(() =>{
         window.scrollTo(0,0);
       });
     }
   }
-
 
 }

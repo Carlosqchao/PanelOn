@@ -533,7 +533,10 @@ export class AppService {
         ...discussion,
         date: new Date(),
       }
+
       const docRef = await addDoc(discussionCollection, newDiscussion);
+
+      await updateDoc(docRef, {id:docRef.id});
       return docRef.id;
     } catch (error) {
       console.error('Error adding comic:', error);
@@ -552,6 +555,22 @@ export class AppService {
     );
   }
 
+  getDiscussionsOrderedByDate(ascending: boolean = false): Observable<any[]> {
+    const discussionsCollection = collection(this.firestore, 'discussions');
+
+    return collectionData(discussionsCollection, { idField: 'id' }).pipe(
+      map((discussions: any[]) =>
+        discussions
+          .filter(discussions => discussions.published != null)
+          .sort((a, b) => {
+            const dateA = new Date(a.published).getTime();
+            const dateB = new Date(b.published).getTime();
+            return ascending ? dateA - dateB : dateB - dateA;
+          })
+      )
+    );
+  }
+
 
   getDiscussionById(discussionId: string):Observable<any> {
     const discussionDoc = doc(this.firestore, `/discussions/${discussionId}`);
@@ -562,4 +581,7 @@ export class AppService {
       })
     );
   }
+
+
+
 }
