@@ -1,9 +1,8 @@
-import { Component, OnInit, ElementRef, ViewChild, Input, SimpleChanges, OnChanges } from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild, Input, SimpleChanges, OnChanges, Optional} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
 import * as pdfjsLib from 'pdfjs-dist';
 import { HeaderComponent } from '../../components/header/header.component';
-import { NgClass, NgForOf } from '@angular/common';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { CommentsSectionComponent } from '../../components/comments-section/comments-section.component';
 import { Subject } from 'rxjs';
@@ -17,24 +16,19 @@ import {ButtonComponent} from '../../components/button/button.component';
   imports: [
     HeaderComponent,
     FooterComponent,
-    CommentsSectionComponent,
-    ActionIconsComponent,
     ButtonComponent,
+    ActionIconsComponent,
+    CommentsSectionComponent,
   ],
   templateUrl: './comic-reader.component.html',
   styleUrl: './comic-reader.component.scss'
 })
 export class ComicReaderComponent implements OnInit, OnChanges {
-  icons: { name: string, url: string }[] = [
-    { name: 'Save', url: '/save.png' },
-    { name: 'Like', url: '/like.png' },
-    { name: 'Share', url: '/share.png' },
-  ];
-  @Input() status: string = 'Unknown';
-  @Input() rating: number = 0;
-  stars: number[] = [0, 1, 2, 3, 4];
   @Input() pdfUrl: string = "../../assets/COMIC castellano WEB_ok.pdf";
   title: string = '';
+  comments: Comment[] = [];
+  status: string =  'Unknown';
+  rating: number = 0;
   comicId: string = '';
   currentUserId: string = '';
   private destroy$ = new Subject<void>();
@@ -84,6 +78,7 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       next: (comic) => {
         if (comic) {
           this.title = comic.title || 'Untitled Comic';
+          this.comments = comic.comments || [];
           this.status = comic.state || 'Unknown';
           this.rating = comic.rating || 0;
         }

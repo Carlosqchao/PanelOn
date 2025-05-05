@@ -280,6 +280,26 @@ export class AppService {
     );
   }
 
+  async updateSubscription(userId: string | undefined): Promise<void> {
+    try {
+      const subscriptionDocRef = doc(this.firestore, `/users/${userId}`);
+      const docSnap = await getDoc(subscriptionDocRef);
+
+      const currentData = docSnap.exists() ? docSnap.data() : {};
+      const currentStatus = currentData['subscription'] === true;
+
+      const updatedStatus = !currentStatus;
+
+      await setDoc(subscriptionDocRef, { subscription: updatedStatus }, { merge: true });
+
+      console.log(`Subscription status updated to: ${updatedStatus}`);
+    } catch (error) {
+      console.error('Error toggling subscription:', error);
+      throw error;
+    }
+  }
+
+
   getCharacters(): Observable<any[]> {
     const charactersCollection = collection(this.firestore, 'characters');
     return collectionData(charactersCollection, { idField: 'id' }).pipe(

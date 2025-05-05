@@ -1,0 +1,281 @@
+.user-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  padding-top: 5rem;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.userNameBar {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.pencilIcon, .bellIcon {
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.pencilIcon:hover, .bellIcon:hover {
+  background-color: lightgrey;
+}
+
+.icon {
+  width: 80%;
+  padding: 0.25rem;
+}
+
+.userName {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.subscriptionBar {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.subscribeButton, .cancelButton {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.subscribeButton {
+  color: black;
+}
+
+.cancelButton {
+  color: white;
+}
+
+.subscribeButton:hover {
+  transform: scale(1.1);
+  background-color: #eeee48;
+}
+
+.cancelButton:hover {
+  transform: scale(1.1);
+  background-color: lightcoral;
+}
+
+.subscribeButton:active {
+  transform: scale(1);
+}
+
+.cancelButton:active {
+  transform: translateX(-5px);
+}
+
+.edit-username-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.edit-username-input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 15rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.edit-username-input:focus {
+  border-color: #eeee48;
+  box-shadow: 0 0 5px rgba(238, 238, 72, 0.5);
+}
+
+.userDescriptionSection {
+  width: 100%;
+  max-width: 600px;
+  margin: 12px 0;
+  position: relative;
+}
+
+.description-container {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  flex-direction: column;
+}
+
+.description-editable {
+  width: 100%;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.description-editable:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.userDescription {
+  margin: 0;
+  padding: 10px 0 5px 0;
+  line-height: 1.5;
+  word-wrap: break-word;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.edit-hint {
+  display: block;
+  color: #9e9e9e;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 2px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.edit-description-container {
+  width: 100%;
+  max-width: 600px;
+}
+
+.edit-description-input {
+  width: calc(100% - 20px);
+  min-height: 80px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: inherit;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.add-description-button {
+  padding: 8px 15px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #555;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.add-description-button:hover {
+  background-color: #e4e4e4;
+}
+
+.edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.action-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.save-button:hover {
+  background-color: #45a049;
+}
+
+.cancel-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #e53935;
+}
+
+.profile-image-container {
+  position: relative;
+  width: 30rem;
+  height: 30rem;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.profile-image-container .userImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.profile-image-container .image-upload-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+.profile-image-container .image-upload-overlay:hover {
+  opacity: 1;
+}
+.profile-image-container .image-upload-overlay .upload-icon {
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.profile-image-container .image-upload-overlay .upload-icon.uploading {
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*# sourceMappingURL=user-page.component.css.map */
