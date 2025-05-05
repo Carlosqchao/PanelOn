@@ -13,6 +13,7 @@ import {Observable, catchError, of, map, from} from 'rxjs';
 import { where, query } from '@angular/fire/firestore';
 import { docData } from 'rxfire/firestore';
 import {IUser} from './models/user';
+import {Discussion} from './models/discussion';
 
 @Injectable({
   providedIn: 'root',
@@ -284,4 +285,35 @@ export class AppService {
     );
   }
 
+
+  async addDiscussion(discussion: Discussion){
+    try {
+      const discussionCollection = collection(this.firestore, '/discussions');
+      const docRef = await addDoc(discussionCollection, discussion);
+      return docRef.id;
+    } catch (error) {
+      console.error('Error adding comic:', error);
+      throw error;
+    }
+  }
+
+  getDiscussions():Observable<any[]> {
+    const comicsCollection = collection(this.firestore, '/discussions');
+    return collectionData(comicsCollection, { idField: 'id' }).pipe(
+      catchError(error => {
+        console.error('Error fetching comics:', error);
+        return of([]);
+      })
+    );
+  }
+
+  getDiscussionById(discussionId: string):Observable<any> {
+    const discussionDoc = doc(this.firestore, `/discussions/${discussionId}`);
+    return docData(discussionDoc, { idField: 'id' }).pipe(
+      catchError(error => {
+        console.error('Error fetching comic:', error);
+        return of(null);
+      })
+    );
+  }
 }

@@ -1,29 +1,29 @@
 <div class="discussion-container">
   <div class="profile-pic-container">
-  <img class="profile-pic" src="https://github.com/Juanelboi.png">
+    <img class="profile-pic" src="https://github.com/Juanelboi.png">
   </div>
 
   <div class="Discussion-part">
-    <h1>Discussion tittle></h1>
 
-    <div class="argument">this is prueba for purebas y mas pruebas de que lacard esta bien hecha y esas cosas</div>
-    <div class="bottom-discusion">
-      <div >
-        holaa
-      </div>
+    <div class="Title-date">
+      <h2>{{discussion.title}}</h2>
       <div>
-        HOLA
+        {{ discussion.date.toDate() | date : "dd MMM yyyy"  }}
+      </div>
+    </div>
+    <div class="argument">{{discussion.discussion}}</div>
+    <div class="bottom-discusion">
+      <div class="Participants">
+        Participants
       </div>
 
+      <a style="cursor: pointer" (click)="onSeeMore()">
+        See more
+      </a>
     </div>
   </div>
-  <div>
 
-    <div>
-    holaaa
-    </div>
 
-  </div>
 
 
 </div>
