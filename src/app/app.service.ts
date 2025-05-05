@@ -640,9 +640,9 @@ export class AppService {
     }
   }
 
-  async deleteChat(comicId: string, commentId: string): Promise<void> {
+  async deleteChat(discussionId: string, commentId: string): Promise<void> {
     try {
-      const commentDoc = doc(this.firestore, `/comics/${comicId}/comments/${commentId}`);
+      const commentDoc = doc(this.firestore, `/discussions/${discussionId}/comments/${commentId}`);
       await deleteDoc(commentDoc);
     } catch (error) {
       throw error;

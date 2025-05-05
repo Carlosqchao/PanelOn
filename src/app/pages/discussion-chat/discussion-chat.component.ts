@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CommentsSectionComponent} from '../../components/comments-section/comments-section.component';
 import {HeaderComponent} from '../../components/header/header.component';
 import {FooterComponent} from '../../components/footer/footer.component';
@@ -11,6 +11,7 @@ import {UserStoreService} from '../../../../backend/src/services/user-store';
 import {Timestamp} from 'firebase/firestore';
 import {ButtonComponent} from '../../components/button/button.component';
 import {ChatComponent} from '../../components/chat/chat.component';
+import {Router} from 'express';
 
 @Component({
   selector: 'app-discussion-chat',
@@ -27,7 +28,7 @@ import {ChatComponent} from '../../components/chat/chat.component';
 })
 export class DiscussionChatComponent implements OnInit {
 
-  discussion:Discussion = {id:"",discussion:"",userId:"",date:new Timestamp(0,0),title:""};
+  discussion!:Discussion;
 
   private destroy$ = new Subject();
   private subscription: Subscription|undefined;
@@ -39,12 +40,15 @@ export class DiscussionChatComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    const discussionId = this.route.snapshot.params['id'];
+    this.appservice.getDiscussionById(discussionId).subscribe(discussion => {
+      this.discussion = discussion;
+    })
     this.subscription = this.userStoreService.getUser().subscribe(user => {
       this.currentUserId = user?.id || '';
     });
-    this.appservice.getDiscussionById("discussion1").subscribe(discussion => {
-      this.discussion = discussion;
-    })
+
   }
 
 

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ButtonComponent} from "../button/button.component";
 import {CommentComponent} from "../comment/comment.component";
 import {NgForOf, NgIf} from "@angular/common";
@@ -7,6 +7,7 @@ import {Subscription} from 'rxjs';
 import {AppService} from '../../app.service';
 import {UserStoreService} from '../../../../backend/src/services/user-store';
 import {Chat} from '../../models/discussion';
+import {ChatCommentComponent} from '../chat-comment/chat-comment.component';
 
 @Component({
   selector: 'app-chat',
@@ -16,12 +17,13 @@ import {Chat} from '../../models/discussion';
     NgForOf,
     NgIf,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ChatCommentComponent
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
-export class ChatComponent {
+export class ChatComponent implements OnInit,OnDestroy {
   @Input() discussionId: string = '';
   @Input() currentUserId: string = '';
 
@@ -92,7 +94,7 @@ export class ChatComponent {
     });
   }
 
-  onDeleteComment(event: { commentId: string, isReply: boolean, parentCommentId?: string }): void {
+  onDeleteComment(event: { commentId: string}): void {
     this.appService.deleteChat(this.discussionId, event.commentId).then(() => {
       this.loadComments();
     }).catch(err => {

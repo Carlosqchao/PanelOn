@@ -21,14 +21,14 @@
     </div>
 
     <div *ngIf="!isLoading" class="comments-list">
-      <app-comment
+      <app-chat-comment
         *ngFor="let comment of comments"
         [comment]="comment"
         [comicId]="discussionId"
         [currentUserId]="currentUserId"
         (deleteEvent)="onDeleteComment($event)"
         (updateEvent)="onUpdateComment($event)"
-      ></app-comment>
+      ></app-chat-comment>
     </div>
   </div>
 </div>

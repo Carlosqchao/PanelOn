@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DatePipe, NgIf} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Comment} from '../../models/comic';
@@ -7,6 +7,7 @@ import {AppService} from '../../app.service';
 import {AuthService} from '../../../../backend/src/services/user-auth';
 import {UserStoreService} from '../../../../backend/src/services/user-store';
 import {IUser} from '../../models/user';
+import {Chat} from '../../models/discussion';
 
 @Component({
   selector: 'app-chat-comment',
@@ -19,14 +20,14 @@ import {IUser} from '../../models/user';
   templateUrl: './chat-comment.component.html',
   styleUrl: './chat-comment.component.scss'
 })
-export class ChatCommentComponent {
-  @Input() comment!: Comment;
+export class ChatCommentComponent implements OnInit {
+  @Input() comment!: Chat;
   @Input() comicId: string = '';
   @Input() parentCommentId: string = '';
   @Input() parentUsername: string = '';
   @Input() currentUserId: string = '';
-  @Output() deleteEvent = new EventEmitter<{ commentId: string, isReply: boolean, parentCommentId?: string }>();
-  @Output() updateEvent = new EventEmitter<{ commentId: string, content: string, isReply: boolean, parentCommentId?: string }>();
+  @Output() deleteEvent = new EventEmitter<{ commentId: string}>();
+  @Output() updateEvent = new EventEmitter<{ commentId: string, content: string}>();
 
   userIcon: string = '../../assets/default-user-icon.png';
   username: string = 'Carlos Ruano Rachid';
@@ -51,18 +52,14 @@ export class ChatCommentComponent {
     if (this.showReplyForm) return;
 
     if (this.isEditing) {
-      this.appService.updateComment(
+      this.appService.updateChat(
         this.comicId,
         this.comment.id!,
         this.editedContent,
-        !!this.parentCommentId,
-        this.parentCommentId
       ).then(() => {
         this.updateEvent.emit({
           commentId: this.comment.id!,
           content: this.editedContent,
-          isReply: !!this.parentCommentId,
-          parentCommentId: this.parentCommentId || undefined
         });
       }).catch(error => {
         console.error('Error updating comment:', error);
@@ -77,16 +74,12 @@ export class ChatCommentComponent {
   delete(): void {
     if (this.isEditing || this.showReplyForm) return;
 
-    this.appService.deleteComment(
+    this.appService.deleteChat(
       this.comicId,
-      this.comment.id!,
-      !!this.parentCommentId,
-      this.parentCommentId
+      this.comment.id!
     ).then(() => {
       this.deleteEvent.emit({
         commentId: this.comment.id!,
-        isReply: !!this.parentCommentId,
-        parentCommentId: this.parentCommentId || undefined
       });
     }).catch(error => {
       console.error('Error deleting comment:', error);
@@ -101,7 +94,6 @@ export class ChatCommentComponent {
         this.currentUserId = '';
       }
     });
-
     this.loadUserDetailsForComment();
   }
 
