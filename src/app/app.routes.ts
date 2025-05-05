@@ -12,6 +12,7 @@ import {ModalTestingComponent} from './pages/modal-testing/modal-testing.compone
 import { UploadFormComponent } from './pages/upload-form/upload-form.component';
 import {UserPageComponent} from './pages/user-page/user-page.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
+import {CommunityComponent} from './pages/community/community.component';
 import {SavedComicsUserComponent} from './pages/saved-comics-user/saved-comics-user.component';
 import {LikesComicsUserComponent} from './pages/likes-comics-user/likes-comics-user.component';
 import {UploadedComicsUserComponent} from './pages/uploaded-comics-user/uploaded-comics-user.component';
@@ -32,7 +33,8 @@ export const routes: Routes = [
   { path: 'comic-reader/:id', component: ComicReaderComponent },
   { path: 'modalTest', component: ModalTestingComponent },
   { path: 'user-page', component: UserPageComponent },
-  { path: 'search-page', component: SearchPageComponent },
+  { path: 'search-page', component: SearchPageComponent},
+  { path: 'community', component: CommunityComponent},
   { path: 'saved-comics-user', component: SavedComicsUserComponent },
   { path: 'likes-comics-user', component: LikesComicsUserComponent},
   { path: 'uploaded-comics-user', component: UploadedComicsUserComponent},
