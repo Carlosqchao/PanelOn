@@ -41,5 +41,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
+.env
+
 # Ignorar el archivo de claves de Stripe
 backend/src/config/stripe.ts
