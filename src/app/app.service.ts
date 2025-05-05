@@ -274,7 +274,7 @@ export class AppService {
     const usersCollection = collection(this.firestore, '/users');
     return collectionData(usersCollection, { idField: 'id' }).pipe(
       catchError(error => {
-        console.error('Error fetching users::', error);
+        console.error('Error fetching users:', error);
         return of([]);
       })
     );
@@ -545,7 +545,4 @@ export class AppService {
     );
   }
 
-  cancelUserSubscription(password: string, userId: string) {
-
-  }
 }
