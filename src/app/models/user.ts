@@ -7,4 +7,5 @@ export interface IUser {
   birthdate:string;
   imageUrl?:string;
   description?:string;
+  subscription?: boolean;
 }

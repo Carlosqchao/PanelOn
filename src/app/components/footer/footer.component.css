@@ -1,6 +1,6 @@
 .footer-nav {
-  background-color: #D9D9D9;
-  color: black;
+  background: linear-gradient(-45deg, #E76F51, #cd5031);
+  color: white;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -22,17 +22,17 @@
 }
 .footer-nav .footer-menu .footer-item a {
   text-decoration: none;
-  color: black;
+  color: white;
   font-family: Arial, sans-serif;
   font-size: 14px;
   padding: 10px;
 }
 .footer-nav .footer-menu .footer-item a:hover {
-  color: black;
+  font-size: 1rem;
 }
 .footer-nav .footer-menu .footer-item:not(:last-child)::after {
   content: " | ";
-  color: black;
+  color: white;
   padding: 0 8px;
 }
 

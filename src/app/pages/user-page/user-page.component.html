@@ -60,7 +60,9 @@
     </div>
 
     <div class="subscriptionBar">
-      <button class="subscribeButton">Active Subscription Plan</button>
+      <button class="subscribeButton">
+        {{ subscriptionStatus === 'none' ? 'Activate Free Plan' : 'Active Subscription Plan' }}
+      </button>
       <button class="cancelButton" (click)="openModal()"><span style="color: red">Cancel subscription</span></button>
     </div>
   </div>

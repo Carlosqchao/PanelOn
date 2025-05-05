@@ -38,7 +38,7 @@ export class UserPageComponent implements OnInit {
   likedComicsCount: number = 0;
   uploadedComicsCount: number = 0;
   isUploading: boolean = false;
-
+  subscriptionStatus: 'active' | 'none' = 'none';
 
   constructor(private appService: AppService, private router: Router) {}
 
@@ -49,12 +49,37 @@ export class UserPageComponent implements OnInit {
   }
 
   openModal() {
-    this.dialog.open(CancelSubscriptionDialogComponent, {
+    const dialogRef = this.dialog.open(CancelSubscriptionDialogComponent, {
       data: {
         title: 'YOU ARE GOING TO CANCEL YOUR SUBSCRIPTION',
         message: 'ARE YOU SURE OF WHAT ARE YOU DOING?',
       }
-    })
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.confirmed) {
+
+        this.appService.updateSubscription(this.user?.uid);
+      }
+    });
+  }
+
+
+  getSubscription(userId: string) {
+    if (!userId) return;
+
+    this.appService.getUserByUid(userId).subscribe(user => {
+      if (!user || user.subscription === false) {
+        this.subscriptionStatus = 'none';
+        console.log(user.subscription);
+        return;
+      }
+
+      this.subscriptionStatus = 'active';
+    }, error => {
+      console.error('Error loading subscription:', error);
+      this.subscriptionStatus = 'none';
+    });
   }
 
   ngOnInit() {
@@ -69,6 +94,7 @@ export class UserPageComponent implements OnInit {
     combineLatest([user$, userData$]).subscribe(([user, userData]) => {
       this.user = user;
       this.userData = userData;
+      this.getSubscription(user.uid);
 
       this.appService.getSavedComicsCount(user.uid).subscribe(count => {
         this.savedComicsCount = count;

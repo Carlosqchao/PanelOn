@@ -66,4 +66,21 @@ $dialog-height: 35vh;
       margin-top: 2vh;
     }
   }
+
+  .input-field {
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    outline: none;
+  }
+
+  .input-field::placeholder {
+    text-align: center;
+  }
+
+  .input-field:focus {
+    outline: none;
+  }
+
 }
