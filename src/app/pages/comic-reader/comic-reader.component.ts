@@ -3,24 +3,21 @@ import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
 import * as pdfjsLib from 'pdfjs-dist';
 import { HeaderComponent } from '../../components/header/header.component';
-import { NgClass, NgForOf } from '@angular/common';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { CommentsSectionComponent } from '../../components/comments-section/comments-section.component';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {ActionIconsComponent} from '../../components/action-icons/action-icons.component';
+import {ButtonComponent} from '../../components/button/button.component';
 
 @Component({
   selector: 'app-comic-reader',
   standalone: true,
   imports: [
-    NgForOf,
     HeaderComponent,
     FooterComponent,
-    CommentComponent,
     ButtonComponent,
     ActionIconsComponent,
-    NgClass,
     CommentsSectionComponent,
   ],
   templateUrl: './comic-reader.component.html',
@@ -29,6 +26,9 @@ import {ActionIconsComponent} from '../../components/action-icons/action-icons.c
 export class ComicReaderComponent implements OnInit, OnChanges {
   @Input() pdfUrl: string = "../../assets/COMIC castellano WEB_ok.pdf";
   title: string = '';
+  comments: Comment[] = [];
+  status: string =  'Unknown';
+  rating: number = 0;
   comicId: string = '';
   currentUserId: string = '';
   private destroy$ = new Subject<void>();
