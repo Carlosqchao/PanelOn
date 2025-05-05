@@ -8,7 +8,7 @@ import {
   sendPasswordResetEmail,
   User
 } from '@angular/fire/auth';
-import { Observable, from, BehaviorSubject } from 'rxjs';
+import {Observable, from, BehaviorSubject, map} from 'rxjs';
 import { AppService } from '../../../src/app/app.service';
 import { UserStoreService } from './user-store';
 import { IUser } from '../../../src/app/models/user';
@@ -73,6 +73,7 @@ export class AuthService {
           });
 
         const userData: IUser = {
+          id: user.uid,
           email: email,
           username: username,
           name: name,
@@ -142,20 +143,20 @@ export class AuthService {
       });
   }
 
-  getCurrentUser(): User | null {
-    return this.userSubject.value;
+  getCurrentUser(): Observable<User | null> {
+    return this.userSubject.asObservable();
   }
 
-  getCurrentUserId(): string {
-    const user = this.getCurrentUser();
-    if (!user) {
-      throw new Error('No hay usuario autenticado');
-    }
-    return user.uid;
+  userId?: string;
+  getCurrentUserId() {
+    this.getCurrentUser().subscribe(user => {
+      this.userId = user?.uid
+    });
+    return this.userId;
   }
 
   sendPasswordResetEmail(email: string): Observable<any> {
     console.log('Enviando email de recuperación a:', email);
-    return from(sendPasswordResetEmail(this.firebaseAuth, email));
+    return from(sendPasswordResetEmail(this.firebaseAuth,email));
   }
 }

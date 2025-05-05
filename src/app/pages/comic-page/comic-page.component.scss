@@ -4,13 +4,6 @@
   align-items: center;
   gap: 20px;
 
-  .age-restriction-message {
-    color: red;
-    font-size: 1rem;
-    margin: 1rem;
-    text-align: center;
-  }
-
   app-button.restricted {
     opacity: 0.6;
     cursor: not-allowed;
@@ -20,11 +13,73 @@
 .icons-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 35%;
+  align-items: flex-end;
   justify-content: center;
 }
 
-app-comic-cover.restricted {
+.comic-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 18vh;
+}
+
+.comic-cover-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.comic-cover-image {
+  display: block;
+}
+
+.comic-cover-image.restricted {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.comic-cover-image img {
+  width: 700px;
+  height: auto;
+  max-width: 100%;
+}
+
+.pegi-icon {
+  position: absolute;
+  top: -25px;
+  right: -28px;
+  width: 100px;
+  height: auto;
+  transform: rotate(30deg);
+  transition: opacity 1s ease, transform 1s ease;
+  z-index: 10;
+}
+
+.pegi-icon:hover {
+  opacity: 1.2;
+  transform: scale(1.2);
+}
+
+app-comic-status {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.error-message {
+  color: #d32f2f;
+  font-size: 20px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.read-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  padding:2rem;
 }

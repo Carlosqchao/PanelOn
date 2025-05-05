@@ -1,8 +1,8 @@
-export interface New {
+export interface News {
   author: string;
   content: string;
-  id: number;
+  id:string;
   image: string;
-  publishedDate: number[];
+  published: number[];
   title: string;
 }

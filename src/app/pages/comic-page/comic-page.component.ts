@@ -75,7 +75,6 @@ export class ComicPageComponent implements OnInit, OnDestroy {
               pegi: comic.pegi || 0,
               relatedCharacters: comic.relatedCharacters || [],
               author_id: comic.author_id || 0,
-              comments: comic.comments || []
             };
 
             if (comic.relatedCharacters?.length) {
@@ -138,6 +137,11 @@ export class ComicPageComponent implements OnInit, OnDestroy {
 
     const userAge = this.userStore.getUserAge();
     this.canRead = userAge >= this.comic.pegi;
+  }
+
+  getPegiIconUrl(): string {
+    if (!this.comic?.pegi) return '';
+    return `/pegi-${this.comic.pegi}.png`;
   }
 
   protected readonly Array = Array;

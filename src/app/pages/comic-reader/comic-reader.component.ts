@@ -1,12 +1,11 @@
-import {Component, OnInit, ElementRef, ViewChild, Input, SimpleChanges, OnChanges, Optional} from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
 import * as pdfjsLib from 'pdfjs-dist';
 import { HeaderComponent } from '../../components/header/header.component';
-import { NgForOf } from '@angular/common';
+import { NgClass, NgForOf } from '@angular/common';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { CommentComponent } from '../../components/comment/comment.component';
-import { ButtonComponent } from '../../components/button/button.component';
+import { CommentsSectionComponent } from '../../components/comments-section/comments-section.component';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {ActionIconsComponent} from '../../components/action-icons/action-icons.component';
@@ -15,22 +14,26 @@ import {ActionIconsComponent} from '../../components/action-icons/action-icons.c
   selector: 'app-comic-reader',
   standalone: true,
   imports: [
-    NgForOf,
     HeaderComponent,
     FooterComponent,
-    CommentComponent,
-    ButtonComponent,
-    ActionIconsComponent,
+    CommentsSectionComponent,
   ],
   templateUrl: './comic-reader.component.html',
   styleUrl: './comic-reader.component.scss'
 })
 export class ComicReaderComponent implements OnInit, OnChanges {
+  icons: { name: string, url: string }[] = [
+    { name: 'Save', url: '/save.png' },
+    { name: 'Like', url: '/like.png' },
+    { name: 'Share', url: '/share.png' },
+  ];
+  @Input() status: string = 'Unknown';
+  @Input() rating: number = 0;
+  stars: number[] = [0, 1, 2, 3, 4];
   @Input() pdfUrl: string = "../../assets/COMIC castellano WEB_ok.pdf";
   title: string = '';
-  comments: any[] = [];
-  defaultUserIcon: string = 'https://randomuser.me/api/portraits/men/23.jpg';
-  defaultUsername: string = 'Carlos Ruano Rachid';
+  comicId: string = '';
+  currentUserId: string = '';
   private destroy$ = new Subject<void>();
 
   @ViewChild('pdfCanvas', { static: true }) canvasElement!: ElementRef<HTMLCanvasElement>;
@@ -54,8 +57,8 @@ export class ComicReaderComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     const comicId = this.route.snapshot.paramMap.get('id');
     if (comicId) {
+      this.comicId = comicId;
       this.loadComicData(comicId);
-
     }
     if (this.pdfUrl) {
       this.loadPdf();
@@ -78,7 +81,8 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       next: (comic) => {
         if (comic) {
           this.title = comic.title || 'Untitled Comic';
-          this.comments = comic.comments || [];
+          this.status = comic.state || 'Unknown';
+          this.rating = comic.rating || 0;
         }
       },
       error: (err) => {
@@ -86,7 +90,6 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       }
     });
   }
-
 
   async loadPdf(): Promise<void> {
     try {
