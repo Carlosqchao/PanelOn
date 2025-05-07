@@ -1,6 +1,8 @@
+@import '../../../themes/light';
+
 .input-field {
   text-align: left;
-  border: 1px solid #ccc;
+  border: 1px solid $gray;
   border-radius: 4px;
   padding: 5px;
   outline: none;
