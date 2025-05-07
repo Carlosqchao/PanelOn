@@ -1,3 +1,5 @@
+@import '../../../themes/light';
+
 .user-info{
   display: flex;
   flex-direction: column;
@@ -18,7 +20,7 @@
 }
 
 .pencilIcon:hover{
-  background-color: lightgrey;
+  background-color: $light-gray;
 }
 
 .bellIcon{
@@ -27,7 +29,7 @@
 }
 
 .bellIcon:hover{
-  background-color: lightgrey;
+  background-color: $light-gray;
 }
 
 .icon{
@@ -43,7 +45,7 @@
 
 .userDescription{
   width: 50%;
-  color: #737373;
+  color: $reply-gray;
   font-size: 1rem;
 }
 
@@ -62,7 +64,7 @@
   padding: 10px 20px;
   border-radius: 5px;
   background-color: transparent;
-  color: black;
+  color: $black;
   border: none;
   font-size: 16px;
   font-weight: bold;
@@ -71,7 +73,7 @@
 
 .subscribeButton:hover {
   transform: scale(1.1);
-  background-color: #eeee48;
+  background-color: $star-filled;
 }
 
 .subscribeButton:active {
@@ -82,7 +84,7 @@
   padding: 10px 20px;
   border-radius: 5px;
   background-color: transparent;
-  color: white;
+  color: $white;
   border: none;
   font-size: 16px;
   font-weight: bold;
@@ -91,7 +93,7 @@
 
 .cancelButton:hover {
   transform: scale(1.1);
-  background-color: lightcoral;
+  background-color: $primary;
 }
 
 .cancelButton:active {
