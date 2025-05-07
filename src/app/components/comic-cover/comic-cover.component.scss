@@ -1,3 +1,5 @@
+@import '../../../themes/light';
+
 .comic-cover-container {
   display: flex;
   flex-direction: column;
@@ -15,7 +17,7 @@
       width: 100%;
       cursor:pointer;
       height: auto;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 8px $shadow;;
       border-radius: 5px;
     }
   }
