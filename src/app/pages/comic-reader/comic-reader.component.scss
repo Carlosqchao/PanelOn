@@ -1,10 +1,12 @@
+@import '../../../themes/light';
+
 h1{
   padding: 15vh 5vh 0 5vh;
 }
 
 
 .fullscreen{
-  background: #fff8ef;
+  background: $background;
 }
 #PageNumber{
   width:50% }
@@ -88,14 +90,14 @@ canvas {
   align-items: flex-end;
   .label {
     font-weight: bold;
-    color: #333;
+    color: $dark-gray;
     margin-right: 10px;
     font-size: 3vh;
   }
 
   .value {
     font-size: 3vh;
-    color: #555;
+    color: $dark-gray;
     text-transform: uppercase;
   }
 }
@@ -112,12 +114,12 @@ canvas {
       font-size: 3vh;
 
       &.filled {
-        color: #ffd700;
+        color: $star-filled;
       }
 
       &.half-filled {
         position: relative;
-        color: #d3d3d3;
+        color: $star-empty;
 
         &::before {
           content: '★';
@@ -125,19 +127,19 @@ canvas {
           left: 0;
           width: 50%;
           overflow: hidden;
-          color: #ffd700;
+          color: $star-filled;
         }
       }
 
       &.empty {
-        color: #d3d3d3;
+        color: $star-empty;
       }
     }
   }
 
   .rating-value {
     font-size: 3vh;
-    color: #555;
+    color: $dark-gray;
   }
 
 
