@@ -1,3 +1,5 @@
+@import '../../../themes/light';
+
 .center-container {
   display: flex;
   padding-bottom: 3vh;
@@ -69,7 +71,7 @@ app-comic-status {
 }
 
 .error-message {
-  color: #d32f2f;
+  color: $red;
   font-size: 20px;
   margin-top: 10px;
   text-align: center;
