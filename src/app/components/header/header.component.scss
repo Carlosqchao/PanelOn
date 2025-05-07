@@ -202,6 +202,11 @@
   }
 }
 
+.nav-spacer {
+  height: 60px;
+}
+
+
 .mobile-menu {
   display: none;
   position: fixed;
@@ -277,6 +282,10 @@
 }
 
 @media (max-width: 768px) {
+  .nav-spacer {
+    height: 30px;
+  }
+
   .nav-content {
     width: 100%;
     display: flex;
