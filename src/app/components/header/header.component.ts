@@ -1,12 +1,14 @@
 import { Component, HostListener, OnInit, OnDestroy, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass, NgIf, isPlatformBrowser } from '@angular/common';
 import { User } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../../backend/src/services/user-auth';
 import { IUser } from '../../models/user';
 import { UserStoreService } from '../../../../backend/src/services/user-store';
-import { isPlatformBrowser } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
+import {LanguageService} from '../../language.service';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +18,9 @@ import { isPlatformBrowser } from '@angular/common';
   imports: [
     RouterLink,
     NgClass,
-    NgIf
+    NgIf,
+    TranslateModule,
+    FormsModule
   ]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
@@ -29,14 +33,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public mobileMenuOpen = false;
   private userSubscription: Subscription | undefined;
   private userDataSubscription: Subscription | undefined;
+  public currentLang: string;
 
   @ViewChild('profileMenu') profileMenu!: ElementRef;
 
   constructor(
     private authService: AuthService,
     private userStore: UserStoreService,
+    public languageService: LanguageService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  ) {
+    this.currentLang = this.languageService.getCurrentLang();
+  }
 
   ngOnInit() {
     this.checkScreenSize();
@@ -46,6 +54,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.userDataSubscription = this.userStore.user$.subscribe((userData: IUser | null) => {
       this.userData = userData;
+    });
+
+    this.languageService.currentLang$.subscribe(lang => {
+      this.currentLang = lang;
     });
   }
 
@@ -120,5 +132,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.isMobile) {
       this.mobileMenuOpen = false;
     }
+  }
+
+  changeLanguage(lang: string) {
+    this.languageService.setLanguage(lang);
   }
 }
