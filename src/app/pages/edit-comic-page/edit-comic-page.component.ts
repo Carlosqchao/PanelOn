@@ -21,6 +21,7 @@ import {Comic} from '../../models/comic';
 })
 export class EditComicPageComponent implements OnInit {
   comicId: string | null = null;
+  cover = '';
   title = '';
   author = '';
   synopsis = '';
@@ -54,6 +55,7 @@ export class EditComicPageComponent implements OnInit {
       if (comicSnapshot.exists()) {
         const comicData = comicSnapshot.data();
         this.title = comicData['title'] || '';
+        this.cover = comicData['cover'] || '';
         this.author = comicData['author'] || '';
         this.synopsis = comicData['synopsis'] || '';
         this.state = comicData['state'] || '';
