@@ -2,10 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Comic } from '../../models/comic';
 import { ComicSaveService } from '../../../../backend/src/services/saved-comics.service';
-import {LikedComicService} from '../../../../backend/src/services/liked-comic.service';
-import {ClipboardService} from '../../../../backend/src/services/copy-link-service';
+import { LikedComicService } from '../../../../backend/src/services/liked-comic.service';
+import { ClipboardService } from '../../../../backend/src/services/copy-link-service';
 import Swal from 'sweetalert2';
-
+import {ComicDownloadService} from '../../../../backend/src/services/download-comic';
 
 @Component({
   selector: 'app-action-icons',
@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class ActionIconsComponent implements OnInit {
   img_share: string = "/share.png";
+  img_download: string = "/download.png";
   img_save: string = "/save.png";
   img_saved: string = "/saved.png";
   img_like: string = "/like.png";
@@ -27,7 +28,8 @@ export class ActionIconsComponent implements OnInit {
   constructor(
     private comicSaveService: ComicSaveService,
     private likedComicService: LikedComicService,
-    private clipBoardService: ClipboardService
+    private clipBoardService: ClipboardService,
+    private comicDownloadService: ComicDownloadService
   ) {}
 
   ngOnInit() {
@@ -84,5 +86,38 @@ export class ActionIconsComponent implements OnInit {
           showConfirmButton: false
         });
       });
+  }
+
+  downloadComic() {
+    const fileName = `${this.comic.title}.pdf`;
+    this.comicDownloadService.downloadComic(fileName).subscribe({
+      next: (downloadUrl) => {
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.setAttribute('download', fileName.replace(/ /g, '_'));
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Download Started!',
+          text: 'The comic is being downloaded to your Downloads folder.',
+          timer: 2000,
+          showConfirmButton: false
+        });
+      },
+      error: (err) => {
+        console.error('Error getting download URL:', err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to initiate download. Please check the file name or server status.',
+          timer: 2000,
+          showConfirmButton: false
+        });
+      }
+    });
   }
 }
