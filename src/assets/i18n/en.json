@@ -1,0 +1,14 @@
+{
+  "HEADER": {
+    "CHARACTERS": "CHARACTERS",
+    "COMICS": "COMICS",
+    "NEWS": "NEWS",
+    "COMMUNITY": "COMMUNITY",
+    "SUBSCRIPTION": "SUBSCRIPTION",
+    "SIGN_UP": "Sign up",
+    "LOGIN": "Login",
+    "PROFILE": "Profile",
+    "LOGOUT": "Logout",
+    "LANGUAGE": "Language"
+  }
+}

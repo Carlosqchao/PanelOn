@@ -1,0 +1,14 @@
+{
+  "HEADER": {
+    "CHARACTERS": "PERSONAJES",
+    "COMICS": "CÓMICS",
+    "NEWS": "NOTICIAS",
+    "COMMUNITY": "COMUNIDAD",
+    "SUBSCRIPTION": "SUSCRIPCIÓN",
+    "SIGN_UP": "Registrarse",
+    "LOGIN": "Iniciar sesión",
+    "PROFILE": "Perfil",
+    "LOGOUT": "Cerrar sesión",
+    "LANGUAGE": "Idioma"
+  }
+}
