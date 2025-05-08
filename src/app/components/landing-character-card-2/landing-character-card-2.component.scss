@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&family=Raleway:wght@400;500;600;700;800&display=swap');
+@import '../../../themes/themes';
 
 :host {
   display: block;
@@ -11,14 +12,14 @@
   margin-top: 50px;
   margin-bottom: 50px;
   cursor: pointer;
-  background-color: #fff;
-  border: 5px solid black;
-  box-shadow: 0 0 0 7px #fff, 0 0 8px 5px #000;
+  background-color: var(--white);
+  border: 5px solid var(--black);
+  box-shadow: 0 0 0 7px var(--white), 0 0 8px 5px var(--black);
 
   .card-image {
     height: 72%;
     position: relative;
-    border-bottom: 5px solid #000;
+    border-bottom: 5px solid var(--black);
 
     img {
       width: 130%;
@@ -30,12 +31,12 @@
 
   .card-text {
     h2 {
-      font-family: 'Open Sans Condensed', sans-serif;
+      font-family: $font-family-card-title;
       font-size: 3rem;
       letter-spacing: 15px;
       text-align: center;
       margin-left: 10px;
-      color: #2E5579;
+      color: var(--card-blue);
     }
 
     > div {
@@ -49,7 +50,7 @@
         flex-direction: column;
 
         span {
-          font-family: 'Raleway', serif;
+          font-family: $font-family-card-text;
           font-size: 1.5rem;
           line-height: 30px;
           font-weight: 500;
@@ -60,14 +61,14 @@
         display: flex;
 
         span:first-child {
-          font-family: 'Raleway', serif;
+          font-family: $font-family-card-text;
           font-size: 5rem;
           font-weight: 800;
           line-height: 60px;
         }
 
         span:last-child {
-          font-family: 'Raleway', serif;
+          font-family: $font-family-card-text;
           font-weight: 600;
           font-size: 1.3rem;
         }
