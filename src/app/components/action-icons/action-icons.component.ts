@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Comic } from '../../models/comic';
 import { ComicSaveService } from '../../../../backend/src/services/saved-comics.service';
 import {LikedComicService} from '../../../../backend/src/services/liked-comic.service';
+import {ClipboardService} from '../../../../backend/src/services/copy-link-service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -24,7 +26,8 @@ export class ActionIconsComponent implements OnInit {
 
   constructor(
     private comicSaveService: ComicSaveService,
-    private likedComicService: LikedComicService
+    private likedComicService: LikedComicService,
+    private clipBoardService: ClipboardService
   ) {}
 
   ngOnInit() {
@@ -58,5 +61,28 @@ export class ActionIconsComponent implements OnInit {
         this.isLiked = true;
       });
     }
+  }
+
+  copyLink() {
+    this.clipBoardService.copyPageUrl()
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Link Copied!',
+          text: 'The link has been copied to the clipboard.',
+          timer: 2000,
+          showConfirmButton: false
+        });
+      })
+      .catch(err => {
+        console.error('Error copying:', err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to copy the link.',
+          timer: 2000,
+          showConfirmButton: false
+        });
+      });
   }
 }
