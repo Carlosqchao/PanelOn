@@ -1,10 +1,12 @@
+@import '../../../themes/themes';
+
 .news-card-container {
   width: 13.75rem;
   min-height: 12.5rem;
   text-align: center;
   overflow: hidden;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
-  background: white;
+  box-shadow: 0 0.25rem 0.5rem var(--shadow);
+  background: var(--white);
   padding: 0.625rem;
   margin: 0.5rem 0.5rem 2rem 0.5rem;
   cursor: pointer;
@@ -24,7 +26,7 @@
   .news-card-author {
     font-size: 0.625rem;
     font-weight: bold;
-    color: gray;
+    color: var(--dark-gray);
     margin-top: 0.3125rem;
     white-space: nowrap;
     overflow: hidden;

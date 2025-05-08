@@ -1,6 +1,6 @@
 <form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
   <div class="aside-img">
-    <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2023/04/batman-423-dc-comics.jpg" alt="Comic Cover">
+    <img [src]="cover" alt="Comic Cover">
   </div>
   <div class="form-container">
     <div class="inner-form-container">

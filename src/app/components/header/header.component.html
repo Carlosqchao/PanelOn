@@ -3,7 +3,7 @@
      [ngClass]="{ 'header-hidden': !isVisible, 'header-visible': isVisible }">
   <div class="nav-content">
     <div class="logo-container">
-      <a routerLink="">
+      <a routerLink="/">
         <img class="logo-image" src="/favicon.ico" alt="Logo" />
       </a>
     </div>
@@ -51,8 +51,13 @@
           </div>
           <div class="dropdown-menu" [ngClass]="{ 'dropdown-visible': showDropdown }">
             <a routerLink="/user-page" class="dropdown-item">{{ userData?.username || 'Profile' }}</a>
+            <a (click)="toggleTheme()" class="dropdown-item">
+              <span *ngIf="isDarkMode; else lightModeIcon">Light</span>
+              <ng-template #lightModeIcon>Dark</ng-template>
+            </a>
             <a (click)="logout()" class="dropdown-item logout">Logout</a>
           </div>
+
         </div>
       </ng-container>
     </div>
@@ -63,6 +68,10 @@
       <div class="mobile-user-profile">
         <img class="profile-image" [src]="userData?.imageUrl || '../../assets/default-user-icon.png'" alt="Profile" />
         <div class="username-text" routerLink="/user-page">{{ userData?.username || 'Profile' }}</div>
+        <a (click)="toggleTheme()" class="dropdown-item">
+          <span *ngIf="isDarkMode; else lightModeIcon">Light</span>
+          <ng-template #lightModeIcon>Dark</ng-template>
+        </a>
         <a class="dropdown-item logout" (click)="logout()">Logout</a>
       </div>
     </ng-container>
@@ -94,3 +103,5 @@
     </ul>
   </div>
 </nav>
+<div class="nav-spacer"></div>
+

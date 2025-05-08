@@ -1,3 +1,4 @@
+@import '../../../themes/themes';
 
 @mixin flex-row() {
   display: flex;
@@ -17,7 +18,7 @@
   .modal-header {
     @include flex-row;
 
-    color: red;
+    color: var(--red);
     font-weight: bold;
     padding: 0.5vw 0.8vh;
 
