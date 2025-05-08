@@ -40,7 +40,7 @@
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
-    font-family: var(--font-family);
+    font-family: $font-family;
 
     .superhero-name {
       margin: 0;

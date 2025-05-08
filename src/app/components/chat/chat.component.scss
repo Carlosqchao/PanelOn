@@ -35,7 +35,7 @@
       padding: 6px;
       border: 1px solid var(--border-gray);
       font-size: 16px;
-      font-family: var(--font-family);
+      font-family: $font-family;
 
       &:focus {
         outline: none;
@@ -58,7 +58,7 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       border: none;
-      font-family: var(--font-family);
+      font-family:$font-family;
 
       &:focus {
         outline: none;
@@ -89,7 +89,7 @@
     text-align: center;
     padding: 20px;
     color: var(--loading-gray);
-    font-family: var(--font-family);
+    font-family: $font-family;
   }
 
   .comments-list {
