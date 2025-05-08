@@ -51,7 +51,10 @@
           </div>
           <div class="dropdown-menu" [ngClass]="{ 'dropdown-visible': showDropdown }">
             <a routerLink="/user-page" class="dropdown-item">{{ userData?.username || 'Profile' }}</a>
-            <a (click)="toggleTheme()" class="dropdown-item">Toggle Dark Mode</a>
+            <a (click)="toggleTheme()" class="dropdown-item">
+              <span *ngIf="isDarkMode; else lightModeIcon">Light</span>
+              <ng-template #lightModeIcon>Dark</ng-template>
+            </a>
             <a (click)="logout()" class="dropdown-item logout">Logout</a>
           </div>
 

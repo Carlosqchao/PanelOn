@@ -1,3 +1,5 @@
+@import '../../../themes/themes';
+
 .button-general {
   cursor: pointer;
   font-weight: bold;
@@ -8,8 +10,20 @@
   align-items: center;
   justify-content: center;
   padding: 0.5rem 1rem;
+  background-color: var(--primary);
+  color: var(--white);
+
+  &:hover {
+    background-color: var(--primary-dark);
+  }
 
   &:focus {
     outline: none;
+  }
+
+  &:disabled {
+    background-color: var(--gray);
+    cursor: not-allowed;
+    opacity: 0.6;
   }
 }

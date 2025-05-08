@@ -28,8 +28,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public showDropdown = false;
   public isMobile = false;
   public mobileMenuOpen = false;
+  public isDarkMode: boolean = false;
   private userSubscription: Subscription | undefined;
   private userDataSubscription: Subscription | undefined;
+
 
   @ViewChild('profileMenu') profileMenu!: ElementRef;
 
@@ -49,6 +51,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userDataSubscription = this.userStore.user$.subscribe((userData: IUser | null) => {
       this.userData = userData;
     });
+
+    this.isDarkMode = this.themeService.isDark();
   }
 
   ngOnDestroy() {
@@ -117,6 +121,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
     this.themeService.toggleTheme();
   }
 
