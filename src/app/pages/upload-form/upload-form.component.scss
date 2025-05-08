@@ -23,15 +23,14 @@ $font-family: $font-family;
 
 .inner-form-container {
   padding: 0 5vh;
-  background-color: rgba(var(--primary), 0.1);
+  background-color: var(--primary);
   display: flex;
   justify-content: center;
   box-sizing: border-box;
   flex-direction: column;
   width: 50%;
-  border: 60px solid $background-color;
+  border: 60px solid var(--white);
   align-items: center;
-  border-radius: 80px;
 }
 
 .file-upload {
@@ -41,7 +40,7 @@ $font-family: $font-family;
   background-color: var(--secondary);
   min-height: 20vh;
   position: relative;
-  z-index: 3;
+  z-index: 1;
   margin-bottom: 3vh;
   flex-direction: column;
   line-height: 3vh;
@@ -156,23 +155,6 @@ textarea {
   justify-content: center;
   width: 100%;
   margin: 1vh 0;
-
-  button {
-    background-color: var(--primary);
-    color: var(--white);
-    font-size: 1rem;
-    padding: 10px 20px;
-    border: 2px solid var(--primary);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-
-    &:hover {
-      background-color: var(--white);
-      color: var(--primary);
-      border: 2px solid var(--primary);
-    }
-  }
 }
 
 .genre-item {
@@ -314,11 +296,11 @@ textarea {
 }
 
 .clean-message {
-  color: var(--success);
+  color: var(--text-color);
 }
 
 .nsfw-message {
-  color: var(--error);
+  color: var(--text-color);
 }
 
 .invalid {
@@ -326,7 +308,7 @@ textarea {
 }
 
 .error-message {
-  color: var(--red);
+  color: var(--text-color);
   font-size: 0.9rem;
   display: block;
   margin-top: 4px;
@@ -340,7 +322,7 @@ textarea {
 }
 
 .error-message {
-  color: var(--red);
+  color: var(--text-color);
   font-size: 0.9rem;
   margin-left: 2px;
 }
@@ -380,9 +362,90 @@ textarea {
 }
 
 .success-message {
-  color: var(--success);
+  color: var(--text-color);
 }
 
 .error-message {
-  color: var(--error);
+  color: var(--text-color);
+}
+
+.modal {
+  display: block; /* Asegúrate de que sea 'block' cuando showModal sea true */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro */
+  padding-top: 60px;
+}
+
+.modal-content {
+  z-index: 9999;
+  background-color: white;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+img.preview-image {
+  width: 100%;
+}
+
+.upload-form-button {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: none;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    background-color: var(--highlight-color);
+    color: var(--text-color);
+
+    &:hover {
+      background-color: var(--shadow);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      background-color: var(--gray);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+}
+
+.details-link {
+  cursor: pointer;
+  background-color: var(--text-color);
+  padding: 1vh;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.details-link:hover {
+  background-color: var(--shadow);
 }

@@ -1,6 +1,6 @@
 <form #uploadForm="ngForm" (ngSubmit)="onSubmit(uploadForm)">
   <div class="aside-img">
-    <img src="https://media.mycomicshop.com/n_iv/600/1168751.jpg" alt="Comic Cover">
+    <img src="https://www.reawakentheory.com/cdn/shop/files/IMG20240307131919.jpg?v=1712027062&width=823" alt="Comic Cover">
   </div>
   <div class="form-container">
     <div class="inner-form-container">
@@ -29,7 +29,6 @@
         </div>
       </div>
 
-      <!-- Mostrar el PEGI sugerido o NSFW -->
       <div *ngIf="nsfwResult">
         <div *ngIf="loadingStatus === 'clean'" class="message clean-message">
           ✅ The PDF is clean. PEGI Suggested: {{ nsfwResult.pegi }}
@@ -39,7 +38,6 @@
         </div>
       </div>
 
-      <!-- Estado de carga -->
       <div *ngIf="loadingStatus" class="progress-bar">
         <div class="progress" [ngClass]="{
             'loading': loadingStatus === 'loading',
@@ -48,13 +46,29 @@
         }"></div>
       </div>
 
+      <a
+        class="details-link"
+        *ngIf="!isAnalyzingFile && nsfwResult?.nsfw === true && loadingStatus !== 'loading'"
+        (click)="openModal()"
+      >
+        Details
+      </a>
+
+      <div *ngIf="modalVisible && nsfwResult != null" class="modal">
+      <div class="modal-content">
+          <span class="close" (click)="closeModal()">&times;</span>
+          <h2>NSFW Analysis</h2>
+          <div *ngFor="let image of imagePreviews">
+            <img [src]="image" alt="Previsualización" class="preview-image"/>
+          </div>
+        </div>
+      </div>
       <div style="align-self: flex-start;">
         <nav aria-label="Go back">
           <a id="back-link" href="#" onclick="history.back(); return false" style="color: black"> &larr; Go back</a>
         </nav>
       </div>
 
-      <!-- Resto del formulario: Título, Autor, etc. -->
       <div class="title">
         <input
           type="text"
@@ -131,26 +145,22 @@
         Please select at least one genre.
       </div>
 
-      <!-- Mostrar el mensaje de éxito después de la carga -->
       <div *ngIf="uploadSuccess" class="message success-message">
         ✅ Upload Successful!
       </div>
 
-      <!-- Mostrar el mensaje de error si algo falla -->
       <div *ngIf="uploadError" class="message error-message">
         ⚠️ There was an error during the upload.
       </div>
 
-      <!-- Estado de carga -->
       <div *ngIf="isUploadingFile" class="loading-overlay">
         <div class="spinner"></div>
         <p>Uploading...</p>
       </div>
 
 
-      <!-- Botón de subida -->
       <div class="upload-button">
-        <app-button text="UPLOAD"></app-button>
+        <button class= "upload-form-button" (click)="onSubmit(uploadForm)">Upload</button>
       </div>
     </div>
   </div>
