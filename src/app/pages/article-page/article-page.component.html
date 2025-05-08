@@ -7,6 +7,9 @@
   <figure class="article-image">
     <img [src]="news.image" [alt]="news.title">
   </figure>
+  <div class="icon" id="share-icon">
+    <img [src]="img_share" (click)="copyLink()" alt="Share Icon">
+  </div>
   <article class="article-content">
     <p id="article-content">{{ news.content }}</p>
   </article>

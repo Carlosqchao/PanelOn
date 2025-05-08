@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { News } from '../../models/new';
+import Swal from 'sweetalert2';
+import {ClipboardService} from '../../../../backend/src/services/copy-link-service';
 
 @Component({
   selector: 'app-article-page',
@@ -21,12 +23,14 @@ import { News } from '../../models/new';
 })
 export class ArticlePageComponent implements OnInit, OnDestroy {
   news: News | null = null;
+  img_share: string = "/share.png";
   private destroy$ = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private appService: AppService
+    private appService: AppService,
+    private clipBoardService: ClipboardService
   ) {}
 
   ngOnInit(): void {
@@ -58,4 +62,28 @@ export class ArticlePageComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
+
+  copyLink() {
+    this.clipBoardService.copyPageUrl()
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Link Copied!',
+          text: 'The link has been copied to the clipboard.',
+          timer: 2000,
+          showConfirmButton: false
+        });
+      })
+      .catch(err => {
+        console.error('Error copying:', err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to copy the link.',
+          timer: 2000,
+          showConfirmButton: false
+        });
+      });
+  }
+
 }
