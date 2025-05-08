@@ -1,8 +1,8 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .footer-nav {
-  background: linear-gradient(-45deg, $primary, $primary-dark);
-  color: $white;
+  background: linear-gradient(-45deg, var(--primary), var(--primary-dark));
+  color: var(--white);
   text-align: center;
   display: flex;
   justify-content: center;
@@ -10,7 +10,7 @@
   height: 5vh;
   margin-top: 4vh;
   font-weight: bold;
-  font-family: $font-family;
+  font-family: var(--font-family);
   width: 100%;
 
   .footer-menu {
@@ -25,8 +25,8 @@
     .footer-item {
       a {
         text-decoration: none;
-        color: $white;
-        font-family: $font-family;
+        color: var(--white);
+        font-family: var(--font-family);
         font-size: 14px;
         padding: 10px;
 
@@ -38,7 +38,7 @@
 
     .footer-item:not(:last-child)::after {
       content: " | ";
-      color: $white;
+      color: var(--white);
       padding: 0 8px;
     }
   }

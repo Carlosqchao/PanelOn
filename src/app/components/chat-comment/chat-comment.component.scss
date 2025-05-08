@@ -1,4 +1,4 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .comment-container {
   display: flex;
@@ -8,10 +8,10 @@
   align-items: flex-start;
   gap: 2vw;
   padding: 3vh 3vw;
-  background-color: $white;
+  background-color: var(--white);
   margin-bottom: 1vh;
   transition: transform 0.3s ease;
-  box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px var(--shadow);
 
   &:hover {
     transform: scale(1.02);
@@ -32,7 +32,7 @@
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    font-family: $font-family;
+    font-family: var(--font-family);
 
     .username {
       font-size: 1.2rem;
@@ -42,7 +42,7 @@
 
     .timestamp {
       font-size: 0.9rem;
-      color: $dark-gray;
+      color: var(--dark-gray);
       margin: 0 0 1vh 0;
     }
 
@@ -62,13 +62,13 @@
       button {
         background: none;
         border: none;
-        color: $black;
+        color: var(--black);
         cursor: pointer;
         font-size: 0.9rem;
-        font-family: $font-family;
+        font-family: var(--font-family);
 
         &[disabled] {
-          color: $gray;
+          color: var(--gray);
           cursor: not-allowed;
 
           &:hover {
@@ -88,21 +88,21 @@
         margin-bottom: 1vh;
         resize: none;
         padding: 0.5rem;
-        border: 1px solid $gray;
-        font-family: $font-family;
+        border: 1px solid var(--gray);
+        font-family: var(--font-family);
       }
 
       button {
-        background-color: $primary;
-        color: $white;
+        background-color: var(--primary);
+        color: var(--white);
         padding: 0.5rem 1rem;
         margin-right: 0.5rem;
         border: none;
         cursor: pointer;
-        font-family: $font-family;
+        font-family: var(--font-family);
 
         &:hover {
-          background-color: $primary-dark;
+          background-color: var(--primary-dark);
         }
       }
     }
@@ -113,15 +113,15 @@
       margin-bottom: 1vh;
       resize: none;
       padding: 0.5rem;
-      border: 1px solid $gray;
-      font-family: $font-family;
+      border: 1px solid var(--gray);
+      font-family: var(--font-family);
     }
   }
 }
 
 .replies-container {
   width: 100%;
-  max-width: 560px;
+  max-width: 560изоляpx;
   margin-left: 4vw;
   margin-top: 1vh;
 
@@ -138,26 +138,26 @@
 
 .reply-indicator {
   font-size: 0.9rem;
-  color: $reply-gray;
+  color: var(--reply-gray);
   margin-bottom: 0.5vh;
   display: flex;
   align-items: center;
-  font-family: $font-family;
+  font-family: var(--font-family);
 
   .reply-arrow {
-    color: $blue;
+    color: var(--blue);
     margin-right: 5px;
   }
 
   .reply-username {
     font-weight: 600;
-    color: $dark-gray;
+    color: var(--dark-gray);
   }
 }
 
 .view-more-btn {
   border: none;
-  color: $black;
+  color: var(--black);
   cursor: pointer;
   font-size: 0.9rem;
   margin-top: 1vh;
@@ -166,10 +166,10 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-color: $view-more-bg;
-  font-family: $font-family;
+  background-color: var(--view-more-bg);
+  font-family: var(--font-family);
 
   &:hover {
-    background-color: $view-more-bg-hover;
+    background-color: var(--view-more-bg-hover);
   }
 }

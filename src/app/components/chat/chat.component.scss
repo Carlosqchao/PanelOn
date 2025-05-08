@@ -1,4 +1,4 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .comments-section {
   display: flex;
@@ -19,9 +19,9 @@
 
   .comment-form {
     width: 100%;
-    background-color: $light-gray;
+    background-color: var(--light-gray);
     padding: 20px;
-    box-shadow: 0 2px 8px $shadow;
+    box-shadow: 0 2px 8px var(--shadow);
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -33,13 +33,13 @@
       min-height: 100px;
       resize: vertical;
       padding: 6px;
-      border: 1px solid $border-gray;
+      border: 1px solid var(--border-gray);
       font-size: 16px;
-      font-family: $font-family;
+      font-family: var(--font-family);
 
       &:focus {
         outline: none;
-        box-shadow: 0 2px 8px $shadow;
+        box-shadow: 0 2px 8px var(--shadow);
       }
     }
 
@@ -58,28 +58,28 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       border: none;
-      font-family: $font-family;
+      font-family: var(--font-family);
 
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 3px $focus-blue;
+        box-shadow: 0 0 0 3px var(--focus-blue);
       }
 
       &:first-of-type {
-        background-color: $success;
-        color: $white;
+        background-color: var(--success);
+        color: var(--white);
 
         &:hover {
-          background-color: $success-dark;
+          background-color: var(--success-dark);
         }
       }
 
       &.cancel-btn {
-        background-color: $error;
-        color: $white;
+        background-color: var(--error);
+        color: var(--white);
 
         &:hover {
-          background-color: $error-dark;
+          background-color: var(--error-dark);
         }
       }
     }
@@ -88,8 +88,8 @@
   .loading {
     text-align: center;
     padding: 20px;
-    color: $loading-gray;
-    font-family: $font-family;
+    color: var(--loading-gray);
+    font-family: var(--font-family);
   }
 
   .comments-list {

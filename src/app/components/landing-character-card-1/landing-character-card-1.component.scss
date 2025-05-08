@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&family=Raleway:wght@400;500;600;700;800&display=swap');
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 :host {
   display: block;
@@ -12,15 +12,15 @@
   margin-top: 50px;
   margin-bottom: 50px;
   cursor: pointer;
-  background-color: $white;
-  border: 5px solid $black;
-  box-shadow: 0 0 0 7px $white, 0 0 8px 5px $black;
+  background-color: var(--white);
+  border: 5px solid var(--black);
+  box-shadow: 0 0 0 7px var(--white), 0 0 8px 5px var(--black);
 
   .card-image {
     position: relative;
     width: 100%;
     height: 55%;
-    border-bottom: 5px solid $black;
+    border-bottom: 5px solid var(--black);
     z-index: 1;
 
     img {
@@ -42,7 +42,7 @@
     h2 {
       font-family: $font-family-card-title;
       font-size: 4rem;
-      color: $card-green;
+      color: var(--card-green);
       letter-spacing: -5px;
       line-height: 50px;
       text-align: center;
@@ -84,7 +84,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border: 5px solid $black;
+        border: 5px solid var(--black);
         border-right: none;
         border-bottom: none;
         padding: 10px 20px;

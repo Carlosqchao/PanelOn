@@ -1,4 +1,4 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 section {
   display: flex;
@@ -27,8 +27,8 @@ div {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: $secondary;
-  color: $primary;
+  background-color:  var(--secondary);
+  color: var(--primary);
 }
 
 .text-left {

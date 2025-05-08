@@ -1,15 +1,15 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .discussion-container {
   display: flex;
   flex-direction: row;
   place-self: center;
-  background-color: $secondary;
+  background-color: var(--secondary);
   width: 60vw;
   height: 15vh;
   margin: 2.5vh;
   padding: 2.5vh 0vh 3vh 0vh;
-  box-shadow: $gray 0.3vh 0.3vh 5px;
+  box-shadow: var(--gray) 0.3vh 0.3vh 5px;
   font-family: $font-family;
 }
 
@@ -42,7 +42,7 @@ h2 {
 }
 
 .Participants {
-  color: $primary;
+  color: var(--primary);
   min-width: 48vw;
 }
 

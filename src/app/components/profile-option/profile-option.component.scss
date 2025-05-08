@@ -1,7 +1,7 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .profile-option {
-  background: $secondary;
+  background: var(--secondary);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@
 .imageContainer {
   width: 10rem;
   height: 10rem;
-  background-color: $reply-gray;
+  background-color: var(--reply-gray);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,7 +27,7 @@
 }
 
 .imageContainer:hover {
-  box-shadow: 0 0 10px $image-shadow;
+  box-shadow: 0 0 10px var(--image-shadow);
   transform: scale(1.05);
 }
 

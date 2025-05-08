@@ -7,6 +7,7 @@ import { AuthService } from '../../../../backend/src/services/user-auth';
 import { IUser } from '../../models/user';
 import { UserStoreService } from '../../../../backend/src/services/user-store';
 import { isPlatformBrowser } from '@angular/common';
+import {ThemeService} from '../../../../backend/src/services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -35,6 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private userStore: UserStoreService,
+    private themeService: ThemeService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
@@ -112,6 +114,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.mobileMenuOpen) {
       this.showDropdown = false;
     }
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
   }
 
   logout() {

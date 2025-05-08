@@ -1,4 +1,4 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .character-image-container {
   display: flex;
@@ -38,6 +38,6 @@
   font-size: 4rem;
   text-align: center;
   font-weight: bold;
-  color: $primary;
-  font-family: $font-family;
+  color: var(--primary);
+  font-family: var(--font-family);
 }

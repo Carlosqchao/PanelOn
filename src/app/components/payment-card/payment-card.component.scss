@@ -1,4 +1,4 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .card-container {
   width: 18vw;
@@ -16,11 +16,11 @@
   top: 0;
   left: 0;
   padding: 1vh;
-  box-shadow: 0 10px 25px $shadow;
+  box-shadow: 0 10px 25px var(--shadow);
   backface-visibility: hidden;
   transition: transform 0.8s ease-in-out;
-  background: linear-gradient(135deg, $primary, $primary-dark);
-  color: $white;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--white);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -79,7 +79,7 @@
 }
 
 .card-stripe {
-  background: $black;
+  background: var(--black);
   height: 40px;
   width: 100%;
   margin-bottom: 20px;
@@ -91,8 +91,8 @@
   gap: 10px;
 
   .cvv-box {
-    background: $white;
-    color: $black;
+    background: var(--white);
+    color: var(--black);
     padding: 8px;
     border-radius: 5px;
     min-height: 30px;

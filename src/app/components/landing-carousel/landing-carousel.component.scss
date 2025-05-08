@@ -1,4 +1,4 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .carousel-container {
   position: relative;
@@ -43,8 +43,8 @@
 .carousel-control {
   position: absolute;
   top: 50%;
-  background-color: $carousel-control-bg;
-  color: $white;
+  background-color: var(--carousel-control-bg);
+  color: var(--white);
   font-size: 2vw;
   border: none;
   padding: 1.5vh;
@@ -60,7 +60,7 @@
   }
 
   &:hover {
-    background-color: $carousel-control-bg-hover;
+    background-color: var(--carousel-control-bg-hover);
   }
 }
 
@@ -77,10 +77,10 @@
   width: 1.2vw;
   height: 1.2vw;
   border-radius: 50%;
-  background-color: $dot-bg;
+  background-color: var(--dot-bg);
   cursor: pointer;
 
   &.active {
-    background-color: $white;
+    background-color: var(--white);
   }
 }

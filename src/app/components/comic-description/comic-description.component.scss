@@ -1,4 +1,4 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .comic-description-container {
   max-width: 800px;
@@ -10,7 +10,7 @@
   .title {
     font-size: 2.5rem;
     font-weight: bold;
-    color: $black;
+    color: var(--black);
     margin-bottom: 50px;
     text-align: center;
     text-transform: uppercase;
@@ -22,14 +22,14 @@
     h2 {
       font-size: 1.5rem;
       font-weight: bold;
-      color: $dark-gray;
+      color: var(--dark-gray);
       margin-bottom: 10px;
     }
 
     p {
       font-size: 1rem;
       line-height: 1.6;
-      color: $dark-gray;
+      color: var(--dark-gray);
     }
   }
 
@@ -37,11 +37,11 @@
     p {
       font-size: 1rem;
       margin: 20px 0;
-      color: $dark-gray;
+      color: var(--dark-gray);
 
       strong {
         font-weight: bold;
-        color: $black;
+        color: var(--black);
       }
     }
   }

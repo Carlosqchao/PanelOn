@@ -1,6 +1,6 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
-.header-back-container{
+.header-back-container {
   height: 5vh;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@
   border: none;
   font-size: 2.5rem;
   cursor: pointer;
-  color: $black;
+  color: var(--black);
   outline: none;
   text-decoration: none;
 }

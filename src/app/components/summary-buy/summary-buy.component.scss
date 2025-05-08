@@ -1,7 +1,7 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
-$background-color: $white;
-$bold-color: $black;
+$background-color:  var(--white);
+$bold-color: var(--black);
 
 @mixin flex-column {
   display: flex;
@@ -20,9 +20,9 @@ $bold-color: $black;
   justify-self: center;
   border-radius: 8px;
   padding: 2rem;
-  box-shadow: 0 10px 15px $shadow;
+  box-shadow: 0 10px 15px var(--shadow);
   width: 22vw;
-  color: $text-color;
+  color: var(--text-color);
   margin-bottom: 2vh;
   font-family: $font-family;
 
@@ -44,7 +44,7 @@ $bold-color: $black;
       @include flex-column;
       width: 8vw;
       height: 8vh;
-      background-color: $subscription-bg;
+      background-color: var(--subscription-bg);
       border-radius: 4px;
       display: flex;
       align-items: center;
@@ -52,7 +52,7 @@ $bold-color: $black;
 
       #subscription-caption {
         font-size: 0.8rem;
-        color: $dark-gray;
+        color: var(--dark-gray);
         align-items: center;
         margin: 0;
         padding-top: 0.2vh;
