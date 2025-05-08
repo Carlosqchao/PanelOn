@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
-import { ButtonComponent } from '../../components/button/button.component';
 import { HttpClient } from '@angular/common/http';
 import { AppService } from '../../app.service';
 import {uploadComicService} from '../../../../backend/src/services/upload-comic.service';
@@ -9,7 +8,7 @@ import {uploadComicService} from '../../../../backend/src/services/upload-comic.
 @Component({
   selector: 'app-upload-form',
   standalone: true,
-  imports: [FormsModule, NgForOf, NgIf, ButtonComponent, NgClass],
+  imports: [FormsModule, NgForOf, NgIf, NgClass],
   templateUrl: './upload-form.component.html',
   styleUrls: ['./upload-form.component.scss']
 })
@@ -89,7 +88,6 @@ export class UploadFormComponent implements OnInit {
                 this.isAnalyzingFile = false;
                 this.selectedPegi = this.nsfwResult.pegi;
 
-                // Obtener las imágenes generadas de previews
                 if (this.nsfwResult.nsfw) {
                   this.getUploadedImages();
                   console.log(this.imagePreviews);

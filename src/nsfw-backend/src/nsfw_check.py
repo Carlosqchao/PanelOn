@@ -86,8 +86,7 @@ for image_result, image_path in zip(result, files):
 
   if not first_image_saved:
     preview_filename = os.path.basename(image_path)
-    preview_path = os.path.join(preview_dir, preview_filename)
-    image.save(preview_path)
+    image.save(f"{preview_dir}/preview.jpg")
     first_image_saved = True
 
 output_files = [f for f in os.listdir(image_dir) if f.lower().endswith(('.jpg', '.jpeg', '.png'))]

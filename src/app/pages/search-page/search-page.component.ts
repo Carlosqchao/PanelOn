@@ -124,7 +124,6 @@ export class SearchPageComponent implements OnInit {
       this.comics = orderedComics;
     });
 
-    // Cambiar el orden para la próxima vez
     this.sortByDateAscending = !this.sortByDateAscending;
   }
 
