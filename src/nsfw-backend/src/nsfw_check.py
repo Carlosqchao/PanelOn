@@ -1,5 +1,5 @@
 import sys
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 import os
 import json
 from nudenet import NudeDetector
@@ -72,7 +72,9 @@ for image_result, image_path in zip(result, files):
     color = color_map.get(detection['class'], 'red')
 
     draw.rectangle([x0, y0, x0+width, y0+height], outline=color, width=5)
-    draw.text((x0, y0 - 10), detection['class'], fill="red")
+    font = ImageFont.truetype("arial.ttf", 20)
+
+    draw.text((x0, y0 - 20), detection['class'], fill=color, font=font)
 
 
   nsfw_found = any(label not in all_safe_labels for label in image_detected_labels)

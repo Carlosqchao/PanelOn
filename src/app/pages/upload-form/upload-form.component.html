@@ -1,6 +1,6 @@
 <form #uploadForm="ngForm" (ngSubmit)="onSubmit(uploadForm)">
   <div class="aside-img">
-    <img src="https://media.mycomicshop.com/n_iv/600/1168751.jpg" alt="Comic Cover">
+    <img src="https://www.reawakentheory.com/cdn/shop/files/IMG20240307131919.jpg?v=1712027062&width=823" alt="Comic Cover">
   </div>
   <div class="form-container">
     <div class="inner-form-container">
@@ -46,12 +46,18 @@
         }"></div>
       </div>
 
-      <a style="cursor: pointer" *ngIf="!isAnalyzingFile && nsfwResult?.nsfw === true && loadingStatus !== 'loading'" (click)="openModal()">Details</a>
+      <a
+        class="details-link"
+        *ngIf="!isAnalyzingFile && nsfwResult?.nsfw === true && loadingStatus !== 'loading'"
+        (click)="openModal()"
+      >
+        Details
+      </a>
 
       <div *ngIf="modalVisible && nsfwResult != null" class="modal">
       <div class="modal-content">
           <span class="close" (click)="closeModal()">&times;</span>
-          <h2>Imágenes de análisis NSFW</h2>
+          <h2>NSFW Analysis</h2>
           <div *ngFor="let image of imagePreviews">
             <img [src]="image" alt="Previsualización" class="preview-image"/>
           </div>
@@ -154,7 +160,7 @@
 
 
       <div class="upload-button">
-        <app-button text="UPLOAD"></app-button>
+        <button class= "upload-form-button" (click)="onSubmit(uploadForm)">Upload</button>
       </div>
     </div>
   </div>
