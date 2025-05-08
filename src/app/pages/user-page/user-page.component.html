@@ -60,7 +60,9 @@
     </div>
 
     <div class="subscriptionBar">
-      <button class="subscribeButton">Active Subscription Plan</button>
+      <button class="subscribeButton">
+        {{ subscriptionStatus === 'none' ? 'Activate Free Plan' : 'Active Subscription Plan' }}
+      </button>
       <button class="cancelButton" (click)="openModal()"><span style="color: red">Cancel subscription</span></button>
     </div>
   </div>
@@ -75,8 +77,8 @@
 
   <div class="center-container">
     <app-user-metrics value="{{this.savedComicsCount}}" title="Saved Comics"></app-user-metrics>
-    <app-user-metrics value="{{this.uploadedComicsCount}}" title="Uploaded comics "></app-user-metrics>
-    <app-user-metrics value="{{this.likedComicsCount}}" title="comics with likes"></app-user-metrics>
+    <app-user-metrics value="{{this.uploadedComicsCount}}" title="Uploaded Comics"></app-user-metrics>
+    <app-user-metrics value="{{this.likedComicsCount}}" title="Liked Comics"></app-user-metrics>
   </div>
 
   <app-button text="UPLOAD A COMIC" buttonWidth="30rem" buttonHeight="5rem" (click)="callToRead()"></app-button>

@@ -1,38 +1,34 @@
-import { Component, OnInit, ElementRef, ViewChild, Input, SimpleChanges, OnChanges } from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild, Input, SimpleChanges, OnChanges, Optional} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
 import * as pdfjsLib from 'pdfjs-dist';
 import { HeaderComponent } from '../../components/header/header.component';
-import { NgClass, NgForOf } from '@angular/common';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { CommentsSectionComponent } from '../../components/comments-section/comments-section.component';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import {ActionIconsComponent} from '../../components/action-icons/action-icons.component';
+import {ButtonComponent} from '../../components/button/button.component';
 
 @Component({
   selector: 'app-comic-reader',
   standalone: true,
   imports: [
-    NgForOf,
     HeaderComponent,
     FooterComponent,
-    NgClass,
+    ButtonComponent,
+    ActionIconsComponent,
     CommentsSectionComponent,
   ],
   templateUrl: './comic-reader.component.html',
   styleUrl: './comic-reader.component.scss'
 })
 export class ComicReaderComponent implements OnInit, OnChanges {
-  icons: { name: string, url: string }[] = [
-    { name: 'Save', url: '/save.png' },
-    { name: 'Like', url: '/like.png' },
-    { name: 'Share', url: '/share.png' },
-  ];
-  @Input() status: string = 'Unknown';
-  @Input() rating: number = 0;
-  stars: number[] = [0, 1, 2, 3, 4];
   @Input() pdfUrl: string = "../../assets/COMIC castellano WEB_ok.pdf";
   title: string = '';
+  comments: Comment[] = [];
+  status: string =  'Unknown';
+  rating: number = 0;
   comicId: string = '';
   currentUserId: string = '';
   private destroy$ = new Subject<void>();
@@ -40,6 +36,7 @@ export class ComicReaderComponent implements OnInit, OnChanges {
   @ViewChild('pdfCanvas', { static: true }) canvasElement!: ElementRef<HTMLCanvasElement>;
   @ViewChild('pdfContainter', { static: true }) pdfContainter!: ElementRef<HTMLDivElement>;
   @ViewChild('InputNumber', { static: false }) inputNumber!: ElementRef<HTMLInputElement>;
+
 
   private pdfDocument: any = null;
   maxPages = 0;
@@ -64,6 +61,9 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       this.loadPdf();
     }
   }
+  ngAfterViewInit(): void {
+    document.addEventListener('fullscreenchange', this.fullscreenHandler);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['pdfUrl'] && !changes['pdfUrl'].firstChange) {
@@ -78,6 +78,7 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       next: (comic) => {
         if (comic) {
           this.title = comic.title || 'Untitled Comic';
+          this.comments = comic.comments || [];
           this.status = comic.state || 'Unknown';
           this.rating = comic.rating || 0;
         }
@@ -105,7 +106,7 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       const page = await this.pdfDocument.getPage(pageNumber);
 
       const container = this.pdfContainter.nativeElement;
-      const scale = container.clientWidth / page.getViewport({ scale: 2 }).width;
+      const scale = container.clientWidth / page.getViewport({ scale: 2.45 }).width;
 
       const viewport = page.getViewport({ scale });
       const canvas = this.canvasElement.nativeElement;
@@ -143,28 +144,48 @@ export class ComicReaderComponent implements OnInit, OnChanges {
   pageInputChange(): void {
     this.InputNumber = parseInt(this.inputNumber.nativeElement.value);
     if (this.InputNumber > this.maxPages) {
-      this.inputNumber.nativeElement.value = String(this.maxPages);
+      this.inputNumber.nativeElement.value = "";
+      this.pageNumber=this.maxPages;
       this.renderPage(this.maxPages);
     } else {
+      this.inputNumber.nativeElement.value = "";
+      this.pageNumber = this.InputNumber
       this.renderPage(this.InputNumber);
     }
   }
 
   pageChangeOnClick(evt: MouseEvent, pdfContainter: HTMLDivElement) {
-    if (evt.pageX >= pdfContainter.clientWidth / 2) {
+    if (evt.pageX >= pdfContainter.clientWidth *(2/ 3)) {
       this.nextPage();
-    } else if (evt.pageX <= pdfContainter.clientWidth / 2) {
+    } else if (evt.pageX <= pdfContainter.clientWidth *(1/ 3)) {
       this.prevPage();
     }
   }
 
-  getStarClass(index: number): string {
-    if (this.rating >= index + 1) {
-      return 'filled';
-    } else if (this.rating >= index + 0.5) {
-      return 'half-filled';
+
+
+  fullscreen(): void {
+    const container = this.pdfContainter.nativeElement;
+    if (container.requestFullscreen) {
+      container.requestFullscreen(({navigationUI: "hide"}));
     } else {
-      return 'empty';
+      console.warn("Pantalla completa no es soportada por este navegador.");
     }
   }
+
+  private fullscreenHandler = () => {
+    const container = this.pdfContainter.nativeElement;
+    if (document.fullscreenElement==container) {
+      container.classList.add("fullscreen");
+      this.renderPage(this.pageNumber)
+    }else {
+      container.classList.remove("fullscreen");
+      this.renderPage(this.pageNumber)
+    }
+  };
+
+  numberChecker() {
+    let number =this.inputNumber.nativeElement.value.replace(/\D/g, '');
+    this.inputNumber.nativeElement.value = number;
+    }
 }

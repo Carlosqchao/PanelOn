@@ -44,5 +44,18 @@
 .cancel-subscription-modal .cancel-subscription-modal-content .cancel-modal-subscription-form {
   margin-top: 2vh;
 }
+.cancel-subscription-modal .input-field {
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  outline: none;
+}
+.cancel-subscription-modal .input-field::placeholder {
+  text-align: center;
+}
+.cancel-subscription-modal .input-field:focus {
+  outline: none;
+}
 
 /*# sourceMappingURL=cancel-subscription-dialog.component.css.map */

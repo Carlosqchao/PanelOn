@@ -39,6 +39,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   carouselItems: any[] = [];
   comics: any[] = [];
+  popularComics: any[] = [];
   news: any[] = [];
   characters: any[] = [];
   selectedCharacters: any[] = [];
@@ -54,7 +55,19 @@ export class LandingPageComponent implements OnInit, OnDestroy {
         this.comics = comics;
       },
       error: (err) => {
-        console.error('Error al cargar los cómics desde Firestore:', err);
+        console.error('Error loading comics from Firestore:', err);
+      }
+    });
+
+    this.appService.getComicsOrderedByRating(false).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (comics) => {
+        this.popularComics = comics.slice(0, 4);
+      },
+      error: (err) => {
+        console.error('Error loading popular comics from Firestore:', err);
+        this.popularComics = [];
       }
     });
 
@@ -66,20 +79,20 @@ export class LandingPageComponent implements OnInit, OnDestroy {
         this.carouselItems = news.slice(0, 8).map((item, index) => {
           const carouselItem = {
             id: index + 1,
-            title: item.title || 'Sin título',
-            image: item.image || 'https://via.placeholder.com/800x400?text=Imagen+no+disponible',
-            description: item.content ? item.content.substring(0, 100) + '...' : 'Sin descripción',
+            title: item.title || 'No title',
+            image: item.image || 'https://via.placeholder.com/800x400?text=Image+not+available',
+            description: item.content ? item.content.substring(0, 100) + '...' : 'No description',
             newsId: item.id || `news_${index}`
           };
           return carouselItem;
         });
         const newsIds = this.carouselItems.map(item => item.newsId);
         if (new Set(newsIds).size !== newsIds.length) {
-          console.warn('¡Advertencia: newsIds duplicados detectados!', newsIds);
+          console.warn('Warning: Duplicate newsIds detected!', newsIds);
         }
       },
       error: (err) => {
-        console.error('Error al cargar las noticias desde Firestore:', err);
+        console.error('Error loading news from Firestore:', err);
         this.carouselItems = [];
       }
     });
@@ -92,7 +105,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
         this.selectRandomCharacters();
       },
       error: (err) => {
-        console.error('Error al cargar los personajes desde Firestore:', err);
+        console.error('Error loading characters from Firestore:', err);
       }
     });
   }

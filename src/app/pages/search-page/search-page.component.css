@@ -1,0 +1,148 @@
+@charset "UTF-8";
+/* search-page.component.scss */
+.search-bar {
+  position: relative;
+}
+
+.filter-dropdown {
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 30vw;
+  margin-top: 10px;
+  padding: 15px;
+  z-index: 999;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.filter-header h4 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #333;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #ff4d4d;
+}
+
+.filter-options {
+  margin-bottom: 15px;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.filter-item input[type=checkbox] {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-item input[type=checkbox]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.checkbox-label {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sort-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 10px;
+}
+
+.search-sort-wrapper {
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex-direction: row;
+}
+
+.sort-button {
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  white-space: nowrap;
+  background: lightgray;
+  height: 5.3vh;
+  margin-left: 5vh;
+}
+
+.sort-button:hover {
+  background-color: #f1f1f1;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+/* Estilos para el dropdown */
+.dropdown {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 89%;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  margin-top: 6px; /* opcional, para separación del botón */
+  border-radius: 8px;
+}
+
+.dropdown-content .dropdown-item {
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 10px 15px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content .dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* Se asegura de mostrar el dropdown cuando está visible */
+.dropdown .dropdown-content {
+  display: block;
+}
+
+/*# sourceMappingURL=search-page.component.css.map */

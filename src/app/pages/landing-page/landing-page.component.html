@@ -17,6 +17,17 @@
   </app-comic-card>
 </div>
 
+<app-section-title position="left" text="POPULAR COMICS"></app-section-title>
+
+<div class="center-container">
+  <app-comic-card
+    *ngFor="let comic of popularComics"
+    [imageUrl]="comic.cover"
+    [title]="comic.title"
+    [comicId]="comic.id">
+  </app-comic-card>
+</div>
+
 <div class="center-container">
   <app-button text="SHOW MORE" (buttonClick)="callToSearch('comic')"></app-button>
 </div>

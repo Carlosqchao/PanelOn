@@ -1,0 +1,47 @@
+<app-header/>
+
+<div class="center-container">
+<app-search-bar/>
+</div>
+
+<div class="center-container">
+  <app-button text="ADD YOURS" (click)="toggleDiscussionForm()"/>
+</div>
+<div class="center-container">
+  <div *ngIf="showDiscussionForm" class="discussion-form">
+      <textarea
+        [(ngModel)]="newDiscussionTitle"
+        placeholder="Write your Title"
+        class="discussiontitle-textarea"
+      ></textarea>
+    <textarea
+      [(ngModel)]="newDiscussionContent"
+      placeholder="Write here your opinion"
+      class="discussion-textarea"
+    ></textarea>
+    <div class="form-buttons">
+      <button (click)="addDiscussion()">Submit</button>
+      <button class="cancel-btn" (click)="toggleDiscussionForm()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+<app-section-title text="Top Dicusiones"></app-section-title>
+
+<div *ngIf="discussions.length ===0" class="center-container"> Discussions Loading</div>
+<app-discussion-card
+  *ngFor="let discusion of discussions| slice: 0:  4"
+  [discussion]="discusion"
+></app-discussion-card>
+
+<app-section-title text="Más recientes"></app-section-title>
+
+<div *ngIf="discussionsByDate.length ===0" class="center-container"> Discussions Loading</div>
+<app-discussion-card
+  *ngFor="let discusion of discussionsByDate| slice: 0:  4"
+  [discussion]="discusion"
+></app-discussion-card>
+
+
+<app-footer/>

@@ -12,9 +12,12 @@ import {ModalTestingComponent} from './pages/modal-testing/modal-testing.compone
 import { UploadFormComponent } from './pages/upload-form/upload-form.component';
 import {UserPageComponent} from './pages/user-page/user-page.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
+import {CommunityComponent} from './pages/community/community.component';
 import {SavedComicsUserComponent} from './pages/saved-comics-user/saved-comics-user.component';
 import {LikesComicsUserComponent} from './pages/likes-comics-user/likes-comics-user.component';
 import {UploadedComicsUserComponent} from './pages/uploaded-comics-user/uploaded-comics-user.component';
+import {EditComicPageComponent} from './pages/edit-comic-page/edit-comic-page.component';
+import {DiscussionChatComponent} from './pages/discussion-chat/discussion-chat.component';
 
 
 export const routes: Routes = [
@@ -24,13 +27,16 @@ export const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'comic/:id', component: ComicPageComponent },
+  { path: 'edit-comic/:id', component: EditComicPageComponent },
   { path: 'news/:id', component: ArticlePageComponent },
   { path: 'subscription-plans', component: SubscriptionPlansComponent },
   { path: 'payment', component: PaymentPageComponent },
   { path: 'comic-reader/:id', component: ComicReaderComponent },
   { path: 'modalTest', component: ModalTestingComponent },
   { path: 'user-page', component: UserPageComponent },
-  { path: 'search-page', component: SearchPageComponent },
+  {path: 'search-page', component: SearchPageComponent},
+  {path: 'community', component: CommunityComponent},
+  {path: 'discussion/:id', component: DiscussionChatComponent},
   { path: 'saved-comics-user', component: SavedComicsUserComponent },
   { path: 'likes-comics-user', component: LikesComicsUserComponent},
   { path: 'uploaded-comics-user', component: UploadedComicsUserComponent},
