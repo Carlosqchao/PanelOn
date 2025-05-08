@@ -15,11 +15,11 @@ app.use(cors());
 
 var admin = require("firebase-admin");
 
-const serviceAccount = require('../../environments/panelon-fb7af-firebase-adminsdk-fbsvc-a401247357.json'); // Tu JSON de credenciales
+const serviceAccount = require('../../environments/panelon-fb7af-firebase-adminsdk-fbsvc-a401247357.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  storageBucket: 'gs://panelon-fb7af.firebasestorage.app', // Sustituye por el nombre de tu bucket
+  storageBucket: 'gs://panelon-fb7af.firebasestorage.app',
 });
 
 
@@ -47,9 +47,8 @@ app.post('/check-nsfw', upload.single('file'), async (req: Request, res: Respons
       console.error('stderr:', stderr);
       return res.status(500).json({ error: 'PDF conversion failed' });
     }
-    console.log('stdout:', stdout);
 
-    const python = spawn('C:\\Users\\Carlos Ruano\\WebstormProjects\\PanelOn\\.venv\\Scripts\\python.exe', ['src/nsfw-backend/src/nsfw_check.py', outputDir]);
+    const python = spawn('.venv/Scripts/python.exe', ['src/nsfw-backend/src/nsfw_check.py', outputDir]);
 
 
     let output = '';
@@ -60,7 +59,6 @@ app.post('/check-nsfw', upload.single('file'), async (req: Request, res: Respons
       try {
         const result = JSON.parse(output);
         res.json(result);
-        console.log('Resultado del análisis NSFW:', result);
       } catch (e) {
         console.error('Error parseando la salida de Python:', output);
         res.status(500).json({ error: 'Error analizando resultados NSFW' });
@@ -90,27 +88,26 @@ app.post('/upload', upload.single('file'), async (req: Request, res: Response) =
     return res.status(400).json({ error: 'Campos obligatorios faltantes.' });
   }
 
-  console.log('✅ Recibido para subida final:');
-  console.log({ title, author, synopsis, state, pegi, genre, file: pdfPath });
   const destination = `uploads/${title}.pdf`;
   await bucket.upload(pdfPath, {
     destination
   });
 
-  const coverPath = path.join(__dirname, '../output/preview.jpg');
-
+  const coverPath = path.join(__dirname, '../preview/preview.jpg');
   if (fs.existsSync(coverPath)) {
     await bucket.upload(coverPath, {
       destination: `covers/${title}.jpg`
     });
-
-    // Eliminar localmente tras subir
-    fs.unlinkSync(coverPath);
+    if (fs.existsSync(coverPath)) {
+      fs.unlinkSync(coverPath);
+    } else {
+      console.warn(`⚠️ El archivo ${coverPath} no existe al intentar borrarlo.`);
+    }
   }
 
   await bucket.file(`covers/${title}.jpg`).makePublic();
   const publicUrl = `https://storage.googleapis.com/${bucket.name}/covers/${title}.jpg`;
-
+  const comicUrl = `/uploads/${title}.pdf`;
   const comicId = await addComic({
     title,
     author,
@@ -119,13 +116,14 @@ app.post('/upload', upload.single('file'), async (req: Request, res: Response) =
     pegi,
     genre,
     cover: publicUrl,
-    published: new Date().toISOString().split('T')[0]
+    published: new Date().toISOString().split('T')[0],
+    uploadUrl: publicUrl,
+    comicUrl: comicUrl,
   });
   res.json({
     message: 'Contenido subido correctamente.',
     comicId: comicId
   });
-
 });
 
 app.use('/uploads', express.static(path.resolve('src/nsfw-backend/uploads')));
@@ -155,7 +153,6 @@ app.listen(port, () => {
 export async function addComic(comic: any): Promise<string> {
   const db = admin.firestore();
   const docRef = await db.collection('comics').add(comic);
-  console.log('📚 Comic añadido a Firestore con ID:', docRef.id);
   return docRef.id;
 }
 
