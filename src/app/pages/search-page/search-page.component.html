@@ -25,7 +25,7 @@
     <div class="filter-dropdown" *ngIf="filterVisible">
       <div class="filter-header">
         <h4>Filtrar por Género</h4>
-        <button class="close-btn" (click)="filterVisible = false">Cerrar</button>
+        <button class="close-btn" (click)="filterVisible = false">✖</button>
       </div>
       <div class="filter-options">
         <label *ngFor="let genre of availableGenres" class="filter-item">
@@ -42,7 +42,7 @@
     </div>
   </div>
   <div class="center-container">
-    <app-comic-card *ngFor="let comic of comics" [imageUrl]="comic.cover" [title]="comic.title" [comicId]="comic.id"></app-comic-card>
+    <app-comic-card *ngFor="let comic of paginatedComics" [imageUrl]="comic.cover" [title]="comic.title" [comicId]="comic.id"></app-comic-card>
   </div>
 </div>
 
@@ -72,8 +72,13 @@
         >
         </app-character-card>
       </div>
-
 </div>
+<div class="pagination" *ngIf="option==='comic' && totalPages > 1">
+  <button id="prevPage" (click)="prevPage()" [disabled]="currentPage === 1">◁</button>
+  <span id="pageNumber">{{ currentPage }} of {{ totalPages }}</span>
+  <button id="nextPage" (click)="nextPage()" [disabled]="currentPage === totalPages">▷</button>
+</div>
+
 
 
 
