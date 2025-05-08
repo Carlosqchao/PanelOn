@@ -107,7 +107,7 @@ app.post('/upload', upload.single('file'), async (req: Request, res: Response) =
 
   await bucket.file(`covers/${title}.jpg`).makePublic();
   const publicUrl = `https://storage.googleapis.com/${bucket.name}/covers/${title}.jpg`;
-  const comicUrl = `https://storage.googleapis.com/${bucket.name}/uploads/${title}.pdf`;
+  const comicUrl = `/uploads/${title}.pdf`;
   const comicId = await addComic({
     title,
     author,
