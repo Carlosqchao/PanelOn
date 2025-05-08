@@ -68,6 +68,10 @@
       <div class="mobile-user-profile">
         <img class="profile-image" [src]="userData?.imageUrl || '../../assets/default-user-icon.png'" alt="Profile" />
         <div class="username-text" routerLink="/user-page">{{ userData?.username || 'Profile' }}</div>
+        <a (click)="toggleTheme()" class="dropdown-item">
+          <span *ngIf="isDarkMode; else lightModeIcon">Light</span>
+          <ng-template #lightModeIcon>Dark</ng-template>
+        </a>
         <a class="dropdown-item logout" (click)="logout()">Logout</a>
       </div>
     </ng-container>
