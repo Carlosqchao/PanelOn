@@ -1,3 +1,5 @@
+@import '../../../themes/themes';
+
 .comment-container {
   display: flex;
   width: 100%;
@@ -6,10 +8,10 @@
   align-items: flex-start;
   gap: 2vw;
   padding: 3vh 3vw;
-  background-color: #f0f0f0;
+  background-color: var(--white);
   margin-bottom: 1vh;
   transition: transform 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px var(--shadow);
 
   &:hover {
     transform: scale(1.02);
@@ -30,6 +32,7 @@
     justify-content: center;
     align-items: flex-start;
     width: 100%;
+    font-family: $font-family;
 
     .username {
       font-size: 1.2rem;
@@ -39,7 +42,7 @@
 
     .timestamp {
       font-size: 0.9rem;
-      color: #666;
+      color: var(--dark-gray);
       margin: 0 0 1vh 0;
     }
 
@@ -59,12 +62,13 @@
       button {
         background: none;
         border: none;
-        color: black;
+        color: var(--black);
         cursor: pointer;
         font-size: 0.9rem;
+        font-family: $font-family;
 
         &[disabled] {
-          color: #cccccc;
+          color: var(--gray);
           cursor: not-allowed;
 
           &:hover {
@@ -84,19 +88,21 @@
         margin-bottom: 1vh;
         resize: none;
         padding: 0.5rem;
-        border: 1px solid #ccc;
+        border: 1px solid var(--gray);
+        font-family: $font-family;
       }
 
       button {
-        background-color: #ff5733;
-        color: white;
+        background-color: var(--primary);
+        color: var(--white);
         padding: 0.5rem 1rem;
         margin-right: 0.5rem;
         border: none;
         cursor: pointer;
+        font-family: $font-family;
 
         &:hover {
-          background-color: #e04a2b;
+          background-color: var(--primary-dark);
         }
       }
     }
@@ -107,11 +113,11 @@
       margin-bottom: 1vh;
       resize: none;
       padding: 0.5rem;
-      border: 1px solid #ccc;
+      border: 1px solid var(--gray);
+      font-family: $font-family;
     }
   }
 }
-
 
 .replies-container {
   width: 100%;
@@ -130,29 +136,28 @@
   margin-bottom: 1vh;
 }
 
-
 .reply-indicator {
   font-size: 0.9rem;
-  color: #707070;
+  color: var(--reply-gray);
   margin-bottom: 0.5vh;
   display: flex;
   align-items: center;
+  font-family: $font-family;
 
   .reply-arrow {
-    color: #007bff;
+    color: var(--blue);
     margin-right: 5px;
   }
 
   .reply-username {
     font-weight: 600;
-    color: #333;
+    color: var(--dark-gray);
   }
 }
 
-
 .view-more-btn {
   border: none;
-  color: black;
+  color: var(--black);
   cursor: pointer;
   font-size: 0.9rem;
   margin-top: 1vh;
@@ -161,9 +166,10 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-color: rgba(0, 123, 255, 0.05);
+  background-color: var(--view-more-bg);
+  font-family: $font-family;
 
   &:hover {
-    background-color: rgba(0, 123, 255, 0.1);
+    background-color: var(--view-more-bg-hover);
   }
 }

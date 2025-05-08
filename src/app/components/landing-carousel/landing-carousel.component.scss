@@ -1,3 +1,5 @@
+@import '../../../themes/themes';
+
 .carousel-container {
   position: relative;
   margin: 0 auto;
@@ -6,6 +8,7 @@
   max-width: 70vw;
   overflow: hidden;
   padding-top: 3vh;
+  font-family: $font-family;
 }
 
 .carousel-inner {
@@ -40,8 +43,8 @@
 .carousel-control {
   position: absolute;
   top: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  background-color: var(--carousel-control-bg);
+  color: var(--white);
   font-size: 2vw;
   border: none;
   padding: 1.5vh;
@@ -57,7 +60,7 @@
   }
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--carousel-control-bg-hover);
   }
 }
 
@@ -74,10 +77,10 @@
   width: 1.2vw;
   height: 1.2vw;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--dot-bg);
   cursor: pointer;
 
   &.active {
-    background-color: white;
+    background-color: var(--white);
   }
 }

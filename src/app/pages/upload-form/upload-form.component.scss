@@ -1,5 +1,7 @@
-$background-color: #FFF8EF;
-$font-family: "Roboto", sans-serif;
+@import '../../../themes/themes';
+
+$background-color: var(--background);
+$font-family: $font-family;
 
 .form-container {
   display: flex;
@@ -13,16 +15,15 @@ $font-family: "Roboto", sans-serif;
   height: 100%;
 }
 
-.aside-img img{
+.aside-img img {
   position: fixed;
   height: 100vh;
   width: 50%;
 }
 
-
 .inner-form-container {
   padding: 0 5vh;
-  background-color: #e76f511a;
+  background-color: rgba(var(--primary), 0.1);
   display: flex;
   justify-content: center;
   box-sizing: border-box;
@@ -33,12 +34,11 @@ $font-family: "Roboto", sans-serif;
   border-radius: 80px;
 }
 
-
 .file-upload {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #d9d9d9;
+  background-color: var(--secondary);
   min-height: 20vh;
   position: relative;
   z-index: 1;
@@ -48,12 +48,10 @@ $font-family: "Roboto", sans-serif;
   width: 65vh;
   margin-top: 3vh;
 
-
-
   .circle {
     width: 100px;
     height: 100px;
-    background-color: #a9a9a9;
+    background-color: var(--gray);
     border-radius: 50%;
     z-index: -1;
     align-content: center;
@@ -63,8 +61,9 @@ $font-family: "Roboto", sans-serif;
     &:hover {
       transform: scale(1.05);
     }
+
     &.circle-empty {
-      background-color: #d9d9d9;
+      background-color: var(--secondary);
     }
   }
 }
@@ -76,45 +75,50 @@ textarea {
   line-height: 1.5;
   font-size: 1.2rem;
   padding: 1vh 1vh;
-  color: #aaa;
-  border: 0.1vh solid #ccc;
+  color: var(--gray);
+  border: 0.1vh solid var(--gray);
   border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
+  box-shadow: 2px 2px 5px var(--shadow);
+  background-color: var(--white);
   font-family: $font-family;
   display: flex;
   align-items: center;
   justify-content: center;
+
   &:focus {
     outline: none;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    border: 0.1vh solid #ccc;
+    box-shadow: 2px 2px 5px var(--shadow);
+    border: 0.1vh solid var(--gray);
   }
+
   &::placeholder {
-    color: #aaa;
+    color: var(--gray);
     text-align: left;
     line-height: normal;
   }
 }
+
 .title {
   margin-bottom: 4vh;
+
   input {
     width: 30vw;
     height: 6vh;
-    color: #aaa;
+    color: var(--gray);
     font-size: 1.2rem;
     padding: 1vh 1vh;
     border: 0.1vh solid transparent;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 5px var(--shadow);
     margin-top: 0.2vh;
     margin-bottom: 0.2vh;
-    background-color: #fff;
+    background-color: var(--white);
     font-family: $font-family;
+
     &:focus {
       outline: none;
       border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 2px 2px 5px var(--shadow);
     }
   }
 }
@@ -127,19 +131,20 @@ textarea {
     width: 30vw;
     height: 6vh;
     font-size: 1.2rem;
-    color: #aaa;
+    color: var(--gray);
     padding: 1vh 1vh;
     border: 0.1vh solid transparent;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 5px var(--shadow);
     margin-top: 0.3vh;
     margin-bottom: 0.3vh;
-    background-color: #fff;
+    background-color: var(--white);
     font-family: $font-family;
+
     &:focus {
       outline: none;
       border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 2px 2px 5px var(--shadow);
     }
   }
 }
@@ -147,23 +152,25 @@ textarea {
 .upload-button {
   align-self: center;
   display: flex;
-  color: #aaa;
+  color: var(--gray);
   justify-content: center;
   width: 100%;
   margin: 1vh 0;
+
   button {
-    background-color: #e76f51;
-    color: #ffffff;
+    background-color: var(--primary);
+    color: var(--white);
     font-size: 1rem;
     padding: 10px 20px;
-    border: 2px solid #e76f51;
+    border: 2px solid var(--primary);
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+
     &:hover {
-      background-color: #ffffff;
-      color: #e76f51;
-      border: 2px solid #e76f51;
+      background-color: var(--white);
+      color: var(--primary);
+      border: 2px solid var(--primary);
     }
   }
 }
@@ -172,16 +179,17 @@ textarea {
   display: inline-block;
   padding: 5px 10px;
   margin: 5px;
-  color: #e76f51;
-  border: 2px solid #e76f51;
+  color: var(--primary);
+  border: 2px solid var(--primary);
   border-radius: 3px;
-  background-color: white;
+  background-color: var(--white);
 }
 
 .state-container {
   margin: 10px 0;
   display: flex;
   align-items: center;
+
   select {
     width: 31vw;
     height: 6vh;
@@ -189,78 +197,85 @@ textarea {
     padding: 1vh 1vh;
     border: 0.1vh solid transparent;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 5px var(--shadow);
     margin-top: 0.3vh;
     margin-bottom: 0.3vh;
-    background-color: #fff;
-    color: #aaa;
+    background-color: var(--white);
+    color: var(--gray);
     font-family: $font-family;
     text-align: left;
+
     &:focus {
       outline: none;
       border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 2px 2px 5px var(--shadow);
     }
   }
 }
 
 .genre-container {
   margin: 10px 0;
-  color: #aaa;
+  color: var(--gray);
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
   select {
     width: 23.5vw;
     height: 6vh;
     font-size: 1.2rem;
-    color: #aaa;
+    color: var(--gray);
     padding: 1vh 1vh;
     border: 0.1vh solid transparent;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 5px var(--shadow);
     margin-top: 0.3vh;
     margin-bottom: 0.3vh;
-    background-color: #fff;
+    background-color: var(--white);
     font-family: $font-family;
     text-align: left;
     margin-right: 1vh;
+
     &:focus {
       outline: none;
       border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 2px 2px 5px var(--shadow);
     }
   }
+
   button {
     width: 14vh;
     height: 6vh;
     font-size: 1.2rem;
     padding: 1vh 1vh;
-    color: #aaa;
+    color: var(--gray);
     border: 0.1vh solid transparent;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 5px var(--shadow);
     margin-top: 0.3vh;
     margin-bottom: 0.3vh;
-    background-color: #fff;
+    background-color: var(--white);
     font-family: $font-family;
     cursor: pointer;
     transition: background-color 0.3s ease;
+
     &:hover {
-      background-color: #e76f51;
-      color: white;
+      background-color: var(--primary);
+      color: var(--white);
     }
+
     &:focus {
       outline: none;
       border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 2px 2px 5px var(--shadow);
     }
   }
 }
+
 .progress-bar {
   width: 100%;
   min-height: 8px;
-  background-color: #e0e0e0;
+  background-color: var(--gray);
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 1rem;
@@ -273,23 +288,24 @@ textarea {
 }
 
 .progress.loading {
-  background: linear-gradient(to right, #007bff, #66b2ff);
+  background: linear-gradient(to right, var(--blue), var(--view-more-bg-hover));
   background-size: 200% 100%;
   animation: loading-animation 1.5s infinite;
 }
 
 .progress.clean {
-  background-color: #28a745;
+  background-color: var(--success);
 }
 
 .progress.nsfw {
-  background-color: #dc3545;
+  background-color: var(--error);
 }
 
 @keyframes loading-animation {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
+
 .message {
   text-align: center;
   font-weight: bold;
@@ -298,22 +314,24 @@ textarea {
 }
 
 .clean-message {
-  color: #28a745;
+  color: var(--success);
 }
 
 .nsfw-message {
-  color: #dc3545;
+  color: var(--error);
 }
+
 .invalid {
-  border: 1px solid red;
+  border: 1px solid var(--red);
 }
 
 .error-message {
-  color: red;
+  color: var(--red);
   font-size: 0.9rem;
   display: block;
   margin-top: 4px;
 }
+
 .state-container {
   display: flex;
   flex-direction: column;
@@ -322,7 +340,7 @@ textarea {
 }
 
 .error-message {
-  color: red;
+  color: var(--red);
   font-size: 0.9rem;
   margin-left: 2px;
 }
@@ -333,7 +351,7 @@ textarea {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--carousel-control-bg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -341,8 +359,8 @@ textarea {
 }
 
 .spinner {
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid #e76f51;
+  border: 4px solid var(--dot-bg);
+  border-top: 4px solid var(--primary);
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -362,11 +380,11 @@ textarea {
 }
 
 .success-message {
-  color: #28a745;
+  color: var(--success);
 }
 
 .error-message {
-  color: #dc3545;
+  color: var(--error);
 }
 
 .modal {

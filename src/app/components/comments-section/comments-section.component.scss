@@ -1,3 +1,5 @@
+@import '../../../themes/themes';
+
 .comments-section {
   display: flex;
   flex-direction: column;
@@ -6,6 +8,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  font-family: $font-family;
 
   .center-container {
     width: 100%;
@@ -15,14 +18,11 @@
     gap: 20px;
   }
 
-
-
-
   .comment-form {
     width: 100%;
-    background-color: #f8f9fa;
+    background-color: var(--white);
     padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px var(--shadow);
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -34,14 +34,13 @@
       min-height: 100px;
       resize: vertical;
       padding: 6px;
-      border: 1px solid #ced4da;
-
+      border: 1px solid var(--white);
       font-size: 16px;
-      font-family: inherit;
+      font-family: $font-family;
 
       &:focus {
         outline: none;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 8px var(--shadow);
       }
     }
 
@@ -60,27 +59,28 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       border: none;
+      font-family: $font-family;
 
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+        box-shadow: 0 0 0 3px var(--focus-blue);
       }
 
       &:first-of-type {
-        background-color: #28a745;
-        color: white;
+        background-color: var(--success);
+        color: var(--white);
 
         &:hover {
-          background-color: #218838;
+          background-color: var(--success-dark);
         }
       }
 
       &.cancel-btn {
-        background-color: #dc3545;
-        color: white;
+        background-color: var(--error);
+        color: var(--white);
 
         &:hover {
-          background-color: #c82333;
+          background-color: var(--error-dark);
         }
       }
     }
@@ -89,7 +89,8 @@
   .loading {
     text-align: center;
     padding: 20px;
-    color: #6c757d;
+    color: var(--loading-gray);
+    font-family: $font-family;
   }
 
   .comments-list {

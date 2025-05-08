@@ -1,3 +1,5 @@
+@import '../../../themes/themes';
+
 .character-image-container {
   display: flex;
   flex-direction: column;
@@ -36,5 +38,6 @@
   font-size: 4rem;
   text-align: center;
   font-weight: bold;
-  color: #E76F51;
+  color: var(--primary);
+  font-family: $font-family;
 }

@@ -6,6 +6,6 @@
     <img [src]="isLiked ? img_liked : img_like" alt="Like Icon">
   </div>
   <div class="icon" id="share-icon">
-    <img [src]="img_share" alt="Share Icon">
+    <img [src]="img_share" (click)="copyLink()" alt="Share Icon">
   </div>
 </div>

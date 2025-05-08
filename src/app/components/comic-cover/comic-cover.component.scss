@@ -1,3 +1,5 @@
+@import '../../../themes/themes';
+
 .comic-cover-container {
   display: flex;
   flex-direction: column;
@@ -13,9 +15,9 @@
 
     img {
       width: 100%;
-      cursor:pointer;
+      cursor: pointer;
       height: auto;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 8px var(--shadow);
       border-radius: 5px;
     }
   }

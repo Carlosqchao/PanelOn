@@ -1,3 +1,5 @@
+@import '../../../themes/themes';
+
 .main-container {
   display: flex;
   flex-direction: row;
@@ -33,7 +35,7 @@
 .image-container {
   width: 10rem;
   height: 10rem;
-  background-color: #737373;
+  background-color:  var(--reply-gray);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,7 +45,7 @@
 }
 
 .image-container:hover {
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px  var(--image-shadow);
   transform: scale(1.05);
 }
 
@@ -72,20 +74,20 @@
 }
 
 .edit-button {
-  background-color: #4caf50;
+  background-color:  var(--success);
 }
 
 .edit-button:hover {
-  background-color: #45a049;
+  background-color:  var(--success);
   transform: translateY(-3px);
 }
 
 .delete-button {
-  background-color: #ff0029;
+  background-color:  var(--error);
 }
 
 .delete-button:hover {
-  background-color: #e60026;
+  background-color:  var(--error-dark);
   transform: translateY(-3px);
 }
 
@@ -93,5 +95,5 @@
   width: 1.5rem;
   height: 1.5rem;
   stroke-width: 2;
-  color: white;
+  color:  var(--white);
 }
