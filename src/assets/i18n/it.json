@@ -1,0 +1,14 @@
+{
+  "HEADER": {
+    "CHARACTERS": "PERSONAGGI",
+    "COMICS": "FUMETTI",
+    "NEWS": "NOTIZIE",
+    "COMMUNITY": "COMUNITÀ",
+    "SUBSCRIPTION": "ABBONAMENTO",
+    "SIGN_UP": "Registrati",
+    "LOGIN": "Accedi",
+    "PROFILE": "Profilo",
+    "LOGOUT": "Disconnetti",
+    "LANGUAGE": "Lingua"
+  }
+}
