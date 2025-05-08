@@ -98,9 +98,11 @@ app.post('/upload', upload.single('file'), async (req: Request, res: Response) =
     await bucket.upload(coverPath, {
       destination: `covers/${title}.jpg`
     });
-
-    // Eliminar localmente tras subir
-    fs.unlinkSync(coverPath);
+    if (fs.existsSync(coverPath)) {
+      fs.unlinkSync(coverPath);
+    } else {
+      console.warn(`⚠️ El archivo ${coverPath} no existe al intentar borrarlo.`);
+    }
   }
 
   await bucket.file(`covers/${title}.jpg`).makePublic();
@@ -122,7 +124,6 @@ app.post('/upload', upload.single('file'), async (req: Request, res: Response) =
     message: 'Contenido subido correctamente.',
     comicId: comicId
   });
-
 });
 
 app.use('/uploads', express.static(path.resolve('src/nsfw-backend/uploads')));
