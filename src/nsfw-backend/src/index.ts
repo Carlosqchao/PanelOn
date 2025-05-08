@@ -49,7 +49,7 @@ app.post('/check-nsfw', upload.single('file'), async (req: Request, res: Respons
     }
     console.log('stdout:', stdout);
 
-    const python = spawn('C:\\Users\\Carlos Ruano\\WebstormProjects\\PanelOn\\.venv\\Scripts\\python.EXE', ['src/nsfw-backend/src/nsfw_check.py', outputDir]);
+    const python = spawn('C:\\Users\\Carlos Ruano\\WebstormProjects\\PanelOn\\.venv\\Scripts\\python.exe', ['src/nsfw-backend/src/nsfw_check.py', outputDir]);
 
 
     let output = '';
@@ -128,7 +128,25 @@ app.post('/upload', upload.single('file'), async (req: Request, res: Response) =
 
 });
 
+app.use('/uploads', express.static(path.resolve('src/nsfw-backend/uploads')));
 
+app.get('/get-images', (req: Request, res: Response) => {
+  const dirPath = path.resolve('src/nsfw-backend/uploads'); // ruta absoluta
+
+  // @ts-ignore
+  fs.readdir(dirPath, (err, files) => {
+    if (err) {
+      console.error('❌ Error leyendo uploads:', err);
+      return res.status(500).json({ error: 'No se pudieron obtener las imágenes' });
+    }
+
+    const imageUrls = files
+      .filter(file => /\.(jpg|jpeg|png)$/i.test(file))
+      .map(file => `http://localhost:${port}/uploads/${file}`);
+
+    res.json(imageUrls);
+  });
+});
 
 app.listen(port, () => {
   console.log(`🚀 Server is running on http://localhost:${port}`);
