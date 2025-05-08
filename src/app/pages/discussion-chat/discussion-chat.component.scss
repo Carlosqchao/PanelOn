@@ -1,4 +1,4 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .discussion-chat {
   width: 80%;
@@ -6,7 +6,7 @@
   place-self: center;
   margin: 5vh;
   text-align: center;
-  background: $background;
+  background: var(--background);
 }
 
 .top-control{

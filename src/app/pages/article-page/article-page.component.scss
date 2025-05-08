@@ -1,8 +1,8 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 $background-color: none;
-$muted-color: $dark-gray;
-$highlight-color: $primary;
+$muted-color: var(--dark-gray);
+$highlight-color: var(--primary);
 
 .news-article {
   position: relative;
@@ -11,7 +11,7 @@ $highlight-color: $primary;
   max-width: 800px;
   margin: 0 auto;
   font-family: $font-family;
-  color: $text-color;
+  color: var(--text-color);
   line-height: 1.6;
 
   .article-header {
@@ -58,7 +58,7 @@ $highlight-color: $primary;
     }
 
     a {
-      color: $blue;
+      color: var(--blue);
       text-decoration: underline;
 
       &:hover {

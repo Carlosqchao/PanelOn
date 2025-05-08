@@ -1,4 +1,4 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .center-container {
   display: flex;
@@ -71,7 +71,7 @@ app-comic-status {
 }
 
 .error-message {
-  color: $red;
+  color: var(--red);
   font-size: 20px;
   margin-top: 10px;
   text-align: center;
@@ -83,5 +83,5 @@ app-comic-status {
   align-items: center;
   justify-content: center;
   align-content: center;
-  padding:2rem;
+  padding: 2rem;
 }

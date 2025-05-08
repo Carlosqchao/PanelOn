@@ -1,6 +1,6 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
-$background-color: $background;
+$background-color: var(--background);
 $font-family: $font-family;
 
 .form-container {
@@ -23,7 +23,7 @@ $font-family: $font-family;
 
 .inner-form-container {
   padding: 0 5vh;
-  background-color: rgba($primary, 0.1);
+  background-color: rgba(var(--primary), 0.1);
   display: flex;
   justify-content: center;
   box-sizing: border-box;
@@ -38,7 +38,7 @@ $font-family: $font-family;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $secondary;
+  background-color: var(--secondary);
   min-height: 20vh;
   position: relative;
   z-index: 3;
@@ -51,7 +51,7 @@ $font-family: $font-family;
   .circle {
     width: 100px;
     height: 100px;
-    background-color: $gray;
+    background-color: var(--gray);
     border-radius: 50%;
     z-index: -1;
     align-content: center;
@@ -63,7 +63,7 @@ $font-family: $font-family;
     }
 
     &.circle-empty {
-      background-color: $secondary;
+      background-color: var(--secondary);
     }
   }
 }
@@ -75,11 +75,11 @@ textarea {
   line-height: 1.5;
   font-size: 1.2rem;
   padding: 1vh 1vh;
-  color: $gray;
-  border: 0.1vh solid $gray;
+  color: var(--gray);
+  border: 0.1vh solid var(--gray);
   border-radius: 5px;
-  box-shadow: 2px 2px 5px $shadow;
-  background-color: $white;
+  box-shadow: 2px 2px 5px var(--shadow);
+  background-color: var(--white);
   font-family: $font-family;
   display: flex;
   align-items: center;
@@ -87,12 +87,12 @@ textarea {
 
   &:focus {
     outline: none;
-    box-shadow: 2px 2px 5px $shadow;
-    border: 0.1vh solid $gray;
+    box-shadow: 2px 2px 5px var(--shadow);
+    border: 0.1vh solid var(--gray);
   }
 
   &::placeholder {
-    color: $gray;
+    color: var(--gray);
     text-align: left;
     line-height: normal;
   }
@@ -104,21 +104,21 @@ textarea {
   input {
     width: 30vw;
     height: 6vh;
-    color: $gray;
+    color: var(--gray);
     font-size: 1.2rem;
     padding: 1vh 1vh;
     border: 0.1vh solid transparent;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px $shadow;
+    box-shadow: 2px 2px 5px var(--shadow);
     margin-top: 0.2vh;
     margin-bottom: 0.2vh;
-    background-color: $white;
+    background-color: var(--white);
     font-family: $font-family;
 
     &:focus {
       outline: none;
       border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px $shadow;
+      box-shadow: 2px 2px 5px var(--shadow);
     }
   }
 }
@@ -131,20 +131,20 @@ textarea {
     width: 30vw;
     height: 6vh;
     font-size: 1.2rem;
-    color: $gray;
+    color: var(--gray);
     padding: 1vh 1vh;
     border: 0.1vh solid transparent;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px $shadow;
+    box-shadow: 2px 2px 5px var(--shadow);
     margin-top: 0.3vh;
     margin-bottom: 0.3vh;
-    background-color: $white;
+    background-color: var(--white);
     font-family: $font-family;
 
     &:focus {
       outline: none;
       border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px $shadow;
+      box-shadow: 2px 2px 5px var(--shadow);
     }
   }
 }
@@ -152,25 +152,25 @@ textarea {
 .upload-button {
   align-self: center;
   display: flex;
-  color: $gray;
+  color: var(--gray);
   justify-content: center;
   width: 100%;
   margin: 1vh 0;
 
   button {
-    background-color: $primary;
-    color: $white;
+    background-color: var(--primary);
+    color: var(--white);
     font-size: 1rem;
     padding: 10px 20px;
-    border: 2px solid $primary;
+    border: 2px solid var(--primary);
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 
     &:hover {
-      background-color: $white;
-      color: $primary;
-      border: 2px solid $primary;
+      background-color: var(--white);
+      color: var(--primary);
+      border: 2px solid var(--primary);
     }
   }
 }
@@ -179,10 +179,10 @@ textarea {
   display: inline-block;
   padding: 5px 10px;
   margin: 5px;
-  color: $primary;
-  border: 2px solid $primary;
+  color: var(--primary);
+  border: 2px solid var(--primary);
   border-radius: 3px;
-  background-color: $white;
+  background-color: var(--white);
 }
 
 .state-container {
@@ -197,25 +197,25 @@ textarea {
     padding: 1vh 1vh;
     border: 0.1vh solid transparent;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px $shadow;
+    box-shadow: 2px 2px 5px var(--shadow);
     margin-top: 0.3vh;
     margin-bottom: 0.3vh;
-    background-color: $white;
-    color: $gray;
+    background-color: var(--white);
+    color: var(--gray);
     font-family: $font-family;
     text-align: left;
 
     &:focus {
       outline: none;
       border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px $shadow;
+      box-shadow: 2px 2px 5px var(--shadow);
     }
   }
 }
 
 .genre-container {
   margin: 10px 0;
-  color: $gray;
+  color: var(--gray);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -224,14 +224,14 @@ textarea {
     width: 23.5vw;
     height: 6vh;
     font-size: 1.2rem;
-    color: $gray;
+    color: var(--gray);
     padding: 1vh 1vh;
     border: 0.1vh solid transparent;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px $shadow;
+    box-shadow: 2px 2px 5px var(--shadow);
     margin-top: 0.3vh;
     margin-bottom: 0.3vh;
-    background-color: $white;
+    background-color: var(--white);
     font-family: $font-family;
     text-align: left;
     margin-right: 1vh;
@@ -239,7 +239,7 @@ textarea {
     &:focus {
       outline: none;
       border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px $shadow;
+      box-shadow: 2px 2px 5px var(--shadow);
     }
   }
 
@@ -248,26 +248,26 @@ textarea {
     height: 6vh;
     font-size: 1.2rem;
     padding: 1vh 1vh;
-    color: $gray;
+    color: var(--gray);
     border: 0.1vh solid transparent;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px $shadow;
+    box-shadow: 2px 2px 5px var(--shadow);
     margin-top: 0.3vh;
     margin-bottom: 0.3vh;
-    background-color: $white;
+    background-color: var(--white);
     font-family: $font-family;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: $primary;
-      color: $white;
+      background-color: var(--primary);
+      color: var(--white);
     }
 
     &:focus {
       outline: none;
       border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px $shadow;
+      box-shadow: 2px 2px 5px var(--shadow);
     }
   }
 }
@@ -275,7 +275,7 @@ textarea {
 .progress-bar {
   width: 100%;
   min-height: 8px;
-  background-color: $gray;
+  background-color: var(--gray);
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 1rem;
@@ -288,17 +288,17 @@ textarea {
 }
 
 .progress.loading {
-  background: linear-gradient(to right, $blue, $view-more-bg-hover);
+  background: linear-gradient(to right, var(--blue), var(--view-more-bg-hover));
   background-size: 200% 100%;
   animation: loading-animation 1.5s infinite;
 }
 
 .progress.clean {
-  background-color: $success;
+  background-color: var(--success);
 }
 
 .progress.nsfw {
-  background-color: $error;
+  background-color: var(--error);
 }
 
 @keyframes loading-animation {
@@ -314,19 +314,19 @@ textarea {
 }
 
 .clean-message {
-  color: $success;
+  color: var(--success);
 }
 
 .nsfw-message {
-  color: $error;
+  color: var(--error);
 }
 
 .invalid {
-  border: 1px solid $red;
+  border: 1px solid var(--red);
 }
 
 .error-message {
-  color: $red;
+  color: var(--red);
   font-size: 0.9rem;
   display: block;
   margin-top: 4px;
@@ -340,7 +340,7 @@ textarea {
 }
 
 .error-message {
-  color: $red;
+  color: var(--red);
   font-size: 0.9rem;
   margin-left: 2px;
 }
@@ -351,7 +351,7 @@ textarea {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $carousel-control-bg;
+  background-color: var(--carousel-control-bg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -359,8 +359,8 @@ textarea {
 }
 
 .spinner {
-  border: 4px solid $dot-bg;
-  border-top: 4px solid $primary;
+  border: 4px solid var(--dot-bg);
+  border-top: 4px solid var(--primary);
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -380,9 +380,9 @@ textarea {
 }
 
 .success-message {
-  color: $success;
+  color: var(--success);
 }
 
 .error-message {
-  color: $error;
+  color: var(--error);
 }

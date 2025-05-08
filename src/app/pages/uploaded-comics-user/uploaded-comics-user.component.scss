@@ -1,4 +1,4 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .main-container {
   display: flex;
@@ -35,7 +35,7 @@
 .image-container {
   width: 10rem;
   height: 10rem;
-  background-color: $reply-gray;
+  background-color:  var(--reply-gray);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,7 +45,7 @@
 }
 
 .image-container:hover {
-  box-shadow: 0 0 10px $image-shadow;
+  box-shadow: 0 0 10px  var(--image-shadow);
   transform: scale(1.05);
 }
 
@@ -74,20 +74,20 @@
 }
 
 .edit-button {
-  background-color: $success;
+  background-color:  var(--success);
 }
 
 .edit-button:hover {
-  background-color: $success-dark;
+  background-color:  var(--success);
   transform: translateY(-3px);
 }
 
 .delete-button {
-  background-color: $error;
+  background-color:  var(--error);
 }
 
 .delete-button:hover {
-  background-color: $error-dark;
+  background-color:  var(--error-dark);
   transform: translateY(-3px);
 }
 
@@ -95,5 +95,5 @@
   width: 1.5rem;
   height: 1.5rem;
   stroke-width: 2;
-  color: $white;
+  color:  var(--white);
 }

@@ -1,12 +1,12 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .search-bar {
   position: relative;
 }
 
 .filter-dropdown {
-  background-color: $white;
-  box-shadow: 0 4px 10px $shadow;
+  background-color: var(--white);
+  box-shadow: 0 4px 10px var(--shadow);
   width: 100%;
   max-width: 30vw;
   margin-top: 10px;
@@ -32,12 +32,12 @@
   background: none;
   border: none;
   font-size: 18px;
-  color: $dark-gray;
+  color: var(--dark-gray);
   cursor: pointer;
 }
 
 .close-btn:hover {
-  color: $error;
+  color: var(--error);
 }
 
 .filter-options {
@@ -59,8 +59,8 @@
 }
 
 .filter-item input[type="checkbox"]:checked {
-  background-color: $blue;
-  border-color: $blue;
+  background-color: var(--blue);
+  border-color: var(--blue);
 }
 
 .checkbox-label {
@@ -88,24 +88,24 @@
 }
 
 .sort-button {
-  color: $dark-gray;
-  border: 1px solid $gray;
+  color: var(--dark-gray);
+  border: 1px solid var(--gray);
   padding: 10px 14px;
   font-size: 14px;
   cursor: pointer;
-  box-shadow: 0 2px 6px $shadow;
+  box-shadow: 0 2px 6px var(--shadow);
   transition: background-color 0.3s ease, border-color 0.3s ease;
   white-space: nowrap;
-  background: $secondary;
+  background: var(--secondary);
   height: 5.3vh;
   margin-left: 5vh;
   font-family: $font-family;
 }
 
 .sort-button:hover {
-  background-color: $light-gray;
-  border-color: $blue;
-  color: $blue;
+  background-color: var(--light-gray);
+  border-color: var(--blue);
+  color: var(--blue);
 }
 
 .dropdown {
@@ -118,17 +118,17 @@
   position: absolute;
   top: 100%;
   left: 89%;
-  background-color: $white;
+  background-color: var(--white);
   min-width: 160px;
-  box-shadow: 0 2px 10px $shadow;
+  box-shadow: 0 2px 10px var(--shadow);
   z-index: 1000;
   margin-top: 6px;
   border-radius: 8px;
 }
 
 .dropdown-content .dropdown-item {
-  background-color: $white;
-  color: $dark-gray;
+  background-color: var(--white);
+  color: var(--dark-gray);
   border: none;
   padding: 10px 15px;
   text-align: left;
@@ -140,7 +140,7 @@
 }
 
 .dropdown-content .dropdown-item:hover {
-  background-color: $light-gray;
+  background-color: var(--light-gray);
 }
 
 .dropdown .dropdown-content {

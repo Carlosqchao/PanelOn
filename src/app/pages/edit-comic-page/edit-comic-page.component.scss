@@ -1,6 +1,6 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
-$background-color: $background;
+$background-color: var(--background);
 $font-family: $font-family;
 
 .form-container {
@@ -23,7 +23,7 @@ $font-family: $font-family;
 
 .inner-form-container {
   padding: 0 5vh;
-  background-color: rgba($primary, 0.1);
+  background-color: rgba(var(--primary-rgb), 0.1);
   display: flex;
   justify-content: center;
   box-sizing: border-box;
@@ -38,7 +38,7 @@ $font-family: $font-family;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $secondary;
+  background-color: var(--secondary);
   min-height: 20vh;
   position: relative;
   z-index: 3;
@@ -51,7 +51,7 @@ $font-family: $font-family;
   .circle {
     width: 100px;
     height: 100px;
-    background-color: $gray;
+    background-color: var(--gray);
     border-radius: 50%;
     z-index: -1;
     align-content: center;
@@ -63,326 +63,111 @@ $font-family: $font-family;
     }
 
     &.circle-empty {
-      background-color: $secondary;
+      background-color: var(--secondary);
     }
   }
 }
 
 textarea {
-  resize: none;
-  width: 30vw;
-  height: 15vh;
-  line-height: 1.5;
-  font-size: 1.2rem;
-  padding: 1vh 1vh;
-  color: $gray;
-  border: 0.1vh solid $gray;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px $shadow;
-  background-color: $white;
-  font-family: $font-family;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // ... otros estilos
+  color: var(--gray);
+  border: 0.1vh solid var(--gray);
+  box-shadow: 2px 2px 5px var(--shadow);
+  background-color: var(--white);
 
   &:focus {
-    outline: none;
-    box-shadow: 2px 2px 5px $shadow;
-    border: 0.1vh solid $gray;
+    box-shadow: 2px 2px 5px var(--shadow);
+    border: 0.1vh solid var(--gray);
   }
 
   &::placeholder {
-    color: $gray;
-    text-align: left;
-    line-height: normal;
+    color: var(--gray);
   }
 }
 
-.title {
-  margin-bottom: 4vh;
+.title input,
+.author input {
+  color: var(--gray);
+  box-shadow: 2px 2px 5px var(--shadow);
+  background-color: var(--white);
 
-  input {
-    width: 30vw;
-    height: 6vh;
-    color: $gray;
-    font-size: 1.2rem;
-    padding: 1vh 1vh;
-    border: 0.1vh solid transparent;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px $shadow;
-    margin-top: 0.2vh;
-    margin-bottom: 0.2vh;
-    background-color: $white;
-    font-family: $font-family;
-
-    &:focus {
-      outline: none;
-      border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px $shadow;
-    }
+  &:focus {
+    box-shadow: 2px 2px 5px var(--shadow);
   }
 }
 
-.author {
-  margin-bottom: 5vh;
-  height: 5vh;
+.upload-button button {
+  background-color: var(--primary);
+  color: var(--white);
+  border: 2px solid var(--primary);
 
-  input {
-    width: 30vw;
-    height: 6vh;
-    font-size: 1.2rem;
-    color: $gray;
-    padding: 1vh 1vh;
-    border: 0.1vh solid transparent;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px $shadow;
-    margin-top: 0.3vh;
-    margin-bottom: 0.3vh;
-    background-color: $white;
-    font-family: $font-family;
-
-    &:focus {
-      outline: none;
-      border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px $shadow;
-    }
-  }
-}
-
-.upload-button {
-  align-self: center;
-  display: flex;
-  color: $gray;
-  justify-content: center;
-  width: 100%;
-  margin: 1vh 0;
-
-  button {
-    background-color: $primary;
-    color: $white;
-    font-size: 1rem;
-    padding: 10px 20px;
-    border: 2px solid $primary;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-
-    &:hover {
-      background-color: $white;
-      color: $primary;
-      border: 2px solid $primary;
-    }
+  &:hover {
+    background-color: var(--white);
+    color: var(--primary);
   }
 }
 
 .genre-item {
-  display: inline-block;
-  padding: 5px 10px;
-  margin: 5px;
-  color: $primary;
-  border: 2px solid $primary;
-  border-radius: 3px;
-  background-color: $white;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  background-color: var(--white);
 }
 
-.state-container {
-  margin: 10px 0;
-  display: flex;
-  align-items: center;
-
-  select {
-    width: 31vw;
-    height: 6vh;
-    font-size: 1.2rem;
-    padding: 1vh 1vh;
-    border: 0.1vh solid transparent;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px $shadow;
-    margin-top: 0.3vh;
-    margin-bottom: 0.3vh;
-    background-color: $white;
-    color: $gray;
-    font-family: $font-family;
-    text-align: left;
-
-    &:focus {
-      outline: none;
-      border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px $shadow;
-    }
-  }
+.state-container select,
+.genre-container select {
+  box-shadow: 2px 2px 5px var(--shadow);
+  background-color: var(--white);
+  color: var(--gray);
 }
 
-.genre-container {
-  margin: 10px 0;
-  color: $gray;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+.genre-container button {
+  color: var(--gray);
+  background-color: var(--white);
+  box-shadow: 2px 2px 5px var(--shadow);
 
-  select {
-    width: 23.5vw;
-    height: 6vh;
-    font-size: 1.2rem;
-    color: $gray;
-    padding: 1vh 1vh;
-    border: 0.1vh solid transparent;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px $shadow;
-    margin-top: 0.3vh;
-    margin-bottom: 0.3vh;
-    background-color: $white;
-    font-family: $font-family;
-    text-align: left;
-    margin-right: 1vh;
-
-    &:focus {
-      outline: none;
-      border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px $shadow;
-    }
-  }
-
-  button {
-    width: 14vh;
-    height: 6vh;
-    font-size: 1.2rem;
-    padding: 1vh 1vh;
-    color: $gray;
-    border: 0.1vh solid transparent;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px $shadow;
-    margin-top: 0.3vh;
-    margin-bottom: 0.3vh;
-    background-color: $white;
-    font-family: $font-family;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: $primary;
-      color: $white;
-    }
-
-    &:focus {
-      outline: none;
-      border: 0.1vh solid transparent;
-      box-shadow: 2px 2px 5px $shadow;
-    }
+  &:hover {
+    background-color: var(--primary);
+    color: var(--white);
   }
 }
 
 .progress-bar {
-  width: 100%;
-  min-height: 8px;
-  background-color: $gray;
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-
-.progress {
-  height: 100%;
-  width: 100%;
-  transition: background-color 0.5s ease;
+  background-color: var(--gray);
 }
 
 .progress.loading {
-  background: linear-gradient(to right, $blue, $view-more-bg-hover);
-  background-size: 200% 100%;
-  animation: loading-animation 1.5s infinite;
+  background: linear-gradient(to right, var(--blue), var(--view-more-bg-hover));
 }
 
 .progress.clean {
-  background-color: $success;
+  background-color: var(--success);
 }
 
 .progress.nsfw {
-  background-color: $error;
-}
-
-@keyframes loading-animation {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-.message {
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
+  background-color: var(--error);
 }
 
 .clean-message {
-  color: $success;
+  color: var(--success);
 }
 
 .nsfw-message {
-  color: $error;
+  color: var(--error);
 }
 
 .invalid {
-  border: 1px solid $red;
+  border: 1px solid var(--red);
 }
 
 .error-message {
-  color: $red;
-  font-size: 0.9rem;
-  display: block;
-  margin-top: 4px;
-}
-
-.state-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-}
-
-.error-message {
-  color: $red;
-  font-size: 0.9rem;
-  margin-left: 2px;
+  color: var(--error);
 }
 
 .loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: $carousel-control-bg;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+  background-color: var(--carousel-control-bg);
 }
 
 .spinner {
-  border: 4px solid $dot-bg;
-  border-top: 4px solid $primary;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.message {
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-}
-
-.success-message {
-  color: $success;
-}
-
-.error-message {
-  color: $error;
+  border: 4px solid var(--dot-bg);
+  border-top: 4px solid var(--primary);
 }

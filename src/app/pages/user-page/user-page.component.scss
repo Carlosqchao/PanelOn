@@ -1,4 +1,4 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .user-page {
   display: flex;
@@ -36,7 +36,7 @@
 }
 
 .pencilIcon:hover, .bellIcon:hover {
-  background-color: $light-gray;
+  background-color: var(--light-gray);
 }
 
 .icon {
@@ -68,21 +68,21 @@
 }
 
 .subscribeButton {
-  color: $black;
+  color: var(--black);
 }
 
 .cancelButton {
-  color: $white;
+  color: var(--white);
 }
 
 .subscribeButton:hover {
   transform: scale(1.1);
-  background-color: $star-filled;
+  background-color: var(--star-filled);
 }
 
 .cancelButton:hover {
   transform: scale(1.1);
-  background-color: $error;
+  background-color: var(--error);
 }
 
 .subscribeButton:active {
@@ -101,7 +101,7 @@
 
 .edit-username-input {
   padding: 0.5rem 1rem;
-  border: 1px solid $gray;
+  border: 1px solid var(--gray);
   border-radius: 25px;
   font-size: 1.5rem;
   font-weight: bold;
@@ -112,8 +112,8 @@
 }
 
 .edit-username-input:focus {
-  border-color: $star-filled;
-  box-shadow: 0 0 5px rgba($star-filled, 0.5);
+  border-color: var(--star-filled);
+  box-shadow: 0 0 5px rgba(var(--star-filled), 0.5);
 }
 
 .userDescriptionSection {
@@ -143,7 +143,7 @@
 }
 
 .description-editable:hover {
-  background-color: $view-more-bg;
+  background-color: var(--view-more-bg);
 }
 
 .userDescription {
@@ -159,7 +159,7 @@
 
 .edit-hint {
   display: block;
-  color: $highlight-color;
+  color: var(--highlight-color);
   font-size: 12px;
   font-style: italic;
   margin-top: 2px;
@@ -177,7 +177,7 @@
   width: calc(100% - 20px);
   min-height: 80px;
   padding: 10px;
-  border: 1px solid $gray;
+  border: 1px solid var(--gray);
   border-radius: 4px;
   font-family: $font-family;
   font-size: inherit;
@@ -187,10 +187,10 @@
 
 .add-description-button {
   padding: 8px 15px;
-  background-color: $light-gray;
-  border: 1px solid $gray;
+  background-color: var(--light-gray);
+  border: 1px solid var(--gray);
   border-radius: 4px;
-  color: $dark-gray;
+  color: var(--dark-gray);
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s;
@@ -198,7 +198,7 @@
 }
 
 .add-description-button:hover {
-  background-color: $secondary;
+  background-color: var(--secondary);
 }
 
 .edit-actions {
@@ -220,21 +220,21 @@
 }
 
 .save-button {
-  background-color: $success;
-  color: $white;
+  background-color: var(--success);
+  color: var(--white);
 }
 
 .save-button:hover {
-  background-color: $success-dark;
+  background-color: var(--success-dark);
 }
 
 .cancel-button {
-  background-color: $error;
-  color: $white;
+  background-color: var(--error);
+  color: var(--white);
 }
 
 .cancel-button:hover {
-  background-color: $error-dark;
+  background-color: var(--error-dark);
 }
 
 .profile-image-container {
@@ -257,7 +257,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: $carousel-control-bg;
+    background-color: var(--carousel-control-bg);
     height: 100%;
     display: flex;
     align-items: center;
@@ -271,7 +271,7 @@
     }
 
     .upload-icon {
-      color: $white;
+      color: var(--white);
       font-size: 1.5rem;
       text-align: center;
 

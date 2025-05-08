@@ -1,4 +1,4 @@
-@import '../../../themes/light';
+@import '../../../themes/themes';
 
 .profile-option {
   display: flex;
@@ -8,7 +8,7 @@
 .imageContainer {
   width: 10rem;
   height: 10rem;
-  background-color: $reply-gray;
+  background-color: var(--reply-gray);
   display: flex;
   justify-content: center;
   align-items: center;
