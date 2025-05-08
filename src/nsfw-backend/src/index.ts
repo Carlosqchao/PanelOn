@@ -48,7 +48,7 @@ app.post('/check-nsfw', upload.single('file'), async (req: Request, res: Respons
       return res.status(500).json({ error: 'PDF conversion failed' });
     }
 
-    const python = spawn('C:\\Users\\Carlos Ruano\\WebstormProjects\\PanelOn\\.venv\\Scripts\\python.exe', ['src/nsfw-backend/src/nsfw_check.py', outputDir]);
+    const python = spawn('.venv/Scripts/python.exe', ['src/nsfw-backend/src/nsfw_check.py', outputDir]);
 
 
     let output = '';
