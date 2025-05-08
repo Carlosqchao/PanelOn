@@ -72,3 +72,23 @@ $highlight-color: var(--primary);
     }
   }
 }
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 4vh;
+
+  img {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 5px;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
