@@ -30,7 +30,8 @@
   --image-shadow: rgba(255, 255, 255, 0.2);
   --text-color: #1a1a1a;
   --highlight-color: #5c5c5c;
-  --subscription-bg: #fef7dc; }
+  --subscription-bg: #fef7dc;
+}
 
 .dark-theme {
   --primary: #228B22;
@@ -41,22 +42,26 @@
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f; }
+  --highlight-color: #8fbc8f;
+}
 
 .form-container {
   display: flex;
-  flex-direction: row-reverse; }
+  flex-direction: row-reverse;
+}
 
 .align {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+}
 
 .aside-img img {
   position: fixed;
   height: 100vh;
-  width: 50%; }
+  width: 50%;
+}
 
 .inner-form-container {
   padding: 0 5vh;
@@ -68,7 +73,8 @@
   width: 50%;
   border: 60px solid var(--background);
   align-items: center;
-  border-radius: 80px; }
+  border-radius: 80px;
+}
 
 .file-upload {
   display: flex;
@@ -82,97 +88,122 @@
   flex-direction: column;
   line-height: 3vh;
   width: 65vh;
-  margin-top: 3vh; }
-  .file-upload .circle {
-    width: 100px;
-    height: 100px;
-    background-color: var(--gray);
-    border-radius: 50%;
-    z-index: -1;
-    align-content: center;
-    text-align: center;
-    transition: transform 0.3s ease; }
-    .file-upload .circle:hover {
-      transform: scale(1.05); }
-    .file-upload .circle.circle-empty {
-      background-color: var(--secondary); }
+  margin-top: 3vh;
+}
+.file-upload .circle {
+  width: 100px;
+  height: 100px;
+  background-color: var(--gray);
+  border-radius: 50%;
+  z-index: -1;
+  align-content: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.file-upload .circle:hover {
+  transform: scale(1.05);
+}
+.file-upload .circle.circle-empty {
+  background-color: var(--secondary);
+}
 
 textarea {
   color: var(--gray);
   border: 0.1vh solid var(--gray);
   box-shadow: 2px 2px 5px var(--shadow);
-  background-color: var(--white); }
-  textarea:focus {
-    box-shadow: 2px 2px 5px var(--shadow);
-    border: 0.1vh solid var(--gray); }
-  textarea::placeholder {
-    color: var(--gray); }
+  background-color: var(--white);
+}
+textarea:focus {
+  box-shadow: 2px 2px 5px var(--shadow);
+  border: 0.1vh solid var(--gray);
+}
+textarea::placeholder {
+  color: var(--gray);
+}
 
 .title input,
 .author input {
   color: var(--gray);
   box-shadow: 2px 2px 5px var(--shadow);
-  background-color: var(--white); }
-  .title input:focus,
-  .author input:focus {
-    box-shadow: 2px 2px 5px var(--shadow); }
+  background-color: var(--white);
+}
+.title input:focus,
+.author input:focus {
+  box-shadow: 2px 2px 5px var(--shadow);
+}
 
 .upload-button button {
   background-color: var(--primary);
   color: var(--white);
-  border: 2px solid var(--primary); }
-  .upload-button button:hover {
-    background-color: var(--white);
-    color: var(--primary); }
+  border: 2px solid var(--primary);
+}
+.upload-button button:hover {
+  background-color: var(--white);
+  color: var(--primary);
+}
 
 .genre-item {
   color: var(--primary);
   border: 2px solid var(--primary);
-  background-color: var(--white); }
+  background-color: var(--white);
+}
 
 .state-container select,
 .genre-container select {
   box-shadow: 2px 2px 5px var(--shadow);
   background-color: var(--white);
-  color: var(--gray); }
+  color: var(--gray);
+}
 
 .genre-container button {
   color: var(--gray);
   background-color: var(--white);
-  box-shadow: 2px 2px 5px var(--shadow); }
-  .genre-container button:hover {
-    background-color: var(--primary);
-    color: var(--white); }
+  box-shadow: 2px 2px 5px var(--shadow);
+}
+.genre-container button:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
 
 .progress-bar {
-  background-color: var(--gray); }
+  background-color: var(--gray);
+}
 
 .progress.loading {
-  background: linear-gradient(to right, var(--blue), var(--view-more-bg-hover)); }
+  background: linear-gradient(to right, var(--blue), var(--view-more-bg-hover));
+}
 
 .progress.clean {
-  background-color: var(--success); }
+  background-color: var(--success);
+}
 
 .progress.nsfw {
-  background-color: var(--error); }
+  background-color: var(--error);
+}
 
 .clean-message {
-  color: var(--success); }
+  color: var(--success);
+}
 
 .nsfw-message {
-  color: var(--error); }
+  color: var(--error);
+}
 
 .invalid {
-  border: 1px solid var(--red); }
+  border: 1px solid var(--red);
+}
 
 .error-message {
-  color: var(--error); }
+  color: var(--error);
+}
 
 .loading-overlay {
-  background-color: var(--carousel-control-bg); }
+  background-color: var(--carousel-control-bg);
+}
 
 .spinner {
   border: 4px solid var(--dot-bg);
-  border-top: 4px solid var(--primary); }
+  border-top: 4px solid var(--primary);
+}
 
 /*# sourceMappingURL=edit-comic-page.component.css.map */

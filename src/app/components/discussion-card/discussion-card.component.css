@@ -30,7 +30,8 @@
   --image-shadow: rgba(255, 255, 255, 0.2);
   --text-color: #1a1a1a;
   --highlight-color: #5c5c5c;
-  --subscription-bg: #fef7dc; }
+  --subscription-bg: #fef7dc;
+}
 
 .dark-theme {
   --primary: #228B22;
@@ -41,7 +42,8 @@
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f; }
+  --highlight-color: #8fbc8f;
+}
 
 .discussion-container {
   display: flex;
@@ -53,46 +55,56 @@
   margin: 2.5vh;
   padding: 2.5vh 0vh 3vh 0vh;
   box-shadow: var(--gray) 0.3vh 0.3vh 5px;
-  font-family: "Roboto", sans-serif; }
+  font-family: "Roboto", sans-serif;
+}
 
 .discussion-container * {
-  flex-basis: 100%; }
+  flex-basis: 100%;
+}
 
 h2 {
   margin-bottom: 1vh;
   font-weight: bold;
-  min-width: 45vw; }
+  min-width: 45vw;
+}
 
 .profile-pic-container {
   place-content: center;
   place-items: center;
   padding: 2.5vh;
   max-width: 5vw;
-  max-height: 5vw; }
+  max-height: 5vw;
+}
 
 .Discussion-part {
   max-width: 55vw;
-  min-width: 20vw; }
+  min-width: 20vw;
+}
 
 .Title-date {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+}
 
 .Participants {
   color: var(--primary);
-  min-width: 48vw; }
+  min-width: 48vw;
+}
 
 .argument {
   height: 10vh;
   margin: 0 0.2vw;
-  font-weight: normal; }
+  font-weight: normal;
+}
 
 .bottom-discusion {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+}
 
 .profile-pic {
   height: 100%;
-  width: 100%; }
+  width: 100%;
+}
 
 /*# sourceMappingURL=discussion-card.component.css.map */

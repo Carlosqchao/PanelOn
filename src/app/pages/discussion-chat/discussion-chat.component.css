@@ -30,7 +30,8 @@
   --image-shadow: rgba(255, 255, 255, 0.2);
   --text-color: #1a1a1a;
   --highlight-color: #5c5c5c;
-  --subscription-bg: #fef7dc; }
+  --subscription-bg: #fef7dc;
+}
 
 .dark-theme {
   --primary: #228B22;
@@ -41,7 +42,8 @@
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f; }
+  --highlight-color: #8fbc8f;
+}
 
 .discussion-chat {
   width: 80%;
@@ -49,9 +51,11 @@
   place-self: center;
   margin: 5vh;
   text-align: center;
-  background: var(--background); }
+  background: var(--background);
+}
 
 .top-control {
-  margin-top: 15vh; }
+  margin-top: 15vh;
+}
 
 /*# sourceMappingURL=discussion-chat.component.css.map */

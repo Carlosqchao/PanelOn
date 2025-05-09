@@ -30,7 +30,8 @@
   --image-shadow: rgba(255, 255, 255, 0.2);
   --text-color: #1a1a1a;
   --highlight-color: #5c5c5c;
-  --subscription-bg: #fef7dc; }
+  --subscription-bg: #fef7dc;
+}
 
 .dark-theme {
   --primary: #228B22;
@@ -41,13 +42,15 @@
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f; }
+  --highlight-color: #8fbc8f;
+}
 
 .card-container {
   width: 18vw;
   height: 20vh;
   perspective: 1000px;
-  position: relative; }
+  position: relative;
+}
 
 .front-card,
 .back-card {
@@ -66,70 +69,87 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-family: "Roboto", sans-serif; }
+  font-family: "Roboto", sans-serif;
+}
 
 .front-card {
-  z-index: 2; }
+  z-index: 2;
+}
 
 .back-card {
-  transform: rotateY(180deg); }
+  transform: rotateY(180deg);
+}
 
 .card-assets {
   display: flex;
   justify-content: space-between;
-  align-items: center; }
-  .card-assets img {
-    width: 2.8vw;
-    height: auto; }
+  align-items: center;
+}
+.card-assets img {
+  width: 2.8vw;
+  height: auto;
+}
 
 .card-number-box {
   font-size: 1.4rem;
   letter-spacing: 3px;
-  margin: 20px 0; }
+  margin: 20px 0;
+}
 
 .flex-box {
   display: flex;
-  justify-content: space-between; }
-  .flex-box .box {
-    display: flex;
-    flex-direction: column; }
-    .flex-box .box .label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      opacity: 0.8; }
-    .flex-box .box .card-holder-name,
-    .flex-box .box .expiration-date {
-      font-size: 0.9rem; }
-    .flex-box .box .expiration-date {
-      display: flex;
-      gap: 5px; }
+  justify-content: space-between;
+}
+.flex-box .box {
+  display: flex;
+  flex-direction: column;
+}
+.flex-box .box .label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+.flex-box .box .card-holder-name,
+.flex-box .box .expiration-date {
+  font-size: 0.9rem;
+}
+.flex-box .box .expiration-date {
+  display: flex;
+  gap: 5px;
+}
 
 .card-stripe {
   background: var(--black);
   height: 40px;
   width: 100%;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+}
 
 .cvv-section {
   display: flex;
   flex-direction: column;
-  gap: 10px; }
-  .cvv-section .cvv-box {
-    background: var(--white);
-    color: var(--black);
-    padding: 8px;
-    border-radius: 5px;
-    min-height: 30px;
-    text-align: right;
-    font-weight: bold; }
-  .cvv-section .card-brand {
-    align-self: flex-end;
-    width: 50px; }
+  gap: 10px;
+}
+.cvv-section .cvv-box {
+  background: var(--white);
+  color: var(--black);
+  padding: 8px;
+  border-radius: 5px;
+  min-height: 30px;
+  text-align: right;
+  font-weight: bold;
+}
+.cvv-section .card-brand {
+  align-self: flex-end;
+  width: 50px;
+}
 
 .card-container:hover .front-card {
-  transform: rotateY(180deg); }
+  transform: rotateY(180deg);
+}
 
 .card-container:hover .back-card {
-  transform: rotateY(360deg); }
+  transform: rotateY(360deg);
+}
 
 /*# sourceMappingURL=payment-card.component.css.map */

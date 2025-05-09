@@ -10,4 +10,8 @@ export class ChatsService extends FirestoreServiceInteractable<Chat> {
   constructor() {
     super('chats');
   }
+
+  getChatByDiscussionId(discussionId: string) {
+    return this.getSubcollection(discussionId, 'comments');
+  }
 }

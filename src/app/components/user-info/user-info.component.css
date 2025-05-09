@@ -30,7 +30,8 @@
   --image-shadow: rgba(255, 255, 255, 0.2);
   --text-color: #1a1a1a;
   --highlight-color: #5c5c5c;
-  --subscription-bg: #fef7dc; }
+  --subscription-bg: #fef7dc;
+}
 
 .dark-theme {
   --primary: #228B22;
@@ -41,55 +42,67 @@
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f; }
+  --highlight-color: #8fbc8f;
+}
 
 .user-info {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem; }
+  gap: 2rem;
+}
 
 .userNameBar {
   display: flex;
   flex-direction: row;
-  gap: 1.5rem; }
+  gap: 1.5rem;
+}
 
 .pencilIcon {
   border-radius: 50%;
-  transition: background-color 0.3s ease; }
+  transition: background-color 0.3s ease;
+}
 
 .pencilIcon:hover {
-  background-color: var(--light-gray); }
+  background-color: var(--light-gray);
+}
 
 .bellIcon {
   border-radius: 50%;
-  transition: background-color 0.3s ease; }
+  transition: background-color 0.3s ease;
+}
 
 .bellIcon:hover {
-  background-color: var(--light-gray); }
+  background-color: var(--light-gray);
+}
 
 .icon {
   width: 80%;
-  padding: 0.25rem; }
+  padding: 0.25rem;
+}
 
 .userName {
   font-weight: bold;
-  font-size: 2rem; }
+  font-size: 2rem;
+}
 
 .userDescription {
   width: 50%;
   color: var(--reply-gray);
-  font-size: 1rem; }
+  font-size: 1rem;
+}
 
 .userImage {
   width: 20rem;
-  border-radius: 50%; }
+  border-radius: 50%;
+}
 
 .subscriptionBar {
   display: flex;
   flex-direction: row;
-  gap: 1rem; }
+  gap: 1rem;
+}
 
 .subscribeButton {
   padding: 10px 20px;
@@ -99,14 +112,17 @@
   border: none;
   font-size: 16px;
   font-weight: bold;
-  transition: transform 0.3s ease, background-color 0.3s ease; }
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
 
 .subscribeButton:hover {
   transform: scale(1.1);
-  background-color: var(--star-filled); }
+  background-color: var(--star-filled);
+}
 
 .subscribeButton:active {
-  transform: scale(1); }
+  transform: scale(1);
+}
 
 .cancelButton {
   padding: 10px 20px;
@@ -116,13 +132,16 @@
   border: none;
   font-size: 16px;
   font-weight: bold;
-  transition: transform 0.3s ease, background-color 0.3s ease; }
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
 
 .cancelButton:hover {
   transform: scale(1.1);
-  background-color: var(--primary); }
+  background-color: var(--primary);
+}
 
 .cancelButton:active {
-  transform: translateX(-5px); }
+  transform: translateX(-5px);
+}
 
 /*# sourceMappingURL=user-info.component.css.map */

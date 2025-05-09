@@ -30,7 +30,8 @@
   --image-shadow: rgba(255, 255, 255, 0.2);
   --text-color: #1a1a1a;
   --highlight-color: #5c5c5c;
-  --subscription-bg: #fef7dc; }
+  --subscription-bg: #fef7dc;
+}
 
 .dark-theme {
   --primary: #228B22;
@@ -41,7 +42,8 @@
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f; }
+  --highlight-color: #8fbc8f;
+}
 
 .profile-option {
   background: var(--secondary);
@@ -53,7 +55,8 @@
   padding: 4rem;
   gap: 1rem;
   border-radius: 1rem;
-  font-family: "Roboto", sans-serif; }
+  font-family: "Roboto", sans-serif;
+}
 
 .imageContainer {
   width: 10rem;
@@ -65,19 +68,23 @@
   border-radius: 50%;
   position: relative;
   overflow: hidden;
-  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; }
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
 
 .imageContainer:hover {
   box-shadow: 0 0 10px var(--image-shadow);
-  transform: scale(1.05); }
+  transform: scale(1.05);
+}
 
 .optionImage {
   width: 50%;
   height: 50%;
   object-fit: cover;
-  transition: transform 0.3s ease-in-out; }
+  transition: transform 0.3s ease-in-out;
+}
 
 .imageContainer:hover .optionImage {
-  transform: translateY(-5px); }
+  transform: translateY(-5px);
+}
 
 /*# sourceMappingURL=profile-option.component.css.map */

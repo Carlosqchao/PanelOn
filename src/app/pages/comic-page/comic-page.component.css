@@ -30,7 +30,8 @@
   --image-shadow: rgba(255, 255, 255, 0.2);
   --text-color: #1a1a1a;
   --highlight-color: #5c5c5c;
-  --subscription-bg: #fef7dc; }
+  --subscription-bg: #fef7dc;
+}
 
 .dark-theme {
   --primary: #228B22;
@@ -41,47 +42,56 @@
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f; }
+  --highlight-color: #8fbc8f;
+}
 
 .center-container {
   display: flex;
   padding-bottom: 3vh;
   align-items: center;
-  gap: 20px; }
-  .center-container app-button.restricted {
-    opacity: 0.6;
-    cursor: not-allowed; }
+  gap: 20px;
+}
+.center-container app-button.restricted {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
 .icons-section {
   display: flex;
   flex-direction: column;
   width: 35%;
   align-items: flex-end;
-  justify-content: center; }
+  justify-content: center;
+}
 
 .comic-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 18vh; }
+  padding-top: 18vh;
+}
 
 .comic-cover-wrapper {
   position: relative;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+}
 
 .comic-cover-image {
-  display: block; }
+  display: block;
+}
 
 .comic-cover-image.restricted {
   opacity: 0.6;
-  cursor: not-allowed; }
+  cursor: not-allowed;
+}
 
 .comic-cover-image img {
   width: 700px;
   height: auto;
-  max-width: 100%; }
+  max-width: 100%;
+}
 
 .pegi-icon {
   position: absolute;
@@ -91,21 +101,25 @@
   height: auto;
   transform: rotate(30deg);
   transition: opacity 1s ease, transform 1s ease;
-  z-index: 10; }
+  z-index: 10;
+}
 
 .pegi-icon:hover {
   opacity: 1.2;
-  transform: scale(1.2); }
+  transform: scale(1.2);
+}
 
 app-comic-status {
   width: 100%;
-  justify-content: space-between; }
+  justify-content: space-between;
+}
 
 .error-message {
   color: var(--red);
   font-size: 20px;
   margin-top: 10px;
-  text-align: center; }
+  text-align: center;
+}
 
 .read-button-container {
   display: flex;
@@ -113,6 +127,7 @@ app-comic-status {
   align-items: center;
   justify-content: center;
   align-content: center;
-  padding: 2rem; }
+  padding: 2rem;
+}
 
 /*# sourceMappingURL=comic-page.component.css.map */

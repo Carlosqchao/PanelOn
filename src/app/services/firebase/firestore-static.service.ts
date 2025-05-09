@@ -59,4 +59,30 @@ export class FirestoreStaticService<T extends {id: number}> {
           ({ id: doc.id, ...doc.data() })))
     );
   }
+
+  getSubcollection(parentId: string, subcollectionName: string): Observable<T[]> {
+    const colRef = collection(this.firestore, `${this.collectionName}/${parentId}/${subcollectionName}`);
+    return collectionData(colRef, { idField: 'id' }) as Observable<T[]>;
+  }
+
+  getSubcollectionDoc(parentId: string, subcollectionName: string, subId: string): Observable<T> {
+    const docRef = doc(this.firestore, `${this.collectionName}/${parentId}/${subcollectionName}/${subId}`);
+    return docData(docRef, { idField: 'id' }) as Observable<T>;
+  }
+
+  addSubcollection(parentId: string, subcollectionName: string, data: T) {
+    const colRef = collection(this.firestore, `${this.collectionName}/${parentId}/${subcollectionName}`);
+    return from(addDoc(colRef, data));
+  }
+
+  removeSubcollectionDoc(parentId: string, subcollectionName: string, subId: string) {
+    const docRef = doc(this.firestore, `${this.collectionName}/${parentId}/${subcollectionName}/${subId}`);
+    return from(deleteDoc(docRef));
+  }
+
+  updateSubcollectionDoc(parentId: string, subcollectionName: string, data: T) {
+    const { id, ...rest } = data;
+    const docRef = doc(this.firestore, `${this.collectionName}/${parentId}/${subcollectionName}/${id}`);
+    return from(updateDoc(docRef, rest));
+  }
 }

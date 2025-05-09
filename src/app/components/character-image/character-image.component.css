@@ -30,7 +30,8 @@
   --image-shadow: rgba(255, 255, 255, 0.2);
   --text-color: #1a1a1a;
   --highlight-color: #5c5c5c;
-  --subscription-bg: #fef7dc; }
+  --subscription-bg: #fef7dc;
+}
 
 .dark-theme {
   --primary: #228B22;
@@ -41,14 +42,16 @@
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f; }
+  --highlight-color: #8fbc8f;
+}
 
 .character-image-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%; }
+  width: 100%;
+}
 
 .overflow-container {
   margin-top: 1.25rem;
@@ -60,7 +63,8 @@
   max-width: 62.5rem;
   height: 30.5rem;
   overflow: visible;
-  border-radius: 0.25rem; }
+  border-radius: 0.25rem;
+}
 
 .overflow-image {
   position: absolute;
@@ -70,7 +74,8 @@
   z-index: 10;
   width: auto;
   height: auto;
-  object-fit: contain; }
+  object-fit: contain;
+}
 
 .character-name {
   margin-top: 15vh;
@@ -79,6 +84,7 @@
   text-align: center;
   font-weight: bold;
   color: var(--primary);
-  font-family: "Roboto", sans-serif; }
+  font-family: "Roboto", sans-serif;
+}
 
 /*# sourceMappingURL=character-image.component.css.map */
