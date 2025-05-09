@@ -1,18 +1,64 @@
+:root {
+  --primary: #E76F51;
+  --primary-dark: #e04a2b;
+  --secondary: #D9D9D9;
+  --red: #ff0000;
+  --black: black;
+  --gray: #ccc;
+  --white: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.2);
+  --light-gray: #f8f9fa;
+  --border-gray: #ced4da;
+  --loading-gray: #6c757d;
+  --success: #28a745;
+  --success-dark: #218838;
+  --error: #dc3545;
+  --error-dark: #c82333;
+  --focus-blue: rgba(0, 123, 255, 0.3);
+  --dark-gray: #333;
+  --reply-gray: #707070;
+  --blue: #007bff;
+  --view-more-bg: rgba(0, 123, 255, 0.05);
+  --view-more-bg-hover: rgba(0, 123, 255, 0.1);
+  --star-filled: #ffd700;
+  --star-empty: #d3d3d3;
+  --carousel-control-bg: rgba(0, 0, 0, 0.5);
+  --carousel-control-bg-hover: rgba(0, 0, 0, 0.8);
+  --dot-bg: rgba(255, 255, 255, 0.5);
+  --card-green: #59C887;
+  --card-blue: #2E5579;
+  --image-shadow: rgba(255, 255, 255, 0.2);
+  --text-color: #1a1a1a;
+  --highlight-color: #5c5c5c;
+  --subscription-bg: #fef7dc; }
+
+.dark-theme {
+  --primary: #228B22;
+  --primary-dark: #006400;
+  --secondary: #333;
+  --black: white;
+  --background: grey;
+  --white: #e0e0e0;
+  --shadow: rgba(255, 255, 255, 0.1);
+  --text-color: #f5f5f5;
+  --highlight-color: #8fbc8f; }
+
 .summary-buy-container {
-  background-color: #fff;
+  background-color: var(--white);
   justify-self: center;
   border-radius: 8px;
   padding: 2rem;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px var(--shadow);
   width: 22vw;
-  color: #1a1a1a;
-  margin-bottom: 2vh; }
+  color: var(--text-color);
+  margin-bottom: 2vh;
+  font-family: "Roboto", sans-serif; }
   .summary-buy-container .summary-header {
     margin-bottom: 1.5rem; }
     .summary-buy-container .summary-header #header-title {
       font-size: 1.2rem;
       font-weight: 600;
-      color: #000; }
+      color: var(--black); }
   .summary-buy-container .summary-content {
     display: flex;
     flex-direction: row;
@@ -24,14 +70,14 @@
       flex-direction: column;
       width: 8vw;
       height: 8vh;
-      background-color: #fef7dc;
+      background-color: var(--subscription-bg);
       border-radius: 4px;
       display: flex;
       align-items: center;
       justify-content: center; }
       .summary-buy-container .summary-content .subscription-figure #subscription-caption {
         font-size: 0.8rem;
-        color: #666;
+        color: var(--dark-gray);
         align-items: center;
         margin: 0;
         padding-top: 0.2vh; }
@@ -55,7 +101,7 @@
         margin-top: 0.5rem;
         font-weight: bold;
         font-size: 1rem;
-        color: #000;
+        color: var(--black);
         align-self: flex-end; }
 
 /*# sourceMappingURL=summary-buy.component.css.map */

@@ -1,0 +1,95 @@
+@charset "UTF-8";
+:root {
+  --primary: #E76F51;
+  --primary-dark: #e04a2b;
+  --secondary: #D9D9D9;
+  --red: #ff0000;
+  --black: black;
+  --gray: #ccc;
+  --white: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.2);
+  --light-gray: #f8f9fa;
+  --border-gray: #ced4da;
+  --loading-gray: #6c757d;
+  --success: #28a745;
+  --success-dark: #218838;
+  --error: #dc3545;
+  --error-dark: #c82333;
+  --focus-blue: rgba(0, 123, 255, 0.3);
+  --dark-gray: #333;
+  --reply-gray: #707070;
+  --blue: #007bff;
+  --view-more-bg: rgba(0, 123, 255, 0.05);
+  --view-more-bg-hover: rgba(0, 123, 255, 0.1);
+  --star-filled: #ffd700;
+  --star-empty: #d3d3d3;
+  --carousel-control-bg: rgba(0, 0, 0, 0.5);
+  --carousel-control-bg-hover: rgba(0, 0, 0, 0.8);
+  --dot-bg: rgba(255, 255, 255, 0.5);
+  --card-green: #59C887;
+  --card-blue: #2E5579;
+  --image-shadow: rgba(255, 255, 255, 0.2);
+  --text-color: #1a1a1a;
+  --highlight-color: #5c5c5c;
+  --subscription-bg: #fef7dc; }
+
+.dark-theme {
+  --primary: #228B22;
+  --primary-dark: #006400;
+  --secondary: #333;
+  --black: white;
+  --background: grey;
+  --white: #e0e0e0;
+  --shadow: rgba(255, 255, 255, 0.1);
+  --text-color: #f5f5f5;
+  --highlight-color: #8fbc8f; }
+
+.comic-status-container {
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 40px auto;
+  padding: 15px;
+  font-family: "Roboto", sans-serif; }
+  .comic-status-container .status-section,
+  .comic-status-container .rating-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; }
+    .comic-status-container .status-section .label,
+    .comic-status-container .rating-section .label {
+      font-weight: bold;
+      color: var(--text-color);
+      margin-right: 10px;
+      font-size: 1rem; }
+    .comic-status-container .status-section .value,
+    .comic-status-container .rating-section .value {
+      font-size: 1rem;
+      color: var(--text-color);
+      text-transform: uppercase; }
+  .comic-status-container .rating-section .stars {
+    display: flex;
+    gap: 5px;
+    margin-right: 10px; }
+    .comic-status-container .rating-section .stars .star {
+      font-size: 1.2rem; }
+      .comic-status-container .rating-section .stars .star.filled {
+        color: var(--star-filled); }
+      .comic-status-container .rating-section .stars .star.half-filled {
+        position: relative;
+        color: var(--star-empty); }
+        .comic-status-container .rating-section .stars .star.half-filled::before {
+          content: '★';
+          position: absolute;
+          left: 0;
+          width: 50%;
+          overflow: hidden;
+          color: var(--star-filled); }
+      .comic-status-container .rating-section .stars .star.empty {
+        color: var(--star-empty); }
+  .comic-status-container .rating-section .rating-value {
+    font-size: 1rem;
+    color: var(--text-color); }
+
+/*# sourceMappingURL=comic-status.component.css.map */
