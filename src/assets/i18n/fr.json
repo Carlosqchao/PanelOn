@@ -9,7 +9,9 @@
     "LOGIN": "Connexion",
     "PROFILE": "Profil",
     "LOGOUT": "Déconnexion",
-    "LANGUAGE": "Langue"
+    "LANGUAGE": "Langue",
+    "LIGHT_MODE": "Clair",
+    "DARK_MODE": "Sombre"
   },
   "footer": {
     "policy": "Politique",

@@ -9,7 +9,9 @@
     "LOGIN": "Login",
     "PROFILE": "Profile",
     "LOGOUT": "Logout",
-    "LANGUAGE": "Language"
+    "LANGUAGE": "Language",
+    "LIGHT_MODE": "Light",
+    "DARK_MODE": "Dark"
   },
   "footer": {
     "policy": "Policy",
