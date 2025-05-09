@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AppService } from '../../app.service';
 import {uploadComicService} from '../../../../backend/src/services/upload-comic.service';
 import {TranslateModule} from '@ngx-translate/core';
+import {Auth, onAuthStateChanged} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-upload-form',
@@ -36,9 +37,9 @@ export class UploadFormComponent implements OnInit {
   rating: string =  "0";
   imagePreviews: string[] = [];
   modalVisible = false;
+  uid: string  = '';
 
-
-  constructor(private http: HttpClient, private AppService: AppService, private uploadService: uploadComicService) {}
+  constructor(private http: HttpClient, private AppService: AppService, private uploadService: uploadComicService, private auth: Auth) {}
 
 
   ngOnInit() {
@@ -46,6 +47,11 @@ export class UploadFormComponent implements OnInit {
       this.genre = result.map(genre => genre.name);
     });
     this.closeModal();
+    onAuthStateChanged(this.auth, (user) => {
+      if (user) {
+        this.uid = user.uid;
+      }
+    });
   }
 
   addGenre(): void {
@@ -80,18 +86,23 @@ export class UploadFormComponent implements OnInit {
           formData.append('file', this.selectedFile!);
           // @ts-ignore
           formData.append('pegi', this.selectedPegi);
-
-          this.http.post<{ nsfw: boolean, pegi?: string }>('http://localhost:3000/check-nsfw', formData)
+          formData.append('author_id', this.uid);
+          this.http.post<{ nsfw: boolean, pegi?: string, violence?: boolean }>('http://localhost:3000/check-nsfw', formData)
             .subscribe({
               next: (res) => {
                 this.nsfwResult = res;
                 this.loadingStatus = res.nsfw ? 'nsfw' : 'clean';
                 this.isAnalyzingFile = false;
-                this.selectedPegi = this.nsfwResult.pegi;
+
+
+                if (res.violence) {
+                  this.selectedPegi = '16';
+                } else if (res.nsfw && res.pegi) {
+                  this.selectedPegi = res.pegi;
+                }
 
                 if (this.nsfwResult.nsfw) {
                   this.getUploadedImages();
-                  console.log(this.imagePreviews);
                 }
               },
               error: (err) => {
@@ -111,18 +122,6 @@ export class UploadFormComponent implements OnInit {
         this.filePreview = false;
       });
     }
-  }
-  getUploadedImages(): void {
-    this.http.get<string[]>('http://localhost:3000/get-images')
-      .subscribe({
-        next: (imageUrls) => {
-          this.imagePreviews = imageUrls;
-        },
-        error: (err) => {
-          console.error('Error al obtener las imágenes:', err);
-          alert('Ocurrió un error al obtener las imágenes.');
-        }
-      });
   }
 
   onSubmit(form: NgForm): void {
@@ -146,9 +145,10 @@ export class UploadFormComponent implements OnInit {
       formData.append('synopsis', this.synopsis);
       formData.append('state', this.state);
       // @ts-ignore
-      formData.append('pegi', this.selectedPegi);
+      formData.append('pegi', this.selectedPegi); // Enviamos el PEGI ajustado
       this.selectedGenres.forEach(genre => formData.append('genre', genre));
       formData.append('file', this.selectedFile!);
+      formData.append('author_id', this.uid);
 
       this.isUploadingFile = true;
 
@@ -159,7 +159,6 @@ export class UploadFormComponent implements OnInit {
           this.uploadService.uploadComic(res.comicId);
           form.resetForm();
           this.resetState();
-          console.log(this.selectedGenre)
         },
         error: (error) => {
           this.isUploadingFile = false;
@@ -187,6 +186,20 @@ export class UploadFormComponent implements OnInit {
     this.isSizeValid = true;
     this.nsfwResult = null;
     this.filePreview = false;
+  }
+
+
+  getUploadedImages(): void {
+    this.http.get<string[]>('http://localhost:3000/get-images')
+      .subscribe({
+        next: (imageUrls) => {
+          this.imagePreviews = imageUrls;
+        },
+        error: (err) => {
+          console.error('Error al obtener las imágenes:', err);
+          alert('Ocurrió un error al obtener las imágenes.');
+        }
+      });
   }
 
   isPDF(file: File | null): Promise<boolean> {
