@@ -1,10 +1,10 @@
 <div class="comic-status-container">
   <div class="status-section">
-    <span class="label">Status:</span>
+    <span class="label">{{ 'comicStatus.status' | translate }}:</span>
     <span class="value">{{ status }}</span>
   </div>
   <div class="rating-section">
-    <span class="label">Rating:</span>
+    <span class="label">{{ 'comicStatus.rating' | translate }}:</span>
     <div class="stars">
       <span
         *ngFor="let star of stars"

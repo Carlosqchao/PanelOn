@@ -1,47 +1,52 @@
-<app-header/>
+<app-header />
 
 <div class="center-container">
-<app-search-bar/>
+  <app-search-bar />
 </div>
 
 <div class="center-container">
-  <app-button text="ADD YOURS" (click)="toggleDiscussionForm()"/>
+  <app-button [text]="'discussions.addYours' | translate" (click)="toggleDiscussionForm()" />
 </div>
+
 <div class="center-container">
   <div *ngIf="showDiscussionForm" class="discussion-form">
-      <textarea
-        [(ngModel)]="newDiscussionTitle"
-        placeholder="Write your Title"
-        class="discussiontitle-textarea"
-      ></textarea>
+    <textarea
+      [(ngModel)]="newDiscussionTitle"
+      [placeholder]="'discussions.titlePlaceholder' | translate"
+      class="discussiontitle-textarea"
+    ></textarea>
     <textarea
       [(ngModel)]="newDiscussionContent"
-      placeholder="Write here your opinion"
+      [placeholder]="'discussions.contentPlaceholder' | translate"
       class="discussion-textarea"
     ></textarea>
     <div class="form-buttons">
-      <button (click)="addDiscussion()">Submit</button>
-      <button class="cancel-btn" (click)="toggleDiscussionForm()">Cancel</button>
+      <button (click)="addDiscussion()">{{ 'discussions.submit' | translate }}</button>
+      <button class="cancel-btn" (click)="toggleDiscussionForm()">
+        {{ 'discussions.cancel' | translate }}
+      </button>
     </div>
   </div>
 </div>
 
+<app-section-title [text]="'discussions.topDiscussions' | translate"></app-section-title>
 
-<app-section-title text="Top Dicusiones"></app-section-title>
-
-<div *ngIf="discussions.length ===0" class="center-container"> Discussions Loading</div>
+<div *ngIf="discussions.length === 0" class="center-container">
+  {{ 'discussions.loading' | translate }}
+</div>
 <app-discussion-card
-  *ngFor="let discusion of discussions| slice: 0:  4"
+  *ngFor="let discusion of discussions | slice: 0:4"
   [discussion]="discusion"
 ></app-discussion-card>
 
-<app-section-title text="Más recientes"></app-section-title>
+<app-section-title [text]="'discussions.latest' | translate"></app-section-title>
 
-<div *ngIf="discussionsByDate.length ===0" class="center-container"> Discussions Loading</div>
+<div *ngIf="discussionsByDate.length === 0" class="center-container">
+  {{ 'discussions.loading' | translate }}
+</div>
 <app-discussion-card
-  *ngFor="let discusion of discussionsByDate| slice: 0:  4"
+  *ngFor="let discusion of discussionsByDate | slice: 0:4"
   [discussion]="discusion"
 ></app-discussion-card>
 
-
-<app-footer/>
+<app-footer />

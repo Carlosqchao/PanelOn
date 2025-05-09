@@ -11,6 +11,7 @@ import { ComicCardComponent } from '../../components/comic-card/comic-card.compo
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-character-page',
@@ -23,7 +24,8 @@ import { takeUntil } from 'rxjs/operators';
     CharacterImageComponent,
     CharacterTextComponent,
     CharacterCardComponent,
-    ComicCardComponent
+    ComicCardComponent,
+    TranslateModule
   ],
   templateUrl: './character-page.component.html',
   styleUrls: ['./character-page.component.scss']

@@ -1,6 +1,6 @@
 <div class="cancel-subscription-modal">
   <div class="cancel-subscription-modal-header">
-    <h1 id="cancel-modal-subscription-title"> {{ data.title }} </h1>
+    <h1 id="cancel-modal-subscription-title"> {{ 'userProfile.modal.title' | translate }} </h1>
     <div class="button-container">
       <app-button
         [text]="'X'"
@@ -11,21 +11,23 @@
     </div>
   </div>
   <div class="cancel-subscription-modal-content">
-    <h2 id="cancel-modal-subscription-message"> {{ data.message }} </h2>
+    <h2 id="cancel-modal-subscription-message"> {{ 'userProfile.modal.message' | translate }} </h2>
+
     <form class="cancel-modal-subscription-form" [formGroup]="form">
       <input class="input-field"
              type="password"
+             placeholder="{{ 'userProfile.modal.password' | translate }}"
              formControlName="password">
 
       <input class="input-field"
              type="password"
+             placeholder="{{ 'userProfile.modal.confirmPassword' | translate }}"
              formControlName="confirmPassword">
 
       <app-button
-        [text]="'Cancel subscription'"
+        [text]="'userProfile.modal.cancelButton' | translate"
         (click)="confirmCancel()">
       </app-button>
     </form>
-
   </div>
 </div>

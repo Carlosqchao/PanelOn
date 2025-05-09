@@ -10,5 +10,223 @@
     "PROFILE": "Profilo",
     "LOGOUT": "Disconnetti",
     "LANGUAGE": "Lingua"
+  },
+  "footer": {
+    "policy": "Politica",
+    "terms": "Termini",
+    "adChoices": "Preferenze pubblicitarie",
+    "accessibility": "Accessibilità"
+  },
+  "home": {
+    "newComics": "NUOVI FUMETTI",
+    "popularComics": "FUMETTI POPOLARI",
+    "latestNews": "ULTIME NOTIZIE",
+    "characters": "PERSONAGGI",
+    "showMore": "MOSTRA DI PIÙ",
+    "meetCharacters": "Incontra i tuoi personaggi preferiti e i loro universi."
+  },
+  "search": {
+    "orderBy": "Ordina per...",
+    "dateAsc": "↑ Data di pubblicazione",
+    "dateDesc": "↓ Data di pubblicazione",
+    "ratingAsc": "↑ Valutazione",
+    "ratingDesc": "↓ Valutazione",
+    "filterByGenre": "Filtra per Genere",
+    "close": "Chiudi"
+  },
+  "searchBar": {
+    "placeholder": "Cerca..."
+  },
+  "character": {
+    "baseHistory": "STORIA DI BASE",
+    "noHistory": "Nessuna storia disponibile",
+    "relatedCharacters": "PERSONAGGI CORRELATI",
+    "comics": "FUMETTI"
+  },
+  "comic": {
+    "read_button": "LEGGI IL FUMETTO",
+    "age_restriction": "Spiacente, devi avere almeno {{age}} anni per leggere questo fumetto.",
+    "characters": "PERSONAGGI DEL FUMETTO"
+  },
+  "comicDescription": {
+    "synopsis": "Sinossi",
+    "author": "Autore",
+    "genre": "Genere",
+    "release_date": "Data di pubblicazione"
+  },
+  "comicStatus": {
+    "status": "Stato",
+    "rating": "Valutazione"
+  },
+  "reader": {
+    "fullscreen": "Schermo intero",
+    "pagePlaceholder": "Pagina {{ page }}"
+  },
+  "comments": {
+    "addYours": "AGGIUNGI IL TUO",
+    "placeholder": "Scrivi il tuo commento...",
+    "submit": "Invia",
+    "cancel": "Annulla",
+    "loading": "Caricamento commenti..."
+  },
+  "comment": {
+    "reply": "Rispondi",
+    "edit": "Modifica",
+    "save": "Salva",
+    "delete": "Elimina",
+    "replyPlaceholder": "Scrivi la tua risposta...",
+    "submitReply": "Invia risposta",
+    "cancel": "Annulla",
+    "replyingTo": "Rispondendo a",
+    "showMore": "Mostra altre"
+  },
+  "chat": {
+    "addYourComment": "AGGIUNGI IL TUO",
+    "writeYourComment": "Scrivi il tuo commento...",
+    "submit": "Invia",
+    "cancel": "Annulla",
+    "loadingComments": "Caricamento dei commenti..."
+  },
+  "discussions": {
+    "addYours": "AGGIUNGI LA TUA",
+    "titlePlaceholder": "Scrivi il tuo titolo",
+    "contentPlaceholder": "Scrivi qui la tua opinione",
+    "submit": "Invia",
+    "cancel": "Annulla",
+    "topDiscussions": "Discussioni principali",
+    "latest": "Più recenti",
+    "loading": "Caricamento delle discussioni..."
+  },
+  "discussionCard": {
+    "participants": "Partecipanti",
+    "seeMore": "Vedi di più"
+  },
+  "subscriptionPlans": {
+    "freePlan": {
+      "title": "Preferisci rimanere con la versione gratuita?",
+      "description": "Nessun problema! Continua a goderti i fumetti della comunità. Quando sarai pronto per fare l'upgrade, saremo qui.",
+      "buttonText": "GRATUITO"
+    }
+  },
+  "premiumDescription": {
+    "title": "Abbonamento Premium - Accesso Illimitato!",
+    "subtitle": "Goditi tutti i fumetti premium e le creazioni della community senza pubblicità. Immergiti in storie straordinarie senza interruzioni per la migliore esperienza possibile!"
+  },
+  "plansComparison": {
+    "monthly": {
+      "title": "Piano Mensile – Massima Flessibilità",
+      "description": "Prova il servizio senza impegni e paga mese per mese. Perfetto se vuoi esplorare tutto ciò che offriamo prima di prendere una decisione a lungo termine."
+    },
+    "yearly": {
+      "title": "Piano Annuale – Il Maggior Risparmio",
+      "description": "Se sei un vero appassionato di fumetti, questa è la scelta migliore. Abbonati per un anno intero e ricevi uno sconto esclusivo per un anno di avventure illimitate."
+    }
+  },
+  "userProfile": {
+    "usernamePlaceholder": "Nome utente",
+    "descriptionPlaceholder": "Aggiungi una descrizione su di te",
+    "editHint": "clicca sulla descrizione per modificarla",
+    "addDescription": "aggiungi descrizione",
+    "activatePlan": "Attiva piano gratuito",
+    "activePlan": "Piano di abbonamento attivo",
+    "cancelSubscription": "Annulla abbonamento",
+    "saved": "SALVATI",
+    "myComics": "I MIEI FUMETTI",
+    "likes": "MI PIACE",
+    "savedComics": "Fumetti salvati",
+    "uploadedComics": "Fumetti caricati",
+    "likedComics": "Fumetti piaciuti",
+    "uploadComic": "CARICA UN FUMETTO",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "modal": {
+      "title": "STAI PER ANNULLARE IL TUO ABBONAMENTO",
+      "message": "SEI SICURO DI QUELLO CHE STAI FACENDO?",
+      "password": "Password",
+      "confirmPassword": "Conferma password",
+      "cancelButton": "Annulla abbonamento"
+    }
+  },
+  "uploadComic": {
+    "fileUpload": "Caricamento File",
+    "goBack": "Torna indietro",
+    "selectFile": "Seleziona un file",
+    "fileValidationError": "Si prega di selezionare un PDF valido. Dimensione massima: 100MB.",
+    "pdfClean": "✅ Il PDF è pulito. PEGI suggerito: ",
+    "pdfViolation": "⚠️ Il PDF viola i Termini e Condizioni.",
+    "details": "Dettagli",
+    "nsfwAnalysis": "Analisi contenuti per adulti",
+    "preview": "Anteprima",
+    "title": "Titolo",
+    "titleError": "Titolo non valido. Sono consentiti solo lettere, numeri e punteggiatura comune. Lunghezza: 2-50 caratteri.",
+    "author": "Autore",
+    "authorError": "Autore non valido. Sono consentiti solo lettere, numeri e punteggiatura comune. Lunghezza: 2-50 caratteri.",
+    "synopsis": "Sinossi",
+    "state": "Stato",
+    "stateError": "Si prega di selezionare uno stato.",
+    "inProcess": "In corso",
+    "finished": "Completato",
+    "selectGenre": "Seleziona Genere",
+    "add": "Aggiungi",
+    "selectedGenres": "Generi Selezionati (clicca per rimuovere):",
+    "genreError": "Si prega di selezionare almeno un genere.",
+    "uploadSuccess": "✅ Caricamento Riuscito!",
+    "uploadError": "⚠️ Si è verificato un errore durante il caricamento.",
+    "uploading": "Caricamento in corso...",
+    "upload": "Caricare"
+  },
+  "loginComponent": {
+    "pageTitle": "ACCEDI",
+    "goBack": "← Torna indietro",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "ACCEDI",
+    "signUp": "Registrati",
+    "forgotPassword": "Hai dimenticato la password?",
+    "sendEmail": "Invia email",
+    "noAccount": "Non hai un account?",
+    "errors": {
+      "emailRequired": "L'email è obbligatoria.",
+      "emailInvalid": "Inserisci un'email valida.",
+      "passwordRequired": "La password è obbligatoria.",
+      "invalidCredentials": "Email o password non validi."
+    },
+    "success": {
+      "resetEmailSent": "Email per reimpostare la password inviata.",
+      "loginSuccessful": "Accesso effettuato con successo."
+    },
+    "accessibility": {
+      "togglePassword": "Mostra/Nascondi Password",
+      "logo": "Logo",
+      "backgroundImage": "Immagine di sfondo"
+    }
+  },
+  "signUp": {
+    "title": "Registrati!",
+    "goBack": "← Indietro",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "birthdate": "Data di nascita",
+    "email": "Email",
+    "username": "Nome utente",
+    "password": "Password",
+    "confirmPassword": "Conferma password",
+    "signUpButton": "REGISTRATI",
+    "alreadyHaveAccount": "Hai già un account?",
+    "signIn": "Accedi",
+    "errors": {
+      "firstNameRequired": "Il nome è obbligatorio.",
+      "firstNamePattern": "Il nome deve contenere solo lettere (2-50 caratteri).",
+      "lastNameRequired": "Il cognome è obbligatorio.",
+      "lastNamePattern": "Il cognome deve contenere solo lettere (2-50 caratteri).",
+      "birthdateRequired": "La data di nascita è obbligatoria.",
+      "emailRequired": "L'email è obbligatoria.",
+      "emailPattern": "Inserisci un indirizzo email valido.",
+      "usernameRequired": "Il nome utente è obbligatorio.",
+      "usernamePattern": "Il nome utente deve essere di 4-16 caratteri (lettere, numeri, _).",
+      "passwordRequired": "La password è obbligatoria.",
+      "passwordPattern": "La password deve contenere almeno 8 caratteri, con 1 maiuscola, 1 minuscola, 1 numero e 1 carattere speciale.",
+      "confirmPasswordRequired": "La conferma della password è obbligatoria."
+    }
   }
 }

@@ -1,11 +1,17 @@
 <app-header-backlink></app-header-backlink>
+
 <div class="profile-option center-container">
   <div class="imageContainer">
     <img src="favouritesIcon.png" alt="saved image" class="optionImage" />
   </div>
-  <p class="optionName">SAVED</p>
-</div>
-<div class="center-container">
-  <app-comic-card *ngFor="let comic of comics" [imageUrl]="comic.cover" [title]="comic.title" [comicId]="comic.id"></app-comic-card>
+  <p class="optionName">{{ 'userProfile.savedComics' | translate }}</p>
 </div>
 
+<div class="center-container">
+  <app-comic-card
+    *ngFor="let comic of comics"
+    [imageUrl]="comic.cover"
+    [title]="comic.title"
+    [comicId]="comic.id">
+  </app-comic-card>
+</div>

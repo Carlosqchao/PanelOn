@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {ActionIconsComponent} from '../../components/action-icons/action-icons.component';
 import {ButtonComponent} from '../../components/button/button.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-comic-reader',
@@ -19,6 +20,7 @@ import {ButtonComponent} from '../../components/button/button.component';
     ButtonComponent,
     ActionIconsComponent,
     CommentsSectionComponent,
+    TranslateModule
   ],
   templateUrl: './comic-reader.component.html',
   styleUrl: './comic-reader.component.scss'
