@@ -56,7 +56,7 @@ export class ComicReaderComponent implements OnInit, OnChanges {
       this.comicId = comicId;
       this.loadComicData(comicId);
       this.pdfUrl = await this.appService.getComicUrl(comicId);
-      console.log('PDF URL:', this.pdfUrl); // Debe ser una URL https://firebasestorage.googleapis.com/...
+      console.log('PDF URL:', this.pdfUrl);
     }
     if (this.pdfUrl) {
       this.loadPdf();
