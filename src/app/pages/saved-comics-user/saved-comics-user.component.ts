@@ -8,13 +8,15 @@ import {User} from '@angular/fire/auth';
 import {IUser} from '../../models/user';
 import {ComicCardComponent} from '../../components/comic-card/comic-card.component';
 import {NgForOf} from '@angular/common';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-saved-comics-user',
   imports: [
     HeaderBacklinkComponent,
     ComicCardComponent,
-    NgForOf
+    NgForOf,
+    TranslateModule
   ],
   templateUrl: './saved-comics-user.component.html',
   styleUrl: './saved-comics-user.component.scss'

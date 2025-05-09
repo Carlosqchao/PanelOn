@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {ActionIconsComponent} from '../../components/action-icons/action-icons.component';
 import {ButtonComponent} from '../../components/button/button.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-comic-reader',
@@ -19,6 +20,7 @@ import {ButtonComponent} from '../../components/button/button.component';
     ButtonComponent,
     ActionIconsComponent,
     CommentsSectionComponent,
+    TranslateModule
   ],
   templateUrl: './comic-reader.component.html',
   styleUrl: './comic-reader.component.scss'
@@ -37,7 +39,6 @@ export class ComicReaderComponent implements OnInit, OnChanges {
   @ViewChild('pdfContainter', { static: true }) pdfContainter!: ElementRef<HTMLDivElement>;
   @ViewChild('InputNumber', { static: false }) inputNumber!: ElementRef<HTMLInputElement>;
 
-
   private pdfDocument: any = null;
   maxPages = 0;
   InputNumber: number = 0;
@@ -51,11 +52,13 @@ export class ComicReaderComponent implements OnInit, OnChanges {
     pdfjsLib.GlobalWorkerOptions.workerSrc = '../../assets/pdf.worker.mjs';
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     const comicId = this.route.snapshot.paramMap.get('id');
     if (comicId) {
       this.comicId = comicId;
       this.loadComicData(comicId);
+      this.pdfUrl = await this.appService.getComicUrl(comicId);
+      console.log('PDF URL:', this.pdfUrl);
     }
     if (this.pdfUrl) {
       this.loadPdf();

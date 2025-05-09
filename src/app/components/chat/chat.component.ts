@@ -8,6 +8,7 @@ import {AppService} from '../../app.service';
 import {UserStoreService} from '../../../../backend/src/services/user-store';
 import {Chat} from '../../models/discussion';
 import {ChatCommentComponent} from '../chat-comment/chat-comment.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-chat',
@@ -17,7 +18,8 @@ import {ChatCommentComponent} from '../chat-comment/chat-comment.component';
     NgIf,
     ReactiveFormsModule,
     FormsModule,
-    ChatCommentComponent
+    ChatCommentComponent,
+    TranslateModule
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'

@@ -45,3 +45,4 @@ Thumbs.db
 
 # Ignorar el archivo de claves de Stripe
 backend/src/config/stripe.ts
+/src/environments/panelon-fb7af-firebase-adminsdk-fbsvc-a401247357.json

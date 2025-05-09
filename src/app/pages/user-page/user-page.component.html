@@ -1,4 +1,5 @@
 <app-header-backlink></app-header-backlink>
+
 <div class="user-page" *ngIf="user">
   <div class="user-info">
     <div class="profile-image-container">
@@ -14,7 +15,12 @@
 
     <div class="userNameBar">
       <div *ngIf="isEditingUsername; else displayUsername" class="edit-username-container">
-        <input type="text" [(ngModel)]="this.userDataEdit.username" class="edit-username-input" placeholder="Username" (keyup.enter)="saveUsername()">
+        <input
+          type="text"
+          [(ngModel)]="this.userDataEdit.username"
+          class="edit-username-input"
+          [placeholder]="'userProfile.usernamePlaceholder' | translate"
+          (keyup.enter)="saveUsername()" />
         <div class="edit-actions">
           <button class="action-button save-button" (click)="saveUsername()">✓</button>
           <button class="action-button cancel-button" (click)="cancelEdit()">✗</button>
@@ -22,7 +28,7 @@
       </div>
 
       <ng-template #displayUsername>
-        <p class="userName">{{userData?.username}}</p>
+        <p class="userName">{{ userData?.username }}</p>
         <button class="pencilIcon" (click)="toggleUsernameEdit()">
           <img class="icon" src="pencilIcon.png">
         </button>
@@ -35,8 +41,11 @@
 
     <div class="userDescriptionSection">
       <div *ngIf="isEditingDescription; else displayDescription" class="edit-description-container">
-        <textarea [(ngModel)]="userDataEdit.description" class="edit-description-input"
-                  placeholder="Add description about you" (keyup.enter)="saveDescription()"></textarea>
+        <textarea
+          [(ngModel)]="userDataEdit.description"
+          class="edit-description-input"
+          [placeholder]="'userProfile.descriptionPlaceholder' | translate"
+          (keyup.enter)="saveDescription()"></textarea>
         <div class="edit-actions">
           <button class="action-button save-button" (click)="saveDescription()">✓</button>
           <button class="action-button cancel-button" (click)="cancelEdit()">✗</button>
@@ -46,14 +55,14 @@
       <ng-template #displayDescription>
         <div *ngIf="hasDescription(); else addDescription" class="description-container">
           <div class="description-editable" (click)="toggleDescriptionEdit()">
-            <p class="userDescription">{{userData?.description}}</p>
-            <span class="edit-hint">click description to edit</span>
+            <p class="userDescription">{{ userData?.description }}</p>
+            <span class="edit-hint">{{ 'userProfile.editHint' | translate }}</span>
           </div>
         </div>
 
         <ng-template #addDescription>
           <button class="add-description-button" (click)="toggleDescriptionEdit()">
-            add description
+            {{ 'userProfile.addDescription' | translate }}
           </button>
         </ng-template>
       </ng-template>
@@ -61,25 +70,30 @@
 
     <div class="subscriptionBar">
       <button class="subscribeButton">
-        {{ subscriptionStatus === 'none' ? 'Activate Free Plan' : 'Active Subscription Plan' }}
+        {{ subscriptionStatus === 'none' ? ('userProfile.activatePlan' | translate) : ('userProfile.activePlan' | translate) }}
       </button>
-      <button class="cancelButton" (click)="openModal()"><span style="color: red">Cancel subscription</span></button>
+      <button class="cancelButton" (click)="openModal()">
+        <span style="color: red">{{ 'userProfile.cancelSubscription' | translate }}</span>
+      </button>
     </div>
   </div>
 
   <div class="options-container">
-    <div class=center-container>
-      <app-profile-option imageURL="favouritesIcon.png" optionName="SAVED" routerLink="/saved-comics-user"></app-profile-option>
-      <app-profile-option imageURL="myComicsIcon.png" optionName="MY COMICS" routerLink="/uploaded-comics-user"></app-profile-option>
-      <app-profile-option imageURL="wishlistIcon.png" optionName="LIKES" routerLink="/likes-comics-user"></app-profile-option>
+    <div class="center-container">
+      <app-profile-option imageURL="favouritesIcon.png" [optionName]="'userProfile.saved' | translate" routerLink="/saved-comics-user"></app-profile-option>
+      <app-profile-option imageURL="myComicsIcon.png" [optionName]="'userProfile.myComics' | translate" routerLink="/uploaded-comics-user"></app-profile-option>
+      <app-profile-option imageURL="wishlistIcon.png" [optionName]="'userProfile.likes' | translate" routerLink="/likes-comics-user"></app-profile-option>
     </div>
   </div>
 
   <div class="center-container">
-    <app-user-metrics value="{{this.savedComicsCount}}" title="Saved Comics"></app-user-metrics>
-    <app-user-metrics value="{{this.uploadedComicsCount}}" title="Uploaded Comics"></app-user-metrics>
-    <app-user-metrics value="{{this.likedComicsCount}}" title="Liked Comics"></app-user-metrics>
+    <app-user-metrics [value]="String(savedComicsCount)" [title]="'userProfile.savedComics' | translate"></app-user-metrics>
+    <app-user-metrics [value]="String(uploadedComicsCount)" [title]="'userProfile.uploadedComics' | translate"></app-user-metrics>
+    <app-user-metrics [value]="String(likedComicsCount)" [title]="'userProfile.likedComics' | translate"></app-user-metrics>
   </div>
 
-  <app-button text="UPLOAD A COMIC" buttonWidth="30rem" buttonHeight="5rem" (click)="callToRead()"></app-button>
+  <div class="center-container">
+    <app-button [text]="'userProfile.uploadComic' | translate" buttonWidth="30rem" buttonHeight="5rem" (click)="callToRead()"></app-button>
+  </div>
+
 </div>

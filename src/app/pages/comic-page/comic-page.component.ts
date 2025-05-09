@@ -15,6 +15,7 @@ import { IUser } from '../../models/user';
 import { UserStoreService } from '../../../../backend/src/services/user-store';
 import { ActionIconsComponent } from '../../components/action-icons/action-icons.component';
 import { Comic } from '../../models/comic';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-comic-page',
@@ -30,7 +31,8 @@ import { Comic } from '../../models/comic';
     ButtonComponent,
     NgIf,
     NgClass,
-    ActionIconsComponent
+    ActionIconsComponent,
+    TranslateModule
   ],
   templateUrl: './comic-page.component.html',
   styleUrls: ['./comic-page.component.scss']

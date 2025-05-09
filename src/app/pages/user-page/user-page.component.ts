@@ -15,11 +15,12 @@ import {User} from '@angular/fire/auth';
 import {AuthService} from '../../../../backend/src/services/user-auth';
 import {getDownloadURL, ref, Storage, uploadBytes} from '@angular/fire/storage';
 import {combineLatest, filter} from 'rxjs';
+import {TranslateModule, TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-page',
   standalone: true,
-  imports: [ButtonComponent, ProfileOptionComponent, UserMetricsComponent, HeaderBacklinkComponent, NgIf, FormsModule, RouterLink],
+  imports: [ButtonComponent, ProfileOptionComponent, UserMetricsComponent, HeaderBacklinkComponent, NgIf, FormsModule, RouterLink, TranslateModule],
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss'
 })
@@ -28,6 +29,7 @@ export class UserPageComponent implements OnInit {
   userStoreService = inject(UserStoreService);
   userAuthService: AuthService = inject(AuthService);
   storage: Storage = inject(Storage);
+  translate: TranslateService = inject(TranslateService);
   user: User | null = null;
   userData: IUser | null = null;
   dialog: MatDialog = inject(MatDialog);
@@ -49,18 +51,22 @@ export class UserPageComponent implements OnInit {
   }
 
   openModal() {
-    const dialogRef = this.dialog.open(CancelSubscriptionDialogComponent, {
-      data: {
-        title: 'YOU ARE GOING TO CANCEL YOUR SUBSCRIPTION',
-        message: 'ARE YOU SURE OF WHAT ARE YOU DOING?',
-      }
-    });
+    this.translate.get([
+      'userProfile.modal.title',
+      'userProfile.modal.message'
+    ]).subscribe(translations => {
+      const dialogRef = this.dialog.open(CancelSubscriptionDialogComponent, {
+        data: {
+          title: translations['userProfile.modal.title'],
+          message: translations['userProfile.modal.message'],
+        }
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result?.confirmed) {
-
-        this.appService.updateSubscription(this.user?.uid);
-      }
+      dialogRef.afterClosed().subscribe(result => {
+        if (result?.confirmed) {
+          this.appService.updateSubscription(this.user?.uid);
+        }
+      });
     });
   }
 
@@ -181,4 +187,6 @@ export class UserPageComponent implements OnInit {
       this.isUploading = false;
     }
   }
+
+  protected readonly String = String;
 }

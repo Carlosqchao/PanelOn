@@ -7,15 +7,15 @@
 
       <div class="dropdown">
         <button class="sort-button" (click)="toggleDropdown()">
-          Order by...
+          {{ 'search.orderBy' | translate }}
         </button>
         <div class="dropdown-content" *ngIf="dropdownVisible">
           <button class="dropdown-item" (click)="loadComicsOrderedByDate()">
-            {{ sortByDateAscending ? '↓ Date of publish' : '↑ Date of publish' }}
+            {{ sortByDateAscending ? ('search.dateDesc' | translate) : ('search.dateAsc' | translate) }}
           </button>
 
           <button class="dropdown-item" (click)="loadComicsOrderedByRating()">
-            {{ sortByRatingAscending ? '↓ Rating' : '↑ Rating' }}
+            {{ sortByRatingAscending ? ('search.ratingDesc' | translate) : ('search.ratingAsc' | translate) }}
           </button>
 
         </div>
@@ -24,8 +24,8 @@
 
     <div class="filter-dropdown" *ngIf="filterVisible">
       <div class="filter-header">
-        <h4>Filtrar por Género</h4>
-        <button class="close-btn" (click)="filterVisible = false">✖</button>
+        <h4>{{ 'search.filterByGenre' | translate }}</h4>
+        <button class="close-btn" (click)="filterVisible = false">{{ 'search.close' | translate }}</button>
       </div>
       <div class="filter-options">
         <label *ngFor="let genre of availableGenres" class="filter-item">
@@ -47,7 +47,7 @@
 </div>
 
 <div class="center-container" *ngIf="option === 'news'">
-  <div class="search-bar" >
+  <div class="search-bar">
     <app-search-bar (search)="handleNewsSearch($event)" (filter)="handleFilter()"></app-search-bar>
   </div>
   <div class="center-container">
@@ -78,7 +78,6 @@
   <span id="pageNumber">{{ currentPage }} of {{ totalPages }}</span>
   <button id="nextPage" (click)="nextPage()" [disabled]="currentPage === totalPages">▷</button>
 </div>
-
 
 
 

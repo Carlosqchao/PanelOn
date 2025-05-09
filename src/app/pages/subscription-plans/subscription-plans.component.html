@@ -1,19 +1,17 @@
-<app-header-backlink>
-</app-header-backlink>
-<app-premium-description>
-</app-premium-description>
-<app-premium-plans-comparison>
-</app-premium-plans-comparison>
+<app-header-backlink></app-header-backlink>
+<app-premium-description></app-premium-description>
+<app-premium-plans-comparison></app-premium-plans-comparison>
+
 <div class="free-plan">
   <app-free-plan
-    [title]="freePlan.title"
-    [description]="freePlan.description">
+    [title]="'subscriptionPlans.freePlan.title' | translate"
+    [description]="'subscriptionPlans.freePlan.description' | translate">
   </app-free-plan>
+
   <div class="free-button-container">
     <app-button
-      [text]="freePlan.textButton"
+      [text]="'subscriptionPlans.freePlan.buttonText' | translate"
       (buttonClick)="goHome()">
     </app-button>
   </div>
 </div>
-

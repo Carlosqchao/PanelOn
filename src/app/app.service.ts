@@ -16,6 +16,7 @@ import {Comic, Comment} from './models/comic';
 import { Timestamp } from 'firebase/firestore';
 import {IUser} from './models/user';
 import {Discussion,Chat} from './models/discussion';
+import {getDownloadURL, getStorage, ref} from 'firebase/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -647,6 +648,18 @@ export class AppService {
     } catch (error) {
       throw error;
     }
+  }
+
+  async getComicUrl(id: string): Promise<string> {
+    const docRef = doc(this.firestore, `comics/${id}`);
+    const docSnap = await getDoc(docRef);
+    if (!docSnap.exists()) throw new Error("No existe el documento");
+    const data = docSnap.data();
+    const storagePath = data['comicUrl']; // ejemplo: "uploads/FuckBerto.pdf"
+
+    const storage = getStorage();
+    const fileRef = ref(storage, storagePath);
+    return await getDownloadURL(fileRef); // <- genera una URL real para el navegador
   }
 
 }

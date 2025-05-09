@@ -10,5 +10,223 @@
     "PROFILE": "Perfil",
     "LOGOUT": "Sair",
     "LANGUAGE": "Idioma"
+  },
+  "footer": {
+    "policy": "Política",
+    "terms": "Termos",
+    "adChoices": "Preferências de anúncios",
+    "accessibility": "Acessibilidade"
+  },
+  "home": {
+    "newComics": "NOVOS QUADRINHOS",
+    "popularComics": "QUADRINHOS POPULARES",
+    "latestNews": "ÚLTIMAS NOTÍCIAS",
+    "characters": "PERSONAGENS",
+    "showMore": "MOSTRAR MAIS",
+    "meetCharacters": "Conheça seus personagens favoritos e seus universos."
+  },
+  "search": {
+    "orderBy": "Ordenar por...",
+    "dateAsc": "↑ Data de publicação",
+    "dateDesc": "↓ Data de publicação",
+    "ratingAsc": "↑ Avaliação",
+    "ratingDesc": "↓ Avaliação",
+    "filterByGenre": "Filtrar por Gênero",
+    "close": "Fechar"
+  },
+  "searchBar": {
+    "placeholder": "Pesquisar..."
+  },
+  "character": {
+    "baseHistory": "HISTÓRIA BÁSICA",
+    "noHistory": "Nenhuma história disponível",
+    "relatedCharacters": "PERSONAGENS RELACIONADOS",
+    "comics": "QUADRINHOS"
+  },
+  "comic": {
+    "read_button": "LER QUADRINHO",
+    "age_restriction": "Desculpe, você deve ter pelo menos {{age}} anos para ler este quadrinho.",
+    "characters": "PERSONAGENS DO QUADRINHO"
+  },
+  "comicDescription": {
+    "synopsis": "Sinopse",
+    "author": "Autor",
+    "genre": "Gênero",
+    "release_date": "Data de publicação"
+  },
+  "comicStatus": {
+    "status": "Estado",
+    "rating": "Classificação"
+  },
+  "reader": {
+    "fullscreen": "Tela cheia",
+    "pagePlaceholder": "Página {{ page }}"
+  },
+  "comments": {
+    "addYours": "ADICIONE O SEU",
+    "placeholder": "Escreva seu comentário...",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "loading": "Carregando comentários..."
+  },
+  "comment": {
+    "reply": "Responder",
+    "edit": "Editar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "replyPlaceholder": "Escreva sua resposta...",
+    "submitReply": "Enviar resposta",
+    "cancel": "Cancelar",
+    "replyingTo": "Respondendo a",
+    "showMore": "Mostrar mais"
+  },
+  "chat": {
+    "addYourComment": "ADICIONE O SEU",
+    "writeYourComment": "Escreva o seu comentário...",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "loadingComments": "Carregando comentários..."
+  },
+  "discussions": {
+    "addYours": "ADICIONE A SUA",
+    "titlePlaceholder": "Escreva seu título",
+    "contentPlaceholder": "Escreva aqui sua opinião",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "topDiscussions": "Principais Discussões",
+    "latest": "Mais recentes",
+    "loading": "Carregando discussões..."
+  },
+  "discussionCard": {
+    "participants": "Participantes",
+    "seeMore": "Ver mais"
+  },
+  "subscriptionPlans": {
+    "freePlan": {
+      "title": "Prefere ficar com a versão gratuita?",
+      "description": "Sem problemas! Continue aproveitando os quadrinhos da comunidade. Quando estiver pronto para atualizar, estaremos aqui.",
+      "buttonText": "GRÁTIS"
+    }
+  },
+  "premiumDescription": {
+    "title": "Assinatura Premium - Acesso Ilimitado!",
+    "subtitle": "Aproveite todos os quadrinhos premium e criações da comunidade sem anúncios. Mergulhe em histórias incríveis sem interrupções para a melhor experiência!"
+  },
+  "plansComparison": {
+    "monthly": {
+      "title": "Plano Mensal – Flexibilidade Total",
+      "description": "Experimente o serviço sem compromissos e pague mês a mês. Perfeito para explorar tudo o que oferecemos antes de tomar uma decisão a longo prazo."
+    },
+    "yearly": {
+      "title": "Plano Anual – Maior Economia",
+      "description": "Se você é um verdadeiro fã de quadrinhos, esta é a melhor opção. Assine por um ano completo e aproveite um desconto exclusivo para um ano de aventuras ilimitadas."
+    }
+  },
+  "userProfile": {
+    "usernamePlaceholder": "Nome de usuário",
+    "descriptionPlaceholder": "Adicione uma descrição sobre você",
+    "editHint": "clique na descrição para editar",
+    "addDescription": "adicionar descrição",
+    "activatePlan": "Ativar plano gratuito",
+    "activePlan": "Plano de assinatura ativo",
+    "cancelSubscription": "Cancelar assinatura",
+    "saved": "SALVOS",
+    "myComics": "MEUS QUADRINHOS",
+    "likes": "CURTIDOS",
+    "savedComics": "Quadrinhos salvos",
+    "uploadedComics": "Quadrinhos enviados",
+    "likedComics": "Quadrinhos curtidos",
+    "uploadComic": "ENVIAR UM QUADRINHO",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "modal": {
+      "title": "VOCÊ ESTÁ PRESTES A CANCELAR SUA ASSINATURA",
+      "message": "TEM CERTEZA DO QUE ESTÁ FAZENDO?",
+      "password": "Senha",
+      "confirmPassword": "Confirmar senha",
+      "cancelButton": "Cancelar assinatura"
+    }
+  },
+  "uploadComic": {
+    "fileUpload": "Upload de Arquivo",
+    "goBack": "Voltar",
+    "selectFile": "Selecionar um arquivo",
+    "fileValidationError": "Por favor, selecione um PDF válido. Tamanho máximo: 100MB.",
+    "pdfClean": "✅ O PDF está limpo. PEGI sugerido: ",
+    "pdfViolation": "⚠️ O PDF viola os Termos e Condições.",
+    "details": "Detalhes",
+    "nsfwAnalysis": "Análise de conteúdo para adultos",
+    "preview": "Prévia",
+    "title": "Título",
+    "titleError": "Título inválido. Apenas letras, números e pontuação comum são permitidos. Comprimento: 2-50 caracteres.",
+    "author": "Autor",
+    "authorError": "Autor inválido. Apenas letras, números e pontuação comum são permitidos. Comprimento: 2-50 caracteres.",
+    "synopsis": "Sinopse",
+    "state": "Estado",
+    "stateError": "Por favor, selecione um estado.",
+    "inProcess": "Em processo",
+    "finished": "Finalizado",
+    "selectGenre": "Selecionar Gênero",
+    "add": "Adicionar",
+    "selectedGenres": "Gêneros Selecionados (clique para remover):",
+    "genreError": "Por favor, selecione pelo menos um gênero.",
+    "uploadSuccess": "✅ Upload bem-sucedido!",
+    "uploadError": "⚠️ Ocorreu um erro durante o upload.",
+    "uploading": "Enviando...",
+    "upload": "Enviar"
+  },
+  "loginComponent": {
+    "pageTitle": "ENTRAR",
+    "goBack": "← Voltar",
+    "email": "Email",
+    "password": "Senha",
+    "signIn": "ENTRAR",
+    "signUp": "Cadastre-se",
+    "forgotPassword": "Esqueceu sua senha?",
+    "sendEmail": "Enviar email",
+    "noAccount": "Não tem uma conta?",
+    "errors": {
+      "emailRequired": "O email é obrigatório.",
+      "emailInvalid": "Digite um email válido.",
+      "passwordRequired": "A senha é obrigatória.",
+      "invalidCredentials": "Email ou senha inválidos."
+    },
+    "success": {
+      "resetEmailSent": "Email de redefinição de senha enviado.",
+      "loginSuccessful": "Login realizado com sucesso."
+    },
+    "accessibility": {
+      "togglePassword": "Mostrar/Ocultar Senha",
+      "logo": "Logo",
+      "backgroundImage": "Imagem de fundo"
+    }
+  },
+  "signUp": {
+    "title": "Registre-se!",
+    "goBack": "← Voltar",
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "birthdate": "Data de nascimento",
+    "email": "E-mail",
+    "username": "Nome de usuário",
+    "password": "Senha",
+    "confirmPassword": "Confirmar senha",
+    "signUpButton": "REGISTRAR",
+    "alreadyHaveAccount": "Já tem uma conta?",
+    "signIn": "Entrar",
+    "errors": {
+      "firstNameRequired": "O nome é obrigatório.",
+      "firstNamePattern": "O nome deve conter apenas letras (2-50 caracteres).",
+      "lastNameRequired": "O sobrenome é obrigatório.",
+      "lastNamePattern": "O sobrenome deve conter apenas letras (2-50 caracteres).",
+      "birthdateRequired": "A data de nascimento é obrigatória.",
+      "emailRequired": "O e-mail é obrigatório.",
+      "emailPattern": "Por favor, insira um endereço de e-mail válido.",
+      "usernameRequired": "O nome de usuário é obrigatório.",
+      "usernamePattern": "O nome de usuário deve ter 4-16 caracteres (letras, números, _).",
+      "passwordRequired": "A senha é obrigatória.",
+      "passwordPattern": "A senha deve ter pelo menos 8 caracteres, com 1 maiúscula, 1 minúscula, 1 número e 1 caractere especial.",
+      "confirmPasswordRequired": "A confirmação da senha é obrigatória."
+    }
   }
 }
