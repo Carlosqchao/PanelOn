@@ -187,45 +187,8 @@
 
 @media (max-width: 1024px) {
   .login-container {
-    width: 60%;
-  }
-
-  .login-container .login-header h1 {
-    font-size: 2rem;
-  }
-
-  #back-link {
-    text-align: left;
-    cursor: pointer;
-    font-size: 1rem;
-    color: var(--black);
-    text-decoration: none;
-    margin-bottom: 1vh;
-    width: 45vw;
-  }
-
-  .aside-image {
-    width: 50%;
-    margin-left: 0%;
-  }
-
-  .login-container .login-form input {
-    width: 45vw;
-    height: 7vh;
-  }
-
-  .login-container .login-form button {
-    width: 20vw;
-    height: 6vh;
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 768px) {
-  .login-container {
     width: 100%;
-    margin-top: 0;
-    padding: 10vh 0;
+    padding: 8vh 0;
   }
 
   .aside-image {
@@ -236,33 +199,37 @@
     font-size: 1.8rem;
   }
 
-  .login-container .login-form input {
-    width: 80vw;
-    height: 8vh;
-    font-size: 0.9rem;
-    text-align: left;
-  }
-
-  .login-container .login-form button {
-    width: 40vw;
-    height: 7vh;
-    font-size: 16px;
+  .login-container .login-logo img {
+    width: 10rem;
   }
 
   #back-link {
     width: 80vw;
+    margin-bottom: 1.5vh;
+  }
+
+  .login-container .login-form input {
+    width: 80vw;
+    height: 6vh;
+    font-size: 1rem;
+  }
+
+  .login-container .login-form button {
+    width: 40vw;
+    height: 5vh;
+    font-size: 16px;
   }
 
   .login-container .login-links {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .login-container .login-links #sign-up-btn {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .login-container .login-links #reemail-btn {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .password-container,
