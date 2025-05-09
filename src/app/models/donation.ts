@@ -1,8 +1,8 @@
 export interface Donation {
+  id?: string;
   amount: number;
   currency: string;
   date: number[];
-  id: number;
   message: string;
   payee: number;
   payer: number;

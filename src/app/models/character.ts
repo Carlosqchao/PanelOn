@@ -1,7 +1,7 @@
 export interface Character {
+  id: number;
   characterName: string;
   description: string;
-  id: number;
   image: string;
   relatedCharacters: number[];
   relatedComics: number[];

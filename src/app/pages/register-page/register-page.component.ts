@@ -4,11 +4,12 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../../backend/src/services/user-auth';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register-page',
   standalone: true,
-  imports: [ButtonComponent, FormsModule, CommonModule],
+  imports: [ButtonComponent, FormsModule, CommonModule, TranslateModule, RouterLink],
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.scss']
 })

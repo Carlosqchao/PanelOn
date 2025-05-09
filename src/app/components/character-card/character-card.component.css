@@ -1,9 +1,56 @@
+:root {
+  --primary: #E76F51;
+  --primary-dark: #e04a2b;
+  --secondary: #D9D9D9;
+  --red: #ff0000;
+  --black: black;
+  --gray: #ccc;
+  --white: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.2);
+  --light-gray: #f8f9fa;
+  --border-gray: #ced4da;
+  --loading-gray: #6c757d;
+  --success: #28a745;
+  --success-dark: #218838;
+  --error: #dc3545;
+  --error-dark: #c82333;
+  --focus-blue: rgba(0, 123, 255, 0.3);
+  --dark-gray: #333;
+  --reply-gray: #707070;
+  --blue: #007bff;
+  --view-more-bg: rgba(0, 123, 255, 0.05);
+  --view-more-bg-hover: rgba(0, 123, 255, 0.1);
+  --star-filled: #ffd700;
+  --star-empty: #d3d3d3;
+  --carousel-control-bg: rgba(0, 0, 0, 0.5);
+  --carousel-control-bg-hover: rgba(0, 0, 0, 0.8);
+  --dot-bg: rgba(255, 255, 255, 0.5);
+  --card-green: #59C887;
+  --card-blue: #2E5579;
+  --image-shadow: rgba(255, 255, 255, 0.2);
+  --text-color: #1a1a1a;
+  --highlight-color: #5c5c5c;
+  --subscription-bg: #fef7dc;
+}
+
+.dark-theme {
+  --primary: #228B22;
+  --primary-dark: #006400;
+  --secondary: #333;
+  --black: white;
+  --background: grey;
+  --white: #e0e0e0;
+  --shadow: rgba(255, 255, 255, 0.1);
+  --text-color: #f5f5f5;
+  --highlight-color: #8fbc8f;
+}
+
 .character-card {
   width: 12.5rem;
   margin: 0.625rem;
   margin-bottom: 1rem;
   overflow: hidden;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.25rem 0.5rem var(--shadow);
   position: relative;
   cursor: pointer;
   clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%);
@@ -11,7 +58,7 @@
 .character-card .image-container {
   width: 100%;
   height: 15.625rem;
-  background-color: #D9D9D9;
+  background-color: var(--secondary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,17 +71,18 @@
 .character-card .red-line {
   width: 100%;
   height: 0.3125rem;
-  background-color: #ff0000;
+  background-color: var(--red);
 }
 .character-card .info-container {
-  background-color: #000;
+  background-color: var(--black);
   height: 4.375rem;
-  color: #fff;
+  color: var(--white);
   padding: 0.625rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
+  font-family: "Roboto", sans-serif;
 }
 .character-card .info-container .superhero-name {
   margin: 0;
@@ -45,7 +93,7 @@
 .character-card .info-container .character-name {
   margin: 0;
   font-size: 0.7rem;
-  color: #ccc;
+  color: var(--gray);
 }
 
 /*# sourceMappingURL=character-card.component.css.map */

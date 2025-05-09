@@ -6,17 +6,26 @@
     <p *ngIf="!isEditing" class="comment-text">{{ comment.content }}</p>
     <textarea *ngIf="isEditing" [(ngModel)]="editedContent" class="edit-textarea"></textarea>
     <div class="comment-actions">
-      <button [disabled]="isEditing || showReplyForm" (click)="toggleReplyForm()">Reply</button>
-      <button *ngIf="isCommentOwner" [disabled]="showReplyForm" (click)="toggleEdit()">{{ isEditing ? 'Save' : 'Edit' }}</button>
-      <button *ngIf="isCommentOwner" [disabled]="isEditing || showReplyForm" (click)="delete()">Delete</button>
+      <button [disabled]="isEditing || showReplyForm" (click)="toggleReplyForm()">
+        {{ 'comment.reply' | translate }}
+      </button>
+      <button *ngIf="isCommentOwner" [disabled]="showReplyForm" (click)="toggleEdit()">
+        {{ isEditing ? ('comment.save' | translate) : ('comment.edit' | translate) }}
+      </button>
+      <button *ngIf="isCommentOwner" [disabled]="isEditing || showReplyForm" (click)="delete()">
+        {{ 'comment.delete' | translate }}
+      </button>
     </div>
 
-
     <div *ngIf="showReplyForm" class="reply-form">
-      <textarea [(ngModel)]="newReplyContent" placeholder="Write your reply..." class="reply-textarea"></textarea>
+      <textarea
+        [(ngModel)]="newReplyContent"
+        [placeholder]="'comment.replyPlaceholder' | translate"
+        class="reply-textarea"
+      ></textarea>
       <div class="form-buttons">
-        <button (click)="addReply()">Submit Reply</button>
-        <button class="cancel-btn" (click)="toggleReplyForm()">Cancel</button>
+        <button (click)="addReply()">{{ 'comment.submitReply' | translate }}</button>
+        <button class="cancel-btn" (click)="toggleReplyForm()">{{ 'comment.cancel' | translate }}</button>
       </div>
     </div>
   </div>
@@ -25,7 +34,8 @@
 <div class="replies-container" *ngIf="comment.replies && comment.replies.length > 0">
   <div class="reply-wrapper" *ngFor="let reply of visibleReplies; let i = index">
     <div class="reply-indicator" *ngIf="i > 0 || parentCommentId">
-      <span class="reply-arrow">↪</span> Replying to  <span class="reply-username">{{ getRepliedToUsername(i) }}</span>
+      <span class="reply-arrow">↪</span>
+      {{ 'comment.replyingTo' | translate }} <span class="reply-username"> &nbsp; {{ getRepliedToUsername(i) }}</span>
     </div>
 
     <app-comment
@@ -40,6 +50,6 @@
   </div>
 
   <button *ngIf="hasMoreReplies" class="view-more-btn" (click)="toggleShowAllReplies()">
-    Show {{ (comment.replies.length - maxVisibleReplies) }} more {{ (comment.replies.length - maxVisibleReplies) === 1 ? 'reply' : 'replies' }}
+    {{ 'comment.showMore' | translate: { count: comment.replies.length - maxVisibleReplies } }}
   </button>
 </div>

@@ -7,13 +7,15 @@ import {AuthService} from '../../../../backend/src/services/user-auth';
 import {User} from '@angular/fire/auth';
 import {IUser} from '../../models/user';
 import {AppService} from '../../app.service';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-likes-comics-user',
   imports: [
     ComicCardComponent,
     HeaderBacklinkComponent,
-    NgForOf
+    NgForOf,
+    TranslateModule
   ],
   templateUrl: './likes-comics-user.component.html',
   styleUrl: './likes-comics-user.component.scss'

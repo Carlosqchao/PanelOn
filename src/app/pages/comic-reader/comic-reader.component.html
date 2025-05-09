@@ -5,28 +5,43 @@
 </h1>
 
 <div class="Container">
-  <div id="pdf-container"  #pdfContainter (click)="pageChangeOnClick($event, pdfContainter)">
+  <div id="pdf-container" #pdfContainter (click)="pageChangeOnClick($event, pdfContainter)">
     <canvas class="normal" style="cursor:pointer" #pdfCanvas></canvas>
   </div>
 
   <div id="BottomButtons">
     <div>
-    <app-button text="Pantalla completa"  buttonWidth="10vw" buttonHeight="5vh" textSize="0.85rem" (buttonClick)="fullscreen()"></app-button>
+      <app-button
+        [text]="'reader.fullscreen' | translate"
+        buttonWidth="10vw"
+        buttonHeight="5vh"
+        textSize="0.85rem"
+        (buttonClick)="fullscreen()"
+      ></app-button>
     </div>
 
     <div id="Pagebuttons">
       <button class="page_button" (click)="prevPage()"><</button>
-      <input id="PageNumber" #InputNumber type="text" min="1" max="{{ maxPages }}"
-          (input)="numberChecker()"   (keydown.enter)="pageInputChange()" [placeholder]="pageNumber">
+      <input
+        id="PageNumber"
+        #InputNumber
+        type="text"
+        min="1"
+        max="{{ maxPages }}"
+        (input)="numberChecker()"
+        (keydown.enter)="pageInputChange()"
+        [placeholder]="'reader.pagePlaceholder' | translate:{ page: pageNumber }"
+      />
       <button class="page_button" (click)="nextPage()">></button>
     </div>
+
     <app-action-icons></app-action-icons>
   </div>
 </div>
 
 <app-comments-section
   [comicId]="comicId"
-  [currentUserId]="currentUserId">
-</app-comments-section>
+  [currentUserId]="currentUserId"
+></app-comments-section>
 
 <app-footer></app-footer>
