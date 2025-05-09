@@ -1,14 +1,20 @@
 @charset "UTF-8";
 h1 {
-  padding: 5vh 5vh 0 5vh;
-}
+  padding: 15vh 5vh 0 5vh; }
+
+.fullscreen {
+  background: #fff8ef; }
+
+#PageNumber {
+  width: 50%; }
 
 #pdf-container {
   display: flex;
+  width: 100%;
+  place-self: center;
   align-items: center;
   align-content: center;
-  justify-content: center;
-}
+  justify-content: center; }
 
 #PageNumber {
   height: 10vh;
@@ -16,19 +22,17 @@ h1 {
   border: none;
   place-content: center;
   text-align: center;
-  font-size: 5vh;
-}
+  font-size: 5vh; }
 
 #Pagebuttons {
   width: 100%;
   display: flex;
   flex-direction: row;
-  place-items: center;
-}
+  place-items: center; }
 
 canvas {
   margin: 2.5vh;
-}
+  object-fit: contain; }
 
 .page_button {
   width: 10vh;
@@ -37,99 +41,68 @@ canvas {
   border: none;
   margin: 0 2vw;
   font-size: 10vh;
-  color: gray;
-}
+  color: gray; }
 
 .icons-section {
   display: flex;
-  gap: 20px;
-}
-.icons-section .icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-.icons-section .icon:hover {
-  transform: scale(1.1);
-}
-.icons-section .icon img {
-  width: 25px;
-  height: 25px;
-  margin-bottom: 5px;
-}
+  gap: 20px; }
+  .icons-section .icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease; }
+    .icons-section .icon:hover {
+      transform: scale(1.1); }
+    .icons-section .icon img {
+      width: 25px;
+      height: 25px;
+      margin-bottom: 5px; }
 
 #BottomButtons {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
-  place-self: center;
-}
+  place-self: center; }
 
 .rating-section {
   display: flex;
-  align-items: flex-end;
-}
-.rating-section .label {
-  font-weight: bold;
-  color: #333;
-  margin-right: 10px;
-  font-size: 3vh;
-}
-.rating-section .value {
-  font-size: 3vh;
-  color: #555;
-  text-transform: uppercase;
-}
+  align-items: flex-end; }
+  .rating-section .label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px;
+    font-size: 3vh; }
+  .rating-section .value {
+    font-size: 3vh;
+    color: #555;
+    text-transform: uppercase; }
 
 .stars {
   display: flex;
   gap: 5px;
   place-items: center;
   place-self: center;
-  margin-right: 1vw;
-}
-.stars .star {
-  font-size: 3vh;
-}
-.stars .star.filled {
-  color: #ffd700;
-}
-.stars .star.half-filled {
-  position: relative;
-  color: #d3d3d3;
-}
-.stars .star.half-filled::before {
-  content: "★";
-  position: absolute;
-  left: 0;
-  width: 50%;
-  overflow: hidden;
-  color: #ffd700;
-}
-.stars .star.empty {
-  color: #d3d3d3;
-}
+  margin-right: 1vw; }
+  .stars .star {
+    font-size: 3vh; }
+    .stars .star.filled {
+      color: #ffd700; }
+    .stars .star.half-filled {
+      position: relative;
+      color: #d3d3d3; }
+      .stars .star.half-filled::before {
+        content: '★';
+        position: absolute;
+        left: 0;
+        width: 50%;
+        overflow: hidden;
+        color: #ffd700; }
+    .stars .star.empty {
+      color: #d3d3d3; }
 
 .rating-value {
   font-size: 3vh;
-  color: #555;
-}
-
-.comment-section {
-  margin-top: 10vh;
-  margin-bottom: 5vh;
-  justify-self: center;
-  align-items: center;
-  overflow-y: scroll;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding: 2vh 2vw;
-  max-height: 40vh;
-}
-.comment-section::-webkit-scrollbar {
-  display: none;
-}
+  color: #555; }
 
 /*# sourceMappingURL=comic-reader.component.css.map */

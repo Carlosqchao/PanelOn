@@ -9,9 +9,9 @@ export interface Chat {
 }
 
 export interface Discussion {
-  id: string;
-  title:string
-  discussion:string
-  date:Timestamp
-  userId:string
+  id?: string;
+  title: string
+  discussion: string
+  date: Timestamp
+  userId: string
 }

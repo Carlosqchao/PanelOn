@@ -1,7 +1,7 @@
 export interface News {
+  id?: string;
   author: string;
   content: string;
-  id:string;
   image: string;
   published: number[];
   title: string;

@@ -1,7 +1,6 @@
 .profile-option {
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column; }
 
 .imageContainer {
   width: 10rem;
@@ -13,23 +12,19 @@
   border-radius: 50%;
   position: relative;
   overflow: hidden;
-  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; }
 
 .imageContainer:hover {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
+  transform: scale(1.05); }
 
 .optionImage {
   width: 50%;
   height: 50%;
   object-fit: cover;
-  transition: transform 0.3s ease-in-out;
-}
+  transition: transform 0.3s ease-in-out; }
 
 .imageContainer:hover .optionImage {
-  transform: translateY(-5px);
-}
+  transform: translateY(-5px); }
 
 /*# sourceMappingURL=likes-comics-user.component.css.map */
