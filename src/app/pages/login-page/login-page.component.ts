@@ -3,12 +3,13 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../../backend/src/services/user-auth';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [ButtonComponent, FormsModule, CommonModule],
+  imports: [ButtonComponent, FormsModule, CommonModule, TranslateModule, RouterLink],
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })

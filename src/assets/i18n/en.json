@@ -10,5 +10,223 @@
     "PROFILE": "Profile",
     "LOGOUT": "Logout",
     "LANGUAGE": "Language"
+  },
+  "footer": {
+    "policy": "Policy",
+    "terms": "Terms",
+    "adChoices": "Ad Choices",
+    "accessibility": "Accessibility"
+  },
+  "home": {
+    "newComics": "NEW COMICS",
+    "popularComics": "POPULAR COMICS",
+    "latestNews": "LATEST NEWS",
+    "characters": "CHARACTERS",
+    "showMore": "SHOW MORE",
+    "meetCharacters": "Meet your favourite characters and their universes."
+  },
+  "search": {
+    "orderBy": "Order by...",
+    "dateAsc": "↑ Date of publish",
+    "dateDesc": "↓ Date of publish",
+    "ratingAsc": "↑ Rating",
+    "ratingDesc": "↓ Rating",
+    "filterByGenre": "Filter by Genre",
+    "close": "Close"
+  },
+  "searchBar": {
+    "placeholder": "Search..."
+  },
+  "character": {
+    "baseHistory": "BASE HISTORY",
+    "noHistory": "No history available",
+    "relatedCharacters": "RELATED CHARACTERS",
+    "comics": "COMICS"
+  },
+  "comic": {
+    "read_button": "READ COMIC",
+    "age_restriction": "Sorry, you must be at least {{age}} years old to read this comic.",
+    "characters": "COMIC CHARACTERS"
+  },
+  "comicDescription": {
+    "synopsis": "Synopsis",
+    "author": "Author",
+    "genre": "Genre",
+    "release_date": "Release Date"
+  },
+  "comicStatus": {
+    "status": "Status",
+    "rating": "Rating"
+  },
+  "reader": {
+    "fullscreen": "Fullscreen",
+    "pagePlaceholder": "Page {{ page }}"
+  },
+  "comments": {
+    "addYours": "ADD YOURS",
+    "placeholder": "Write your comment...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "loading": "Loading comments..."
+  },
+  "comment": {
+    "reply": "Reply",
+    "edit": "Edit",
+    "save": "Save",
+    "delete": "Delete",
+    "replyPlaceholder": "Write your reply...",
+    "submitReply": "Submit Reply",
+    "cancel": "Cancel",
+    "replyingTo": "Replying to",
+    "showMore": "Show more"
+  },
+  "chat": {
+    "addYourComment": "ADD YOURS",
+    "writeYourComment": "Write your comment...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "loadingComments": "Loading comments..."
+  },
+  "discussions": {
+    "addYours": "ADD YOURS",
+    "titlePlaceholder": "Write your Title",
+    "contentPlaceholder": "Write here your opinion",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "topDiscussions": "Top Discussions",
+    "latest": "Latest",
+    "loading": "Discussions Loading..."
+  },
+  "discussionCard": {
+    "participants": "Participants",
+    "seeMore": "See more"
+  },
+  "subscriptionPlans": {
+    "freePlan": {
+      "title": "Prefer to stick with the free version?",
+      "description": "No problem! Keep enjoying community comics. When you're ready to upgrade, we'll be here.",
+      "buttonText": "FREE"
+    }
+  },
+  "premiumDescription": {
+    "title": "Premium Subscription - Unlimited Access!",
+    "subtitle": "Enjoy all premium comics and community creations with no ads. Dive in to amazing stories without interruptions for the best experience!"
+  },
+  "plansComparison": {
+    "monthly": {
+      "title": "Monthly Plan – Total Flexibility",
+      "description": "Try the service with no commitments and pay month by month. Perfect if you want to explore everything we offer before making a long-term decision."
+    },
+    "yearly": {
+      "title": "Annual Plan – Biggest Savings",
+      "description": "If you're a true comic fan, this is the best choice. Subscribe for a full year and get an exclusive discount, ensuring a year of unlimited adventures."
+    }
+  },
+  "userProfile": {
+    "usernamePlaceholder": "Username",
+    "descriptionPlaceholder": "Add description about you",
+    "editHint": "click description to edit",
+    "addDescription": "add description",
+    "activatePlan": "Activate Free Plan",
+    "activePlan": "Active Subscription Plan",
+    "cancelSubscription": "Cancel subscription",
+    "saved": "SAVED",
+    "myComics": "MY COMICS",
+    "likes": "LIKES",
+    "savedComics": "Saved Comics",
+    "uploadedComics": "Uploaded Comics",
+    "likedComics": "Liked Comics",
+    "uploadComic": "UPLOAD A COMIC",
+    "edit": "Edit",
+    "delete": "Delete",
+    "modal": {
+      "title": "YOU ARE GOING TO CANCEL YOUR SUBSCRIPTION",
+      "message": "ARE YOU SURE OF WHAT ARE YOU DOING?",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "cancelButton": "Cancel subscription"
+    }
+  },
+  "uploadComic": {
+    "fileUpload": "File Upload",
+    "goBack": "Go back",
+    "selectFile": "Select a file",
+    "fileValidationError": "Please select a valid PDF. Max size: 100MB.",
+    "pdfClean": "✅ The PDF is clean. PEGI Suggested: ",
+    "pdfViolation": "⚠️ The PDF violates the Terms and Conditions.",
+    "details": "Details",
+    "nsfwAnalysis": "NSFW Analysis",
+    "preview": "Preview",
+    "title": "Title",
+    "titleError": "Invalid title. Only letters, numbers, and common punctuation allowed. Length: 2–50 chars.",
+    "author": "Author",
+    "authorError": "Invalid author. Only letters, numbers, and common punctuation allowed. Length: 2–50 chars.",
+    "synopsis": "Synopsis",
+    "state": "State",
+    "stateError": "Please select a state.",
+    "inProcess": "In process",
+    "finished": "Finished",
+    "selectGenre": "Select Genre",
+    "add": "Add",
+    "selectedGenres": "Selected Genres (click to remove):",
+    "genreError": "Please select at least one genre.",
+    "uploadSuccess": "✅ Upload Successful!",
+    "uploadError": "⚠️ There was an error during the upload.",
+    "uploading": "Uploading...",
+    "upload": "Upload"
+  },
+  "loginComponent": {
+    "pageTitle": "LOG IN",
+    "goBack": "← Go back",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "SIGN IN",
+    "signUp": "Sign Up",
+    "forgotPassword": "Forgot your password?",
+    "sendEmail": "Send Email",
+    "noAccount": "Don't have an account?",
+    "errors": {
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Enter a valid email.",
+      "passwordRequired": "Password is required.",
+      "invalidCredentials": "Invalid email or password."
+    },
+    "success": {
+      "resetEmailSent": "Password reset email sent.",
+      "loginSuccessful": "Login successful."
+    },
+    "accessibility": {
+      "togglePassword": "Toggle Password Visibility",
+      "logo": "Logo",
+      "backgroundImage": "Background Image"
+    }
+  },
+  "signUp": {
+    "title": "Sign up!",
+    "goBack": "← Go back",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "birthdate": "Birth Date",
+    "email": "Email",
+    "username": "Username",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "signUpButton": "SIGN UP",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in",
+    "errors": {
+      "firstNameRequired": "First name is required.",
+      "firstNamePattern": "First name must contain only letters (2-50 characters).",
+      "lastNameRequired": "Last name is required.",
+      "lastNamePattern": "Last name must contain only letters (2-50 characters).",
+      "birthdateRequired": "Birth date is required.",
+      "emailRequired": "Email is required.",
+      "emailPattern": "Please enter a valid email address.",
+      "usernameRequired": "Username is required.",
+      "usernamePattern": "Username must be 4-16 characters (letters, numbers, _).",
+      "passwordRequired": "Password is required.",
+      "passwordPattern": "Password must be at least 8 characters, with 1 uppercase, 1 lowercase, 1 number, and 1 special character.",
+      "confirmPasswordRequired": "Confirm password is required."
+    }
   }
 }

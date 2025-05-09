@@ -6,7 +6,7 @@
   [slideInterval]="5000">
 </app-landing-carousel>
 
-<app-section-title position="left" text="NEW COMICS"></app-section-title>
+<app-section-title position="left" [text]="'home.newComics' | translate"></app-section-title>
 
 <div class="center-container">
   <app-comic-card
@@ -17,7 +17,7 @@
   </app-comic-card>
 </div>
 
-<app-section-title position="left" text="POPULAR COMICS"></app-section-title>
+<app-section-title position="left" [text]="'home.popularComics' | translate"></app-section-title>
 
 <div class="center-container">
   <app-comic-card
@@ -29,10 +29,10 @@
 </div>
 
 <div class="center-container">
-  <app-button text="SHOW MORE" (buttonClick)="callToSearch('comic')"></app-button>
+  <app-button [text]="'home.showMore' | translate" (buttonClick)="callToSearch('comic')"></app-button>
 </div>
 
-<app-section-title position="left" text="LATEST NEWS"></app-section-title>
+<app-section-title position="left" [text]="'home.latestNews' | translate"></app-section-title>
 
 <div class="center-container">
   <app-news-card
@@ -45,10 +45,10 @@
 </div>
 
 <div class="center-container">
-  <app-button text="SHOW MORE" (buttonClick)="callToSearch('news')"></app-button>
+  <app-button [text]="'home.showMore' | translate" (buttonClick)="callToSearch('news')"></app-button>
 </div>
 
-<app-section-title position="left" text="CHARACTERS"></app-section-title>
+<app-section-title position="left" [text]="'home.characters' | translate"></app-section-title>
 
 <div class="center-container" *ngIf="selectedCharacters.length >= 3">
   <app-landing-character-card-1
@@ -77,11 +77,11 @@
 </div>
 
 <div class="center-container" style="margin-bottom:2rem;">
-  <p>Meet your favourite characters and their universes.</p>
+  <p>{{ 'home.meetCharacters' | translate }}</p>
 </div>
 
 <div class="center-container">
-  <app-button text="SHOW MORE" (buttonClick)="callToSearch('characters')"></app-button>
+  <app-button [text]="'home.showMore' | translate" (buttonClick)="callToSearch('characters')"></app-button>
 </div>
 
 <app-footer></app-footer>

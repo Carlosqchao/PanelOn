@@ -10,5 +10,223 @@
     "PROFILE": "Perfil",
     "LOGOUT": "Cerrar sesión",
     "LANGUAGE": "Idioma"
+  },
+  "footer": {
+    "policy": "Política",
+    "terms": "Términos",
+    "adChoices": "Preferencias de anuncios",
+    "accessibility": "Accesibilidad"
+  },
+  "home": {
+  "newComics": "NUEVOS CÓMICS",
+  "popularComics": "CÓMICS POPULARES",
+  "latestNews": "ÚLTIMAS NOTICIAS",
+  "characters": "PERSONAJES",
+  "showMore": "VER MÁS",
+  "meetCharacters": "Conoce a tus personajes favoritos y sus universos."
+  },
+  "search": {
+    "orderBy": "Ordenar por...",
+    "dateAsc": "↑ Fecha de publicación",
+    "dateDesc": "↓ Fecha de publicación",
+    "ratingAsc": "↑ Valoración",
+    "ratingDesc": "↓ Valoración",
+    "filterByGenre": "Filtrar por Género",
+    "close": "Cerrar"
+  },
+  "searchBar": {
+    "placeholder": "Buscar..."
+  },
+  "character": {
+    "baseHistory": "HISTORIA BÁSICA",
+    "noHistory": "Sin historia disponible",
+    "relatedCharacters": "PERSONAJES RELACIONADOS",
+    "comics": "CÓMICS"
+  },
+  "comic": {
+    "read_button": "LEER CÓMIC",
+    "age_restriction": "Lo sentimos, debes tener al menos {{age}} años para leer este cómic.",
+    "characters": "PERSONAJES DEL CÓMIC"
+  },
+  "comicDescription": {
+    "synopsis": "Sinopsis",
+    "author": "Autor",
+    "genre": "Género",
+    "release_date": "Fecha de publicación"
+  },
+  "comicStatus": {
+    "status": "Estado",
+    "rating": "Valoración"
+  },
+  "reader": {
+    "fullscreen": "Pantalla completa",
+    "pagePlaceholder": "Página {{ page }}"
+  },
+  "comments": {
+    "addYours": "AÑADE EL TUYO",
+    "placeholder": "Escribe tu comentario...",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "loading": "Cargando comentarios..."
+  },
+  "comment": {
+    "reply": "Responder",
+    "edit": "Editar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "replyPlaceholder": "Escribe tu respuesta...",
+    "submitReply": "Enviar respuesta",
+    "cancel": "Cancelar",
+    "replyingTo": "Respondiendo a",
+    "showMore": "Mostrar más"
+  },
+  "chat": {
+    "addYourComment": "AGREGA EL TUYO",
+    "writeYourComment": "Escribe tu comentario...",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "loadingComments": "Cargando comentarios..."
+  },
+  "discussions": {
+    "addYours": "AÑADE LA TUYA",
+    "titlePlaceholder": "Escribe tu título",
+    "contentPlaceholder": "Escribe aquí tu opinión",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "topDiscussions": "Top Discusiones",
+    "latest": "Más recientes",
+    "loading": "Cargando discusiones..."
+  },
+  "discussionCard": {
+    "participants": "Participantes",
+    "seeMore": "Ver más"
+  },
+  "subscriptionPlans": {
+    "freePlan": {
+      "title": "¿Prefieres quedarte con la versión gratuita?",
+      "description": "¡No hay problema! Sigue disfrutando de los cómics de la comunidad. Cuando estés listo para actualizar, estaremos aquí.",
+      "buttonText": "GRATIS"
+    }
+  },
+  "premiumDescription": {
+    "title": "Suscripción Premium - ¡Acceso Ilimitado!",
+    "subtitle": "Disfruta de todos los cómics premium y creaciones de la comunidad sin anuncios. Sumérgete en historias increíbles sin interrupciones para la mejor experiencia."
+  },
+  "plansComparison": {
+    "monthly": {
+      "title": "Plan Mensual – Máxima Flexibilidad",
+      "description": "Prueba el servicio sin compromisos y paga mes a mes. Perfecto si quieres explorar todo lo que ofrecemos antes de tomar una decisión a largo plazo."
+    },
+    "yearly": {
+      "title": "Plan Anual – El Mayor Ahorro",
+      "description": "Si eres un verdadero fan de los cómics, esta es la mejor opción. Suscríbete por un año completo y obtén un descuento exclusivo que te garantiza un año de aventuras ilimitadas."
+    }
+  },
+  "userProfile": {
+    "usernamePlaceholder": "Nombre de usuario",
+    "descriptionPlaceholder": "Agrega una descripción sobre ti",
+    "editHint": "haz clic en la descripción para editar",
+    "addDescription": "agregar descripción",
+    "activatePlan": "Activar plan gratuito",
+    "activePlan": "Plan de suscripción activo",
+    "cancelSubscription": "Cancelar suscripción",
+    "saved": "GUARDADOS",
+    "myComics": "MIS CÓMICS",
+    "likes": "ME GUSTA",
+    "savedComics": "Cómics guardados",
+    "uploadedComics": "Cómics subidos",
+    "likedComics": "Cómics con me gusta",
+    "uploadComic": "SUBIR UN CÓMIC",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "modal": {
+      "title": "VAS A CANCELAR TU SUSCRIPCIÓN",
+      "message": "¿ESTÁS SEGURO DE LO QUE ESTÁS HACIENDO?",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "cancelButton": "Cancelar suscripción"
+    }
+  },
+  "uploadComic": {
+    "fileUpload": "Subida de Archivo",
+    "goBack": "Volver atrás",
+    "selectFile": "Seleccionar un archivo",
+    "fileValidationError": "Por favor seleccione un PDF válido. Tamaño máximo: 100MB.",
+    "pdfClean": "✅ El PDF está limpio. PEGI sugerido: ",
+    "pdfViolation": "⚠️ El PDF viola los Términos y Condiciones.",
+    "details": "Detalles",
+    "nsfwAnalysis": "Análisis de contenido para adultos",
+    "preview": "Previsualización",
+    "title": "Título",
+    "titleError": "Título inválido. Solo se permiten letras, números y puntuación común. Longitud: 2-50 caracteres.",
+    "author": "Autor",
+    "authorError": "Autor inválido. Solo se permiten letras, números y puntuación común. Longitud: 2-50 caracteres.",
+    "synopsis": "Sinopsis",
+    "state": "Estado",
+    "stateError": "Por favor seleccione un estado.",
+    "inProcess": "En proceso",
+    "finished": "Finalizado",
+    "selectGenre": "Seleccionar Género",
+    "add": "Añadir",
+    "selectedGenres": "Géneros Seleccionados (clic para eliminar):",
+    "genreError": "Por favor seleccione al menos un género.",
+    "uploadSuccess": "✅ ¡Subida Exitosa!",
+    "uploadError": "⚠️ Hubo un error durante la subida.",
+    "uploading": "Subiendo...",
+    "upload": "Subir"
+  },
+  "loginComponent": {
+    "pageTitle": "INICIAR SESIÓN",
+    "goBack": "← Volver atrás",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "signIn": "ENTRAR",
+    "signUp": "Registrarse",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "sendEmail": "Enviar correo",
+    "noAccount": "¿No tienes cuenta?",
+    "errors": {
+      "emailRequired": "El correo electrónico es obligatorio.",
+      "emailInvalid": "Introduce un correo electrónico válido.",
+      "passwordRequired": "La contraseña es obligatoria.",
+      "invalidCredentials": "Correo electrónico o contraseña inválidos."
+    },
+    "success": {
+      "resetEmailSent": "Correo de restablecimiento de contraseña enviado.",
+      "loginSuccessful": "Inicio de sesión exitoso."
+    },
+    "accessibility": {
+      "togglePassword": "Mostrar/Ocultar Contraseña",
+      "logo": "Logo",
+      "backgroundImage": "Imagen de fondo"
+    }
+  },
+  "signUp": {
+    "title": "¡Regístrate!",
+    "goBack": "← Volver",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "birthdate": "Fecha de nacimiento",
+    "email": "Correo electrónico",
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "signUpButton": "REGISTRARSE",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "signIn": "Iniciar sesión",
+    "errors": {
+      "firstNameRequired": "El nombre es obligatorio.",
+      "firstNamePattern": "El nombre debe contener solo letras (2-50 caracteres).",
+      "lastNameRequired": "El apellido es obligatorio.",
+      "lastNamePattern": "El apellido debe contener solo letras (2-50 caracteres).",
+      "birthdateRequired": "La fecha de nacimiento es obligatoria.",
+      "emailRequired": "El correo electrónico es obligatorio.",
+      "emailPattern": "Por favor, introduce un correo electrónico válido.",
+      "usernameRequired": "El nombre de usuario es obligatorio.",
+      "usernamePattern": "El nombre de usuario debe tener 4-16 caracteres (letras, números, _).",
+      "passwordRequired": "La contraseña es obligatoria.",
+      "passwordPattern": "La contraseña debe tener al menos 8 caracteres, con 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial.",
+      "confirmPasswordRequired": "Confirmar la contraseña es obligatorio."
+    }
   }
 }

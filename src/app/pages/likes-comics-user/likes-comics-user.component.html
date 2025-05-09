@@ -1,10 +1,15 @@
 <app-header-backlink></app-header-backlink>
 <div class="profile-option center-container">
   <div class="imageContainer">
-    <img src="wishlistIcon.png" alt="likes section image" class="optionImage" />
+    <img src="wishlistIcon.png" alt="{{ 'userProfile.likesAlt' | translate }}" class="optionImage" />
   </div>
-  <p class="optionName">LIKES</p>
+  <p class="optionName">{{ 'userProfile.likes' | translate }}</p>
 </div>
 <div class="center-container">
-  <app-comic-card *ngFor="let comic of comics" [imageUrl]="comic.cover" [title]="comic.title" [comicId]="comic.id"></app-comic-card>
+  <app-comic-card
+    *ngFor="let comic of comics"
+    [imageUrl]="comic.cover"
+    [title]="comic.title"
+    [comicId]="comic.id">
+  </app-comic-card>
 </div>

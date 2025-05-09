@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {NgClass, NgForOf} from '@angular/common';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-comic-status',
@@ -7,7 +8,8 @@ import {NgClass, NgForOf} from '@angular/common';
   templateUrl: './comic-status.component.html',
   imports: [
     NgForOf,
-    NgClass
+    NgClass,
+    TranslateModule
   ],
   styleUrls: ['./comic-status.component.scss']
 })

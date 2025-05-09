@@ -3,13 +3,15 @@ import {ButtonComponent} from '../button/button.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {InputFieldComponent} from '../input-field/input-field.component';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cancel-subscription-dialog',
   imports: [
     ButtonComponent,
     InputFieldComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   templateUrl: './cancel-subscription-dialog.component.html',
   styleUrl: './cancel-subscription-dialog.component.scss'

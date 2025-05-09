@@ -1,17 +1,17 @@
 <aside class="aside-image">
-  <img class="background-aside-image" [src]="imageSource" alt="Background Image">
+  <img class="background-aside-image" [src]="imageSource" alt="{{ 'loginComponent.accessibility.backgroundImage' | translate }}">
 </aside>
 
 <main class="login-container">
   <header class="login-header">
     <div class="login-logo">
-      <img class="logo-image" [src]="logoSource" alt="Logo">
+      <img class="logo-image" [src]="logoSource" alt="{{ 'loginComponent.accessibility.logo' | translate }}">
     </div>
-    <h1>LOG IN</h1>
+    <h1>{{ 'loginComponent.pageTitle' | translate }}</h1>
   </header>
 
   <nav aria-label="Go back">
-    <a id="back-link" href="#" onclick="history.back(); return false"> ← Go back</a>
+    <a id="back-link" routerLink="#" onclick="history.back(); return false"> {{ 'loginComponent.goBack' | translate }}</a>
   </nav>
 
   <section class="login-form-container">
@@ -21,13 +21,16 @@
         id="email"
         name="email"
         [(ngModel)]="email"
-        placeholder="Email"
+        placeholder="{{ 'loginComponent.email' | translate }}"
         required
         pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
         #emailInput="ngModel"
       >
       <div *ngIf="formSubmitted && !isResetPasswordMode && emailInput.invalid" class="error-message">
-        {{ getErrorMessage(emailInput, { required: 'Email is required.', pattern: 'Enter a valid email.' }) }}
+        {{ getErrorMessage(emailInput, {
+        required: ('loginComponent.errors.emailRequired' | translate),
+        pattern: ('loginComponent.errors.emailInvalid' | translate)
+      }) }}
       </div>
 
       <div class="password-container">
@@ -37,16 +40,16 @@
           name="password"
           [(ngModel)]="password"
           autocomplete="current-password"
-          placeholder="Password"
+          placeholder="{{ 'loginComponent.password' | translate }}"
           required
           #passwordInput="ngModel"
         >
         <span class="toggle-password" (click)="togglePasswordVisibility()">
-          <img [src]="passwordVisible ? eyeOpenIcon : eyeClosedIcon" alt="Toggle Password Visibility">
+          <img [src]="passwordVisible ? eyeOpenIcon : eyeClosedIcon" alt="{{ 'loginComponent.accessibility.togglePassword' | translate }}">
         </span>
       </div>
       <div *ngIf="formSubmitted && !isResetPasswordMode && passwordInput.invalid" class="error-message">
-        {{ getErrorMessage(passwordInput, { required: 'Password is required.' }) }}
+        {{ getErrorMessage(passwordInput, { required: ('loginComponent.errors.passwordRequired' | translate) }) }}
       </div>
 
       <div *ngIf="formSubmitted && errorMessage" class="error-message">
@@ -58,7 +61,7 @@
 
       <div class="login-btn-container">
         <app-button
-          text="SIGN IN"
+          [text]="'loginComponent.signIn' | translate"
           textColor="#fff"
           [disabled]="loginForm.invalid"
           type="submit"
@@ -68,10 +71,10 @@
   </section>
 
   <footer class="login-links">
-    <p id="sign-up-link">Don't have an account? <a href="register" id="sign-up-btn">Sign Up</a></p>
+    <p id="sign-up-link">{{ 'loginComponent.noAccount' | translate }} <a routerLink="/register" id="sign-up-btn">{{ 'loginComponent.signUp' | translate }}</a></p>
     <p id="reemail-link">
-      Forgot your password?
-      <a href="#" id="reemail-btn" (click)="resetPassword($event)">Send Email</a>
+      {{ 'loginComponent.forgotPassword' | translate }}
+      <a routerLink="#" id="reemail-btn" (click)="resetPassword($event)">{{ 'loginComponent.sendEmail' | translate }}</a>
     </p>
   </footer>
 </main>

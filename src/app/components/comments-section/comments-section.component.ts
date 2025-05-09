@@ -7,13 +7,14 @@ import { CommentComponent } from '../comment/comment.component';
 import { UserStoreService } from '../../../../backend/src/services/user-store';
 import { Subscription } from 'rxjs';
 import {ButtonComponent} from '../button/button.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-comments-section',
   templateUrl: './comments-section.component.html',
   styleUrls: ['./comments-section.component.scss'],
   standalone: true,
-  imports: [FormsModule, CommonModule, CommentComponent, ButtonComponent]
+  imports: [FormsModule, CommonModule, CommentComponent, ButtonComponent, TranslateModule]
 })
 export class CommentsSectionComponent implements OnInit, OnDestroy {
   @Input() comicId: string = '';

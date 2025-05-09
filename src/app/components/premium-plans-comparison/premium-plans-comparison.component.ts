@@ -1,19 +1,18 @@
-import {Component} from '@angular/core';
-import {PremiumPlanMonthlyComponent} from '../premium-plan-monthly/premium-plan-monthly.component';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { PremiumPlanMonthlyComponent } from '../premium-plan-monthly/premium-plan-monthly.component';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-premium-plans-comparison',
-  imports: [PremiumPlanMonthlyComponent, CommonModule],
-  templateUrl: './premium-plans-comparison.component.html',
   standalone: true,
+  imports: [PremiumPlanMonthlyComponent, CommonModule, TranslateModule],
+  templateUrl: './premium-plans-comparison.component.html',
   styleUrl: './premium-plans-comparison.component.scss'
 })
 export class PremiumPlansComparisonComponent {
   planMonthlyComponent = {
-    title: 'Monthly Plan – Total Flexibility',
-    description: 'Try the service with no commitments and pay month by month. Perfect if you want to explore everything we offer before making a long-term decision.',
     backgroundSection: '#D9D9D9',
     buttonTitle: '9.99€',
     buttonTextColor: 'black',
@@ -21,12 +20,10 @@ export class PremiumPlansComparisonComponent {
     backgroundColorButton: '#EEEEEE',
     backgroundColorHoverButton: '#B8B8B8',
     buttonWidth: '10vw',
-    buttonHeight: '7vh',
-  }
+    buttonHeight: '7vh'
+  };
 
   planYearlyComponent = {
-    title: 'Annual Plan – Biggest Savings',
-    description: 'If you\'re a true comic fan, this is the best choice. Subscribe for a full year and get an exclusive discount, ensuring a year of unlimited adventures.',
     backgroundSection: '#FFB7A5',
     buttonTitle: '99.99€',
     buttonTextColor: 'black',
@@ -34,14 +31,12 @@ export class PremiumPlansComparisonComponent {
     backgroundColorButton: '#E76F51',
     backgroundColorHoverButton: '#E66041',
     buttonWidth: '10vw',
-    buttonHeight: '7vh',
-  }
+    buttonHeight: '7vh'
+  };
 
   constructor(private router: Router) {}
 
   handlePlanRedirect(planType: string) {
     this.router.navigate(['/payment'], { queryParams: { plan: planType } });
   }
-
-  imagePath = "/PanelOn/src/assets/plan-versus.svg"
 }

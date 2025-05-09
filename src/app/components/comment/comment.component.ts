@@ -7,13 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { IUser } from '../../models/user';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss'],
   standalone: true,
-  imports: [FormsModule, CommonModule]
+  imports: [FormsModule, CommonModule, TranslateModule]
 })
 export class CommentComponent implements OnInit, OnDestroy {
   @Input() comment!: Comment;
