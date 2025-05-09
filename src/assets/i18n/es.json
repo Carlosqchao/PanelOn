@@ -9,7 +9,9 @@
     "LOGIN": "Iniciar sesión",
     "PROFILE": "Perfil",
     "LOGOUT": "Cerrar sesión",
-    "LANGUAGE": "Idioma"
+    "LANGUAGE": "Idioma",
+    "LIGHT_MODE": "Claro",
+    "DARK_MODE": "Oscuro"
   },
   "footer": {
     "policy": "Política",

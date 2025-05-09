@@ -9,7 +9,9 @@
     "LOGIN": "Entrar",
     "PROFILE": "Perfil",
     "LOGOUT": "Sair",
-    "LANGUAGE": "Idioma"
+    "LANGUAGE": "Idioma",
+    "LIGHT_MODE": "Claro",
+    "DARK_MODE": "Escuro"
   },
   "footer": {
     "policy": "Política",
