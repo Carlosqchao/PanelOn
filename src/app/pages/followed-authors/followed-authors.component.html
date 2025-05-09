@@ -1,6 +1,9 @@
 <app-header-backlink></app-header-backlink>
 
 <div class="followed-authors">
+  <div class="imageContainer">
+    <img src="authorsIcon.png" alt="authors icon" class="optionImage" />
+  </div>
   <h1>Followed Authors</h1>
   <div class="authors-grid" *ngIf="authors.length > 0; else noAuthors">
     <app-author-card
