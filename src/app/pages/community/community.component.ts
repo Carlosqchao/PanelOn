@@ -12,6 +12,7 @@ import {Subject, Subscription} from 'rxjs';
 import {ButtonComponent} from '../../components/button/button.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserStoreService} from '../../../../backend/src/services/user-store';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-community',
@@ -26,7 +27,8 @@ import {UserStoreService} from '../../../../backend/src/services/user-store';
     NgIf,
     ButtonComponent,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    TranslateModule,
   ],
   templateUrl: './community.component.html',
   styleUrl: './community.component.scss'

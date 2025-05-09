@@ -24,17 +24,17 @@
         </div>
         <div *ngIf="formSubmitted && (!isFileValid() || invalidFile || !isSizeValid)" class="file-warning">
           <p style="color: red;">
-            Please select a valid PDF. Max size: 100MB.
+            {{ 'uploadComic.fileValidationError' | translate }}
           </p>
         </div>
       </div>
 
       <div *ngIf="nsfwResult">
         <div *ngIf="loadingStatus === 'clean'" class="message clean-message">
-          ✅ The PDF is clean. PEGI Suggested: {{ nsfwResult.pegi }}
+          {{ 'uploadComic.pdfClean' | translate }} {{ nsfwResult.pegi }}
         </div>
         <div *ngIf="loadingStatus === 'nsfw'" class="message nsfw-message">
-          ⚠️ The PDF violates the Terms and Conditions.
+          {{ 'uploadComic.pdfViolation' | translate }}
         </div>
       </div>
 
@@ -51,21 +51,21 @@
         *ngIf="!isAnalyzingFile && nsfwResult?.nsfw === true && loadingStatus !== 'loading'"
         (click)="openModal()"
       >
-        Details
+        {{ 'uploadComic.details' | translate }}
       </a>
 
       <div *ngIf="modalVisible && nsfwResult != null" class="modal">
-      <div class="modal-content">
+        <div class="modal-content">
           <span class="close" (click)="closeModal()">&times;</span>
-          <h2>NSFW Analysis</h2>
+          <h2>{{ 'uploadComic.nsfwAnalysis' | translate }}</h2>
           <div *ngFor="let image of imagePreviews">
-            <img [src]="image" alt="Previsualización" class="preview-image"/>
+            <img [src]="image" alt="{{ 'uploadComic.preview' | translate }}" class="preview-image"/>
           </div>
         </div>
       </div>
       <div style="align-self: flex-start;">
         <nav aria-label="Go back">
-          <a id="back-link" href="#" onclick="history.back(); return false" style="color: black"> &larr; Go back</a>
+          <a id="back-link" href="#" onclick="history.back(); return false" style="color: black"> &larr; {{ 'uploadComic.goBack' | translate }}</a>
         </nav>
       </div>
 
@@ -73,14 +73,14 @@
         <input
           type="text"
           name="title"
-          placeholder="Title"
+          placeholder="{{ 'uploadComic.title' | translate }}"
           [(ngModel)]="title"
           #titleInput="ngModel"
           required
           [ngClass]="{ 'invalid': !isValidTitle() && titleInput.touched }"
         >
         <div *ngIf="!isValidTitle() && formSubmitted" class="error-message">
-          Invalid title. Only letters, numbers, and common punctuation allowed. Length: 2–50 chars.
+          {{ 'uploadComic.titleError' | translate }}
         </div>
       </div>
 
@@ -89,29 +89,29 @@
         <input type="text"
                id="author"
                name="author"
-               placeholder="Author"
+               placeholder="{{ 'uploadComic.author' | translate }}"
                [(ngModel)]="author"
                #authorInput="ngModel"
                required
                [ngClass]="{ 'invalid': !isValidTitle() && authorInput.touched }"
         >
         <div *ngIf="!isValidAuthor() && formSubmitted" class="error-message">
-          Invalid author. Only letters, numbers, and common punctuation allowed. Length: 2–50 chars.
+          {{ 'uploadComic.authorError' | translate }}
         </div>
       </div>
       <div class="title">
-        <textarea id="synopsis" [(ngModel)]="synopsis" name="synopsis" placeholder="Synopsys" rows="4" cols="50"></textarea>
+        <textarea id="synopsis" [(ngModel)]="synopsis" name="synopsis" placeholder="{{ 'uploadComic.synopsis' | translate }}" rows="4" cols="50"></textarea>
       </div>
 
 
       <div class="state-container">
         <select id="state" [(ngModel)]="state" name="state" required>
-          <option value="" disabled selected>State</option>
-          <option value="In process">In process</option>
-          <option value="Finished">Finished</option>
+          <option value="" disabled selected>{{ 'uploadComic.state' | translate }}</option>
+          <option value="In process">{{ 'uploadComic.inProcess' | translate }}</option>
+          <option value="Finished">{{ 'uploadComic.finished' | translate }}</option>
         </select>
         <div *ngIf="formSubmitted && state === ''" class="error-message">
-          Please select a state.
+          {{ 'uploadComic.stateError' | translate }}
         </div>
       </div>
 
@@ -122,13 +122,13 @@
           name="selectedGenre"
           [ngClass]="{ 'invalid': selectedGenres.length === 0 && formSubmitted }"
         >
-          <option value="" disabled selected>Select Genre</option>
+          <option value="" disabled selected>{{ 'uploadComic.selectGenre' | translate }}</option>
           <option *ngFor="let genre of genre" [value]="genre">{{ genre }}</option>
         </select>
-        <button type="button" (click)="addGenre()">Add</button>
+        <button type="button" (click)="addGenre()">{{ 'uploadComic.add' | translate }}</button>
       </div>
       <div class="genre-list">
-        <p>Selected Genres (click to remove):</p>
+        <p>{{ 'uploadComic.selectedGenres' | translate }}</p>
         <span
           *ngFor="let genre of selectedGenres"
           class="genre-item"
@@ -142,25 +142,25 @@
 
 
       <div *ngIf="selectedGenres.length === 0 && formSubmitted" class="error-message">
-        Please select at least one genre.
+        {{ 'uploadComic.genreError' | translate }}
       </div>
 
       <div *ngIf="uploadSuccess" class="message success-message">
-        ✅ Upload Successful!
+        {{ 'uploadComic.uploadSuccess' | translate }}
       </div>
 
       <div *ngIf="uploadError" class="message error-message">
-        ⚠️ There was an error during the upload.
+        {{ 'uploadComic.uploadError' | translate }}
       </div>
 
       <div *ngIf="isUploadingFile" class="loading-overlay">
         <div class="spinner"></div>
-        <p>Uploading...</p>
+        <p>{{ 'uploadComic.uploading' | translate }}</p>
       </div>
 
 
       <div class="upload-button">
-        <button class= "upload-form-button" (click)="onSubmit(uploadForm)">Upload</button>
+        <button class= "upload-form-button" (click)="onSubmit(uploadForm)">{{ 'uploadComic.upload' | translate }}</button>
       </div>
     </div>
   </div>

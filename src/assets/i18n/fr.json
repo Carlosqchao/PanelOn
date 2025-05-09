@@ -10,5 +10,223 @@
     "PROFILE": "Profil",
     "LOGOUT": "Déconnexion",
     "LANGUAGE": "Langue"
+  },
+  "footer": {
+    "policy": "Politique",
+    "terms": "Conditions",
+    "adChoices": "Préférences publicitaires",
+    "accessibility": "Accessibilité"
+  },
+  "home": {
+    "newComics": "NOUVEAUX BANDES DESSINÉES",
+    "popularComics": "BANDES DESSINÉES POPULAIRES",
+    "latestNews": "DERNIÈRES NOUVELLES",
+    "characters": "PERSONNAGES",
+    "showMore": "VOIR PLUS",
+    "meetCharacters": "Rencontrez vos personnages préférés et leurs univers."
+  },
+  "search": {
+    "orderBy": "Trier par...",
+    "dateAsc": "↑ Date de publication",
+    "dateDesc": "↓ Date de publication",
+    "ratingAsc": "↑ Note",
+    "ratingDesc": "↓ Note",
+    "filterByGenre": "Filtrer par Genre",
+    "close": "Fermer"
+  },
+  "searchBar": {
+    "placeholder": "Rechercher..."
+  },
+  "character": {
+    "baseHistory": "HISTOIRE DE BASE",
+    "noHistory": "Aucune histoire disponible",
+    "relatedCharacters": "PERSONNAGES ASSOCIÉS",
+    "comics": "BANDES DESSINÉES"
+  },
+  "comic": {
+    "read_button": "LIRE LA BD",
+    "age_restriction": "Désolé, vous devez avoir au moins {{age}} ans pour lire cette bande dessinée.",
+    "characters": "PERSONNAGES DE LA BD"
+  },
+  "comicDescription": {
+    "synopsis": "Synopsis",
+    "author": "Auteur",
+    "genre": "Genre",
+    "release_date": "Date de publication"
+  },
+  "comicStatus": {
+    "status": "Statut",
+    "rating": "Note"
+  },
+  "reader": {
+    "fullscreen": "Plein écran",
+    "pagePlaceholder": "Page {{ page }}"
+  },
+  "comments": {
+    "addYours": "AJOUTE LE TIEN",
+    "placeholder": "Écris ton commentaire...",
+    "submit": "Envoyer",
+    "cancel": "Annuler",
+    "loading": "Chargement des commentaires..."
+  },
+  "comment": {
+    "reply": "Répondre",
+    "edit": "Modifier",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "replyPlaceholder": "Écris ta réponse...",
+    "submitReply": "Envoyer la réponse",
+    "cancel": "Annuler",
+    "replyingTo": "En réponse à",
+    "showMore": "Afficher de plus"
+  },
+  "chat": {
+    "addYourComment": "AJOUTEZ LE VÔTRE",
+    "writeYourComment": "Écrivez votre commentaire...",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "loadingComments": "Chargement des commentaires..."
+  },
+  "discussions": {
+    "addYours": "AJOUTEZ LA VÔTRE",
+    "titlePlaceholder": "Écrivez votre titre",
+    "contentPlaceholder": "Écrivez ici votre opinion",
+    "submit": "Envoyer",
+    "cancel": "Annuler",
+    "topDiscussions": "Discussions principales",
+    "latest": "Les plus récentes",
+    "loading": "Chargement des discussions..."
+  },
+  "discussionCard": {
+    "participants": "Participants",
+    "seeMore": "Voir plus"
+  },
+  "subscriptionPlans": {
+    "freePlan": {
+      "title": "Préférez-vous rester avec la version gratuite ?",
+      "description": "Pas de problème ! Continuez à profiter des bandes dessinées communautaires. Lorsque vous serez prêt à passer à la version payante, nous serons là.",
+      "buttonText": "GRATUIT"
+    }
+  },
+  "premiumDescription": {
+    "title": "Abonnement Premium - Accès Illimité !",
+    "subtitle": "Profitez de tous les comics premium et des créations de la communauté sans publicité. Plongez dans des histoires incroyables sans interruption pour une expérience optimale !"
+  },
+  "plansComparison": {
+    "monthly": {
+      "title": "Forfait Mensuel – Flexibilité Totale",
+      "description": "Essayez le service sans engagement et payez mois par mois. Parfait si vous souhaitez explorer tout ce que nous offrons avant de prendre une décision à long terme."
+    },
+    "yearly": {
+      "title": "Forfait Annuel – Économies Maximales",
+      "description": "Si vous êtes un vrai fan de BD, c'est le meilleur choix. Abonnez-vous pour un an complet et bénéficiez d'une remise exclusive, pour une année d'aventures illimitées."
+    }
+  },
+  "userProfile": {
+    "usernamePlaceholder": "Nom d'utilisateur",
+    "descriptionPlaceholder": "Ajoutez une description sur vous",
+    "editHint": "cliquez sur la description pour modifier",
+    "addDescription": "ajouter une description",
+    "activatePlan": "Activer le plan gratuit",
+    "activePlan": "Abonnement actif",
+    "cancelSubscription": "Annuler l'abonnement",
+    "saved": "ENREGISTRÉS",
+    "myComics": "MES BANDES DESSINÉES",
+    "likes": "AIMÉS",
+    "savedComics": "Bandes dessinées enregistrées",
+    "uploadedComics": "Bandes dessinées publiées",
+    "likedComics": "Bandes dessinées aimées",
+    "uploadComic": "TÉLÉVERSER UNE BD",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "modal": {
+      "title": "VOUS ÊTES SUR LE POINT D'ANNULER VOTRE ABONNEMENT",
+      "message": "ÊTES-VOUS SÛR DE CE QUE VOUS FAITES ?",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "cancelButton": "Annuler l'abonnement"
+    }
+  },
+  "uploadComic": {
+    "fileUpload": "Téléchargement de Fichier",
+    "goBack": "Retour",
+    "selectFile": "Sélectionner un fichier",
+    "fileValidationError": "Veuillez sélectionner un PDF valide. Taille maximale: 100MB.",
+    "pdfClean": "✅ Le PDF est propre. PEGI suggéré: ",
+    "pdfViolation": "⚠️ Le PDF viole les Conditions Générales.",
+    "details": "Détails",
+    "nsfwAnalysis": "Analyse de contenu pour adultes",
+    "preview": "Aperçu",
+    "title": "Titre",
+    "titleError": "Titre invalide. Seuls les lettres, les chiffres et la ponctuation commune sont autorisés. Longueur: 2-50 caractères.",
+    "author": "Auteur",
+    "authorError": "Auteur invalide. Seuls les lettres, les chiffres et la ponctuation commune sont autorisés. Longueur: 2-50 caractères.",
+    "synopsis": "Synopsis",
+    "state": "État",
+    "stateError": "Veuillez sélectionner un état.",
+    "inProcess": "En cours",
+    "finished": "Terminé",
+    "selectGenre": "Sélectionner un Genre",
+    "add": "Ajouter",
+    "selectedGenres": "Genres Sélectionnés (cliquez pour supprimer):",
+    "genreError": "Veuillez sélectionner au moins un genre.",
+    "uploadSuccess": "✅ Téléchargement Réussi!",
+    "uploadError": "⚠️ Une erreur s'est produite lors du téléchargement.",
+    "uploading": "Téléchargement en cours...",
+    "upload": "Télécharger"
+  },
+  "loginComponent": {
+    "pageTitle": "CONNEXION",
+    "goBack": "← Retour",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "signIn": "SE CONNECTER",
+    "signUp": "S'inscrire",
+    "forgotPassword": "Mot de passe oublié ?",
+    "sendEmail": "Envoyer un e-mail",
+    "noAccount": "Vous n'avez pas de compte ?",
+    "errors": {
+      "emailRequired": "L'e-mail est requis.",
+      "emailInvalid": "Entrez un e-mail valide.",
+      "passwordRequired": "Le mot de passe est requis.",
+      "invalidCredentials": "E-mail ou mot de passe invalide."
+    },
+    "success": {
+      "resetEmailSent": "E-mail de réinitialisation envoyé.",
+      "loginSuccessful": "Connexion réussie."
+    },
+    "accessibility": {
+      "togglePassword": "Afficher/Masquer le mot de passe",
+      "logo": "Logo",
+      "backgroundImage": "Image d'arrière-plan"
+    }
+  },
+  "signUp": {
+    "title": "Inscrivez-vous !",
+    "goBack": "← Retour",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "birthdate": "Date de naissance",
+    "email": "E-mail",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "signUpButton": "S'INSCRIRE",
+    "alreadyHaveAccount": "Vous avez déjà un compte ?",
+    "signIn": "Se connecter",
+    "errors": {
+      "firstNameRequired": "Le prénom est obligatoire.",
+      "firstNamePattern": "Le prénom doit contenir uniquement des lettres (2-50 caractères).",
+      "lastNameRequired": "Le nom est obligatoire.",
+      "lastNamePattern": "Le nom doit contenir uniquement des lettres (2-50 caractères).",
+      "birthdateRequired": "La date de naissance est obligatoire.",
+      "emailRequired": "L'e-mail est obligatoire.",
+      "emailPattern": "Veuillez entrer une adresse e-mail valide.",
+      "usernameRequired": "Le nom d'utilisateur est obligatoire.",
+      "usernamePattern": "Le nom d'utilisateur doit contenir 4 à 16 caractères (lettres, chiffres, _).",
+      "passwordRequired": "Le mot de passe est obligatoire.",
+      "passwordPattern": "Le mot de passe doit contenir au moins 8 caractères, avec 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial.",
+      "confirmPasswordRequired": "La confirmation du mot de passe est obligatoire."
+    }
   }
 }

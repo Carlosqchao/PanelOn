@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-comic-description',
   standalone: true,
+  imports: [TranslateModule],
   templateUrl: './comic-description.component.html',
   styleUrls: ['./comic-description.component.scss']
 })

@@ -2,11 +2,12 @@ import {Component, Input} from '@angular/core';
 import {Discussion} from '../../models/discussion';
 import {DatePipe} from '@angular/common';
 import {Router} from '@angular/router';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-discussion-card',
   templateUrl: './discussion-card.component.html',
-  imports: [DatePipe],
+  imports: [DatePipe, TranslateModule],
   styleUrl: './discussion-card.component.scss'
 })
 export class DiscussionCardComponent{

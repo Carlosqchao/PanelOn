@@ -1,17 +1,17 @@
 <aside class="aside-image">
-  <img class="background-aside-image" src="{{ imageSource }}" alt="Loading Image.">
+  <img class="background-aside-image" [src]="imageSource" alt="Loading Image.">
 </aside>
 
 <main class="register-container">
   <div class="register-header">
     <div class="register-logo">
-      <img class="logo-image" src="{{ logoSource }}" alt="Loading Image.">
+      <img class="logo-image" [src]="logoSource" alt="Loading Image.">
     </div>
-    <h1>Sign up!</h1>
+    <h1>{{ 'signUp.title' | translate }}</h1>
   </div>
 
   <nav aria-label="Go back">
-    <a id="back-link" href="#" onclick="history.back(); return false"> ← Go back</a>
+    <a id="back-link" routerLink="#" onclick="history.back(); return false"> {{ 'signUp.goBack' | translate }}</a>
   </nav>
 
   <section class="register-form-container">
@@ -24,13 +24,13 @@
             name="first-name"
             [(ngModel)]="firstName"
             autocomplete="off"
-            placeholder="First Name"
+            [placeholder]="'signUp.firstName' | translate"
             required
             pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ]{2,50}$"
             #firstNameInput="ngModel"
           >
           <div *ngIf="formSubmitted && firstNameInput.invalid" class="error-message">
-            {{ getErrorMessage(firstNameInput, { required: 'First name is required.', pattern: 'First name must contain only letters (2-50 characters).' }) }}
+            {{ getErrorMessage(firstNameInput, { required: ('signUp.errors.firstNameRequired' | translate), pattern: ('signUp.errors.firstNamePattern' | translate) }) }}
           </div>
         </div>
 
@@ -40,13 +40,13 @@
             id="surname"
             name="last-name"
             [(ngModel)]="lastName"
-            placeholder="Last Name"
+            [placeholder]="'signUp.lastName' | translate"
             required
             pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ]{2,50}$"
             #lastNameInput="ngModel"
           >
           <div *ngIf="formSubmitted && lastNameInput.invalid" class="error-message">
-            {{ getErrorMessage(lastNameInput, { required: 'Last name is required.', pattern: 'Last name must contain only letters (2-50 characters).' }) }}
+            {{ getErrorMessage(lastNameInput, { required: ('signUp.errors.lastNameRequired' | translate), pattern: ('signUp.errors.lastNamePattern' | translate) }) }}
           </div>
         </div>
       </div>
@@ -57,12 +57,12 @@
           id="birthdate"
           name="birthdate"
           [(ngModel)]="birthdate"
-          placeholder="Birth Date"
+          [placeholder]="'signUp.birthdate' | translate"
           required
           #birthdateInput="ngModel"
         >
         <div *ngIf="formSubmitted && birthdateInput.invalid" class="error-message">
-          {{ getErrorMessage(birthdateInput, { required: 'Birth date is required.'}) }}
+          {{ getErrorMessage(birthdateInput, { required: ('signUp.errors.birthdateRequired' | translate) }) }}
         </div>
       </div>
 
@@ -71,13 +71,13 @@
         id="email"
         name="email"
         [(ngModel)]="email"
-        placeholder="Email"
+        [placeholder]="'signUp.email' | translate"
         required
         pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
         #emailInput="ngModel"
       >
       <div *ngIf="formSubmitted && emailInput.invalid" class="error-message">
-        {{ getErrorMessage(emailInput, { required: 'Email is required.', pattern: 'Please enter a valid email address.' }) }}
+        {{ getErrorMessage(emailInput, { required: ('signUp.errors.emailRequired' | translate), pattern: ('signUp.errors.emailPattern' | translate) }) }}
       </div>
 
       <input
@@ -85,13 +85,13 @@
         id="username"
         name="username"
         [(ngModel)]="username"
-        placeholder="Username"
+        [placeholder]="'signUp.username' | translate"
         required
         pattern="^[a-zA-Z0-9_]{4,16}$"
         #usernameInput="ngModel"
       >
       <div *ngIf="formSubmitted && usernameInput.invalid" class="error-message">
-        {{ getErrorMessage(usernameInput, { required: 'Username is required.', pattern: 'Username must be 4-16 characters (letters, numbers, _).' }) }}
+        {{ getErrorMessage(usernameInput, { required: ('signUp.errors.usernameRequired' | translate), pattern: ('signUp.errors.usernamePattern' | translate) }) }}
       </div>
 
       <div class="password-container">
@@ -100,7 +100,7 @@
           id="password"
           name="password"
           [(ngModel)]="password"
-          placeholder="Password"
+          [placeholder]="'signUp.password' | translate"
           autocomplete="off"
           required
           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d\S]{8,}$"
@@ -111,7 +111,7 @@
         </span>
       </div>
       <div *ngIf="formSubmitted && passwordInput.invalid" class="error-message">
-        {{ getErrorMessage(passwordInput, { required: 'Password is required.', pattern: 'Password must be at least 8 characters, with 1 uppercase, 1 lowercase, 1 number, and 1 special character.' }) }}
+        {{ getErrorMessage(passwordInput, { required: ('signUp.errors.passwordRequired' | translate), pattern: ('signUp.errors.passwordPattern' | translate) }) }}
       </div>
 
       <div class="password-container">
@@ -121,7 +121,7 @@
           name="confirm-password"
           autocomplete="off"
           [(ngModel)]="confirmPassword"
-          placeholder="Confirm Password"
+          [placeholder]="'signUp.confirmPassword' | translate"
           required
           #confirmPasswordInput="ngModel"
         >
@@ -130,7 +130,7 @@
         </span>
       </div>
       <div *ngIf="formSubmitted && confirmPasswordInput.invalid" class="error-message">
-        {{ getErrorMessage(confirmPasswordInput, { required: 'Confirm password is required.' }) }}
+        {{ getErrorMessage(confirmPasswordInput, { required: ('signUp.errors.confirmPasswordRequired' | translate) }) }}
       </div>
 
       <div *ngIf="formSubmitted && errorMessage" class="error-message">
@@ -139,7 +139,7 @@
 
       <div class="register-btn-container">
         <app-button
-          text="SIGN UP"
+          [text]="'signUp.signUpButton' | translate"
           textColor="#fff"
           [disabled]="registerForm.invalid"
           type="submit"
@@ -149,6 +149,6 @@
   </section>
 
   <footer>
-    <p id="sign-in-link">Already have an account? <a href="login" id="sign-in-btn">Sign in</a></p>
+    <p id="sign-in-link">{{ 'signUp.alreadyHaveAccount' | translate }} <a routerLink="/login" id="sign-in-btn">{{ 'signUp.signIn' | translate }}</a></p>
   </footer>
 </main>

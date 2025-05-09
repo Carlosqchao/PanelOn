@@ -7,25 +7,24 @@
 
       <div class="dropdown">
         <button class="sort-button" (click)="toggleDropdown()">
-          Order by...
+          {{ 'search.orderBy' | translate }}
         </button>
         <div class="dropdown-content" *ngIf="dropdownVisible">
           <button class="dropdown-item" (click)="loadComicsOrderedByDate()">
-            {{ sortByDateAscending ? '↓ Date of publish' : '↑ Date of publish' }}
+            {{ sortByDateAscending ? ('search.dateDesc' | translate) : ('search.dateAsc' | translate) }}
           </button>
 
           <button class="dropdown-item" (click)="loadComicsOrderedByRating()">
-            {{ sortByRatingAscending ? '↓ Rating' : '↑ Rating' }}
+            {{ sortByRatingAscending ? ('search.ratingDesc' | translate) : ('search.ratingAsc' | translate) }}
           </button>
-
         </div>
       </div>
     </div>
 
     <div class="filter-dropdown" *ngIf="filterVisible">
       <div class="filter-header">
-        <h4>Filtrar por Género</h4>
-        <button class="close-btn" (click)="filterVisible = false">Cerrar</button>
+        <h4>{{ 'search.filterByGenre' | translate }}</h4>
+        <button class="close-btn" (click)="filterVisible = false">{{ 'search.close' | translate }}</button>
       </div>
       <div class="filter-options">
         <label *ngFor="let genre of availableGenres" class="filter-item">
@@ -47,7 +46,7 @@
 </div>
 
 <div class="center-container" *ngIf="option === 'news'">
-  <div class="search-bar" >
+  <div class="search-bar">
     <app-search-bar (search)="handleNewsSearch($event)" (filter)="handleFilter()"></app-search-bar>
   </div>
   <div class="center-container">
@@ -55,26 +54,17 @@
   </div>
 </div>
 
-
-
-
 <div class="center-container" *ngIf="option === 'characters'">
   <div class="search-bar">
     <app-search-bar (search)="handleCharacterSearch($event)" (filter)="handleFilter()"></app-search-bar>
   </div>
-      <div class="center-container">
-        <app-character-card
-          *ngFor="let character of selectedCharacters"
-          [imageUrl]="character.image"
-          [superheroName]="character.characterName"
-          [characterName]="character.name"
-          [characterId]="character.id"
-        >
-        </app-character-card>
-      </div>
-
+  <div class="center-container">
+    <app-character-card
+      *ngFor="let character of selectedCharacters"
+      [imageUrl]="character.image"
+      [superheroName]="character.characterName"
+      [characterName]="character.name"
+      [characterId]="character.id">
+    </app-character-card>
+  </div>
 </div>
-
-
-
-

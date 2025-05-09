@@ -8,13 +8,15 @@ import {User} from '@angular/fire/auth';
 import {IUser} from '../../models/user';
 import {AppService} from '../../app.service';
 import {Router} from '@angular/router';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-uploaded-comics-user',
   imports: [
     ComicCardComponent,
     HeaderBacklinkComponent,
-    NgForOf
+    NgForOf,
+    TranslateModule
   ],
   templateUrl: './uploaded-comics-user.component.html',
   styleUrl: './uploaded-comics-user.component.scss'

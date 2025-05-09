@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {NewsCardComponent} from '../../components/news-card/news-card.component';
 import {CharacterCardComponent} from '../../components/character-card/character-card.component';
 import {map} from 'rxjs';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @Component({
@@ -21,6 +22,7 @@ import {map} from 'rxjs';
     NgForOf,
     NewsCardComponent,
     CharacterCardComponent,
+    TranslateModule
   ],
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.scss'

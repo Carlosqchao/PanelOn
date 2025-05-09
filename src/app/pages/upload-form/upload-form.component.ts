@@ -5,11 +5,12 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { HttpClient } from '@angular/common/http';
 import { AppService } from '../../app.service';
 import {uploadComicService} from '../../../../backend/src/services/upload-comic.service';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-upload-form',
   standalone: true,
-  imports: [FormsModule, NgForOf, NgIf, ButtonComponent, NgClass],
+  imports: [FormsModule, NgForOf, NgIf, ButtonComponent, NgClass, TranslateModule],
   templateUrl: './upload-form.component.html',
   styleUrls: ['./upload-form.component.scss']
 })

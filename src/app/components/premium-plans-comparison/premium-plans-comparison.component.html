@@ -1,7 +1,7 @@
 <div class="comparison-container">
   <app-premium-plan-monthly
-    [title]="planMonthlyComponent.title"
-    [description]="planMonthlyComponent.description"
+    [title]="'plansComparison.monthly.title' | translate"
+    [description]="'plansComparison.monthly.description' | translate"
     [backgroundSection]="planMonthlyComponent.backgroundSection"
     [buttonTitle]="planMonthlyComponent.buttonTitle"
     [buttonTextColor]="planMonthlyComponent.buttonTextColor"
@@ -11,15 +11,16 @@
     [buttonHeight]="planMonthlyComponent.buttonHeight"
     [buttonWidth]="planMonthlyComponent.buttonWidth"
     [planType]="'monthly'"
-    (planSelected)="handlePlanRedirect($event)"
-    >
+    (planSelected)="handlePlanRedirect($event)">
   </app-premium-plan-monthly>
+
   <div class="img-comparison-container">
     <img src="assets/plan-versus.svg" class="img-comparison" alt="vs">
   </div>
+
   <app-premium-plan-monthly
-    [title]="planYearlyComponent.title"
-    [description]="planYearlyComponent.description"
+    [title]="'plansComparison.yearly.title' | translate"
+    [description]="'plansComparison.yearly.description' | translate"
     [backgroundSection]="planYearlyComponent.backgroundSection"
     [buttonTitle]="planYearlyComponent.buttonTitle"
     [buttonTextColor]="planYearlyComponent.buttonTextColor"

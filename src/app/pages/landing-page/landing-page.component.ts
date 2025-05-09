@@ -14,6 +14,7 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-landing-page',
@@ -29,7 +30,8 @@ import { Router } from '@angular/router';
     FooterComponent,
     CommonModule,
     HeaderComponent,
-    ButtonComponent
+    ButtonComponent,
+    TranslateModule
   ],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
