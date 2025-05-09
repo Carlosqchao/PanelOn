@@ -8,7 +8,7 @@ export interface Comment {
 
 export interface Comic {
   author: string;
-  author_id: number;
+  author_id: string;
   cover: string;
   genre: string[];
   id: string;

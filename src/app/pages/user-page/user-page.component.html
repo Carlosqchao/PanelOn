@@ -4,7 +4,7 @@
   <div class="user-info">
     <div class="profile-image-container">
       <img class="userImage" *ngIf="userData?.imageUrl" [src]="userData?.imageUrl">
-      <img class="userImage" *ngIf="!userData?.imageUrl" src="assets/images/default-profile-icon.jpg">
+      <img class="userImage" *ngIf="!userData?.imageUrl" src="/assets/default-user-icon.png" alt="User Image">
       <div class="image-upload-overlay" (click)="openFileSelector()">
         <div class="upload-icon" [class.uploading]="isUploading">
           <span *ngIf="!isUploading">📷</span>
@@ -82,9 +82,17 @@
     <div class="center-container">
       <app-profile-option imageURL="favouritesIcon.png" [optionName]="'userProfile.saved' | translate" routerLink="/saved-comics-user"></app-profile-option>
       <app-profile-option imageURL="myComicsIcon.png" [optionName]="'userProfile.myComics' | translate" routerLink="/uploaded-comics-user"></app-profile-option>
-      <app-profile-option imageURL="wishlistIcon.png" [optionName]="'userProfile.likes' | translate" routerLink="/likes-comics-user"></app-profile-option>
     </div>
   </div>
+
+  <div class="options-container">
+    <div class="center-container">
+      <app-profile-option imageURL="wishlistIcon.png" [optionName]="'userProfile.likes' | translate" routerLink="/likes-comics-user"></app-profile-option>
+      <app-profile-option imageURL="authorsIcon.png" [optionName]="'FOLLOWED AUTHORS'" routerLink="/followed-authors"></app-profile-option>
+    </div>
+  </div>
+
+
 
   <div class="center-container">
     <app-user-metrics [value]="String(savedComicsCount)" [title]="'userProfile.savedComics' | translate"></app-user-metrics>
@@ -95,5 +103,4 @@
   <div class="center-container">
     <app-button [text]="'userProfile.uploadComic' | translate" buttonWidth="30rem" buttonHeight="5rem" (click)="callToRead()"></app-button>
   </div>
-
 </div>

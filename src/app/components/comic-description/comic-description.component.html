@@ -5,7 +5,12 @@
     <p>{{ synopsis }}</p>
   </div>
   <div class="details-section">
-    <p><strong>{{ 'comicDescription.author' | translate }}:</strong> {{ author }}</p>
+    <p>
+      <strong>{{ 'comicDescription.author' | translate }}:</strong> {{ author }}
+      <button class="follow-button" (click)="toggleFollow()">
+        {{ isFollowing ? 'Unfollow' : 'Follow' }}
+      </button>
+    </p>
     <p><strong>{{ 'comicDescription.genre' | translate }}:</strong> {{ genre }}</p>
     <p><strong>{{ 'comicDescription.release_date' | translate }}:</strong> {{ releaseDate }}</p>
   </div>

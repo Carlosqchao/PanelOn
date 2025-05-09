@@ -1,0 +1,16 @@
+<app-header-backlink></app-header-backlink>
+
+<div class="followed-authors">
+  <h1>Followed Authors</h1>
+  <div class="authors-grid" *ngIf="authors.length > 0; else noAuthors">
+    <app-author-card
+      *ngFor="let author of authors"
+      [imageUrl]="author.imageUrl || '/assets/default-user-icon.png'"
+      [username]="author.username"
+      [authorId]="author.id || ''">
+    </app-author-card>
+  </div>
+  <ng-template #noAuthors>
+    <p>No authors followed yet.</p>
+  </ng-template>
+</div>
