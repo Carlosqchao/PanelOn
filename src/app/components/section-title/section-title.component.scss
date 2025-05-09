@@ -1,8 +1,10 @@
+@import '../../../themes/themes';
+
 section {
   display: flex;
   align-items: center;
   font-weight: bold;
-  font-family: "Roboto", sans-serif;
+  font-family: $font-family;
   margin-top: 5%;
   padding: 0.625rem;
 
@@ -25,8 +27,8 @@ div {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #D9D9D9;
-  color: #E76F51;
+  background-color:  var(--secondary);
+  color: var(--primary);
 }
 
 .text-left {

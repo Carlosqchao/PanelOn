@@ -8,4 +8,5 @@ export interface IUser {
   imageUrl?: string;
   description?: string;
   subscription?: boolean;
+  language?: string;
 }

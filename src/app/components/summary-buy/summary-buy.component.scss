@@ -1,8 +1,7 @@
-$background-color: #fff;
-$text-color: #1a1a1a;
-$muted-color: #666;
-$bold-color: #000;
-$highlight-color: #5c5c5c;
+@import '../../../themes/themes';
+
+$background-color:  var(--white);
+$bold-color: var(--black);
 
 @mixin flex-column {
   display: flex;
@@ -21,10 +20,11 @@ $highlight-color: #5c5c5c;
   justify-self: center;
   border-radius: 8px;
   padding: 2rem;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px var(--shadow);
   width: 22vw;
-  color: $text-color;
+  color: var(--text-color);
   margin-bottom: 2vh;
+  font-family: $font-family;
 
   .summary-header {
     margin-bottom: 1.5rem;
@@ -44,7 +44,7 @@ $highlight-color: #5c5c5c;
       @include flex-column;
       width: 8vw;
       height: 8vh;
-      background-color: #fef7dc;
+      background-color: var(--subscription-bg);
       border-radius: 4px;
       display: flex;
       align-items: center;
@@ -52,12 +52,11 @@ $highlight-color: #5c5c5c;
 
       #subscription-caption {
         font-size: 0.8rem;
-        color: $muted-color;
+        color: var(--dark-gray);
         align-items: center;
         margin: 0;
         padding-top: 0.2vh;
       }
-
 
       #subscription-img {
         width: 50px;

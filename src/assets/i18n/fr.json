@@ -1,0 +1,14 @@
+{
+  "HEADER": {
+    "CHARACTERS": "PERSONNAGES",
+    "COMICS": "BANDES DESSINÉES",
+    "NEWS": "ACTUALITÉS",
+    "COMMUNITY": "COMMUNAUTÉ",
+    "SUBSCRIPTION": "ABONNEMENT",
+    "SIGN_UP": "S'inscrire",
+    "LOGIN": "Connexion",
+    "PROFILE": "Profil",
+    "LOGOUT": "Déconnexion",
+    "LANGUAGE": "Langue"
+  }
+}

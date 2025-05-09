@@ -12,21 +12,17 @@ import {NgClass} from '@angular/common';
 })
 export class ButtonComponent {
   @Input() text: string = 'Click Me';
-  @Input() textColor: string = '#ffffff';
   @Input() textSize: string = '1.2rem';
-  @Input() backgroundColor: string = '#E76F51';
-  @Input() backgroundHover: string = '#E66041';
   @Input() buttonWidth: string = 'auto';
   @Input() buttonHeight: string = 'auto';
   @Input() customClass: string = '';
+  @Input() disabled: boolean | null = false;
 
-  // @ts-ignore
   @Output() buttonClick = new EventEmitter<void>();
+
+  isHovering: boolean = false;
 
   onClick() {
     this.buttonClick.emit();
   }
-
-  isHovering: boolean = false;
-  @Input() disabled!: boolean | null;
 }

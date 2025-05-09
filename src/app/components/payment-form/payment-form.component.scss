@@ -1,6 +1,8 @@
-$background-color: #eee;
-$background-color-form: #fff;
-$bold-color: #000;
+@import '../../../themes/themes';
+
+$background-color: var(--light-gray);
+$background-color-form: var(--white);
+$bold-color: var(--black);
 
 @mixin flex-column() {
   display: flex;
@@ -25,6 +27,7 @@ $bold-color: #000;
   align-items: center;
   justify-content: center;
   flex-flow: column;
+  font-family: $font-family;
 
   #header-title {
     font-size: 1.2rem;
@@ -36,7 +39,7 @@ $bold-color: #000;
   .payment-form {
     background-color: $background-color-form;
     border-radius: 5px;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 15px var(--shadow);
     padding: 1.2vh 1.2vw;
     width: 22vw;
 
@@ -56,7 +59,6 @@ $bold-color: #000;
   .input-box-container {
     @include flex-column();
     margin-top: 1vh;
-    font-family: 'Roboto', sans-serif;
 
     label {
       margin-bottom: 0.5vh;
@@ -68,8 +70,8 @@ $bold-color: #000;
       height: 3.7vh;
       padding: 0.5vw;
       border-radius: 0.2vw;
-      border: 1px solid rgba(0,0,0,0.3);
-      color: #444
+      border: 1px solid var(--shadow);
+      color: var(--dark-gray);
     }
 
     input:focus, select:focus {
@@ -86,10 +88,10 @@ $bold-color: #000;
 }
 
 .stripe-card-element {
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray);
   padding: 0.75rem;
   border-radius: 5px;
   font-size: 1rem;
   width: 100%;
+  font-family: $font-family;
 }
-

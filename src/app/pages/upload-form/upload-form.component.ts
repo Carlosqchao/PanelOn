@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
-import { ButtonComponent } from '../../components/button/button.component';
 import { HttpClient } from '@angular/common/http';
 import { AppService } from '../../app.service';
 import {uploadComicService} from '../../../../backend/src/services/upload-comic.service';
@@ -9,7 +8,7 @@ import {uploadComicService} from '../../../../backend/src/services/upload-comic.
 @Component({
   selector: 'app-upload-form',
   standalone: true,
-  imports: [FormsModule, NgForOf, NgIf, ButtonComponent, NgClass],
+  imports: [FormsModule, NgForOf, NgIf, NgClass],
   templateUrl: './upload-form.component.html',
   styleUrls: ['./upload-form.component.scss']
 })
@@ -34,6 +33,9 @@ export class UploadFormComponent implements OnInit {
   uploadSuccess = false;
   uploadError = false;
   rating: string =  "0";
+  imagePreviews: string[] = [];
+  modalVisible = false;
+
 
   constructor(private http: HttpClient, private AppService: AppService, private uploadService: uploadComicService) {}
 
@@ -42,6 +44,7 @@ export class UploadFormComponent implements OnInit {
     this.AppService.getGenres().subscribe(result => {
       this.genre = result.map(genre => genre.name);
     });
+    this.closeModal();
   }
 
   addGenre(): void {
@@ -58,7 +61,6 @@ export class UploadFormComponent implements OnInit {
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length) {
-      this.loadingStatus = null;
       const file = input.files[0];
       if (file.size > 100000000) {
         this.isSizeValid = false;
@@ -85,6 +87,11 @@ export class UploadFormComponent implements OnInit {
                 this.loadingStatus = res.nsfw ? 'nsfw' : 'clean';
                 this.isAnalyzingFile = false;
                 this.selectedPegi = this.nsfwResult.pegi;
+
+                if (this.nsfwResult.nsfw) {
+                  this.getUploadedImages();
+                  console.log(this.imagePreviews);
+                }
               },
               error: (err) => {
                 this.isAnalyzingFile = false;
@@ -103,6 +110,18 @@ export class UploadFormComponent implements OnInit {
         this.filePreview = false;
       });
     }
+  }
+  getUploadedImages(): void {
+    this.http.get<string[]>('http://localhost:3000/get-images')
+      .subscribe({
+        next: (imageUrls) => {
+          this.imagePreviews = imageUrls;
+        },
+        error: (err) => {
+          console.error('Error al obtener las imágenes:', err);
+          alert('Ocurrió un error al obtener las imágenes.');
+        }
+      });
   }
 
   onSubmit(form: NgForm): void {
@@ -203,5 +222,15 @@ export class UploadFormComponent implements OnInit {
 
   getShortFileName(fileName: string | undefined): string {
     return fileName && fileName.length > 30 ? fileName.substring(0, 30) + '...' : fileName || '';
+  }
+
+  openModal(): void {
+    if (this.nsfwResult?.nsfw && this.loadingStatus !== 'loading') {
+      this.modalVisible = true;
+    }
+  }
+
+  closeModal(): void {
+    this.modalVisible = false;
   }
 }

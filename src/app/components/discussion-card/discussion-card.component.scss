@@ -1,25 +1,29 @@
-.discussion-container{
+@import '../../../themes/themes';
+
+.discussion-container {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   place-self: center;
-  background-color: #D9D9D9;
+  background-color: var(--secondary);
   width: 60vw;
   height: 15vh;
   margin: 2.5vh;
   padding: 2.5vh 0vh 3vh 0vh;
-  box-shadow: #c0c0c0 0.3vh 0.3vh 5px;
+  box-shadow: var(--gray) 0.3vh 0.3vh 5px;
+  font-family: $font-family;
 }
-.discussion-container *{
+
+.discussion-container * {
   flex-basis: 100%;
 }
 
-h2{
+h2 {
   margin-bottom: 1vh;
   font-weight: bold;
   min-width: 45vw;
 }
 
-.profile-pic-container{
+.profile-pic-container {
   place-content: center;
   place-items: center;
   padding: 2.5vh;
@@ -27,33 +31,33 @@ h2{
   max-height: 5vw;
 }
 
-.Discussion-part{
+.Discussion-part {
   max-width: 55vw;
   min-width: 20vw;
 }
-.Title-date{
+
+.Title-date {
   display: flex;
   flex-direction: row;
 }
 
-.Participants{
-  color: #E76F51;
+.Participants {
+  color: var(--primary);
   min-width: 48vw;
 }
 
-.argument{
+.argument {
   height: 10vh;
   margin: 0 0.2vw;
   font-weight: normal;
 }
 
-.bottom-discusion{
+.bottom-discusion {
   display: flex;
   flex-direction: row;
 }
 
-.profile-pic{
+.profile-pic {
   height: 100%;
   width: 100%;
 }
-
