@@ -38,6 +38,7 @@ export class UploadFormComponent implements OnInit {
   imagePreviews: string[] = [];
   modalVisible = false;
   uid: string  = '';
+  violenceDetected = false;
 
   constructor(private http: HttpClient, private AppService: AppService, private uploadService: uploadComicService, private auth: Auth) {}
 
@@ -97,6 +98,8 @@ export class UploadFormComponent implements OnInit {
 
                 if (res.violence) {
                   this.selectedPegi = '16';
+                  this.violenceDetected = true;
+                  this.getUploadedImages();
                 } else if (res.nsfw && res.pegi) {
                   this.selectedPegi = res.pegi;
                 }
@@ -186,6 +189,7 @@ export class UploadFormComponent implements OnInit {
     this.isSizeValid = true;
     this.nsfwResult = null;
     this.filePreview = false;
+    this.violenceDetected = false;
   }
 
 
@@ -239,7 +243,7 @@ export class UploadFormComponent implements OnInit {
   }
 
   openModal(): void {
-    if (this.nsfwResult?.nsfw && this.loadingStatus !== 'loading') {
+    if ((this.nsfwResult?.nsfw || this.violenceDetected) && this.loadingStatus !== 'loading') {
       this.modalVisible = true;
     }
   }

@@ -17,6 +17,7 @@ for f in os.listdir(uploads_dir):
 
 nsfw_detector = NudeDetector()
 violence_model = YOLO('src/nsfw-backend/models/yolo_small_weights.pt')
+
 safe_labels_by_pegi = {
   "3": ['FACE_FEMALE', 'FACE_MALE', 'ARMPITS_COVERED'],
   "7": ['FACE_FEMALE', 'FACE_MALE', 'ARMPITS_COVERED', 'BELLY_EXPOSED'],
@@ -44,6 +45,8 @@ color_map = {
   'ANUS_COVERED': 'lime',
   'ARMPITS_EXPOSED': 'violet',
   'BELLY_COVERED': 'magenta',
+  'violence': 'red',
+  'fight': 'red'
 }
 
 def calcular_pegi(detected_labels):
@@ -53,13 +56,7 @@ def calcular_pegi(detected_labels):
   return "18"
 
 def detect_violence_yolov8(image_path):
-  results = violence_model(image_path)
-  for result in results:
-    for cls in result.boxes.cls:
-      class_name = violence_model.names[int(cls)]
-      if class_name.lower() in ['fight', 'violence']:
-        return True
-  return False
+  return violence_model(image_path)
 
 files = [os.path.join(image_dir, f) for f in os.listdir(image_dir)
          if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
@@ -69,6 +66,7 @@ violence_found = False
 detected_labels = set()
 first_image_saved = False
 
+# Detect NSFW
 result = nsfw_detector.detect_batch(files)
 
 for image_result, image_path in zip(result, files):
@@ -99,23 +97,45 @@ for image_result, image_path in zip(result, files):
     image.save(os.path.join(preview_dir, 'preview.jpg'))
     first_image_saved = True
 
+# Detect violence (solo si no se detectó NSFW)
 if not nsfw_found:
   for image_path in files:
-    if detect_violence_yolov8(image_path):
-      violence_found = True
-      image = Image.open(image_path)
-      image.save(os.path.join(uploads_dir, os.path.basename(image_path)))
-      break
+    results = detect_violence_yolov8(image_path)
+    image = Image.open(image_path)
+    draw = ImageDraw.Draw(image)
+    has_violence = False
 
+    for result in results:
+      boxes = result.boxes
+      if boxes is not None:
+        for box, cls in zip(boxes.xyxy, boxes.cls):
+          class_name = violence_model.names[int(cls)]
+          if class_name.lower() in ['fight', 'violence']:
+            has_violence = True
+            x0, y0, x1, y1 = box.tolist()
+            draw.rectangle([x0, y0, x1, y1], outline='red', width=5)
+            try:
+              font = ImageFont.truetype("arial.ttf", 20)
+            except:
+              font = ImageFont.load_default()
+            draw.text((x0, y0 - 20), class_name, fill='red', font=font)
+
+    if has_violence:
+      violence_found = True
+      image.save(os.path.join(uploads_dir, os.path.basename(image_path)))
+
+# Limpiar imágenes originales
 for f in files:
   os.remove(f)
 
+# Calcular PEGI
 pegi_result = "18"
 if not nsfw_found and not violence_found:
   pegi_result = calcular_pegi(detected_labels)
 elif violence_found:
   pegi_result = "16"
 
+# Output
 if nsfw_found:
   print(json.dumps({"nsfw": True}))
 elif violence_found:
