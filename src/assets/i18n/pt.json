@@ -139,6 +139,8 @@
     "uploadedComics": "Quadrinhos enviados",
     "likedComics": "Quadrinhos curtidos",
     "uploadComic": "ENVIAR UM QUADRINHO",
+    "followed": "AUTORES SEGUIDOS",
+    "noFollowed": "Ainda não segues nenhum autor.",
     "edit": "Editar",
     "delete": "Excluir",
     "modal": {

@@ -139,6 +139,8 @@
     "uploadedComics": "Cómics subidos",
     "likedComics": "Cómics con me gusta",
     "uploadComic": "SUBIR UN CÓMIC",
+    "followed":  "AUTORES SEGUIDOS",
+    "noFollowed": "Aún no sigues a ningún autor.",
     "edit": "Editar",
     "delete": "Eliminar",
     "modal": {

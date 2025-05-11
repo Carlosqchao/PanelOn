@@ -139,6 +139,8 @@
     "uploadedComics": "Fumetti caricati",
     "likedComics": "Fumetti piaciuti",
     "uploadComic": "CARICA UN FUMETTO",
+    "followed": "AUTORI SEGUITI",
+    "noFollowed": "Non segui ancora nessun autore.",
     "edit": "Modifica",
     "delete": "Elimina",
     "modal": {

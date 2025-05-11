@@ -139,6 +139,8 @@
     "uploadedComics": "Uploaded Comics",
     "likedComics": "Liked Comics",
     "uploadComic": "UPLOAD A COMIC",
+    "followed": "FOLLOWED AUTHORS",
+    "noFollowed": "No authors followed yet.",
     "edit": "Edit",
     "delete": "Delete",
     "modal": {
