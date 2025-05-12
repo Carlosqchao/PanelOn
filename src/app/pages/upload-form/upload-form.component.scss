@@ -22,7 +22,7 @@ $font-family: $font-family;
   box-sizing: border-box;
   flex-direction: column;
   width: 50%;
-  border: 60px solid var(--white);
+  border: 60px solid var(--background);
   align-items: center;
 }
 
@@ -30,7 +30,7 @@ $font-family: $font-family;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--secondary);
+  background-color: var(--background);
   min-height: 20vh;
   position: relative;
   z-index: 1;
@@ -67,7 +67,7 @@ textarea {
   line-height: 1.5;
   font-size: 1.2rem;
   padding: 1vh 1vh;
-  color: var(--gray);
+  color: var(--text-color);
   border: 0.1vh solid var(--gray);
   border-radius: 5px;
   box-shadow: 2px 2px 5px var(--shadow);
@@ -84,7 +84,7 @@ textarea {
   }
 
   &::placeholder {
-    color: var(--gray);
+    color: var(--text-color);
     text-align: left;
     line-height: normal;
   }
@@ -97,7 +97,7 @@ textarea {
   input {
     width: 95%;
     height: 6vh;
-    color: var(--gray);
+    color: var(--text-color);
     font-size: 1.2rem;
     padding: 1vh 1vh;
     border: 0.1vh solid transparent;
@@ -119,7 +119,7 @@ textarea {
 .upload-button {
   align-self: center;
   display: flex;
-  color: var(--gray);
+  color: var(--text-color);
   justify-content: center;
   width: 100px;
   margin: 1vh 0;
@@ -167,7 +167,7 @@ textarea {
 
 .genre-container {
   margin: 10px 0;
-  color: var(--gray);
+  color: var(--text-color);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -176,7 +176,7 @@ textarea {
     width: 100%;
     height: 6vh;
     font-size: 1.2rem;
-    color: var(--gray);
+    color: var(--text-color);
     padding: 1vh 1vh;
     border: 0.1vh solid transparent;
     border-radius: 5px;
