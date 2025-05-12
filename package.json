@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"ts-node ./src/nsfw-backend/src/index.ts\" \"ng serve\"",
+    "start": "concurrently \"ts-node ./src/nsfw-backend/src/index.ts\" \"ts-node ./backend/src/api.ts\" \"ng serve\"",
+    "backend:nsfw": "nodemon ./src/nsfw-backend/src/index.ts",
+    "backend:main": "nodemon ./backend/src/api.ts",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

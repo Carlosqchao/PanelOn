@@ -1,6 +1,8 @@
 $title-size: 1.8rem;
+$mobile-title-size: 1rem;
 $title-weight: bold;
 $subtitle-size: 1.2rem;
+$mobile-subtitle-size: 0.8rem;
 $subtitle-weight: bold;
 
 @mixin flex-column() {
@@ -29,5 +31,32 @@ $subtitle-weight: bold;
     justify-content: center;
     width: 35%;
     margin: 1.5vh auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .premium-description-container {
+    @include flex-column();
+    width: 100%;
+    justify-content: center;
+
+    .premium-description-title-container {
+      font-size: $mobile-title-size;
+      font-weight: $title-size;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      margin-top: 2.5vh;
+    }
+
+    .premium-description-subtitle-container {
+      font-size: $mobile-subtitle-size;
+      font-weight: $subtitle-weight;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      width: 75%;
+      margin: 1.5vh auto;
+    }
   }
 }

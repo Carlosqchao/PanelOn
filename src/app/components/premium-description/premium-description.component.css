@@ -21,4 +21,30 @@
   margin: 1.5vh auto;
 }
 
+@media (max-width: 600px) {
+  .premium-description-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+  }
+  .premium-description-container .premium-description-title-container {
+    font-size: 1rem;
+    font-weight: 1.8rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5vh;
+  }
+  .premium-description-container .premium-description-subtitle-container {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    margin: 1.5vh auto;
+  }
+}
+
 /*# sourceMappingURL=premium-description.component.css.map */

@@ -23,7 +23,7 @@
       <label>EMAIL</label>
       <input
         class="card-email-input"
-        type="text"
+        type="email"
         placeholder="ex: tomas.ferreira09@gmail.com"
         [(ngModel)]="email"
         name="email"
@@ -35,9 +35,14 @@
       <div id="card-element" class="stripe-card-element"></div>
     </div>
 
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
 
     <div class="button-box-container">
-      <app-button [text]="'Pay now!'"></app-button>
+      <button [disabled]="isLoading" type="submit">
+        {{ isLoading ? 'Processing...' : 'Pay now!' }}
+      </button>
     </div>
   </form>
 </div>

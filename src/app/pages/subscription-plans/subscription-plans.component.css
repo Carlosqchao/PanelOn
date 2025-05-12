@@ -11,4 +11,10 @@
   justify-content: center;
 }
 
+.plans-comparison-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
 /*# sourceMappingURL=subscription-plans.component.css.map */

@@ -24,4 +24,57 @@
   object-fit: cover;
 }
 
+@media (max-width: 600px) {
+  .comparison-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 4vh;
+  }
+  .comparison-container .img-comparison-container {
+    position: absolute;
+    top: 50%;
+    left: 50.5%;
+    transform: translate(-50%, -50%);
+    width: 14vw;
+    height: 45vh;
+    display: none;
+  }
+  .comparison-container .img-comparison {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+@media (min-width: 600px) and (max-width: 1024px) {
+  .comparison-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 4vh;
+  }
+  .comparison-container .img-comparison-container {
+    position: absolute;
+    top: 50%;
+    left: 50.5%;
+    transform: translate(-50%, -50%);
+    width: 14vw;
+    height: 45vh;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .comparison-container .img-comparison {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 /*# sourceMappingURL=premium-plans-comparison.component.css.map */

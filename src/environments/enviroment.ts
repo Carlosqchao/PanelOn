@@ -7,5 +7,5 @@ export const environment = {
     storageBucket: "panelon-fb7af.firebasestorage.app",
     messagingSenderId: "539993197273",
     appId: "1:539993197273:web:bd60dd54cfcc9f2c38ccc8"
-  }
+  },
 };
