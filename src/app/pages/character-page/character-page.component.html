@@ -6,13 +6,13 @@
   [backgroundColor]="randomColor">
 </app-character-image>
 
-<app-section-title position="left" text="BASE HISTORY"></app-section-title>
+<app-section-title position="left" [text]="'character.baseHistory' | translate"></app-section-title>
 
 <app-character-text
-  [historyText]="character.description || 'No history available'"
-></app-character-text>
+  [historyText]="character.description || ('character.noHistory' | translate)">
+</app-character-text>
 
-<app-section-title position="center" text="RELATED CHARACTERS"></app-section-title>
+<app-section-title position="center" [text]="'character.relatedCharacters' | translate"></app-section-title>
 
 <div class="center-container">
   <app-character-card
@@ -20,19 +20,19 @@
     [imageUrl]="related.image"
     [superheroName]="related.characterName"
     [characterName]="related.name"
-    [characterId]="related.id"
-  ></app-character-card>
+    [characterId]="related.id">
+  </app-character-card>
 </div>
 
-<app-section-title position="left" text="COMICS"></app-section-title>
+<app-section-title position="left" [text]="'character.comics' | translate"></app-section-title>
 
 <div class="center-container">
   <app-comic-card
     *ngFor="let comic of comics"
     [imageUrl]="comic.cover"
     [title]="comic.title"
-    [comicId]="comic.id"
-  ></app-comic-card>
+    [comicId]="comic.id">
+  </app-comic-card>
 </div>
 
 <app-footer></app-footer>

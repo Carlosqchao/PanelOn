@@ -1,33 +1,43 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {ButtonComponent} from '../../components/button/button.component';
-import {ProfileOptionComponent} from '../../components/profile-option/profile-option.component';
-import {UserMetricsComponent} from '../../components/user-metrics/user-metrics.component';
-import {AppService} from '../../app.service';
-import {Router, RouterLink} from '@angular/router';
-import {HeaderBacklinkComponent} from '../../components/header-backlink/header-backlink.component';
-import {UserStoreService} from '../../../../backend/src/services/user-store';
-import {IUser} from '../../models/user';
-import {MatDialog} from '@angular/material/dialog';
-import {CancelSubscriptionDialogComponent} from '../../components/cancel-subscription-dialog/cancel-subscription-dialog.component';
-import {NgIf} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { ButtonComponent } from '../../components/button/button.component';
+import { ProfileOptionComponent } from '../../components/profile-option/profile-option.component';
+import { UserMetricsComponent } from '../../components/user-metrics/user-metrics.component';
+import { AppService } from '../../app.service';
+import { Router, RouterLink } from '@angular/router';
+import { HeaderBacklinkComponent } from '../../components/header-backlink/header-backlink.component';
+import { UserStoreService } from '../../../../backend/src/services/user-store';
+import { IUser } from '../../models/user';
+import { MatDialog } from '@angular/material/dialog';
+import { CancelSubscriptionDialogComponent } from '../../components/cancel-subscription-dialog/cancel-subscription-dialog.component';
+import { NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../../backend/src/services/user-auth';
+import { getDownloadURL, ref, Storage, uploadBytes } from '@angular/fire/storage';
+import { combineLatest, filter } from 'rxjs';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {User} from '@angular/fire/auth';
-import {AuthService} from '../../../../backend/src/services/user-auth';
-import {getDownloadURL, ref, Storage, uploadBytes} from '@angular/fire/storage';
-import {combineLatest, filter} from 'rxjs';
 
 @Component({
   selector: 'app-user-page',
   standalone: true,
-  imports: [ButtonComponent, ProfileOptionComponent, UserMetricsComponent, HeaderBacklinkComponent, NgIf, FormsModule, RouterLink],
+  imports: [
+    ButtonComponent,
+    ProfileOptionComponent,
+    UserMetricsComponent,
+    HeaderBacklinkComponent,
+    NgIf,
+    FormsModule,
+    RouterLink,
+    TranslateModule
+  ],
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss'
 })
 export class UserPageComponent implements OnInit {
-
   userStoreService = inject(UserStoreService);
   userAuthService: AuthService = inject(AuthService);
   storage: Storage = inject(Storage);
+  translate: TranslateService = inject(TranslateService);
   user: User | null = null;
   userData: IUser | null = null;
   dialog: MatDialog = inject(MatDialog);
@@ -42,28 +52,31 @@ export class UserPageComponent implements OnInit {
 
   constructor(private appService: AppService, private router: Router) {}
 
-  callToRead(): void{
+  callToRead(): void {
     this.router.navigate(['upload-form']).then(() => {
       window.scrollTo(0, 0);
     });
   }
 
   openModal() {
-    const dialogRef = this.dialog.open(CancelSubscriptionDialogComponent, {
-      data: {
-        title: 'YOU ARE GOING TO CANCEL YOUR SUBSCRIPTION',
-        message: 'ARE YOU SURE OF WHAT ARE YOU DOING?',
-      }
-    });
+    this.translate.get([
+      'userProfile.modal.title',
+      'userProfile.modal.message'
+    ]).subscribe(translations => {
+      const dialogRef = this.dialog.open(CancelSubscriptionDialogComponent, {
+        data: {
+          title: translations['userProfile.modal.title'],
+          message: translations['userProfile.modal.message'],
+        }
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result?.confirmed) {
-
-        this.appService.updateSubscription(this.user?.uid);
-      }
+      dialogRef.afterClosed().subscribe(result => {
+        if (result?.confirmed) {
+          this.appService.updateSubscription(this.user?.uid);
+        }
+      });
     });
   }
-
 
   getSubscription(userId: string) {
     if (!userId) return;
@@ -71,7 +84,6 @@ export class UserPageComponent implements OnInit {
     this.appService.getUserByUid(userId).subscribe(user => {
       if (!user || user.subscription === false) {
         this.subscriptionStatus = 'none';
-        console.log(user.subscription);
         return;
       }
 
@@ -110,31 +122,30 @@ export class UserPageComponent implements OnInit {
     });
   }
 
-
   toggleUsernameEdit(): void {
     this.isEditingUsername = !this.isEditingUsername;
     if (this.isEditingUsername && this.userData) {
-      this.userDataEdit = {...this.userData};
+      this.userDataEdit = { ...this.userData };
     }
   }
 
   toggleDescriptionEdit(): void {
     this.isEditingDescription = !this.isEditingDescription;
     if (this.isEditingDescription && this.userData) {
-      this.userDataEdit = {...this.userData};
+      this.userDataEdit = { ...this.userData };
       if (!this.userDataEdit.description) {
         this.userDataEdit.description = '';
       }
     }
   }
 
-  async saveUsername(){
+  async saveUsername() {
     await this.appService.updateUser(this.user?.uid, this.userDataEdit);
     this.cancelEdit();
     location.reload();
   }
 
-  async saveDescription(){
+  async saveDescription() {
     await this.appService.updateUser(this.user?.uid, this.userDataEdit);
     this.cancelEdit();
     location.reload();
@@ -181,4 +192,6 @@ export class UserPageComponent implements OnInit {
       this.isUploading = false;
     }
   }
+
+  protected readonly String = String;
 }

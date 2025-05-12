@@ -1,0 +1,19 @@
+<app-header-backlink></app-header-backlink>
+
+<div class="author-page" *ngIf="author">
+  <div class="author-info">
+    <img [src]="author.imageUrl || '/assets/default-user-icon.png'" alt="Author Profile" class="author-image">
+    <h1 class="author-name">{{ author.username }}</h1>
+    <button class="follow-button" (click)="toggleFollow()">
+      {{ isFollowing ? 'Unfollow' : 'Follow' }}
+    </button>
+    <p class="author-description" *ngIf="author.description">{{ author.description }}</p>
+  </div>
+
+  <div class="author-comics">
+    <h2>Comics by {{ author.username }}</h2>
+    <div class="comics-grid">
+      <app-comic-card *ngFor="let comic of comics" [imageUrl]="comic.cover" [title]="comic.title" [comicId]="comic.id" ></app-comic-card>
+    </div>
+  </div>
+</div>

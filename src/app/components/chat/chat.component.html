@@ -1,23 +1,23 @@
 <div class="comments-section">
   <div class="center-container">
-    <app-button text="ADD YOURS" (click)="toggleCommentForm()"></app-button>
+    <app-button text="{{ 'chat.addYourComment' | translate }}" (click)="toggleCommentForm()"></app-button>
   </div>
 
   <div class="center-container">
     <div *ngIf="showCommentForm" class="comment-form">
       <textarea
         [(ngModel)]="newCommentContent"
-        placeholder="Write your comment..."
+        [placeholder]="'chat.writeYourComment' | translate"
         class="comment-textarea"
       ></textarea>
       <div class="form-buttons">
-        <button (click)="addComment()">Submit</button>
-        <button class="cancel-btn" (click)="toggleCommentForm()">Cancel</button>
+        <button (click)="addComment()">{{ 'chat.submit' | translate }}</button>
+        <button class="cancel-btn" (click)="toggleCommentForm()">{{ 'chat.cancel' | translate }}</button>
       </div>
     </div>
 
     <div *ngIf="isLoading" class="loading">
-      <p>Loading comments...</p>
+      <p>{{ 'chat.loadingComments' | translate }}</p>
     </div>
 
     <div *ngIf="!isLoading" class="comments-list">

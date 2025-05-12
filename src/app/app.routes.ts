@@ -18,6 +18,8 @@ import {LikesComicsUserComponent} from './pages/likes-comics-user/likes-comics-u
 import {UploadedComicsUserComponent} from './pages/uploaded-comics-user/uploaded-comics-user.component';
 import {EditComicPageComponent} from './pages/edit-comic-page/edit-comic-page.component';
 import {DiscussionChatComponent} from './pages/discussion-chat/discussion-chat.component';
+import {FollowedAuthorsComponent} from './pages/followed-authors/followed-authors.component';
+import {AuthorPageComponent} from './pages/author-page/author-page.component';
 
 
 export const routes: Routes = [
@@ -40,5 +42,7 @@ export const routes: Routes = [
   { path: 'saved-comics-user', component: SavedComicsUserComponent },
   { path: 'likes-comics-user', component: LikesComicsUserComponent},
   { path: 'uploaded-comics-user', component: UploadedComicsUserComponent},
+  { path: 'followed-authors', component: FollowedAuthorsComponent },
+  { path: 'author/:id', component: AuthorPageComponent },
   { path: '**', redirectTo: '' }
 ];

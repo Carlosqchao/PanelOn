@@ -1,9 +1,9 @@
 <app-header-backlink></app-header-backlink>
 <div class="profile-option center-container">
   <div class="image-container">
-    <img src="myComicsIcon.png" alt="My Comics section image" class="option-image" />
+    <img src="myComicsIcon.png" alt="{{ 'userProfile.myComicsAlt' | translate }}" class="option-image" />
   </div>
-  <p class="option-name">My Comics</p>
+  <p class="option-name">{{ 'userProfile.myComics' | translate }}</p>
 </div>
 <div class="main-container">
   <div class="comic-wrapper" *ngFor="let comic of comics">
@@ -11,20 +11,22 @@
       [imageUrl]="comic.cover"
       [title]="comic.title"
       [comicId]="comic.id"
-    />
+    ></app-comic-card>
     <div class="button-group">
-      <button class="edit-button" (click)="goToEditPage(comic.id)" aria-label="Edit comic">
+      <button class="edit-button" (click)="goToEditPage(comic.id)">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
           <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
         </svg>
+        <span class="visually-hidden">{{ 'userProfile.edit' | translate }}</span>
       </button>
-      <button class="delete-button" (click)="deleteComic(comic.id)" aria-label="Delete comic">
+      <button class="delete-button" (click)="deleteComic(comic.id)">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path d="M3 6h18" />
           <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
           <path d="M5 6v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6" />
         </svg>
+        <span class="visually-hidden">{{ 'userProfile.delete' | translate }}</span>
       </button>
     </div>
   </div>

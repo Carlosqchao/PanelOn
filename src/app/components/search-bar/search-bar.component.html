@@ -2,7 +2,12 @@
   <button class="filter-btn" (click)="onFilterClick()">
     <i class="fa-solid fa-sliders"></i>
   </button>
-  <input type="text" placeholder="Buscar..." [(ngModel)]="searchQuery" (keyup.enter)="onSearch()" />
+  <input
+    type="text"
+    [placeholder]="'searchBar.placeholder' | translate"
+    [(ngModel)]="searchQuery"
+    (keyup.enter)="onSearch()" />
+
   <button class="search-btn" (click)="onSearch()">
     <i class="fa-solid fa-magnifying-glass"></i>
   </button>

@@ -15,6 +15,7 @@ import { IUser } from '../../models/user';
 import { UserStoreService } from '../../../../backend/src/services/user-store';
 import { ActionIconsComponent } from '../../components/action-icons/action-icons.component';
 import { Comic } from '../../models/comic';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-comic-page',
@@ -30,7 +31,8 @@ import { Comic } from '../../models/comic';
     ButtonComponent,
     NgIf,
     NgClass,
-    ActionIconsComponent
+    ActionIconsComponent,
+    TranslateModule,
   ],
   templateUrl: './comic-page.component.html',
   styleUrls: ['./comic-page.component.scss']
@@ -74,8 +76,9 @@ export class ComicPageComponent implements OnInit, OnDestroy {
               cover: comic.cover || '',
               pegi: comic.pegi || 0,
               relatedCharacters: comic.relatedCharacters || [],
-              author_id: comic.author_id || 0,
+              author_id: comic.author_id || '',
             };
+            console.log('Comic loaded with author_id:', this.comic.author_id);
 
             if (comic.relatedCharacters?.length) {
               this.appService.getRelatedCharacters(comic.relatedCharacters).pipe(
