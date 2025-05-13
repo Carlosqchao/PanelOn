@@ -8,7 +8,7 @@
   align-items: flex-start;
   gap: 2vw;
   padding: 3vh 3vw;
-  background-color: var(--white);
+  background-color: var(--secondary);
   margin-bottom: 1vh;
   transition: transform 0.3s ease;
   box-shadow: 0 2px 8px var(--shadow);
@@ -42,7 +42,7 @@
 
     .timestamp {
       font-size: 0.9rem;
-      color: var(--dark-gray);
+      color: var(--text-color);
       margin: 0 0 1vh 0;
     }
 
@@ -138,7 +138,7 @@
 
 .reply-indicator {
   font-size: 0.9rem;
-  color: var(--reply-gray);
+  color: var(--text-color);
   margin-bottom: 0.5vh;
   display: flex;
   align-items: center;
@@ -151,13 +151,13 @@
 
   .reply-username {
     font-weight: 600;
-    color: var(--dark-gray);
+    color: var(--text-color);
   }
 }
 
 .view-more-btn {
   border: none;
-  color: var(--black);
+  color: var(--text-color);
   cursor: pointer;
   font-size: 0.9rem;
   margin-top: 1vh;
@@ -165,11 +165,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  background-color: var(--view-more-bg);
+  width: 121%;
+  background-color: var(--highlight-color);
   font-family: $font-family;
 
   &:hover {
-    background-color: var(--view-more-bg-hover);
+    background-color: var(--highlight-color);
   }
 }
