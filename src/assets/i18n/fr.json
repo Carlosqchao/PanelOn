@@ -9,7 +9,9 @@
     "LOGIN": "Connexion",
     "PROFILE": "Profil",
     "LOGOUT": "Déconnexion",
-    "LANGUAGE": "Langue"
+    "LANGUAGE": "Langue",
+    "LIGHT_MODE": "Clair",
+    "DARK_MODE": "Sombre"
   },
   "footer": {
     "policy": "Politique",
@@ -137,6 +139,8 @@
     "uploadedComics": "Bandes dessinées publiées",
     "likedComics": "Bandes dessinées aimées",
     "uploadComic": "TÉLÉVERSER UNE BD",
+    "followed": "AUTEURS SUIVIS",
+    "noFollowed": "Vous ne suivez encore aucun auteur.",
     "edit": "Modifier",
     "delete": "Supprimer",
     "modal": {

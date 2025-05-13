@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, OnDestroy, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NgClass, NgIf, isPlatformBrowser} from '@angular/common';
+import {NgClass, NgIf, isPlatformBrowser, CommonModule} from '@angular/common';
 import { User } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../../backend/src/services/user-auth';
@@ -21,7 +21,8 @@ import {LanguageService} from '../../language.service';
     NgClass,
     NgIf,
     TranslateModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
@@ -36,6 +37,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription | undefined;
   private userDataSubscription: Subscription | undefined;
   public currentLang: string;
+  languages = [
+    { code: 'es', name: 'Español' },
+    { code: 'en', name: 'English' },
+    { code: 'fr', name: 'Français' },
+    { code: 'it', name: 'Italiano' },
+    { code: 'pt', name: 'Português' }
+  ];
+  dropdownLangOpen = false;
 
 
   @ViewChild('profileMenu') profileMenu!: ElementRef;
@@ -122,6 +131,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleDropdown() {
+    this.dropdownLangOpen = false;
     this.showDropdown = !this.showDropdown;
   }
 
@@ -147,5 +157,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   changeLanguage(lang: string) {
     this.languageService.setLanguage(lang);
+  }
+
+  toggleDropdownLang() {
+    this.dropdownLangOpen = !this.dropdownLangOpen;
+  }
+
+  selectLanguage(langCode: string) {
+    this.currentLang = langCode;
+    this.dropdownLangOpen = false;
+    this.changeLanguage(langCode);
+  }
+
+  getLanguageName(code: string): string {
+    return this.languages.find(l => l.code === code)?.name || code;
   }
 }

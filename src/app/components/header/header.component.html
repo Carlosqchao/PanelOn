@@ -43,30 +43,30 @@
         <div class="profile-container" (click)="toggleDropdown()" #profileMenu>
           <div class="profile-content">
             <img class="profile-image" [src]="userData?.imageUrl || '../../assets/default-user-icon.png'" alt="Profile">
-            <svg class="dropdown-icon" width="10" height="6" viewBox="0 0 10 6" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1L5 5L9 1" stroke="white" stroke-width="4" stroke-linecap="round"
-                    stroke-linejoin="round"/>
-            </svg>
+            <span class="arrow">{{ showDropdown? '▶' : '▼' }}</span>
+
           </div>
           <div class="dropdown-menu" [ngClass]="{ 'dropdown-visible': showDropdown }">
             <a routerLink="/user-page" class="dropdown-item">{{ userData?.username || 'Profile' }}</a>
             <a (click)="toggleTheme()" class="dropdown-item">
-              <span *ngIf="isDarkMode; else lightModeIcon">Light</span>
-              <ng-template #lightModeIcon>Dark</ng-template>
+              <span *ngIf="isDarkMode; else lightModeIcon">{{ 'HEADER.LIGHT_MODE' | translate }}</span>
+              <ng-template #lightModeIcon>{{ 'HEADER.DARK_MODE' | translate }}</ng-template>
             </a>
-            <a (click)="logout()" class="dropdown-item logout">Logout</a>
+            <a (click)="logout()" class="dropdown-item logout">{{ 'HEADER.LOGOUT' | translate }}</a>
           </div>
         </div>
       </ng-container>
-      <div class="language-selector">
-        <select [(ngModel)]="currentLang" (change)="changeLanguage(currentLang)">
-          <option value="es">Español</option>
-          <option value="en">English</option>
-          <option value="fr">French</option>
-          <option value="it">Italian</option>
-          <option value="pt">Portuguese</option>
-        </select>
+      <div class="language-selector" (click)="toggleDropdownLang()">
+        <div class="selected-language">
+          <img [src]="'assets/flags/' + currentLang + '.svg'" alt="{{ currentLang }}" />
+          <span class="arrow">{{ dropdownLangOpen? '▶' : '▼' }}</span>
+        </div>
+        <ul class="language-dropdown" *ngIf="dropdownLangOpen">
+          <li *ngFor="let lang of languages" (click)="selectLanguage(lang.code)">
+            <img [src]="'assets/flags/' + lang.code + '.svg'" [alt]="lang.code" />
+            <span>{{ lang.name }}</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -75,10 +75,12 @@
     <ng-container *ngIf="user">
       <div class="mobile-user-profile">
         <img class="profile-image" [src]="userData?.imageUrl || '../../assets/default-user-icon.png'" alt="Profile" />
+        <div class="username-text" routerLink="/user-page">{{ userData?.username || 'HEADER.PROFILE' | translate }}</div>
         <a (click)="toggleTheme()" class="dropdown-item">
-          <span *ngIf="isDarkMode; else lightModeIcon">Light</span>
-          <ng-template #lightModeIcon>Dark</ng-template>
+          <span *ngIf="isDarkMode; else lightModeIcon">{{ 'HEADER.LIGHT_MODE' | translate }}</span>
+          <ng-template #lightModeIcon>{{ 'HEADER.DARK_MODE' | translate }}</ng-template>
         </a>
+        <a class="dropdown-item logout" (click)="logout()">Logout</a>
         <div class="username-text" routerLink="/user-page">{{ userData?.username || 'HEADER.PROFILE' | translate }}</div>
         <a class="dropdown-item logout" (click)="logout()">{{ 'HEADER.LOGOUT' | translate }}</a>
       </div>
@@ -96,6 +98,19 @@
 
 
     <ul class="mobile-navigation-menu">
+      <div class="language-selector" (click)="toggleDropdownLang()">
+        <div class="selected-language">
+          <img [src]="'assets/flags/' + currentLang + '.svg'" alt="{{ currentLang }}" />
+          <span>{{ getLanguageName(currentLang)}}</span>
+          <span class="arrow">{{ dropdownLangOpen? '▶' : '▼' }}</span>
+        </div>
+        <ul class="language-dropdown" *ngIf="dropdownLangOpen">
+          <li *ngFor="let lang of languages" (click)="selectLanguage(lang.code)">
+            <img [src]="'assets/flags/' + lang.code + '.svg'" [alt]="lang.code" />
+            <span>{{ lang.name }}</span>
+          </li>
+        </ul>
+      </div>
       <li class="mobile-navigation-item" *ngIf="!user">
         <a routerLink="/register" class="mobile-navigation-item">{{ 'HEADER.SIGN_UP' | translate }}</a>
       </li>

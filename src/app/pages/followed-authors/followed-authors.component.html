@@ -4,7 +4,7 @@
   <div class="imageContainer">
     <img src="authorsIcon.png" alt="authors icon" class="optionImage" />
   </div>
-  <h1>Followed Authors</h1>
+  <h1>{{ 'userProfile.followed' | translate }}</h1>
   <div class="authors-grid" *ngIf="authors.length > 0; else noAuthors">
     <app-author-card
       *ngFor="let author of authors"
@@ -14,6 +14,6 @@
     </app-author-card>
   </div>
   <ng-template #noAuthors>
-    <p>No authors followed yet.</p>
+    <p>{{ 'userProfile.noFollowed' | translate }}</p>
   </ng-template>
 </div>
