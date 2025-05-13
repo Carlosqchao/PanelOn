@@ -7,11 +7,12 @@ import { NgIf, NgFor } from '@angular/common';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IUser } from '../../models/user';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-followed-authors',
   standalone: true,
-  imports: [HeaderBacklinkComponent, AuthorCardComponent, NgIf, NgFor],
+  imports: [HeaderBacklinkComponent, AuthorCardComponent, NgIf, NgFor, TranslateModule],
   templateUrl: './followed-authors.component.html',
   styleUrls: ['./followed-authors.component.scss']
 })

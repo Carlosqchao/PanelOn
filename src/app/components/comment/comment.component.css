@@ -34,17 +34,23 @@
 }
 
 .dark-theme {
-  --primary: #228B22;
-  --primary-dark: #006400;
-  --secondary: #333;
+  --primary: #d60f6d;
+  --primary-dark: #b50b5b;
+  --secondary: #3d2b55;
   --black: white;
-  --background: grey;
+  --background: #0b222c;
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f;
+  --highlight-color: #6b082e;
 }
 
+@font-face {
+  font-family: "genty";
+  src: url("../assets/font/genty-sans-regular.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
 .comment-container {
   display: flex;
   width: 100%;
@@ -53,7 +59,7 @@
   align-items: flex-start;
   gap: 2vw;
   padding: 3vh 3vw;
-  background-color: var(--white);
+  background-color: var(--secondary);
   margin-bottom: 1vh;
   transition: transform 0.3s ease;
   box-shadow: 0 2px 8px var(--shadow);
@@ -75,7 +81,7 @@
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
 }
 .comment-container .comment-content .username {
   font-size: 1.2rem;
@@ -84,7 +90,7 @@
 }
 .comment-container .comment-content .timestamp {
   font-size: 0.9rem;
-  color: var(--dark-gray);
+  color: var(--text-color);
   margin: 0 0 1vh 0;
 }
 .comment-container .comment-content .comment-text {
@@ -105,7 +111,7 @@
   color: var(--black);
   cursor: pointer;
   font-size: 0.9rem;
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
 }
 .comment-container .comment-content .comment-actions button[disabled] {
   color: var(--gray);
@@ -125,7 +131,7 @@
   resize: none;
   padding: 0.5rem;
   border: 1px solid var(--gray);
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
 }
 .comment-container .comment-content .reply-form button {
   background-color: var(--primary);
@@ -134,7 +140,7 @@
   margin-right: 0.5rem;
   border: none;
   cursor: pointer;
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
 }
 .comment-container .comment-content .reply-form button:hover {
   background-color: var(--primary-dark);
@@ -146,7 +152,7 @@
   resize: none;
   padding: 0.5rem;
   border: 1px solid var(--gray);
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
 }
 
 .replies-container {
@@ -167,11 +173,11 @@
 
 .reply-indicator {
   font-size: 0.9rem;
-  color: var(--reply-gray);
+  color: var(--text-color);
   margin-bottom: 0.5vh;
   display: flex;
   align-items: center;
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
 }
 .reply-indicator .reply-arrow {
   color: var(--blue);
@@ -179,12 +185,12 @@
 }
 .reply-indicator .reply-username {
   font-weight: 600;
-  color: var(--dark-gray);
+  color: var(--text-color);
 }
 
 .view-more-btn {
   border: none;
-  color: var(--black);
+  color: var(--text-color);
   cursor: pointer;
   font-size: 0.9rem;
   margin-top: 1vh;
@@ -192,12 +198,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  background-color: var(--view-more-bg);
-  font-family: "Roboto", sans-serif;
+  width: 121%;
+  background-color: var(--highlight-color);
+  font-family: "Genty", sans-serif;
 }
 .view-more-btn:hover {
-  background-color: var(--view-more-bg-hover);
+  background-color: var(--highlight-color);
 }
 
 /*# sourceMappingURL=comment.component.css.map */

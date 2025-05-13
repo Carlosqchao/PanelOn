@@ -9,7 +9,9 @@
     "LOGIN": "Iniciar sesión",
     "PROFILE": "Perfil",
     "LOGOUT": "Cerrar sesión",
-    "LANGUAGE": "Idioma"
+    "LANGUAGE": "Idioma",
+    "LIGHT_MODE": "Claro",
+    "DARK_MODE": "Oscuro"
   },
   "footer": {
     "policy": "Política",
@@ -137,6 +139,8 @@
     "uploadedComics": "Cómics subidos",
     "likedComics": "Cómics con me gusta",
     "uploadComic": "SUBIR UN CÓMIC",
+    "followed":  "AUTORES SEGUIDOS",
+    "noFollowed": "Aún no sigues a ningún autor.",
     "edit": "Editar",
     "delete": "Eliminar",
     "modal": {

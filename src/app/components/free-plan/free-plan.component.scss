@@ -9,6 +9,11 @@ $description-weight: bold;
   flex-direction: row;
 }
 
+@mixin flex-column() {
+  justify-content: center;
+  flex-direction: column;
+}
+
 .free-plan-container {
   @include flex-row();
   width: 100%;
@@ -32,6 +37,13 @@ $description-weight: bold;
 
   .free-plan-button-container {
     width: 30%;
+  }
+}
+
+@media (max-width: 850px) {
+  .free-plan-description-container {
+    @include flex-column();
+    padding: 1vh 10vw;
   }
 }
 

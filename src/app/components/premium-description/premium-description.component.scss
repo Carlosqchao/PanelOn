@@ -34,7 +34,7 @@ $subtitle-weight: bold;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 850px) {
   .premium-description-container {
     @include flex-column();
     width: 100%;

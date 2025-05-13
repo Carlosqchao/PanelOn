@@ -34,17 +34,23 @@
 }
 
 .dark-theme {
-  --primary: #228B22;
-  --primary-dark: #006400;
-  --secondary: #333;
+  --primary: #d60f6d;
+  --primary-dark: #b50b5b;
+  --secondary: #3d2b55;
   --black: white;
-  --background: grey;
+  --background: #0b222c;
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f;
+  --highlight-color: #6b082e;
 }
 
+@font-face {
+  font-family: "genty";
+  src: url("../assets/font/genty-sans-regular.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -92,7 +98,7 @@
 
 .register-container .register-header h1 {
   font-size: 2.75rem;
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
   font-weight: bold;
   color: var(--black);
   text-transform: uppercase;
@@ -128,7 +134,7 @@
   margin-top: 0.3vh;
   margin-bottom: 0.3vh;
   background-color: var(--white);
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
 }
 
 .register-container .register-form input::placeholder {
@@ -176,7 +182,7 @@
   font-size: 20px;
   font-weight: bold;
   color: var(--black);
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -189,7 +195,7 @@
 .register-container #sign-in-link {
   color: var(--black);
   font-size: 1rem;
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
   margin-top: 2vh;
   display: block;
 }
@@ -204,7 +210,7 @@
 .error-message {
   color: var(--red);
   font-size: 0.9rem;
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
   margin-bottom: 0.3vh;
   text-align: left;
   width: 65vh;
@@ -230,7 +236,7 @@
   margin-top: 0.3vh;
   margin-bottom: 0.3vh;
   background-color: var(--white);
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
   align-content: center;
   align-items: center;
 }

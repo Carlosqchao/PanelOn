@@ -35,17 +35,23 @@
 }
 
 .dark-theme {
-  --primary: #228B22;
-  --primary-dark: #006400;
-  --secondary: #333;
+  --primary: #d60f6d;
+  --primary-dark: #b50b5b;
+  --secondary: #3d2b55;
   --black: white;
-  --background: grey;
+  --background: #0b222c;
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f;
+  --highlight-color: #6b082e;
 }
 
+@font-face {
+  font-family: "genty";
+  src: url("../assets/font/genty-sans-regular.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
 h1 {
   padding: 15vh 5vh 0 5vh;
 }
