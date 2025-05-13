@@ -25,6 +25,7 @@ admin.initializeApp({
 
 const bucket = admin.storage().bucket();
 
+
 // @ts-ignore
 app.post('/check-nsfw', upload.single('file'), async (req: Request, res: Response) => {
   const pdfPath = req.file?.path;
@@ -50,22 +51,44 @@ app.post('/check-nsfw', upload.single('file'), async (req: Request, res: Respons
 
     const python = spawn('.venv/Scripts/python.exe', ['src/nsfw-backend/src/nsfw_check.py', outputDir]);
 
-
     let output = '';
     python.stdout.on('data', (data) => output += data.toString());
     python.stderr.on('data', (data) => console.error('stderr:', data.toString()));
 
     python.on('close', (code) => {
       try {
-        const result = JSON.parse(output);
-        res.json(result);
+        const jsonMatch = output.match(/{.*}/);
+        if (jsonMatch) {
+          const result = JSON.parse(jsonMatch[0]);
+
+          let adjustedPegi = pegi;
+
+          if (result.violence) {
+            adjustedPegi = '16';
+          } else if (result.nsfw && result.pegi) {
+            adjustedPegi = result.pegi;
+          } else if (!result.nsfw && !result.violence && result.pegi) {
+            adjustedPegi = result.pegi || pegi;
+          }
+
+
+          res.json({
+            nsfw: result.nsfw,
+            violence: result.violence,
+            pegi: adjustedPegi
+          });
+        } else {
+          throw new Error('No JSON found in the output');
+        }
       } catch (e) {
         console.error('Error parseando la salida de Python:', output);
         res.status(500).json({ error: 'Error analizando resultados NSFW' });
       }
     });
+
   });
 });
+
 
 const uploadFile = multer({ dest: '../uploads' });
 
@@ -79,8 +102,8 @@ app.post('/upload', upload.single('file'), async (req: Request, res: Response) =
     state,
     pegi,
     ['genre[]']: genresRaw,
+    author_id,
   } = req.body;
-
   const rawGenres = req.body.genre;
   const genre = Array.isArray(rawGenres) ? rawGenres : [rawGenres];
 
@@ -119,6 +142,7 @@ app.post('/upload', upload.single('file'), async (req: Request, res: Response) =
     published: new Date().toISOString().split('T')[0],
     uploadUrl: publicUrl,
     comicUrl: comicUrl,
+    author_id: author_id
   });
   res.json({
     message: 'Contenido subido correctamente.',
@@ -129,7 +153,7 @@ app.post('/upload', upload.single('file'), async (req: Request, res: Response) =
 app.use('/uploads', express.static(path.resolve('src/nsfw-backend/uploads')));
 
 app.get('/get-images', (req: Request, res: Response) => {
-  const dirPath = path.resolve('src/nsfw-backend/uploads'); // ruta absoluta
+  const dirPath = path.resolve('src/nsfw-backend/uploads');
 
   // @ts-ignore
   fs.readdir(dirPath, (err, files) => {

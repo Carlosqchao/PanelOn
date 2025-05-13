@@ -655,11 +655,11 @@ export class AppService {
     const docSnap = await getDoc(docRef);
     if (!docSnap.exists()) throw new Error("No existe el documento");
     const data = docSnap.data();
-    const storagePath = data['comicUrl']; // ejemplo: "uploads/FuckBerto.pdf"
+    const storagePath = data['comicUrl'];
 
     const storage = getStorage();
     const fileRef = ref(storage, storagePath);
-    return await getDownloadURL(fileRef); // <- genera una URL real para el navegador
+    return await getDownloadURL(fileRef);
   }
 
 }
