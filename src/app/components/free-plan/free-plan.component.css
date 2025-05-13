@@ -21,4 +21,12 @@
   width: 30%;
 }
 
+@media (max-width: 850px) {
+  .free-plan-description-container {
+    justify-content: center;
+    flex-direction: column;
+    padding: 1vh 10vw;
+  }
+}
+
 /*# sourceMappingURL=free-plan.component.css.map */

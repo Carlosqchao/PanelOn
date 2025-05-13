@@ -5,14 +5,7 @@
   <div class="section-description-container">
     <p id="section-description"> {{ description }}</p>
     <div class="button-general-container">
-      <app-button
-        [customClass]="'button-plan'"
-        [text]="buttonTitle"
-        [textSize]="buttonTextSize"
-        [buttonWidth]="buttonWidth"
-        [buttonHeight]="buttonHeight"
-        (buttonClick)="onPlanClick()">
-      </app-button>
+      <button class="button-general"> {{ buttonTitle }} </button>
     </div>
   </div>
 </div>

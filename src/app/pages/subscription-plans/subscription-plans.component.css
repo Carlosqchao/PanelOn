@@ -17,4 +17,15 @@
   text-align: center;
 }
 
+@media (max-width: 850px) {
+  .plans-comparison-container {
+    margin-left: 20%;
+  }
+  .free-plan {
+    justify-content: center;
+    flex-direction: column;
+    padding: 2vh;
+  }
+}
+
 /*# sourceMappingURL=subscription-plans.component.css.map */

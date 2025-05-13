@@ -21,7 +21,7 @@
   margin: 1.5vh auto;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 850px) {
   .premium-description-container {
     display: flex;
     flex-direction: column;
