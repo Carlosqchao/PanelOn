@@ -48,7 +48,7 @@
 
       <a
         class="details-link"
-        *ngIf="!isAnalyzingFile && nsfwResult?.nsfw === true && loadingStatus !== 'loading'"
+        *ngIf="!isAnalyzingFile && (nsfwResult?.nsfw || violenceDetected) && loadingStatus !== 'loading'"
         (click)="openModal()"
       >
         {{ 'uploadComic.details' | translate }}
@@ -57,7 +57,8 @@
       <div *ngIf="modalVisible && nsfwResult != null" class="modal">
         <div class="modal-content">
           <span class="close" (click)="closeModal()">&times;</span>
-          <h2>{{ 'uploadComic.nsfwAnalysis' | translate }}</h2>
+          <h2 *ngIf="nsfwResult?.nsfw">{{ 'NSFW Analysis' | translate }}</h2>
+          <h2 *ngIf="violenceDetected">{{ 'Violence Analysis' | translate }}</h2>
           <div *ngFor="let image of imagePreviews">
             <img [src]="image" alt="{{ 'uploadComic.preview' | translate }}" class="preview-image"/>
           </div>
