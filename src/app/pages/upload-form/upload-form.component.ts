@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
