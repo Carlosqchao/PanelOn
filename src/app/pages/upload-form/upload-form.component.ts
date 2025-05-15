@@ -239,7 +239,7 @@ export class UploadFormComponent implements OnInit {
   }
 
   getShortFileName(fileName: string | undefined): string {
-    return fileName && fileName.length > 30 ? fileName.substring(0, 30) + '...' : fileName || '';
+    return fileName && fileName.length > 30 ? fileName.substring(0, 15) + '...' : fileName || '';
   }
 
   openModal(): void {

@@ -56,9 +56,20 @@
 
       <div *ngIf="modalVisible && nsfwResult != null" class="modal">
         <div class="modal-content">
+          <div class="pegi-legend">
+            <h3 style="color: black">{{ 'uploadComic.colorLegend' | translate }}</h3>
+            <ul>
+              <li style="color: black"><span style="color: green; font-weight: bold;">PEGI 3</span>: {{ 'uploadComic.pegi3' | translate }}</li>
+              <li style="color: black"><span style="color: green; font-weight: bold;">PEGI 7</span>: {{ 'uploadComic.pegi7' | translate }}</li>
+              <li style="color: black"><span style="color: orange; font-weight: bold;">PEGI 12</span>: {{ 'uploadComic.pegi12' | translate }}</li>
+              <li style="color: black"><span style="color: orangered; font-weight: bold;">PEGI 16</span>: {{ 'uploadComic.pegi16' | translate }}</li>
+              <li style="color: black"><span style="color: red; font-weight: bold;">PEGI 18</span>: {{ 'uploadComic.pegi18' | translate }}</li>
+            </ul>
+          </div>
+
           <span class="close" (click)="closeModal()">&times;</span>
-          <h2 *ngIf="nsfwResult?.nsfw">{{ 'NSFW Analysis' | translate }}</h2>
-          <h2 *ngIf="violenceDetected">{{ 'Violence Analysis' | translate }}</h2>
+          <h2 style="color: black" *ngIf="nsfwResult?.nsfw">{{ 'uploadComic.NSFWAnalysis' | translate }}</h2>
+          <h2 style="color: black" *ngIf="violenceDetected">{{ 'uploadComic.ViolenceAnalysis' | translate }}</h2>
           <div *ngFor="let image of imagePreviews">
             <img [src]="image" alt="{{ 'uploadComic.preview' | translate }}" class="preview-image"/>
           </div>

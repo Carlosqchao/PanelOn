@@ -31,20 +31,20 @@ safe_labels_by_pegi = {
 all_safe_labels = set(safe_labels_by_pegi["18"])
 
 color_map = {
-  'FACE_FEMALE': 'blue',
+  'FACE_FEMALE': 'green',
   'FACE_MALE': 'green',
-  'ARMPITS_COVERED': 'yellow',
-  'BELLY_EXPOSED': 'orange',
-  'FEET_COVERED': 'purple',
-  'BUTTOCKS_COVERED': 'pink',
-  'FEMALE_BREAST_COVERED': 'red',
-  'FEMALE_GENITALIA_COVERED': 'cyan',
-  'BUTTOCKS_EXPOSED': 'brown',
-  'MALE_BREAST_EXPOSED': 'gray',
-  'FEET_EXPOSED': 'teal',
-  'ANUS_COVERED': 'lime',
-  'ARMPITS_EXPOSED': 'violet',
-  'BELLY_COVERED': 'magenta',
+  'ARMPITS_COVERED': 'green',
+  'BELLY_EXPOSED': 'green',
+  'FEET_COVERED': 'orange',
+  'BUTTOCKS_COVERED': 'orangered',
+  'FEMALE_BREAST_COVERED': 'orangered',
+  'FEMALE_GENITALIA_COVERED': 'red',
+  'BUTTOCKS_EXPOSED': 'red',
+  'MALE_BREAST_EXPOSED': 'red',
+  'FEET_EXPOSED': 'red',
+  'BELLY_COVERED': 'red',
+  'ARMPITS_EXPOSED': 'red',
+  'ANUS_COVERED': 'red',
   'violence': 'red',
   'fight': 'red'
 }

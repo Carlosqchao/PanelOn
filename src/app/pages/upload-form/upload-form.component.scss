@@ -25,12 +25,15 @@ $font-family: $font-family;
   border: 60px solid var(--background);
   align-items: center;
 }
-
+.fa-upload:before {
+  content: "\f093";
+  color: black;
+}
 .file-upload {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--background);
+  background-color: var(--secondary);
   min-height: 20vh;
   position: relative;
   z-index: 1;

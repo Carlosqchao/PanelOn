@@ -177,7 +177,15 @@
     "uploadSuccess": "✅ ¡Subida Exitosa!",
     "uploadError": "⚠️ Hubo un error durante la subida.",
     "uploading": "Subiendo...",
-    "upload": "Subir"
+    "upload": "Subir",
+    "colorLegend": "Leyenda de niveles PEGI",
+    "pegi3": "Apto para todos los públicos.",
+    "pegi7": "Ligeras escenas potencialmente atemorizantes.",
+    "pegi12": "Puede incluir violencia leve o desnudos no sexuales.",
+    "pegi16": "Violencia realista o contenido sexual leve.",
+    "pegi18": "Contenido adulto, explícito o muy violento.",
+    "NSFWAnalysis": "Análisis NSFW",
+    "ViolenceAnalysis": "Análisis de violencia"
   },
   "loginComponent": {
     "pageTitle": "INICIAR SESIÓN",

@@ -177,7 +177,15 @@
     "uploadSuccess": "✅ Caricamento Riuscito!",
     "uploadError": "⚠️ Si è verificato un errore durante il caricamento.",
     "uploading": "Caricamento in corso...",
-    "upload": "Caricare"
+    "upload": "Caricare",
+    "colorLegend": "Legenda dei livelli PEGI",
+    "pegi3": "Adatto a tutti i pubblici.",
+    "pegi7": "Scene lievi che potrebbero spaventare i bambini piccoli.",
+    "pegi12": "Può includere violenza lieve o nudità non sessuale.",
+    "pegi16": "Violenza realistica o contenuti sessuali leggeri.",
+    "pegi18": "Contenuti espliciti, violenza forte o tematiche per adulti.",
+    "NSFWAnalysis": "Analisi NSFW",
+    "ViolenceAnalysis": "Analisi della violenza"
   },
   "loginComponent": {
     "pageTitle": "ACCEDI",
