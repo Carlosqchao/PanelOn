@@ -45,12 +45,6 @@
   --highlight-color: #6b082e;
 }
 
-@font-face {
-  font-family: "genty";
-  src: url("../assets/font/genty-sans-regular.ttf") format("truetype");
-  font-weight: 800;
-  font-style: normal;
-}
 .input-field {
   text-align: left;
   border: 1px solid var(--gray);
