@@ -27,7 +27,7 @@ div {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color:  var(--secondary);
+  background-color: var(--secondary);
   color: var(--primary);
 }
 
@@ -44,4 +44,14 @@ div {
 .text-right {
   margin-right: 14.5%;
   margin-left: 0;
+}
+
+@media (max-width: 768px) {
+  .text-left {
+    margin-left: 5%;
+  }
+
+  .text-right {
+    margin-right: 5%;
+  }
 }

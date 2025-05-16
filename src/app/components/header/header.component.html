@@ -123,6 +123,11 @@
       </li>
       <li class="mobile-navigation-item">
         <a [routerLink]="['/community']" [queryParams]="{ option: 'community' }">{{ 'HEADER.COMMUNITY' | translate }}</a>
+      <li class="mobile-navigation-item">
+        <a (click)="toggleTheme()">
+          <span *ngIf="isDarkMode; else lightModeIcon">{{ 'HEADER.LIGHT_MODE' | translate }}</span>
+          <ng-template #lightModeIcon>{{ 'HEADER.DARK_MODE' | translate }}</ng-template>
+        </a>
       </li>
       <li class="mobile-navigation-item" *ngIf="user">
         <a routerLink="/upload-form">UPLOAD</a>
