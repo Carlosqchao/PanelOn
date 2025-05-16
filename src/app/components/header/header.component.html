@@ -25,11 +25,20 @@
       <li class="navigation-item">
         <a [routerLink]="['/community']" [queryParams]="{ option: 'community' }">{{ 'HEADER.COMMUNITY' | translate }}</a>
       </li>
+      <li class="navigation-item" *ngIf="user">
+        <a routerLink="/upload-form">UPLOAD</a>
+      </li>
       <li class="navigation-item" *ngIf="!user">
         <a routerLink="/login">{{ 'HEADER.SUBSCRIPTION' | translate }}</a>
       </li>
       <li class="navigation-item" *ngIf="user">
         <a routerLink="/subscription-plans">{{ 'HEADER.SUBSCRIPTION' | translate }}</a>
+      </li>
+      <li class="navigation-item">
+        <a (click)="toggleTheme()">
+          <span *ngIf="isDarkMode; else lightModeIcon">{{ 'HEADER.LIGHT_MODE' | translate }}</span>
+          <ng-template #lightModeIcon>{{ 'HEADER.DARK_MODE' | translate }}</ng-template>
+        </a>
       </li>
     </ul>
 
@@ -44,7 +53,6 @@
           <div class="profile-content">
             <img class="profile-image" [src]="userData?.imageUrl || '../../assets/default-user-icon.png'" alt="Profile">
             <span class="arrow">{{ showDropdown? '▶' : '▼' }}</span>
-
           </div>
           <div class="dropdown-menu" [ngClass]="{ 'dropdown-visible': showDropdown }">
             <a routerLink="/user-page" class="dropdown-item">{{ userData?.username || 'Profile' }}</a>
@@ -80,22 +88,9 @@
           <span *ngIf="isDarkMode; else lightModeIcon">{{ 'HEADER.LIGHT_MODE' | translate }}</span>
           <ng-template #lightModeIcon>{{ 'HEADER.DARK_MODE' | translate }}</ng-template>
         </a>
-        <a class="dropdown-item logout" (click)="logout()">Logout</a>
-        <div class="username-text" routerLink="/user-page">{{ userData?.username || 'HEADER.PROFILE' | translate }}</div>
         <a class="dropdown-item logout" (click)="logout()">{{ 'HEADER.LOGOUT' | translate }}</a>
       </div>
-      <div class="language-selector">
-        <select [(ngModel)]="currentLang" (change)="changeLanguage(currentLang)">
-          <option value="es">Spain</option>
-          <option value="en">English</option>
-          <option value="fr">French</option>
-          <option value="it">Italian</option>
-          <option value="pt">Portuguese</option>
-        </select>
-      </div>
     </ng-container>
-
-
 
     <ul class="mobile-navigation-menu">
       <div class="language-selector" (click)="toggleDropdownLang()">
@@ -112,10 +107,10 @@
         </ul>
       </div>
       <li class="mobile-navigation-item" *ngIf="!user">
-        <a routerLink="/register" class="mobile-navigation-item">{{ 'HEADER.SIGN_UP' | translate }}</a>
+        <a routerLink="/register">{{ 'HEADER.SIGN_UP' | translate }}</a>
       </li>
       <li class="mobile-navigation-item" *ngIf="!user">
-        <a routerLink="/login" class="mobile-navigation-item">{{ 'HEADER.LOGIN' | translate }}</a>
+        <a routerLink="/login">{{ 'HEADER.LOGIN' | translate }}</a>
       </li>
       <li class="mobile-navigation-item">
         <a [routerLink]="['/search-page']" [queryParams]="{ option: 'characters' }">{{ 'HEADER.CHARACTERS' | translate }}</a>
@@ -128,6 +123,14 @@
       </li>
       <li class="mobile-navigation-item">
         <a [routerLink]="['/community']" [queryParams]="{ option: 'community' }">{{ 'HEADER.COMMUNITY' | translate }}</a>
+      <li class="mobile-navigation-item">
+        <a (click)="toggleTheme()">
+          <span *ngIf="isDarkMode; else lightModeIcon">{{ 'HEADER.LIGHT_MODE' | translate }}</span>
+          <ng-template #lightModeIcon>{{ 'HEADER.DARK_MODE' | translate }}</ng-template>
+        </a>
+      </li>
+      <li class="mobile-navigation-item" *ngIf="user">
+        <a routerLink="/upload-form">UPLOAD</a>
       </li>
       <li class="mobile-navigation-item" *ngIf="!user">
         <a routerLink="/login">{{ 'HEADER.SUBSCRIPTION' | translate }}</a>
@@ -139,4 +142,3 @@
   </div>
 </nav>
 <div class="nav-spacer"></div>
-
