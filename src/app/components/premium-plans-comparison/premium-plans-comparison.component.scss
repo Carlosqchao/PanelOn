@@ -1,13 +1,18 @@
 $image-width: 14vw;
 $image-height: 45vh;
 
-@mixin flex-column() {
+@mixin flex-row() {
   display: flex;
   flex-direction: row;
 }
 
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
 .comparison-container {
-  @include flex-column();
+  @include flex-row();
   position: relative;
   justify-content: center;
   align-items: flex-start;
@@ -30,5 +35,32 @@ $image-height: 45vh;
     width: auto;
     height: 100%;
     object-fit: cover;
+  }
+}
+
+@media (max-width: 850px) {
+  .comparison-container {
+    @include flex-column();
+    position: relative;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 4vh;
+
+    .img-comparison-container {
+      position: absolute;
+      top: 50%;
+      left: 50.5%;
+      transform: translate(-50%, -50%);
+      width: $image-width;
+      height: $image-height;
+      display: none;
+    }
+
+    .img-comparison {
+      width: auto;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }

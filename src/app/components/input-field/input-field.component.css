@@ -34,15 +34,15 @@
 }
 
 .dark-theme {
-  --primary: #228B22;
-  --primary-dark: #006400;
-  --secondary: #333;
+  --primary: #d60f6d;
+  --primary-dark: #b50b5b;
+  --secondary: #3d2b55;
   --black: white;
-  --background: grey;
+  --background: #0b222c;
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f;
+  --highlight-color: #6b082e;
 }
 
 .input-field {

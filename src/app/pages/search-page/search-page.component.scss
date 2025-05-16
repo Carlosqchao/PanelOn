@@ -5,7 +5,7 @@
 }
 
 .filter-dropdown {
-  background-color: var(--white);
+  background-color: var(--secondary);
   box-shadow: 0 4px 10px var(--shadow);
   width: 100%;
   max-width: 30vw;
@@ -154,7 +154,7 @@
 }
 
 .pagination button {
-  background: var(--dark-gray);
+  background: var(--primary);
   border: none;
   color: #fff;
   padding: 0.625rem 0.9375rem;

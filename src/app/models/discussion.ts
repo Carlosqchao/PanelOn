@@ -9,7 +9,7 @@ export interface Chat {
 }
 
 export interface Discussion {
-  id?: string;
+  id: string;
   title: string
   discussion: string
   date: Timestamp

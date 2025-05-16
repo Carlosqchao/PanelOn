@@ -7,7 +7,6 @@
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
   font-family: $font-family;
 
   .center-container {
@@ -19,7 +18,7 @@
   }
 
   .comment-form {
-    width: 100%;
+    width: 75%;
     background-color: var(--white);
     padding: 20px;
     box-shadow: 0 2px 8px var(--shadow);

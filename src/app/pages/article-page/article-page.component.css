@@ -35,24 +35,30 @@
 }
 
 .dark-theme {
-  --primary: #228B22;
-  --primary-dark: #006400;
-  --secondary: #333;
+  --primary: #d60f6d;
+  --primary-dark: #b50b5b;
+  --secondary: #3d2b55;
   --black: white;
-  --background: grey;
+  --background: #0b222c;
   --white: #e0e0e0;
   --shadow: rgba(255, 255, 255, 0.1);
   --text-color: #f5f5f5;
-  --highlight-color: #8fbc8f;
+  --highlight-color: #6b082e;
 }
 
+@font-face {
+  font-family: "genty";
+  src: url("../assets/font/genty-sans-regular.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
 .news-article {
   position: relative;
   background-color: none;
   padding: 7vh 1.5vw;
   max-width: 800px;
   margin: 0 auto;
-  font-family: "Roboto", sans-serif;
+  font-family: "Genty", sans-serif;
   color: var(--text-color);
   line-height: 1.6;
 }

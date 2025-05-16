@@ -3,6 +3,11 @@
   flex-direction: row;
 }
 
+@mixin flex-column() {
+  justify-content: center;
+  flex-direction: column;
+}
+
 .free-plan {
   @include flex-row;
   display: flex;
@@ -13,4 +18,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.plans-comparison-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+@media (max-width: 850px) {
+  .plans-comparison-container {
+    margin-left: 20%;
+  }
+
+  .free-plan {
+    @include flex-column;
+    padding: 2vh;
+  }
 }

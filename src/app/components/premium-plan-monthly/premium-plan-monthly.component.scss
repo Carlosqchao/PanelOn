@@ -1,20 +1,54 @@
 $font-size-title: 1.2rem;
+$mobile-font-size-title: 0.8rem;
 $font-weight-title: bold;
 
 $font-size-description: 1rem;
+$mobile-font-size-description: 0.85rem;
 $font-weight-description: bold;
 
 $font-size-price: 2rem;
+$mobile-font-size-price: 1rem;
 $font-weight-price: bold;
 
 $container-width: 45vw;
+$mobile-container-width: 80%;
 $container-height: 45vh;
+$mobile-container-height: 30vh;
 
 @mixin flex-column() {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
+
+.button-general {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: none;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary);
+  color: var(--white);
+
+  &:hover {
+    background-color: var(--primary-dark);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: var(--gray);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
 
 .monthly-plan-container {
   @include flex-column();
@@ -50,5 +84,45 @@ $container-height: 45vh;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media (max-width: 850px) {
+  .monthly-plan-container {
+    @include flex-column();
+    align-items: center;
+    width: $mobile-container-width;
+    height: $mobile-container-height;
+    padding: 1vh 1vw;
+    gap: 2vh;
+
+    .section-plan-title-container {
+      display: flex;
+      justify-content: center;
+      font-size: $mobile-font-size-title;
+      font-weight: $font-weight-title;
+      width: 100%;
+      padding: 0 4vw;
+
+      #section-title {
+        top: 0;
+      }
+    }
+
+    .section-description-container {
+      justify-content: center;
+      font-size: $mobile-font-size-description;
+      font-weight: $font-weight-description;
+      text-align: center;
+      width: 65%;
+    }
+
+    .button-general-container {
+      margin-top: 2vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: $mobile-font-size-price;
+    }
   }
 }
