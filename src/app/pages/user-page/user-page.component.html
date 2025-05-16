@@ -32,11 +32,10 @@
         <button class="pencilIcon" (click)="toggleUsernameEdit()">
           <img class="icon" src="pencilIcon.png">
         </button>
+        <button class="bellIcon">
+          <img class="icon" src="bellIcon.png">
+        </button>
       </ng-template>
-
-      <button class="bellIcon">
-        <img class="icon" src="bellIcon.png">
-      </button>
     </div>
 
     <div class="userDescriptionSection">
@@ -101,6 +100,6 @@
   </div>
 
   <div class="center-container">
-    <app-button [text]="'userProfile.uploadComic' | translate" buttonWidth="30rem" buttonHeight="5rem" (click)="callToRead()"></app-button>
+    <app-button [text]="'userProfile.uploadComic' | translate" buttonWidth="10" buttonHeight="auto" (click)="callToRead()"></app-button>
   </div>
 </div>

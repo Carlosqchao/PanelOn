@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5rem;
+  gap: 3rem;
   padding-top: 5rem;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .userDescriptionSection {
-  width: 100%;
+  width: 80%;
   max-width: 600px;
   margin: 12px 0;
   position: relative;
@@ -238,9 +238,12 @@
 }
 
 .profile-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  width: 30rem;
-  height: 30rem;
+  width: 20rem;
+  height: 20rem;
   margin: 0 auto;
   border-radius: 50%;
   overflow: hidden;
@@ -288,5 +291,38 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+
+  icon {
+    width: 40%;
+    padding: 0.25rem;
+  }
+
+  .userName {
+    font-size: 1.5rem;
+  }
+
+  .edit-username-input {
+    font-size: 1.2rem;
+  }
+
+  .subscribeButton,
+  .cancelButton {
+    font-size: 14px;
+  }
+
+  .add-description-button {
+    font-size: 12px;
+  }
+
+  .edit-hint {
+    font-size: 10px;
+  }
+
+  .upload-icon {
+    font-size: 1.2rem;
   }
 }
